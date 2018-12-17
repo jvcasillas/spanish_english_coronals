@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2012)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: IS13full_paper.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: IEEEabrv.bib
+Database file #2: SpeePros.bib
+Warning--entry type for "birdsong2012bilingual" isn't style-file defined
+--line 114 of file SpeePros.bib
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+** IEEEtran BST control entry "IEEEexample:BSTcontrol" detected.
+
+Done.
+You've used 20 entries,
+            4039 wiz_defined-function locations,
+            1328 strings with 17945 characters,
+and the built_in function-call counts, 14456 in all, are:
+= -- 1249
+> -- 230
+< -- 163
++ -- 145
+- -- 26
+* -- 649
+:= -- 2244
+add.period$ -- 38
+call.type$ -- 20
+change.case$ -- 24
+chr.to.int$ -- 393
+cite$ -- 20
+duplicate$ -- 1027
+empty$ -- 1085
+format.name$ -- 25
+if$ -- 3301
+int.to.chr$ -- 0
+int.to.str$ -- 19
+missing$ -- 136
+newline$ -- 81
+num.names$ -- 19
+pop$ -- 266
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 4
+skip$ -- 1148
+stack$ -- 0
+substring$ -- 900
+swap$ -- 862
+text.length$ -- 36
+text.prefix$ -- 0
+top$ -- 6
+type$ -- 20
+warning$ -- 0
+while$ -- 90
+width$ -- 21
+write$ -- 208
+(There was 1 warning)

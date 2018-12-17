@@ -1,0 +1,32 @@
+% R2 from logistic regression
+
+% {\footnotesize{
+% 	\begin{tabular}{@{}lccccc@{}}
+% 		\hline \\ [-2ex]
+% 		      & COG & Mean Intensity & SD & Skewness & Central Moment \\[.5ex]
+% 		\hline \\ [-2ex]
+% 		R$^2$ & .67 & .54            & .51 & .47     & .0             \\[.5ex]
+% 		\hline
+% 		\multicolumn{6}{@{}l}{{\scriptsize{Consonant $\sim$ \{COG, Mean intensity, SD, Skewness, Central moment\}}}}
+% 	\end{tabular}
+% }}
+
+{\footnotesize{
+% \begin{table}[h]
+% \caption{Regression analysis of /d/-/t/.\label{model_sum}}
+% \begin{center}
+\begin{tabular}{@{}lccrr@{}}
+\hline \\ [-2ex]
+Metric & \emph{R}$^2$ & \emph{R}$^2_{\ change}$ & \emph{$\chi^2_{\ change}$} & \emph{p-value} \\
+\hline \\ [-2ex]
+Standard Deviation & .353 & .353 & 175.39 & < 0.01 \\
+Center of Gravity  & .376 & .023 & 14.01  & < 0.01 \\
+Relative Intensity & .425 & .049 & 30.01  & < 0.01 \\
+Skewness           & .426 & .001 & 0.08   & > 0.05 \\
+Kurtosis           & .432 & .006 & 4.36   & < 0.04 \\
+\hline
+\multicolumn{5}{@{}l}{{\scriptsize{{Short-lag stop(DV) $\sim$ SD + COG + RI + SK + KT}}}}
+\end{tabular}
+% \end{center}
+% \end{table}
+}}

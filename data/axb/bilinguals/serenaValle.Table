@@ -1,0 +1,2126 @@
+File type = "ooTextFile"
+Object class = "Table"
+
+numberOfColumns = 4 
+columnHeaders []: 
+    columnHeaders [1]:
+        label = "subject" 
+    columnHeaders [2]:
+        label = "stimulus" 
+    columnHeaders [3]:
+        label = "response" 
+    columnHeaders [4]:
+        label = "reactionTime" 
+rows: size = 192 
+rows [1]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,tsc1,tec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "4.621639013290405" 
+rows [2]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,dsa1,dsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "7.641473054885864" 
+rows [3]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,tea1,teb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.114912986755371" 
+rows [4]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,tsb2,tsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.146883964538574" 
+rows [5]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,tea1,teb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0907959938049316" 
+rows [6]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,dsc2,dsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.683029890060425" 
+rows [7]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,teb1,tec1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.3789830207824707" 
+rows [8]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,dsb1,dsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6190929412841797" 
+rows [9]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,dsc2,dec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.186666965484619" 
+rows [10]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,tea2,tsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.698953151702881" 
+rows [11]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,deb1,dea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.674952983856201" 
+rows [12]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,tsc1,dec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.8030149936676025" 
+rows [13]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,dsa1,dsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.4588520526885986" 
+rows [14]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,tsa1,deb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7630000114440918" 
+rows [15]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,dec2,deb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.4510018825531006" 
+rows [16]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,dsc2,dsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.066735029220581" 
+rows [17]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,dsb1,dea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.7228100299835205" 
+rows [18]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,dea2,dec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.114565849304199" 
+rows [19]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,tsa1,tsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.4513421058654785" 
+rows [20]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,dsa1,tea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6597211360931396" 
+rows [21]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,tea1,dsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0267560482025146" 
+rows [22]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,dsa1,dsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.826961040496826" 
+rows [23]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,deb2,tsa2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.826848030090332" 
+rows [24]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,tec2,tea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.8268520832061768" 
+rows [25]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,dec1,dsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.2831969261169434" 
+rows [26]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,tsa1,tsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.050758123397827" 
+rows [27]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,dsc1,tec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0668160915374756" 
+rows [28]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,teb1,tsc1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.898970127105713" 
+rows [29]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,dec2,dsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.274898052215576" 
+rows [30]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,deb2,dec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.642932891845703" 
+rows [31]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,tec1,tea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6029040813446045" 
+rows [32]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,dsb2,tec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.1068801879882812" 
+rows [33]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,dea1,deb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.9628589153289795" 
+rows [34]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,tsc2,tsb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.2109251022338867" 
+rows [35]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,tsa1,tsb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.290416955947876" 
+rows [36]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,dsc2,teb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0195820331573486" 
+rows [37]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,tec2,teb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0512609481811523" 
+rows [38]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,tsc1,tsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7795541286468506" 
+rows [39]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,tsa2,tsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0033578872680664" 
+rows [40]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,tea2,tec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9635381698608398" 
+rows [41]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,dea1,deb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.172063112258911" 
+rows [42]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,deb1,dec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7149319648742676" 
+rows [43]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,tsc2,teb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.8348920345306396" 
+rows [44]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,tsb2,dec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.914905071258545" 
+rows [45]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,teb1,tea1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.7148489952087402" 
+rows [46]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,tec1,dsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.050891876220703" 
+rows [47]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,tsc1,tsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.33894681930542" 
+rows [48]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,deb2,dea2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.6991569995880127" 
+rows [49]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,dec1,dea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.738658905029297" 
+rows [50]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,dsb2,dsa2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.794477939605713" 
+rows [51]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,dea2,dsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0278408527374268" 
+rows [52]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,deb2,dsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.042943000793457" 
+rows [53]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,tsc1,deb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7149059772491455" 
+rows [54]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,dsb2,dec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.626924991607666" 
+rows [55]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,dsb1,dsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.394843101501465" 
+rows [56]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,dec1,dsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.123002052307129" 
+rows [57]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,tea2,tec2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.7467288970947266" 
+rows [58]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,dea1,dsb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.499232053756714" 
+rows [59]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,dea1,dec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.1226119995117188" 
+rows [60]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,teb1,dsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7388999462127686" 
+rows [61]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,deb2,tsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.194885015487671" 
+rows [62]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,dea2,deb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.978837013244629" 
+rows [63]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,tsb1,tsa1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0268990993499756" 
+rows [64]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,tsa2,dea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.2348690032958984" 
+rows [65]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,tsa2,deb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.2908999919891357" 
+rows [66]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,dec2,tsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.8589670658111572" 
+rows [67]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,dsa2,dsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9628729820251465" 
+rows [68]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,teb1,dsc1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0667810440063477" 
+rows [69]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,deb1,tsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7789990901947021" 
+rows [70]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,tec1,teb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.410961151123047" 
+rows [71]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,teb2,tec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.6799731254577637" 
+rows [72]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,dsb2,dsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6026668548583984" 
+rows [73]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,deb2,dea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.450546979904175" 
+rows [74]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,dsa2,dsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6037259101867676" 
+rows [75]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,tec1,teb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.026803970336914" 
+rows [76]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,tec2,dsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.930769920349121" 
+rows [77]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,dea1,dsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6351308822631836" 
+rows [78]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,dsc2,deb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.0988640785217285" 
+rows [79]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,tsc2,dec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.8669848442077637" 
+rows [80]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,tsc2,tsb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.4348840713500977" 
+rows [81]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,deb1,dea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.786945104598999" 
+rows [82]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,dsc1,dsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.618820905685425" 
+rows [83]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,tsb1,tsa1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.2189271450042725" 
+rows [84]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,tsb1,dec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.779115915298462" 
+rows [85]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,dsc1,deb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.8026881217956543" 
+rows [86]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,dsc1,dsa1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.8428809642791748" 
+rows [87]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,dea2,dec2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.946911096572876" 
+rows [88]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,dsb1,dec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9628238677978516" 
+rows [89]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,tea2,tsa2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "4.138914108276367" 
+rows [90]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,dea2,deb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6189990043640137" 
+rows [91]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,teb2,tsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.8108739852905273" 
+rows [92]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,tea1,tsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7548730373382568" 
+rows [93]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,tsb2,tec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.1549019813537598" 
+rows [94]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,tsa1,dea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.8749380111694336" 
+rows [95]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,tea2,teb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.250947952270508" 
+rows [96]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,dsc1,teb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9868700504302979" 
+rows [97]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,dsc2,dsb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.026744842529297" 
+rows [98]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,tsb2,tsa2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9390769004821777" 
+rows [99]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,tsc2,tsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.1304678916931152" 
+rows [100]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,tsc2,deb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.299826145172119" 
+rows [101]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,tea2,dsa2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.1709039211273193" 
+rows [102]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,dsc1,dsa1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.474864959716797" 
+rows [103]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,teb1,tea1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.186836004257202" 
+rows [104]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,dec2,dea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.9470160007476807" 
+rows [105]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,tsb1,tec1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.9312121868133545" 
+rows [106]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,dsc2,dsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.258700132369995" 
+rows [107]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,deb1,tsc1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.738914966583252" 
+rows [108]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,dec1,dea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.3789780139923096" 
+rows [109]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,tea1,tsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9228558540344238" 
+rows [110]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,tsa1,tea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.8989529609680176" 
+rows [111]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,dea2,tsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.8830687999725342" 
+rows [112]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,dea1,dec1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.2908310890197754" 
+rows [113]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,dsb1,dsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.3790509700775146" 
+rows [114]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,tsa2,tea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0669209957122803" 
+rows [115]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa1,dsb1,tea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.02677583694458" 
+rows [116]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,dea1,tsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.6910288333892822" 
+rows [117]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,dec2,dsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9065320491790771" 
+rows [118]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,tea1,dsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.3557238578796387" 
+rows [119]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,teb2,tec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.538896083831787" 
+rows [120]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,dsa2,dsb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.586984872817993" 
+rows [121]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,tea1,tec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.9868688583374023" 
+rows [122]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec1,tsb1,tsc1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.850984811782837" 
+rows [123]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb1,tea1,tec1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.0747880935668945" 
+rows [124]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,dsc1,dsb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.250858783721924" 
+rows [125]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,tec1,dsc1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9388091564178467" 
+rows [126]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,deb1,dsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.8269891738891602" 
+rows [127]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,tsb1,tea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.330970048904419" 
+rows [128]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,dec2,dea2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.978928804397583" 
+rows [129]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,tec1,tea1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.6908011436462402" 
+rows [130]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,dec1,deb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.211184024810791" 
+rows [131]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,dsb2,tea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.266674041748047" 
+rows [132]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,dsa2,deb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "3.3628289699554443" 
+rows [133]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,tec2,tsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.819019079208374" 
+rows [134]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,tsa2,tsb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.9789669513702393" 
+rows [135]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,tsa2,teb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7469720840454102" 
+rows [136]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,tsc1,tsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.7469239234924316" 
+rows [137]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,dsa1,dsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.722843885421753" 
+rows [138]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsb2,tsc2,tec2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.370910167694092" 
+rows [139]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,dsa1,teb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.2348649501800537" 
+rows [140]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,dec1,deb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.8028531074523926" 
+rows [141]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc2,dec2,deb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.477381944656372" 
+rows [142]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb1,tec1,tsc1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7385330200195312" 
+rows [143]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,dsc1,dec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9317619800567627" 
+rows [144]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,dec1,tsc1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.290903091430664" 
+rows [145]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,tsc2,tsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.8348989486694336" 
+rows [146]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,tsa2,tsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0268609523773193" 
+rows [147]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,dea2,tsa2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.6344759464263916" 
+rows [148]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,tsb1,tsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.9315779209136963" 
+rows [149]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,dsb1,tec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.1076698303222656" 
+rows [150]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,tea2,dsb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.4507529735565186" 
+rows [151]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb2,dec2,tsc2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.2908689975738525" 
+rows [152]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb1,dsa1,dea1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.4191389083862305" 
+rows [153]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,tec2,tea2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.674607992172241" 
+rows [154]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,tsa1,teb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.7789430618286133" 
+rows [155]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,dsb2,dea2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.4189400672912598" 
+rows [156]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,tec2,teb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.9629042148590088" 
+rows [157]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,dec1,tsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.5709049701690674" 
+rows [158]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,teb2,tea2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.954900026321411" 
+rows [159]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,tsc1,teb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.73891282081604" 
+rows [160]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,tea2,teb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.290893077850342" 
+rows [161]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,tsb2,tsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.370854139328003" 
+rows [162]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,deb2,dsa2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.0589780807495117" 
+rows [163]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,tsb2,dea2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.7949299812316895" 
+rows [164]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa2,tsb2,tea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.090941905975342" 
+rows [165]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,tec1,tsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.7065298557281494" 
+rows [166]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,tec2,tsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.499345064163208" 
+rows [167]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,dsb1,dsa1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.10744309425354" 
+rows [168]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,dsa1,deb1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.4352798461914062" 
+rows [169]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea1,tsa1,tsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "1.9233129024505615" 
+rows [170]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,deb1,dsc1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.083540916442871" 
+rows [171]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,dsa2,teb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.9562079906463623" 
+rows [172]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,dsa2,tea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0028998851776123" 
+rows [173]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec2,dea2,dsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.2108449935913086" 
+rows [174]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc1,deb1,dec1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.026927947998047" 
+rows [175]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,dsc2,tec2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0028140544891357" 
+rows [176]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,dsb2,dsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.8588299751281738" 
+rows [177]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsa2,teb2,tea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.3148531913757324" 
+rows [178]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsc1,teb1,tec1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "1.73915696144104" 
+rows [179]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,tec2,dsb2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.082798957824707" 
+rows [180]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,teb2,tsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0029258728027344" 
+rows [181]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dec1,dea1,tsb1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.09096097946167" 
+rows [182]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,teb2,dsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.419016122817993" 
+rows [183]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "teb2,dsa2,dsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.514955997467041" 
+rows [184]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsb2,dsa2,dea2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0828959941864014" 
+rows [185]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dsc2,deb2,dec2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.0109379291534424" 
+rows [186]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,dsb2,dsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.291055917739868" 
+rows [187]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea1,teb1,tsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.738947868347168" 
+rows [188]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tea2,teb2,dsa2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.218842029571533" 
+rows [189]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tec2,tsb2,tsc2" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.130995035171509" 
+rows [190]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "dea2,tsa2,tsb2" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "2.0989999771118164" 
+rows [191]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "tsa1,tsb1,dea1" 
+        cells [3]:
+            string = "1" 
+        cells [4]:
+            string = "2.6428709030151367" 
+rows [192]:
+    numberOfColumns = 4 
+    cells []: 
+        cells [1]:
+            string = "dt_AXB_discrimination_masterFile" 
+        cells [2]:
+            string = "deb1,tsc1,tsa1" 
+        cells [3]:
+            string = "3" 
+        cells [4]:
+            string = "3.2350239753723145" 

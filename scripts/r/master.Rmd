@@ -1,0 +1,98 @@
+---
+title: 'Coronals project'
+author: ""
+date: ""
+output:
+  html_document:
+    highlight: textmate
+    theme: united
+    toc: yes
+---
+
+----
+
+# Production
+
+
+## Questions 
+
+1. How does linguistic experience affect coronal production? Do bilinguals distinguish between Spanish and English coronals using acoustic correlates other than VOT?
+	- English coronals
+		- Compare /d/ and /t/ of English (NEN, biEng, biEsp) (VOT, SD, COG)
+		- Results
+			- Group differences for /d/... vot decreases from mono avg with increased dominance in spanish 
+				- likely due to increased amount of prevoiced /d/ (more prevoicing w/ increased dominance in spanish)
+			- Groups distinguish between /d/-/t/ using sd (no group differences)
+			- all three groups distinguish between /d/-/t/ using cog (no group differences)
+	- Spanish coronals
+		- Compare /d/ and /t/ of Spanish (NSP, biEng, biEsp) (VOT, SD, COG)
+		- Results
+			- 3 groups distinguish between /d/-/t/ using vot
+			- 3 groups distinguish between /d/-/t/ using SD 
+				- marginal effect, more spread (higher avg) for /t/
+			- Group differences for cog... bilinguals differ from monolingual control
+				- more inglish dominance = larger difference (more instances of larger circles)
+
+2. Do bilinguals maintain separate coronal segments for English and for Spanish?
+	- Compare Spanish /t/ with English /d/ (biEng, biEsp) (VOT, SD, COG)
+	- Results
+		- vot
+			- No group differences between spanish /t/ and english /d/
+			- but two phones are significantly different from each other
+			- spanish /t/ has higher VOT; english /d/ has lower VOT
+			- likely due to bilingual tendency to prevoice english /d/
+			- maybe burst differences due to POA as well
+		- sd
+			- No group differences; but spanish /t/ is different from english /d/
+			- likely reflects POA differences
+		- cog
+			- No group differnces (interaction due to direction of change between group)
+			- however both groups maintain distinction between spanish /t/ and english /d/
+			- likely related to POA differences
+
+- Metrics
+	- VOT
+	- Standard Deviation
+	- Center of Gravity
+
+
+
+
+```{r echo=FALSE}
+library(knitr)
+read_chunk('1_production/1_plots.R')
+read_chunk('1_production/2_analysis.R')
+```
+
+
+```{r, 'loadData', echo=FALSE, warning = FALSE, message = FALSE}
+```
+
+```{r, 'plot1', echo=TRUE, fig.align = 'center', fig.width = 9}
+```
+
+```{r, 'plot2', echo=TRUE, fig.width = 10, fig.height = 10}
+```
+
+```{r, 'plot3', echo=TRUE, fig.width = 10, fig.height = 8}
+```
+
+```{r, 'plot4', echo=TRUE, fig.width = 10, fig.height = 6}
+```
+
+```{r, 'plot5', echo=TRUE, results = 'asis'}
+```
+
+```{r, 'descriptives', echo=TRUE, results = 'asis'}
+```
+
+
+----
+
+# AXB
+
+<!-- ```{r, child = './2_axb/axb_analysis.Rmd'}
+``` -->
+
+----
+

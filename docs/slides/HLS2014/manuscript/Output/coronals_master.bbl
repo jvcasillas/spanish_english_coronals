@@ -1,0 +1,70 @@
+\begin{thebibliography}{10}
+
+\bibitem{Praat}
+P.~Boersma and D.~Weenink.
+\newblock {Praat: doing phonetics by computer}.
+\newblock 2012.
+
+\bibitem{gordon2002cross}
+M.~Gordon, P.~Barthmaier, and K.~Sands.
+\newblock A cross-linguistic acoustic study of voiceless fricatives.
+\newblock {\em Journal of the International Phonetic Association},
+  32(2):141--174, 2002.
+
+\bibitem{hardcastle2012handbook}
+W.~Hardcastle, J.~Laver, and F.~Gibbon.
+\newblock {\em The Handbook of Phonetic Sciences}.
+\newblock Blackwell Handbooks in Linguistics. Wiley, 2012.
+
+\bibitem{henton_1992fk}
+C.~Henton, P.~Ladefoged, and I.~Maddieson.
+\newblock Stops in the world's languages.
+\newblock {\em Phonetica}, 49:65--101, 1992.
+
+\bibitem{hualde2005sounds}
+J.~I. Hualde.
+\newblock {\em The sounds of Spanish}.
+\newblock Cambridge University Press, 2005.
+
+\bibitem{jones2013bloomsbury}
+M.~J. Jones and R.-A. Knight.
+\newblock {\em Bloomsbury Companion to Phonetics}.
+\newblock A \& C Black, 2013.
+
+\bibitem{jongman2000acoustic}
+A.~Jongman, R.~Wayland, and S.~Wong.
+\newblock Acoustic characteristics of english fricatives.
+\newblock {\em The Journal of the Acoustical Society of America}, 108:1252,
+  2000.
+
+\bibitem{lieberman1988speech}
+P.~Lieberman and S.~E. Blumstein.
+\newblock {\em Speech physiology, speech perception, and acoustic phonetics}.
+\newblock Cambridge University Press, 1988.
+
+\bibitem{Nakagawa2013}
+S.~Nakagawa and H.~Schielzeth.
+\newblock A general and simple method for obtaining r2 from generalized linear
+  mixed-effects models.
+\newblock {\em Methods In Ecology And Evolution}, 4:133--142, 2013.
+
+\bibitem{picard1987introduction}
+M.~Picard.
+\newblock {\em An introduction to the comparative phonetics of English and
+  French in North America}, volume~7.
+\newblock John Benjamins Publishing, 1987.
+
+\bibitem{sundara2005acoustic}
+M.~Sundara.
+\newblock Acoustic-phonetics of coronal stops: A cross-language study of
+  canadian english and canadian french.
+\newblock {\em The Journal of the Acoustical Society of America}, 118:1026,
+  2005.
+
+\bibitem{winter_2013lr}
+B.~Winter.
+\newblock Linear models and linear mixed effects models in r with linguistic
+  applications.
+\newblock {\em arXiv:1308.5499.}, 2013.
+
+\end{thebibliography}

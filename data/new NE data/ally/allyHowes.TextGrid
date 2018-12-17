@@ -1,0 +1,1170 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 470.28244897959183 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "silences" 
+        xmin = 0 
+        xmax = 470.28244897959183 
+        intervals: size = 289 
+        intervals [1]:
+            xmin = 0 
+            xmax = 8.821783795071692 
+            text = "xxx" 
+        intervals [2]:
+            xmin = 8.821783795071692 
+            xmax = 10.034319298975532 
+            text = "tablet" 
+        intervals [3]:
+            xmin = 10.034319298975532 
+            xmax = 11.99915785274672 
+            text = "xxx" 
+        intervals [4]:
+            xmin = 11.99915785274672 
+            xmax = 12.981224489795906 
+            text = "dapper" 
+        intervals [5]:
+            xmin = 12.981224489795906 
+            xmax = 15.229415461276755 
+            text = "xxx" 
+        intervals [6]:
+            xmin = 15.229415461276755 
+            xmax = 16.37999659636799 
+            text = "eggplant" 
+        intervals [7]:
+            xmin = 16.37999659636799 
+            xmax = 17.99200935047356 
+            text = "xxx" 
+        intervals [8]:
+            xmin = 17.99200935047356 
+            xmax = 19.49661542486788 
+            text = "tantrum" 
+        intervals [9]:
+            xmin = 19.49661542486788 
+            xmax = 21.02484214566194 
+            text = "xxx" 
+        intervals [10]:
+            xmin = 21.02484214566194 
+            xmax = 22.645224489795904 
+            text = "evening" 
+        intervals [11]:
+            xmin = 22.645224489795904 
+            xmax = 24.795207955614757 
+            text = "xxx" 
+        intervals [12]:
+            xmin = 24.795207955614757 
+            xmax = 25.972340943229135 
+            text = "tantrum" 
+        intervals [13]:
+            xmin = 25.972340943229135 
+            xmax = 27.494648265557505 
+            text = "xxx" 
+        intervals [14]:
+            xmin = 27.494648265557505 
+            xmax = 28.96385184408372 
+            text = "evening" 
+        intervals [15]:
+            xmin = 28.96385184408372 
+            xmax = 30.804781629225 
+            text = "xxx" 
+        intervals [16]:
+            xmin = 30.804781629225 
+            xmax = 32.114946265517204 
+            text = "dancette" 
+        intervals [17]:
+            xmin = 32.114946265517204 
+            xmax = 34.05323291429577 
+            text = "xxx" 
+        intervals [18]:
+            xmin = 34.05323291429577 
+            xmax = 35.2126646539761 
+            text = "window" 
+        intervals [19]:
+            xmin = 35.2126646539761 
+            xmax = 37.248308166391936 
+            text = "xxx" 
+        intervals [20]:
+            xmin = 37.248308166391936 
+            xmax = 38.425441154006315 
+            text = "arm" 
+        intervals [21]:
+            xmin = 38.425441154006315 
+            xmax = 40.11783103923712 
+            text = "xxx" 
+        intervals [22]:
+            xmin = 40.11783103923712 
+            xmax = 41.01322448979591 
+            text = "dapper" 
+        intervals [23]:
+            xmin = 41.01322448979591 
+            xmax = 43.00313435529961 
+            text = "xxx" 
+        intervals [24]:
+            xmin = 43.00313435529961 
+            xmax = 44.45463663699976 
+            text = "danielle" 
+        intervals [25]:
+            xmin = 44.45463663699976 
+            xmax = 46.37522197315178 
+            text = "xxx" 
+        intervals [26]:
+            xmin = 46.37522197315178 
+            xmax = 47.932931738878764 
+            text = "dancer" 
+        intervals [27]:
+            xmin = 47.932931738878764 
+            xmax = 49.42782241360912 
+            text = "xxx" 
+        intervals [28]:
+            xmin = 49.42782241360912 
+            xmax = 50.56070224322875 
+            text = "river" 
+        intervals [29]:
+            xmin = 50.56070224322875 
+            xmax = 52.2865738586649 
+            text = "xxx" 
+        intervals [30]:
+            xmin = 52.2865738586649 
+            xmax = 53.658420527344916 
+            text = "dakota" 
+        intervals [31]:
+            xmin = 53.658420527344916 
+            xmax = 55.44624650846339 
+            text = "xxx" 
+        intervals [32]:
+            xmin = 55.44624650846339 
+            xmax = 56.711885693116564 
+            text = "damage" 
+        intervals [33]:
+            xmin = 56.711885693116564 
+            xmax = 58.49086105056614 
+            text = "xxx" 
+        intervals [34]:
+            xmin = 58.49086105056614 
+            xmax = 60.07512268729983 
+            text = "dagger" 
+        intervals [35]:
+            xmin = 60.07512268729983 
+            xmax = 61.74080938339009 
+            text = "xxx" 
+        intervals [36]:
+            xmin = 61.74080938339009 
+            xmax = 62.882539836678625 
+            text = "neck" 
+        intervals [37]:
+            xmin = 62.882539836678625 
+            xmax = 65.01554014088433 
+            text = "xxx" 
+        intervals [38]:
+            xmin = 65.01554014088433 
+            xmax = 66.49359429359119 
+            text = "tactic" 
+        intervals [39]:
+            xmin = 66.49359429359119 
+            xmax = 68.05130405931817 
+            text = "xxx" 
+        intervals [40]:
+            xmin = 68.05130405931817 
+            xmax = 69.13108014692438 
+            text = "evening" 
+        intervals [41]:
+            xmin = 69.13108014692438 
+            xmax = 71.01605002835655 
+            text = "xxx" 
+        intervals [42]:
+            xmin = 71.01605002835655 
+            xmax = 72.12237798696947 
+            text = "taboo" 
+        intervals [43]:
+            xmin = 72.12237798696947 
+            xmax = 74.25537829117518 
+            text = "xxx" 
+        intervals [44]:
+            xmin = 74.25537829117518 
+            xmax = 75.47676435748384 
+            text = "snake" 
+        intervals [45]:
+            xmin = 75.47676435748384 
+            xmax = 76.82205915515715 
+            text = "xxx" 
+        intervals [46]:
+            xmin = 76.82205915515715 
+            xmax = 78.7957482333226 
+            text = "tapioca" 
+        intervals [47]:
+            xmin = 78.7957482333226 
+            xmax = 80.55664753368092 
+            text = "xxx" 
+        intervals [48]:
+            xmin = 80.55664753368092 
+            xmax = 81.72492985797615 
+            text = "tacit" 
+        intervals [49]:
+            xmin = 81.72492985797615 
+            xmax = 83.28263962370315 
+            text = "xxx" 
+        intervals [50]:
+            xmin = 83.28263962370315 
+            xmax = 84.4052244897959 
+            text = "iron" 
+        intervals [51]:
+            xmin = 84.4052244897959 
+            xmax = 85.92012547703634 
+            text = "xxx" 
+        intervals [52]:
+            xmin = 85.92012547703634 
+            xmax = 87.76105520016823 
+            text = "daltonian" 
+        intervals [53]:
+            xmin = 87.76105520016823 
+            xmax = 89.43579691001203 
+            text = "xxx" 
+        intervals [54]:
+            xmin = 89.43579691001203 
+            xmax = 90.51722448979591 
+            text = "tattoo" 
+        intervals [55]:
+            xmin = 90.51722448979591 
+            xmax = 92.30339897873671 
+            text = "xxx" 
+        intervals [56]:
+            xmin = 92.30339897873671 
+            xmax = 93.4292244897959 
+            text = "dancing" 
+        intervals [57]:
+            xmin = 93.4292244897959 
+            xmax = 95.42766913385958 
+            text = "xxx" 
+        intervals [58]:
+            xmin = 95.42766913385958 
+            xmax = 96.7092244897959 
+            text = "damnation" 
+        intervals [59]:
+            xmin = 96.7092244897959 
+            xmax = 98.70713903949967 
+            text = "xxx" 
+        intervals [60]:
+            xmin = 98.70713903949967 
+            xmax = 99.87021453699933 
+            text = "fly" 
+        intervals [61]:
+            xmin = 99.87021453699933 
+            xmax = 101.709788815816 
+            text = "xxx" 
+        intervals [62]:
+            xmin = 101.709788815816 
+            xmax = 102.8852244897959 
+            text = "answer" 
+        intervals [63]:
+            xmin = 102.8852244897959 
+            xmax = 104.58245375333075 
+            text = "xxx" 
+        intervals [64]:
+            xmin = 104.58245375333075 
+            xmax = 105.7172244897959 
+            text = "tackle" 
+        intervals [65]:
+            xmin = 105.7172244897959 
+            xmax = 107.7389799039451 
+            text = "xxx" 
+        intervals [66]:
+            xmin = 107.7389799039451 
+            xmax = 108.9972244897959 
+            text = "tactic" 
+        intervals [67]:
+            xmin = 108.9972244897959 
+            xmax = 111.02759632562488 
+            text = "xxx" 
+        intervals [68]:
+            xmin = 111.02759632562488 
+            xmax = 112.3252244897959 
+            text = "tambourine" 
+        intervals [69]:
+            xmin = 112.3252244897959 
+            xmax = 114.342209715065 
+            text = "xxx" 
+        intervals [70]:
+            xmin = 114.342209715065 
+            xmax = 115.79722448979591 
+            text = "strawberry" 
+        intervals [71]:
+            xmin = 115.79722448979591 
+            xmax = 117.61782765286463 
+            text = "xxx" 
+        intervals [72]:
+            xmin = 117.61782765286463 
+            xmax = 118.7892244897959 
+            text = "damage" 
+        intervals [73]:
+            xmin = 118.7892244897959 
+            xmax = 120.66599961350308 
+            text = "xxx" 
+        intervals [74]:
+            xmin = 120.66599961350308 
+            xmax = 122.1012244897959 
+            text = "tambourine" 
+        intervals [75]:
+            xmin = 122.1012244897959 
+            xmax = 123.92861906742256 
+            text = "xxx" 
+        intervals [76]:
+            xmin = 123.92861906742256 
+            xmax = 125.21546897155812 
+            text = "iron" 
+        intervals [77]:
+            xmin = 125.21546897155812 
+            xmax = 127.17824003746188 
+            text = "xxx" 
+        intervals [78]:
+            xmin = 127.17824003746188 
+            xmax = 128.86804294188232 
+            text = "daltonian" 
+        intervals [79]:
+            xmin = 128.86804294188232 
+            xmax = 130.01190952333616 
+            text = "xxx" 
+        intervals [80]:
+            xmin = 130.01190952333616 
+            xmax = 131.34922448979592 
+            text = "rain" 
+        intervals [81]:
+            xmin = 131.34922448979592 
+            xmax = 133.26316790280563 
+            text = "xxx" 
+        intervals [82]:
+            xmin = 133.26316790280563 
+            xmax = 134.77099203290388 
+            text = "tambourine" 
+        intervals [83]:
+            xmin = 134.77099203290388 
+            xmax = 135.8238692271966 
+            text = "xxx" 
+        intervals [84]:
+            xmin = 135.8238692271966 
+            xmax = 137.0197297441711 
+            text = "arm" 
+        intervals [85]:
+            xmin = 137.0197297441711 
+            xmax = 138.63154174531059 
+            text = "xxx" 
+        intervals [86]:
+            xmin = 138.63154174531059 
+            xmax = 140.06137497212788 
+            text = "taboo" 
+        intervals [87]:
+            xmin = 140.06137497212788 
+            xmax = 141.37422184402377 
+            text = "xxx" 
+        intervals [88]:
+            xmin = 141.37422184402377 
+            xmax = 142.93403990964265 
+            text = "dagger" 
+        intervals [89]:
+            xmin = 142.93403990964265 
+            xmax = 144.14289891049728 
+            text = "xxx" 
+        intervals [90]:
+            xmin = 144.14289891049728 
+            xmax = 145.61172758895506 
+            text = "tacit" 
+        intervals [91]:
+            xmin = 145.61172758895506 
+            xmax = 147.35715880608657 
+            text = "xxx" 
+        intervals [92]:
+            xmin = 147.35715880608657 
+            xmax = 148.60501325858166 
+            text = "apple" 
+        intervals [93]:
+            xmin = 148.60501325858166 
+            xmax = 150.34681009852275 
+            text = "xxx" 
+        intervals [94]:
+            xmin = 150.34681009852275 
+            xmax = 151.58922448979592 
+            text = "dancette" 
+        intervals [95]:
+            xmin = 151.58922448979592 
+            xmax = 153.58343258468193 
+            text = "xxx" 
+        intervals [96]:
+            xmin = 153.58343258468193 
+            xmax = 154.87028248881748 
+            text = "iron" 
+        intervals [97]:
+            xmin = 154.87028248881748 
+            xmax = 156.44309903831652 
+            text = "xxx" 
+        intervals [98]:
+            xmin = 156.44309903831652 
+            xmax = 157.8469352973735 
+            text = "tabbard" 
+        intervals [99]:
+            xmin = 157.8469352973735 
+            xmax = 159.19877762090985 
+            text = "xxx" 
+        intervals [100]:
+            xmin = 159.19877762090985 
+            xmax = 160.62922448979592 
+            text = "screen" 
+        intervals [101]:
+            xmin = 160.62922448979592 
+            xmax = 162.46298596842448 
+            text = "xxx" 
+        intervals [102]:
+            xmin = 162.46298596842448 
+            xmax = 163.7368373886799 
+            text = "window" 
+        intervals [103]:
+            xmin = 163.7368373886799 
+            xmax = 165.72560542234396 
+            text = "xxx" 
+        intervals [104]:
+            xmin = 165.72560542234396 
+            xmax = 167.58922448979592 
+            text = "shot" 
+        intervals [105]:
+            xmin = 167.58922448979592 
+            xmax = 170.01510510279587 
+            text = "xxx" 
+        intervals [106]:
+            xmin = 170.01510510279587 
+            xmax = 171.60522448979592 
+            text = "damnation" 
+        intervals [107]:
+            xmin = 171.60522448979592 
+            xmax = 174.6151557738469 
+            text = "xxx" 
+        intervals [108]:
+            xmin = 174.6151557738469 
+            xmax = 175.94100112962295 
+            text = "dazzle" 
+        intervals [109]:
+            xmin = 175.94100112962295 
+            xmax = 177.61780555016324 
+            text = "xxx" 
+        intervals [110]:
+            xmin = 177.61780555016324 
+            xmax = 178.86566000265833 
+            text = "snake" 
+        intervals [111]:
+            xmin = 178.86566000265833 
+            xmax = 180.56846139095893 
+            text = "xxx" 
+        intervals [112]:
+            xmin = 180.56846139095893 
+            xmax = 181.86830977897466 
+            text = "hand" 
+        intervals [113]:
+            xmin = 181.86830977897466 
+            xmax = 183.3891323929531 
+            text = "xxx" 
+        intervals [114]:
+            xmin = 183.3891323929531 
+            xmax = 184.42901110336567 
+            text = "fat" 
+        intervals [115]:
+            xmin = 184.42901110336567 
+            xmax = 186.52176700807098 
+            text = "xxx" 
+        intervals [116]:
+            xmin = 186.52176700807098 
+            xmax = 187.78217548340484 
+            text = "dakota" 
+        intervals [117]:
+            xmin = 187.78217548340484 
+            xmax = 189.03002993589996 
+            text = "xxx" 
+        intervals [118]:
+            xmin = 189.03002993589996 
+            xmax = 190.45322448979593 
+            text = "artichoke" 
+        intervals [119]:
+            xmin = 190.45322448979593 
+            xmax = 192.0586766799766 
+            text = "xxx" 
+        intervals [120]:
+            xmin = 192.0586766799766 
+            xmax = 193.63722448979593 
+            text = "fly" 
+        intervals [121]:
+            xmin = 193.63722448979593 
+            xmax = 195.42528400493734 
+            text = "xxx" 
+        intervals [122]:
+            xmin = 195.42528400493734 
+            xmax = 197.1572244897959 
+            text = "fork" 
+        intervals [123]:
+            xmin = 197.1572244897959 
+            xmax = 198.0509777487291 
+            text = "xxx" 
+        intervals [124]:
+            xmin = 198.0509777487291 
+            xmax = 200.00522448979592 
+            text = "tattoo" 
+        intervals [125]:
+            xmin = 200.00522448979592 
+            xmax = 201.69714061264847 
+            text = "xxx" 
+        intervals [126]:
+            xmin = 201.69714061264847 
+            xmax = 202.83722448979591 
+            text = "vault" 
+        intervals [127]:
+            xmin = 202.83722448979591 
+            xmax = 204.9467615826878 
+            text = "xxx" 
+        intervals [128]:
+            xmin = 204.9467615826878 
+            xmax = 206.4372244897959 
+            text = "danielle" 
+        intervals [129]:
+            xmin = 206.4372244897959 
+            xmax = 207.91041590736364 
+            text = "xxx" 
+        intervals [130]:
+            xmin = 207.91041590736364 
+            xmax = 209.5092244897959 
+            text = "dancer" 
+        intervals [131]:
+            xmin = 209.5092244897959 
+            xmax = 211.47200049052674 
+            text = "xxx" 
+        intervals [132]:
+            xmin = 211.47200049052674 
+            xmax = 212.58122448979591 
+            text = "fork" 
+        intervals [133]:
+            xmin = 212.58122448979591 
+            xmax = 214.435173967285 
+            text = "xxx" 
+        intervals [134]:
+            xmin = 214.435173967285 
+            xmax = 215.95599658126343 
+            text = "rain" 
+        intervals [135]:
+            xmin = 215.95599658126343 
+            xmax = 217.95776309880765 
+            text = "xxx" 
+        intervals [136]:
+            xmin = 217.95776309880765 
+            xmax = 219.88153871307094 
+            text = "lighthouse" 
+        intervals [137]:
+            xmin = 219.88153871307094 
+            xmax = 221.24637952048744 
+            text = "xxx" 
+        intervals [138]:
+            xmin = 221.24637952048744 
+            xmax = 222.61122032790396 
+            text = "dancer" 
+        intervals [139]:
+            xmin = 222.61122032790396 
+            xmax = 224.17103839352282 
+            text = "xxx" 
+        intervals [140]:
+            xmin = 224.17103839352282 
+            xmax = 225.38122448979593 
+            text = "dazzle" 
+        intervals [141]:
+            xmin = 225.38122448979593 
+            xmax = 227.1346927181987 
+            text = "xxx" 
+        intervals [142]:
+            xmin = 227.1346927181987 
+            xmax = 228.1812244897959 
+            text = "rain" 
+        intervals [143]:
+            xmin = 228.1812244897959 
+            xmax = 229.85699506514354 
+            text = "xxx" 
+        intervals [144]:
+            xmin = 229.85699506514354 
+            xmax = 231.052855582118 
+            text = "lighthouse" 
+        intervals [145]:
+            xmin = 231.052855582118 
+            xmax = 240.37027857955414 
+            text = "xxx" 
+        intervals [146]:
+            xmin = 240.37027857955414 
+            xmax = 241.60522448979592 
+            text = "tactics" 
+        intervals [147]:
+            xmin = 241.60522448979592 
+            xmax = 242.28105570993728 
+            text = "xxx" 
+        intervals [148]:
+            xmin = 242.28105570993728 
+            xmax = 243.1092244897959 
+            text = "dazzle" 
+        intervals [149]:
+            xmin = 243.1092244897959 
+            xmax = 246.4405705515876 
+            text = "xxx" 
+        intervals [150]:
+            xmin = 246.4405705515876 
+            xmax = 247.58922448979592 
+            text = "tattoo" 
+        intervals [151]:
+            xmin = 247.58922448979592 
+            xmax = 249.24824306970157 
+            text = "xxx" 
+        intervals [152]:
+            xmin = 249.24824306970157 
+            xmax = 250.7892244897959 
+            text = "tattoing" 
+        intervals [153]:
+            xmin = 250.7892244897959 
+            xmax = 252.23789436213775 
+            text = "xxx" 
+        intervals [154]:
+            xmin = 252.23789436213775 
+            xmax = 253.57322448979593 
+            text = "apple" 
+        intervals [155]:
+            xmin = 253.57322448979593 
+            xmax = 255.36013606428898 
+            text = "xxx" 
+        intervals [156]:
+            xmin = 255.36013606428898 
+            xmax = 256.71197838782535 
+            text = "tabbard" 
+        intervals [157]:
+            xmin = 256.71197838782535 
+            xmax = 258.2198025179236 
+            text = "xxx" 
+        intervals [158]:
+            xmin = 258.2198025179236 
+            xmax = 259.4452244897959 
+            text = "tanker" 
+        intervals [159]:
+            xmin = 259.4452244897959 
+            xmax = 261.1834568425994 
+            text = "xxx" 
+        intervals [160]:
+            xmin = 261.1834568425994 
+            xmax = 262.05322448979587 
+            text = "leg" 
+        intervals [161]:
+            xmin = 262.05322448979587 
+            xmax = 263.9521339090729 
+            text = "xxx" 
+        intervals [162]:
+            xmin = 263.9521339090729 
+            xmax = 265.58922448979587 
+            text = "taboo" 
+        intervals [163]:
+            xmin = 265.58922448979587 
+            xmax = 266.9157882337488 
+            text = "xxx" 
+        intervals [164]:
+            xmin = 266.9157882337488 
+            xmax = 268.11164875072325 
+            text = "answer" 
+        intervals [165]:
+            xmin = 268.11164875072325 
+            xmax = 270.1801859699294 
+            text = "xxx" 
+        intervals [166]:
+            xmin = 270.1801859699294 
+            xmax = 271.29805558362295 
+            text = "woman" 
+        intervals [167]:
+            xmin = 271.29805558362295 
+            xmax = 273.7417705530925 
+            text = "xxx" 
+        intervals [168]:
+            xmin = 273.7417705530925 
+            xmax = 274.4852244897959 
+            text = "arm" 
+        intervals [169]:
+            xmin = 274.4852244897959 
+            xmax = 276.69242639388824 
+            text = "xxx" 
+        intervals [170]:
+            xmin = 276.69242639388824 
+            xmax = 278.14922448979587 
+            text = "strawberry" 
+        intervals [171]:
+            xmin = 278.14922448979587 
+            xmax = 280.28000794481164 
+            text = "xxx" 
+        intervals [172]:
+            xmin = 280.28000794481164 
+            xmax = 281.3652244897959 
+            text = "fat" 
+        intervals [173]:
+            xmin = 281.3652244897959 
+            xmax = 283.317981420065 
+            text = "xxx" 
+        intervals [174]:
+            xmin = 283.317981420065 
+            xmax = 284.2772244897959 
+            text = "hand" 
+        intervals [175]:
+            xmin = 284.2772244897959 
+            xmax = 286.03466455101784 
+            text = "xxx" 
+        intervals [176]:
+            xmin = 286.03466455101784 
+            xmax = 287.3345129390336 
+            text = "dagger" 
+        intervals [177]:
+            xmin = 287.3345129390336 
+            xmax = 288.6343613270493 
+            text = "xxx" 
+        intervals [178]:
+            xmin = 288.6343613270493 
+            xmax = 290.0641945538666 
+            text = "damper" 
+        intervals [179]:
+            xmin = 290.0641945538666 
+            xmax = 292.26093832961317 
+            text = "xxx" 
+        intervals [180]:
+            xmin = 292.26093832961317 
+            xmax = 293.88574881463285 
+            text = "strawberry" 
+        intervals [181]:
+            xmin = 293.88574881463285 
+            xmax = 295.7422495718026 
+            text = "xxx" 
+        intervals [182]:
+            xmin = 295.7422495718026 
+            xmax = 296.7572244897959 
+            text = "woman" 
+        intervals [183]:
+            xmin = 296.7572244897959 
+            xmax = 298.97177826000603 
+            text = "xxx" 
+        intervals [184]:
+            xmin = 298.97177826000603 
+            xmax = 300.7572244897959 
+            text = "tapioca" 
+        intervals [185]:
+            xmin = 300.7572244897959 
+            xmax = 303.5342461019412 
+            text = "xxx" 
+        intervals [186]:
+            xmin = 303.5342461019412 
+            xmax = 304.8210960060768 
+            text = "hand" 
+        intervals [187]:
+            xmin = 304.8210960060768 
+            xmax = 306.4329080072163 
+            text = "xxx" 
+        intervals [188]:
+            xmin = 306.4329080072163 
+            xmax = 307.7977488146328 
+            text = "screen" 
+        intervals [189]:
+            xmin = 307.7977488146328 
+            xmax = 310.33420719560723 
+            text = "xxx" 
+        intervals [190]:
+            xmin = 310.33420719560723 
+            xmax = 311.6600525513833 
+            text = "eggplant" 
+        intervals [191]:
+            xmin = 311.6600525513833 
+            xmax = 313.25886606864265 
+            text = "xxx" 
+        intervals [192]:
+            xmin = 313.25886606864265 
+            xmax = 314.2452244897959 
+            text = "tackle" 
+        intervals [193]:
+            xmin = 314.2452244897959 
+            xmax = 315.9495522318352 
+            text = "xxx" 
+        intervals [194]:
+            xmin = 315.9495522318352 
+            xmax = 316.7892244897959 
+            text = "leg" 
+        intervals [195]:
+            xmin = 316.7892244897959 
+            xmax = 318.93920352427136 
+            text = "xxx" 
+        intervals [196]:
+            xmin = 318.93920352427136 
+            xmax = 320.1090670734855 
+            text = "fly" 
+        intervals [197]:
+            xmin = 320.1090670734855 
+            xmax = 321.6371709350453 
+            text = "xxx" 
+        intervals [198]:
+            xmin = 321.6371709350453 
+            xmax = 323.1189980973832 
+            text = "tacit" 
+        intervals [199]:
+            xmin = 323.1189980973832 
+            xmax = 324.70481313076243 
+            text = "xxx" 
+        intervals [200]:
+            xmin = 324.70481313076243 
+            xmax = 325.6212244897959 
+            text = "neck" 
+        intervals [201]:
+            xmin = 325.6212244897959 
+            xmax = 327.564479584397 
+            text = "xxx" 
+        intervals [202]:
+            xmin = 327.564479584397 
+            xmax = 329.1572244897959 
+            text = "tapioca" 
+        intervals [203]:
+            xmin = 329.1572244897959 
+            xmax = 331.0740702320395 
+            text = "xxx" 
+        intervals [204]:
+            xmin = 331.0740702320395 
+            xmax = 332.73787616869964 
+            text = "shot" 
+        intervals [205]:
+            xmin = 332.73787616869964 
+            xmax = 334.5071618383263 
+            text = "xxx" 
+        intervals [206]:
+            xmin = 334.5071618383263 
+            xmax = 335.85900416186263 
+            text = "tanker" 
+        intervals [207]:
+            xmin = 335.85900416186263 
+            xmax = 338.01675248596877 
+            text = "xxx" 
+        intervals [208]:
+            xmin = 338.01675248596877 
+            xmax = 339.2052244897959 
+            text = "artichoke" 
+        intervals [209]:
+            xmin = 339.2052244897959 
+            xmax = 341.1493871010867 
+            text = "xxx" 
+        intervals [210]:
+            xmin = 341.1493871010867 
+            xmax = 342.4852244897959 
+            text = "damnation" 
+        intervals [211]:
+            xmin = 342.4852244897959 
+            xmax = 344.56798836156804 
+            text = "xxx" 
+        intervals [212]:
+            xmin = 344.56798836156804 
+            xmax = 346.0212244897959 
+            text = "vault" 
+        intervals [213]:
+            xmin = 346.0212244897959 
+            xmax = 348.5531769995247 
+            text = "xxx" 
+        intervals [214]:
+            xmin = 348.5531769995247 
+            xmax = 350.229981420065 
+            text = "tabloid" 
+        intervals [215]:
+            xmin = 350.229981420065 
+            xmax = 352.34873429253065 
+            text = "xxx" 
+        intervals [216]:
+            xmin = 352.34873429253065 
+            xmax = 353.6692244897959 
+            text = "tattoing" 
+        intervals [217]:
+            xmin = 353.6692244897959 
+            xmax = 355.91031887569375 
+            text = "xxx" 
+        intervals [218]:
+            xmin = 355.91031887569375 
+            xmax = 357.40514452191184 
+            text = "tabloid" 
+        intervals [219]:
+            xmin = 357.40514452191184 
+            xmax = 359.2509292328941 
+            text = "xxx" 
+        intervals [220]:
+            xmin = 359.2509292328941 
+            xmax = 360.56522448979587 
+            text = "dancing" 
+        intervals [221]:
+            xmin = 360.56522448979587 
+            xmax = 362.5511315159294 
+            text = "xxx" 
+        intervals [222]:
+            xmin = 362.5511315159294 
+            xmax = 363.7172244897959 
+            text = "artichoke" 
+        intervals [223]:
+            xmin = 363.7172244897959 
+            xmax = 365.3458055501632 
+            text = "xxx" 
+        intervals [224]:
+            xmin = 365.3458055501632 
+            xmax = 367.0876023901043 
+            text = "tavern" 
+        intervals [225]:
+            xmin = 367.0876023901043 
+            xmax = 368.7644068106446 
+            text = "xxx" 
+        intervals [226]:
+            xmin = 368.7644068106446 
+            xmax = 369.9412244897959 
+            text = "eggplant" 
+        intervals [227]:
+            xmin = 369.9412244897959 
+            xmax = 372.06602171620455 
+            text = "xxx" 
+        intervals [228]:
+            xmin = 372.06602171620455 
+            xmax = 373.61284129794325 
+            text = "danielle" 
+        intervals [229]:
+            xmin = 373.61284129794325 
+            xmax = 374.964655760744 
+            text = "xxx" 
+        intervals [230]:
+            xmin = 374.964655760744 
+            xmax = 376.0212244897959 
+            text = "tackle" 
+        intervals [231]:
+            xmin = 376.0212244897959 
+            xmax = 377.7709920329039 
+            text = "xxx" 
+        intervals [232]:
+            xmin = 377.7709920329039 
+            xmax = 378.8758631627173 
+            text = "dapper" 
+        intervals [233]:
+            xmin = 378.8758631627173 
+            xmax = 380.6566554542988 
+            text = "xxx" 
+        intervals [234]:
+            xmin = 380.6566554542988 
+            xmax = 382.16447958439704 
+            text = "for" 
+        intervals [235]:
+            xmin = 382.16447958439704 
+            xmax = 383.71129916613575 
+            text = "xxx" 
+        intervals [236]:
+            xmin = 383.71129916613575 
+            xmax = 384.8212244897959 
+            text = "shot" 
+        intervals [237]:
+            xmin = 384.8212244897959 
+            xmax = 387.06490800721633 
+            text = "xxx" 
+        intervals [238]:
+            xmin = 387.06490800721633 
+            xmax = 388.3517579113519 
+            text = "river" 
+        intervals [239]:
+            xmin = 388.3517579113519 
+            xmax = 390.54311938697066 
+            text = "xxx" 
+        intervals [240]:
+            xmin = 390.54311938697066 
+            xmax = 391.4932244897959 
+            text = "fat" 
+        intervals [241]:
+            xmin = 391.4932244897959 
+            xmax = 393.7277479376092 
+            text = "xxx" 
+        intervals [242]:
+            xmin = 393.7277479376092 
+            xmax = 394.7732244897959 
+            text = "dancette" 
+        intervals [243]:
+            xmin = 394.7732244897959 
+            xmax = 397.01636435928896 
+            text = "xxx" 
+        intervals [244]:
+            xmin = 397.01636435928896 
+            xmax = 398.35520819894515 
+            text = "damper" 
+        intervals [245]:
+            xmin = 398.35520819894515 
+            xmax = 399.8370353612831 
+            text = "xxx" 
+        intervals [246]:
+            xmin = 399.8370353612831 
+            xmax = 401.7478124916662 
+            text = "damage" 
+        intervals [247]:
+            xmin = 401.7478124916662 
+            xmax = 403.3731466771278 
+            text = "xxx" 
+        intervals [248]:
+            xmin = 403.3731466771278 
+            xmax = 405.40091016243235 
+            text = "daltonian" 
+        intervals [249]:
+            xmin = 405.40091016243235 
+            xmax = 407.03871913133213 
+            text = "xxx" 
+        intervals [250]:
+            xmin = 407.03871913133213 
+            xmax = 408.14922448979587 
+            text = "tanker" 
+        intervals [251]:
+            xmin = 408.14922448979587 
+            xmax = 409.8203946816858 
+            text = "xxx" 
+        intervals [252]:
+            xmin = 409.8203946816858 
+            xmax = 411.6141854571475 
+            text = "snake" 
+        intervals [253]:
+            xmin = 411.6141854571475 
+            xmax = 413.3559822970886 
+            text = "xxx" 
+        intervals [254]:
+            xmin = 413.3559822970886 
+            xmax = 414.9937912659884 
+            text = "dakota" 
+        intervals [255]:
+            xmin = 414.9937912659884 
+            xmax = 416.4981451610079 
+            text = "xxx" 
+        intervals [256]:
+            xmin = 416.4981451610079 
+            xmax = 418.00596929110617 
+            text = "apple" 
+        intervals [257]:
+            xmin = 418.00596929110617 
+            xmax = 419.37081009852267 
+            text = "xxx" 
+        intervals [258]:
+            xmin = 419.37081009852267 
+            xmax = 420.86563574474076 
+            text = "for" 
+        intervals [259]:
+            xmin = 420.86563574474076 
+            xmax = 422.41245532647946 
+            text = "xxx" 
+        intervals [260]:
+            xmin = 422.41245532647946 
+            xmax = 423.79029461777617 
+            text = "woman" 
+        intervals [261]:
+            xmin = 423.79029461777617 
+            xmax = 425.53209145771723 
+            text = "xxx" 
+        intervals [262]:
+            xmin = 425.53209145771723 
+            xmax = 426.96192468453455 
+            text = "damper" 
+        intervals [263]:
+            xmin = 426.96192468453455 
+            xmax = 428.5087442662733 
+            text = "xxx" 
+        intervals [264]:
+            xmin = 428.5087442662733 
+            xmax = 429.7332244897959 
+            text = "dancing" 
+        intervals [265]:
+            xmin = 429.7332244897959 
+            xmax = 431.82098900066427 
+            text = "xxx" 
+        intervals [266]:
+            xmin = 431.82098900066427 
+            xmax = 433.1078389047998 
+            text = "for" 
+        intervals [267]:
+            xmin = 433.1078389047998 
+            xmax = 435.0056175513028 
+            text = "xxx" 
+        intervals [268]:
+            xmin = 435.0056175513028 
+            xmax = 436.5004431975209 
+            text = "fork" 
+        intervals [269]:
+            xmin = 436.5004431975209 
+            xmax = 438.3072324568627 
+            text = "xxx" 
+        intervals [270]:
+            xmin = 438.3072324568627 
+            xmax = 439.52908994159753 
+            text = "leg" 
+        intervals [271]:
+            xmin = 439.52908994159753 
+            xmax = 440.8679337812537 
+            text = "xxx" 
+        intervals [272]:
+            xmin = 440.8679337812537 
+            xmax = 442.44075033075273 
+            text = "vault" 
+        intervals [273]:
+            xmin = 442.44075033075273 
+            xmax = 443.9011951929628 
+            text = "xxx" 
+        intervals [274]:
+            xmin = 443.9011951929628 
+            xmax = 445.59099809738325 
+            text = "tattoo" 
+        intervals [275]:
+            xmin = 445.59099809738325 
+            xmax = 446.9688373886799 
+            text = "xxx" 
+        intervals [276]:
+            xmin = 446.9688373886799 
+            xmax = 448.3076812283361 
+            text = "tantrum" 
+        intervals [277]:
+            xmin = 448.3076812283361 
+            xmax = 449.8415023261947 
+            text = "xxx" 
+        intervals [278]:
+            xmin = 449.8415023261947 
+            xmax = 451.2323401013715 
+            text = "river" 
+        intervals [279]:
+            xmin = 451.2323401013715 
+            xmax = 452.9871354251927 
+            text = "xxx" 
+        intervals [280]:
+            xmin = 452.9871354251927 
+            xmax = 454.6292244897959 
+            text = "window" 
+        intervals [281]:
+            xmin = 454.6292244897959 
+            xmax = 456.5487200083558 
+            text = "xxx" 
+        intervals [282]:
+            xmin = 456.5487200083558 
+            xmax = 458.1172244897959 
+            text = "lighthouse" 
+        intervals [283]:
+            xmin = 458.1172244897959 
+            xmax = 459.9650137127005 
+            text = "xxx" 
+        intervals [284]:
+            xmin = 459.9650137127005 
+            xmax = 461.1412244897959 
+            text = "answer" 
+        intervals [285]:
+            xmin = 461.1412244897959 
+            xmax = 462.83767865021525 
+            text = "xxx" 
+        intervals [286]:
+            xmin = 462.83767865021525 
+            xmax = 463.9092244897959 
+            text = "screen" 
+        intervals [287]:
+            xmin = 463.9092244897959 
+            xmax = 465.4113784584864 
+            text = "xxx" 
+        intervals [288]:
+            xmin = 465.4113784584864 
+            xmax = 466.4692244897959 
+            text = "neck" 
+        intervals [289]:
+            xmin = 466.4692244897959 
+            xmax = 470.28244897959183 
+            text = "xxx" 

@@ -1,0 +1,16 @@
+# AXB
+
+## Format
+
+- 1st character: phoneme (d, t)
+- 2nd character: language (s “Spanish”, e “English”)
+- 3rd character: “talker” (a, b, c)
+- 4th character: repetition (1, 2)
+
+- We are interested in whether the participants can distinguish English /d/ from Spanish /t/
+- Group by 'type of contrast' cross tab
+- traditional dPrime or oddity?
+
+# Production
+
+- 

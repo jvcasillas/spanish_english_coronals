@@ -1,0 +1,38 @@
+% Mixed design ANOVA: 1 between subjects factor and 1 withing subjects factor
+% uses residuals of linear model as IVs
+
+% {\footnotesize{\begin{tabular}{@{}lcccccc}
+% \hline \\[-2ex]
+% ANOVA       & COG        & SD         & Skewness   & Kurtosis & CM         & Mean Intensity \\ [.5ex]
+% \hline \\[-2ex]
+% Language     & \cellcolor{gray!15} & \cellcolor{gray!15} \checkmark & \cellcolor{gray!15} \checkmark & \cellcolor{gray!15} & \cellcolor{gray!15} & \cellcolor{gray!15} \\ [.5ex]
+% Voicing      & \checkmark & \checkmark & \checkmark &          &            & \checkmark     \\ [.5ex]
+% L $\times$ V & \cellcolor{gray!15} \checkmark & \cellcolor{gray!15} & \cellcolor{gray!15} & \cellcolor{gray!15} & \cellcolor{gray!15}\checkmark & \cellcolor{gray!15}\checkmark \\ [.5ex]
+% \hline
+% \multicolumn{7}{@{}l}{{\scriptsize{{resid(DV) $\sim$ Language (Spanish, English) $\times$ Voicing (/d t/)}}}}
+% \end{tabular}}}
+
+% {\footnotesize{\begin{tabular}{@{}lccccc}
+% \hline \\[-2ex]
+%          & Relative Intensity & COG & SD & Skewness   & Kurtosis            \\ [.5ex]
+% \hline \\[-2.5ex]
+% \emph{p-value}  &                    &     &    & \checkmark &                     \\ [.5ex]
+% \emph{R}$^2$    &                    &     &    &            &                     \\ [.5ex]
+% \hline \\[-2ex]
+% \multicolumn{6}{@{}l}{{\scriptsize{{resid(DV) $\sim$ Short-lag stop (Spanish /t/, English /d/) }}}}
+% \end{tabular}}}
+
+{\footnotesize{\begin{tabular}{@{}llrr@{}}
+\hline \\[-2ex]
+Metric             & & \emph{R}$^2$ & \emph{p-value} \\ [.5ex]
+\hline \\[-2ex]
+Relative Intensity & & 0.66         & < 0.02 \\
+Center of Gravity  & & 0.68         & < 0.03 \\
+Standard Deviation & & 0.61         & < 0.01 \\
+Skewness           & & 0.45         & < 0.03 \\
+Kurtosis           & & 0.26         & = 0.07 \\
+\hline \\[-2ex]
+\multicolumn{4}{@{}l@{}}{{\scriptsize{resid(DV) $\sim$ Short-lag stop (Spanish /t/, English /d/)}}}
+\end{tabular}}}
+
+

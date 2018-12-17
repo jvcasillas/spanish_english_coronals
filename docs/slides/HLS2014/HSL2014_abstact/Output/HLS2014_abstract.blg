@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: HLS2014_abstract.aux
+The style file: apacite.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: vot.bib
+apacite.bst [2013/07/21 v6.03 APA bibliography style]
+Warning--No journal in Praat
+Warning--No journal in kirkham2011acoustics
+You've used 56 entries,
+            6951 wiz_defined-function locations,
+            1610 strings with 21501 characters,
+and the built_in function-call counts, 108801 in all, are:
+= -- 13402
+> -- 827
+< -- 5533
++ -- 5618
+- -- 112
+* -- 7158
+:= -- 20571
+add.period$ -- 230
+call.type$ -- 56
+change.case$ -- 955
+chr.to.int$ -- 0
+cite$ -- 114
+duplicate$ -- 2758
+empty$ -- 4149
+format.name$ -- 1368
+if$ -- 20371
+int.to.chr$ -- 0
+int.to.str$ -- 168
+missing$ -- 0
+newline$ -- 1409
+num.names$ -- 448
+pop$ -- 1580
+preamble$ -- 1
+purify$ -- 224
+quote$ -- 0
+skip$ -- 7034
+stack$ -- 0
+substring$ -- 6075
+swap$ -- 1649
+text.length$ -- 120
+text.prefix$ -- 0
+top$ -- 1
+type$ -- 4672
+warning$ -- 2
+while$ -- 468
+width$ -- 0
+write$ -- 1728
+(There were 2 warnings)

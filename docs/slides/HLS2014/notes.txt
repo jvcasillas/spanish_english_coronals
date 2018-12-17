@@ -1,0 +1,40 @@
+Research question: Is there an acoustic cue that can distinguish English /d/ from Spanish /t/?
+
+Proposed analysis
+	- Logistic mixed effects regression
+		- DV: English /d/ or Spanish /t/
+		- Fixed factors (predictors):
+			- vot
+			- duration
+			- skew
+			- kurtosis
+			- sd
+			- center of gravity
+
+
+Articles
+	- Beckman 2011
+	- Parrell 2010
+	- Ringen 2012
+	- Sundara 2005
+	- kirkham 2011
+	- Scarbel et al 2012
+	- Lisker & Abramson 1964
+
+
+marcar vot = donde empiece fonación modal (modal voicing)
+buscar burst
+
+participantes
+	eng - 7, 
+	esp - uni de isla bal, bilingues esp cat, 18-23 años
+
+grabaciones (44.1 kHz, 16 bit)
+	- 3 rep, 3 bloques aleatorios, 
+	- shure sm10a, dynamic head mounted mic
+	- marantz PMD660
+	- sound devices MM-1 (pre amp)
+	- sound attenuated booth aqui
+	- quiet classrooom (mallorca)
+
+la mitad de lo que escucharon fue distractores

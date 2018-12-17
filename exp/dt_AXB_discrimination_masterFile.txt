@@ -1,0 +1,41 @@
+"ooTextFile"
+"ExperimentMFC 5"
+stimuli are sounds? <yes>
+"SoundsAXB/" ".Sound"
+carrier phrase "" ""
+initial silence duration 0.5 seconds
+medial silence duration 0.5 seconds
+192 different stimuli
+	"dsa1,dsb1,dea1" "" "dsa1,dsc1,deb1" "" "dsb1,dsc1,dec1" "" "dsa2,dsb2,dea2" "" "dsa2,dsc2,deb2" "" "dsb2,dsc2,dec2" "" "dsb1,dsa1,dea1" "" "dsc1,dsa1,deb1" "" "dsc1,dsb1,dec1" "" "dsb2,dsa2,dea2" "" "dsc2,dsa2,deb2" "" "dsc2,dsb2,dec2" ""
+	"dea1,deb1,dsa1" "" "dea1,dec1,dsb1" "" "deb1,dec1,dsc1" "" "dea2,deb2,dsa2" "" "dea2,dec2,dsb2" "" "deb2,dec2,dsc2" "" "deb1,dea1,dsa1" "" "dec1,dea1,dsb1" "" "dec1,deb1,dsc1" "" "deb2,dea2,dsa2" "" "dec2,dea2,dsb2" "" "dec2,deb2,dsc2" ""
+	"dea1,dsa1,dsb1" "" "deb1,dsa1,dsc1" "" "dec1,dsb1,dsc1" "" "dea2,dsa2,dsb2" "" "deb2,dsa2,dsc2" "" "dec2,dsb2,dsc2" "" "dea1,dsb1,dsa1" "" "deb1,dsc1,dsa1" "" "dec1,dsc1,dsb1" "" "dea2,dsb2,dsa2" "" "deb2,dsc2,dsa2" "" "dec2,dsc2,dsb2" ""
+	"dsa1,dea1,deb1" "" "dsb1,dea1,dec1" "" "dsc1,deb1,dec1" "" "dsa2,dea2,deb2" "" "dsb2,dea2,dec2" "" "dsc2,deb2,dec2" "" "dsa1,deb1,dea1" "" "dsb1,dec1,dea1" "" "dsc1,dec1,deb1" "" "dsa2,deb2,dea2" "" "dsb2,dec2,dea2" "" "dsc2,dec2,deb2" ""
+	"tsa1,tsb1,tea1" "" "tsa1,tsc1,teb1" "" "tsb1,tsc1,tec1" "" "tsa2,tsb2,tea2" "" "tsa2,tsc2,teb2" "" "tsb2,tsc2,tec2" "" "tsb1,tsa1,tea1" "" "tsc1,tsa1,teb1" "" "tsc1,tsb1,tec1" "" "tsb2,tsa2,tea2" "" "tsc2,tsa2,teb2" "" "tsc2,tsb2,tec2" ""
+	"tea1,teb1,tsa1" "" "tea1,tec1,tsb1" "" "teb1,tec1,tsc1" "" "tea2,teb2,tsa2" "" "tea2,tec2,tsb2" "" "teb2,tec2,tsc2" "" "teb1,tea1,tsa1" "" "tec1,tea1,tsb1" "" "tec1,teb1,tsc1" "" "teb2,tea2,tsa2" "" "tec2,tea2,tsb2" "" "tec2,teb2,tsc2" ""
+	"tea1,tsa1,tsb1" "" "teb1,tsa1,tsc1" "" "tec1,tsb1,tsc1" "" "tea2,tsa2,tsb2" "" "teb2,tsa2,tsc2" "" "tec2,tsb2,tsc2" "" "tea1,tsb1,tsa1" "" "teb1,tsc1,tsa1" "" "tec1,tsc1,tsb1" "" "tea2,tsb2,tsa2" "" "teb2,tsc2,tsa2" "" "tec2,tsc2,tsb2" ""
+	"tsa1,tea1,teb1" "" "tsb1,tea1,tec1" "" "tsc1,teb1,tec1" "" "tsa2,tea2,teb2" "" "tsb2,tea2,tec2" "" "tsc2,teb2,tec2" "" "tsa1,teb1,tea1" "" "tsb1,tec1,tea1" "" "tsc1,tec1,teb1" "" "tsa2,teb2,tea2" "" "tsb2,tec2,tea2" "" "tsc2,tec2,teb2" ""
+	"tsa1,tsb1,dea1" "" "tsa1,tsc1,deb1" "" "tsb1,tsc1,dec1" "" "tsa2,tsb2,dea2" "" "tsa2,tsc2,deb2" "" "tsb2,tsc2,dec2" "" "tsb1,tsa1,dea1" "" "tsc1,tsa1,deb1" "" "tsc1,tsb1,dec1" "" "tsb2,tsa2,dea2" "" "tsc2,tsa2,deb2" "" "tsc2,tsb2,dec2" ""
+	"dea1,deb1,tsa1" "" "dea1,dec1,tsb1" "" "deb1,dec1,tsc1" "" "dea2,deb2,tsa2" "" "dea2,dec2,tsb2" "" "deb2,dec2,tsc2" "" "deb1,dea1,tsa1" "" "dec1,dea1,tsb1" "" "dec1,deb1,tsc1" "" "deb2,dea2,tsa2" "" "dec2,dea2,tsb2" "" "dec2,deb2,tsc2" ""
+	"dea1,tsa1,tsb1" "" "deb1,tsa1,tsc1" "" "dec1,tsb1,tsc1" "" "dea2,tsa2,tsb2" "" "deb2,tsa2,tsc2" "" "dec2,tsb2,tsc2" "" "dea1,tsb1,tsa1" "" "deb1,tsc1,tsa1" "" "dec1,tsc1,tsb1" "" "dea2,tsb2,tsa2" "" "deb2,tsc2,tsa2" "" "dec2,tsc2,tsb2" ""
+	"tsa1,dea1,deb1" "" "tsb1,dea1,dec1" "" "tsc1,deb1,dec1" "" "tsa2,dea2,deb2" "" "tsb2,dea2,dec2" "" "tsc2,deb2,dec2" "" "tsa1,deb1,dea1" "" "tsb1,dec1,dea1" "" "tsc1,dec1,deb1" "" "tsa2,deb2,dea2" "" "tsb2,dec2,dea2" "" "tsc2,dec2,deb2" ""
+	"dsa1,dsb1,tea1" "" "dsa1,dsc1,teb1" "" "dsb1,dsc1,tec1" "" "dsa2,dsb2,tea2" "" "dsa2,dsc2,teb2" "" "dsb2,dsc2,tec2" "" "dsb1,dsa1,tea1" "" "dsc1,dsa1,teb1" "" "dsc1,dsb1,tec1" "" "dsb2,dsa2,tea2" "" "dsc2,dsa2,teb2" "" "dsc2,dsb2,tec2" ""
+	"tea1,teb1,dsa1" "" "tea1,tec1,dsb1" "" "teb1,tec1,dsc1" "" "tea2,teb2,dsa2" "" "tea2,tec2,dsb2" "" "teb2,tec2,dsc2" "" "teb1,tea1,dsa1" "" "tec1,tea1,dsb1" "" "tec1,teb1,dsc1" "" "teb2,tea2,dsa2" "" "tec2,tea2,dsb2" "" "tec2,teb2,dsc2" ""
+	"tea1,dsa1,dsb1" "" "teb1,dsa1,dsc1" "" "tec1,dsb1,dsc1" "" "tea2,dsa2,dsb2" "" "teb2,dsa2,dsc2" "" "tec2,dsb2,dsc2" "" "tea1,dsb1,dsa1" "" "teb1,dsc1,dsa1" "" "tec1,dsc1,dsb1" "" "tea2,dsb2,dsa2" "" "teb2,dsc2,dsa2" "" "tec2,dsc2,dsb2" ""
+	"dsa1,tea1,teb1" "" "dsb1,tea1,tec1" "" "dsc1,teb1,tec1" "" "dsa2,tea2,teb2" "" "dsb2,tea2,tec2" "" "dsc2,teb2,tec2" "" "dsa1,teb1,tea1" "" "dsb1,tec1,tea1" "" "dsc1,tec1,teb1" "" "dsa2,teb2,tea2" "" "dsb2,tec2,tea2" "" "dsc2,tec2,teb2" "" 
+1 replications per stimulus
+break after every 70 stimuli
+<PermuteBalancedNoDoublets>
+"PUEDES EMPEZAR A ESCUCHAR."
+"INDICA LA MAS DIFERENTE: 1 o 3"
+"SI QUIERES, PUEDES DESCANSAR UNOS SEGUNDOS."
+"HASTA AQUI LA TAREA DE ESCUCHAR."
+0 replays
+replay button 0 0 0 0 "" ""
+ok button 0 0 0 0 "" ""
+oops button 0 0 0 0 "" ""
+responses are sounds? <no> "" "" "" "" 0 0
+3 response categories
+	0.1 0.3 0.35 0.65 "1" 24 "1" "1"
+	0.4 0.6 0.35 0.65 "2" 24 "" ""
+    	0.7 0.9 0.35 0.65 "3" 24 "3" "3"
+0 goodness categories

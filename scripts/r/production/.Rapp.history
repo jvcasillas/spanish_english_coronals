@@ -1,0 +1,24 @@
+system("defaults write org.R-project.R force.LANG en_US.UTF-8")
+2 + 2
+source("/Users/casillas/code/coursera/6_statistical_inference/course_project/cp_pt2.Rmd")
+instal.package("lme4")
+install.package("lme4")
+install.packages("lme4")
+library(knitr)
+fit=lm(dist~speed,data=cars)#
+par(mar=c(4, 4, 1, .1), mgp=c(2,1,0))#
+with(cars,plot(speed,dist,panel.last=abline(fit)))#
+text(10,100,'$Y = \\beta_0 + \\beta_1x + \\epsilon$')#
+library(ggplot2)#
+qplot(speed, dist, data=cars)+geom_smooth()
+library(knitr)#
+## set global chunk options#
+opts_chunk$set(fig.path='figure/manual-', cache.path='cache/manual-', fig.align='center', fig.show='hold', par=TRUE)#
+## I use = but I can replace it with <-; set code/output width to be 68#
+options(formatR.arrow=TRUE, width=68, digits=4)#
+## tune details of base graphics (http://yihui.name/knitr/hooks)#
+knit_hooks$set(par=function(before, options, envir){#
+if (before && options$fig.show!='none') par(mar=c(4,4,.1,.1),cex.lab=.95,cex.axis=.9,mgp=c(2,.7,0),tcl=-.3)#
+})
+plot(residRI ~ phon * group, data = df)
+source("/Users/casillas/Box Sync/Spanish English Coronals Simonet Casillas Diaz/stats/1_production/production_analysis.R")
