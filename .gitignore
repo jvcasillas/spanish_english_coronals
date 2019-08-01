@@ -3,5 +3,5 @@
 .RData
 .Ruserdata
 
-*.Sound
-*.wav
+# Project adds
+.DS_Store

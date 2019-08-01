@@ -1,3 +1,4 @@
+
 filePath$ = "../segmentedNew/"
 
 Create Strings as file list... dirFiles 'filePath$'/*.wav

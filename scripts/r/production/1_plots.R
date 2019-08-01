@@ -1,19 +1,7 @@
-## @knitr loadData
-
-# cleanup global environment
-rm(list = ls(all = TRUE))
-
-setwd("~/Box\ Sync/Spanish\ English\ Coronals\ Simonet\ Casillas\ Diaz/stats/1_production/")
-
-library(stringr); library(ggplot2); library(lme4)
-library(multcomp); library(MuMIn); library(lmerTest)
-library(caret); library(MASS); library(car)
-library(QuantPsyc); library(relaimpo); library(rms)
-library(randomForest); library(pander); library(dplyr)
 
 
 # read data
-df <- read.csv("coronals_clean.csv", header = TRUE, na.strings = "")
+df <- read_csv(here("scripts", "r", "production", "coronals_clean.csv"))
 
 
 str(df)
