@@ -78,7 +78,8 @@ for i to numberOfFiles
 		select Sound 'prefix$'
 		To Intensity... 100 0 yes
 		riB = Get mean... release window dB
-		riV = Get mean... vowelStart vowelEnd dB
+		riV = Get value at time: mp, "Cubic"
+
 		ri = riV - riB
 
 	endif
