@@ -1,3 +1,34 @@
+# Production
+
+## `data/raw/data_20190801.csv`
+
+- Most recent run of coronal production data
+- Principle difference from previous iterations is the 6ms window for burst
+measures
+
+## Format
+
+- no header included, must be hardcoded when read
+- id: includes serveral variables separated by `_`
+  - group
+  - name
+  - item
+  - language
+  - misc. numbers
+- f1_start: F1 value (mel) at vowel onset
+- f2_start: F2 value (mel) at vowel onset
+- f1_mp: F1 value (mel) at vowel mid point
+- f2_mp: F2 value (mel) at vowel mid point
+- vot: Voice onset time 
+- ri: Relative intenty (burst dB - avg. vowel dB)
+- cog: Spectral center of gravity
+- sd: Spectral standard deviation
+- sk: Spectral skewness
+- kt: Spectral kurtosis
+- label: additional notes
+
+
+
 # AXB
 
 ## Format
@@ -10,7 +41,3 @@
 - We are interested in whether the participants can distinguish English /d/ from Spanish /t/
 - Group by 'type of contrast' cross tab
 - traditional dPrime or oddity?
-
-# Production
-
-- 
