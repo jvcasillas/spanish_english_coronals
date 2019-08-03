@@ -11,7 +11,7 @@ measures
 - no header included, must be hardcoded when read
 - id: includes serveral variables separated by `_`
   - group
-  - name
+  - id
   - item
   - language
   - misc. numbers
