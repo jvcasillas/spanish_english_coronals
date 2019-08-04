@@ -20,9 +20,16 @@ raw_prod_df <- read_csv(
   col_names = headers) %>%
   separate(., id, into = c("group", "id", "item", "language", "misc"),
               sep = "_") %>%
-  mutate(., language = case_when(
-    language %in% c("english", "english1", "english2", "english3") ~ "english",
-    TRUE ~ "spanish")) %>%
+  group_by(id, group, item) %>%
+  mutate(., rep_n = seq_along(item)) %>%
+  ungroup(.) %>%
+  mutate(.,
+    ri = as.numeric(ri),
+    phon = substr(item, start = 1, stop = 1),
+    voicing = if_else(phon == "d", "voiced", "voiceless"),
+    language = case_when(
+     language %in% c("english", "english1", "english2", "english3") ~ "english",
+     TRUE ~ "spanish")) %>%
   write_csv(., path = here("data", "tidy", "tidy_coronals.csv"))
 
 # -----------------------------------------------------------------------------
