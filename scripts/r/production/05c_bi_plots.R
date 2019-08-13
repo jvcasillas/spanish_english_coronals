@@ -1,21 +1,21 @@
-# Plots: monolinguals ----------------------------------------------------
+# Plots: bilinguals -----------------------------------------------------------
 #
 # -----------------------------------------------------------------------------
 
 
 
 # Average over item reps
-item_means <- coronals_mono %>%
-  select(id, item, group_sum, phon_sum, contains("_std")) %>%
-  gather(metric, val, -group_sum, -phon_sum, -id, -item) %>%
-  group_by(id, item, group_sum, phon_sum, metric) %>%
+item_means <- coronals_bi %>%
+  select(id, item, language_sum, phon_sum, contains("_std")) %>%
+  gather(metric, val, -language_sum, -phon_sum, -id, -item) %>%
+  group_by(id, item, language_sum, phon_sum, metric) %>%
   summarize(val = mean(val))
 
 # Plot raw data
-coronals_mono %>%
-  select(group_sum, phon_sum, contains("_std")) %>%
-  gather(metric, val, -group_sum, -phon_sum) %>%
-  ggplot(., aes(x = group_sum, y = val, fill = factor(phon_sum))) +
+coronals_bi %>%
+  select(language_sum, phon_sum, contains("_std")) %>%
+  gather(metric, val, -language_sum, -phon_sum) %>%
+  ggplot(., aes(x = language_sum, y = val, fill = factor(phon_sum))) +
     facet_wrap(~ metric, scales = "free_x") +
     geom_beeswarm(data = item_means,
                   aes(color = factor(phon_sum)), dodge.width = 0.5, alpha = 0.3) +
@@ -30,41 +30,41 @@ coronals_mono %>%
 
 # Add fitted draws from each model to raw data
 
-mono_grid <- coronals_mono %>%
-    data_grid(id, item, phon_sum, group_sum, rep_n)
+bi_grid <- coronals_bi %>%
+    data_grid(id, item, phon_sum, language_sum, rep_n)
 
 if(F) {
 
-fits_mono <-
+fits_bi <-
   bind_rows(
-    mono_grid %>%
-      add_fitted_draws(mod_coronals_vot_mono_full, n = 10) %>%
+    bi_grid %>%
+      add_fitted_draws(mod_coronals_vot_bi_full, n = 10) %>%
       mutate(metric = "vot_std"),
-    mono_grid %>%
-      add_fitted_draws(mod_coronals_ri_mono_full, n = 10) %>%
+    bi_grid %>%
+      add_fitted_draws(mod_coronals_ri_bi_full, n = 10) %>%
       mutate(metric = "ri_std"),
-    mono_grid %>%
-      add_fitted_draws(mod_coronals_cog_mono_full, n = 10) %>%
+    bi_grid %>%
+      add_fitted_draws(mod_coronals_cog_bi_full, n = 10) %>%
       mutate(metric = "cog_std"),
-    mono_grid %>%
-      add_fitted_draws(mod_coronals_sd_mono_full, n = 10) %>%
+    bi_grid %>%
+      add_fitted_draws(mod_coronals_sd_bi_full, n = 10) %>%
       mutate(metric = "sd_std"),
-    mono_grid %>%
-      add_fitted_draws(mod_coronals_sk_mono_full, n = 10) %>%
+    bi_grid %>%
+      add_fitted_draws(mod_coronals_sk_bi_full, n = 10) %>%
       mutate(metric = "sk_std"),
-    mono_grid %>%
-      add_fitted_draws(mod_coronals_kt_mono_full, n = 10) %>%
+    bi_grid %>%
+      add_fitted_draws(mod_coronals_kt_bi_full, n = 10) %>%
       mutate(metric = "kt_std")) %>%
-  write_csv(., here("data", "tidy", "fits_mono.csv"))
+  write_csv(., here("data", "tidy", "fits_bi.csv"))
 
 }
 
 # Make plot
 #mono_vot <-
-  coronals_mono %>%
-  select(id, item, group_sum, phon_sum, contains("_std")) %>%
-  gather(metric, val, -group_sum, -phon_sum, -id, -item) %>%
-  ggplot(aes(x = group_sum, y = val, fill = factor(phon_sum))) +
+  coronals_bi %>%
+  select(id, item, language_sum, phon_sum, contains("_std")) %>%
+  gather(metric, val, -language_sum, -phon_sum, -id, -item) %>%
+  ggplot(aes(x = language_sum, y = val, fill = factor(phon_sum))) +
   facet_wrap(~ metric) +
   geom_hline(yintercept = 0, lty = 3) +
   geom_beeswarm(dodge.width = 2, alpha = 0.1) +
