@@ -1,0 +1,33 @@
+---
+title: "Coronals"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r, libs}
+source(here::here("scripts", "r", "production", "03_load_data.R"))
+
+```
+
+```{r, mods}
+mod_coronals_kt_mono_full <- readRDS(
+  here("data", "models", "mod_coronals_kt_mono_full.rds"))
+
+```
+
+```{r, test-table}
+academicWriteR::mod_to_table(
+  mod_coronals_kt_mono_full,
+  font_size = 12,
+  left_align = 1,
+  param_names = c(Intercept = "(Intercept)",
+                  Group = "group_sum",
+                  Phoneme = "phon_sum",
+                  `Item repetition` = "rep_n", 
+                  `Group x Phoneme` = "group_sum:phon_sum"),
+  col = c(1, 2, 3), 
+  width = 1.5)
+```
