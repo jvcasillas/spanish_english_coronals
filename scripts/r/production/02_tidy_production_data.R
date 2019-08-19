@@ -6,7 +6,7 @@ source(here("scripts", "r", "production", "01_helpers.R"))
 # -----------------------------------------------------------------------------
 
 
-# Tidy data -------------------------------------------------------------------
+# Tidy coronal data -----------------------------------------------------------
 
 # Store column names as vector
 headers <- c("id", "f1_start", "f2_start", "f1_mp", "f2_mp", "vot", "ri",
@@ -31,5 +31,15 @@ raw_prod_df <- read_csv(
      language %in% c("english", "english1", "english2", "english3") ~ "english",
      TRUE ~ "spanish")) %>%
   write_csv(., path = here("data", "tidy", "tidy_coronals.csv"))
+
+# -----------------------------------------------------------------------------
+
+
+
+
+# Tidy bilabial data from Aldrich (2019) --------------------------------------
+
+load(here("data", "raw", "bl_data_aldrich2019.RData"))
+
 
 # -----------------------------------------------------------------------------

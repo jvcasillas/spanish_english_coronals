@@ -68,9 +68,9 @@ fits_bi <-
   facet_wrap(~ metric) +
   geom_hline(yintercept = 0, lty = 3) +
   geom_beeswarm(dodge.width = 2, alpha = 0.1) +
-  stat_pointinterval(data = fits_mono, aes(y = .value), .width = c(.80, .95),
+  stat_pointinterval(data = fits_bi, aes(y = .value), .width = c(.80, .95),
                      position = position_dodge(2)) +
-  stat_summary(data = fits_mono, aes(y = .value, shape = factor(phon_sum)),
+  stat_summary(data = fits_bi, aes(y = .value, shape = factor(phon_sum)),
                fun.y = median, geom = "point", position = position_dodge(2),
                size = 5) +
   scale_fill_brewer(palette = "Set1", guide = F) +
