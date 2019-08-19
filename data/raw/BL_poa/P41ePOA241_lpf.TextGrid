@@ -1,0 +1,54 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 2.1983673469387757 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "interval" 
+        xmin = 0 
+        xmax = 2.1983673469387757 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.6823885109599396 
+            text = "" 
+        intervals [2]:
+            xmin = 0.6823885109599396 
+            xmax = 0.8003273488478913 
+            text = "cd" 
+        intervals [3]:
+            xmin = 0.8003273488478913 
+            xmax = 0.866753170403964 
+            text = "b" 
+        intervals [4]:
+            xmin = 0.866753170403964 
+            xmax = 0.9513650793650794 
+            text = "v" 
+        intervals [5]:
+            xmin = 0.9513650793650794 
+            xmax = 2.1983673469387757 
+            text = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "token" 
+        xmin = 0 
+        xmax = 2.1983673469387757 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 2.1983673469387757 
+            text = "tackle" 
+    item [3]:
+        class = "IntervalTier" 
+        name = "notes" 
+        xmin = 0 
+        xmax = 2.1983673469387757 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 2.1983673469387757 
+            text = "" 
