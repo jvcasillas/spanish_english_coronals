@@ -11,7 +11,7 @@ item []:
         name = "interval" 
         xmin = 0 
         xmax = 4.052018140589569 
-        intervals: size = 6 
+        intervals: size = 5 
         intervals [1]:
             xmin = 0 
             xmax = 1.6409711130829143 
@@ -30,10 +30,6 @@ item []:
             text = "v" 
         intervals [5]:
             xmin = 1.9014376897143337 
-            xmax = 2.896485260770975 
-            text = "" 
-        intervals [6]:
-            xmin = 2.896485260770975 
             xmax = 4.052018140589569 
             text = "" 
     item [2]:

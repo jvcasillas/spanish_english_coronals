@@ -11,15 +11,27 @@ item []:
         name = "interval" 
         xmin = 0 
         xmax = 1.6039909297052155 
-        intervals: size = 2 
+        intervals: size = 5 
         intervals [1]:
             xmin = 0 
-            xmax = 0.34740696278511407 
+            xmax = 0.37899939662083765 
             text = "" 
         intervals [2]:
-            xmin = 0.34740696278511407 
-            xmax = 1.6039909297052155 
+            xmin = 0.37899939662083765 
+            xmax = 0.44859410430839003 
             text = "cd" 
+        intervals [3]:
+            xmin = 0.44859410430839003 
+            xmax = 0.4570333153001754 
+            text = "b" 
+        intervals [4]:
+            xmin = 0.4570333153001754 
+            xmax = 0.5475878800038272 
+            text = "v" 
+        intervals [5]:
+            xmin = 0.5475878800038272 
+            xmax = 1.6039909297052155 
+            text = "" 
     item [2]:
         class = "IntervalTier" 
         name = "token" 
