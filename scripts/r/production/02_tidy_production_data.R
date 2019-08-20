@@ -39,7 +39,22 @@ raw_prod_df <- read_csv(
 
 # Tidy bilabial data from Aldrich (2019) --------------------------------------
 
-load(here("data", "raw", "bl_data_aldrich2019.RData"))
 
 
-# -----------------------------------------------------------------------------
+headers_2 <- c('id', 'item', 'n_intervals', 'status', 'f1_start', 'f2_start',
+               'f1_mp', 'f2_mp', 'v_dur', 'vot', 'ri', 'cog', 'sd', 'sk',
+               'kt', 'notes')
+
+read_csv(here("data", "raw", "bl_data_aldrich2019.csv"),
+         col_names = headers_2) %>%
+  filter(status == "hit", is.na(notes)) %>%
+  separate(col = id, into = c("id", "language"), sep = c(3, 4), remove = T) %>%
+  separate(col = item, into = "phon", sep = 1, remove = F) %>%
+  filter(phon == "p")
+
+
+# Questions:
+# 1. what do the numbers mean at the end of the filenames/id?
+# 2. is this enough data? 307 tokens
+
+ # -----------------------------------------------------------------------------
