@@ -23,7 +23,7 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 
 # General model setup ---------------------------------------------------------
 #
-# - create subset (only mono, exclude errors)
+# - create subset (only bilinguals, exclude errors)
 # - code variables (sum code group, phon, language, and stress)
 
 coronals_bi <- coronals %>%
