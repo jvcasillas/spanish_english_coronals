@@ -24,7 +24,7 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 # General model setup ---------------------------------------------------------
 #
 # - create subset (only mono, exclude errors)
-# - code variables (sum code group, phon, and language)
+# - code variables (sum code group, phon, language, and stress)
 
 coronals_bi <- coronals %>%
   filter(., group == "BIL", is.na(label)) %>%
@@ -35,7 +35,8 @@ coronals_bi <- coronals %>%
             sk_std = (sk - mean(sk, na.rm = T)) / sd(sk, na.rm = T),
             kt_std = (kt - mean(kt, na.rm = T)) / sd(kt, na.rm = T),
             phon_sum = if_else(phon == "d", 1, -1),
-            language_sum = if_else(language == "english", 1, -1))
+            language_sum = if_else(language == "english", 1, -1),
+            stress_sum = if_else(stress == "stressed", 1, -1))
 
 # Use all available cores for parallel computing
 options(mc.cores = parallel::detectCores())
@@ -56,11 +57,12 @@ priors <- c(
 
 # VOT
 mod_coronals_vot_bi_full <- brm(
-  formula = vot_std ~ 1 + language_sum * phon_sum + rep_n +
+  formula = vot_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
+    language_sum:phon_sum + language_sum:stress_sum +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4,
+  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = coronals_bi,
@@ -70,11 +72,12 @@ mod_coronals_vot_bi_full <- brm(
 
 # RI
 mod_coronals_ri_bi_full <- brm(
-  formula = ri_std ~ 1 + language_sum * phon_sum + rep_n +
+  formula = ri_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
+    language_sum:phon_sum + language_sum:stress_sum +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4,
+  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = coronals_bi,
@@ -86,11 +89,12 @@ mod_coronals_ri_bi_full <- brm(
 
 # COG
 mod_coronals_cog_bi_full <- brm(
-  formula = cog_std ~ 1 + language_sum * phon_sum + rep_n +
+  formula = cog_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
+    language_sum:phon_sum + language_sum:stress_sum +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4,
+  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = coronals_bi,
@@ -100,11 +104,12 @@ mod_coronals_cog_bi_full <- brm(
 
 # SD
 mod_coronals_sd_bi_full <- brm(
-  formula = sd_std ~ 1 + language_sum * phon_sum + rep_n +
+  formula = sd_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
+    language_sum:phon_sum + language_sum:stress_sum +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4,
+  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = coronals_bi,
@@ -114,11 +119,12 @@ mod_coronals_sd_bi_full <- brm(
 
 # Skewness
 mod_coronals_sk_bi_full <- brm(
-  formula = sk_std ~ 1 + language_sum * phon_sum + rep_n +
+  formula = sk_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
+    language_sum:phon_sum + language_sum:stress_sum +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4,
+  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = coronals_bi,
@@ -128,11 +134,12 @@ mod_coronals_sk_bi_full <- brm(
 
 # Kurtosis
 mod_coronals_kt_bi_full <- brm(
-  formula = kt_std ~ 1 + language_sum * phon_sum + rep_n +
+  formula = kt_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
+    language_sum:phon_sum + language_sum:stress_sum +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4,
+  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = coronals_bi,
