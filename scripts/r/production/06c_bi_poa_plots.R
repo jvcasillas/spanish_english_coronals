@@ -3,6 +3,10 @@
 # -----------------------------------------------------------------------------
 
 
+ poa_bi %>%
+  mutate(poa = if_else(group == "BIL", "coronal /t/", "bilabial /p/")) %>%
+  group_by(language, poa, stress) %>%
+  summarize(vot = mean(vot))
 
 # Average over items and reps
 item_means <- poa_bi %>%
@@ -13,8 +17,8 @@ item_means <- poa_bi %>%
 
 # Plot raw data
 poa_bi %>%
-  select(language_sum, group_sum, poa_sum, stress_sum, contains("_std")) %>%
-  gather(metric, val, -language_sum, -group_sum, -poa_sum, -stress_sum) %>%
+  select(language_sum, poa_sum, stress_sum, contains("_std")) %>%
+  gather(metric, val, -language_sum, -poa_sum, -stress_sum) %>%
   ggplot(., aes(x = factor(language_sum), y = val, shape = factor(stress_sum))) +
     facet_wrap(~ metric, scales = "free_x") +
     geom_beeswarm(data = item_means,
@@ -25,7 +29,7 @@ poa_bi %>%
                  geom = "pointrange", position = position_dodge(0.5),
                  size = 1) +
     scale_color_brewer(palette = "Dark2", name = NULL,
-                       labels = c("Coronal", "Bilabial")) +
+                       labels = c("Bilabial", "Coronal")) +
     scale_shape_manual(name = NULL, values = c(21, 24),
                        breaks = c(1, -1), labels = c("Stressed", "Unstressed")) +
     scale_x_discrete(labels = c("Spanish", "English")) +
