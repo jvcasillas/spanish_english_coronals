@@ -18,12 +18,12 @@ headers <- c("id", "f1_start", "f2_start", "f1_mp", "f2_mp", "vot", "ri",
 raw_prod_df <- read_csv(
   file = here("data", "raw", "data_20190803.csv"),
   col_names = headers) %>%
-  separate(., id, into = c("group", "id", "item", "language", "misc"),
+  separate(id, into = c("group", "id", "item", "language", "misc"),
               sep = "_") %>%
   group_by(id, group, item) %>%
-  mutate(., rep_n = seq_along(item)) %>%
-  ungroup(.) %>%
-  mutate(.,
+  mutate(rep_n = seq_along(item)) %>%
+  ungroup() %>%
+  mutate(
     ri = as.numeric(ri),
     phon = substr(item, start = 1, stop = 1),
     voicing = if_else(phon == "d", "voiced", "voiceless"),
@@ -39,22 +39,25 @@ raw_prod_df <- read_csv(
 
 # Tidy bilabial data from Aldrich (2019) --------------------------------------
 
-
-
-headers_2 <- c('id', 'item', 'n_intervals', 'status', 'f1_start', 'f2_start',
+headers_aldrich <- c('id', 'item', 'n_intervals', 'status', 'f1_start', 'f2_start',
                'f1_mp', 'f2_mp', 'v_dur', 'vot', 'ri', 'cog', 'sd', 'sk',
                'kt', 'notes')
 
-read_csv(here("data", "raw", "bl_data_aldrich2019.csv"),
-         col_names = headers_2) %>%
+raw_aldrich_df <- read_csv(here("data", "raw", "bl_data_aldrich2019.csv"),
+         col_names = headers_aldrich) %>%
   filter(status == "hit", is.na(notes)) %>%
   separate(col = id, into = c("id", "language"), sep = c(3, 4), remove = T) %>%
   separate(col = item, into = "phon", sep = 1, remove = F) %>%
-  filter(phon == "p")
-
-
-# Questions:
-# 1. what do the numbers mean at the end of the filenames/id?
-# 2. is this enough data? 307 tokens
+  mutate(
+    group = "bi_aldrich",
+    language = if_else(language == "e", "english", "spanish"),
+    phon = case_when(phon == "c" ~ "k", phon == "t" ~ "t", phon == "p" ~ "p"),
+    voicing = "voiceless",
+    rep_n = 1) %>%
+  rename(misc = n_intervals) %>%
+  select(group, id, item, language, misc, starts_with("f"), vot, ri, cog, sd,
+         sk, kt, label = notes, rep_n, phon, voicing) %>%
+  filter(phon == "p") %>%
+  write_csv(., path = here("data", "tidy", "tidy_bilabials.csv"))
 
  # -----------------------------------------------------------------------------
