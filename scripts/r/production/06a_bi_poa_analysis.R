@@ -61,7 +61,7 @@ priors <- c(
 # Fit models ------------------------------------------------------------------
 
 # VOT
-mod_vot_poa_comp_full <- brm(
+mod_poa_comp_vot_full <- brm(
   formula = vot_std ~ 1 + language_sum * poa_sum * stress_sum + rep_n +
     (1 + language_sum + rep_n | id) +
     (1 + rep_n | item),
@@ -70,12 +70,12 @@ mod_vot_poa_comp_full <- brm(
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = poa_bi,
-  file = here("data", "models", "mod_vot_poa_comp_full")
+  file = here("data", "models", "mod_poa_comp_vot_full")
 )
 
 
 # RI
-mod_ri_poa_comp_full <- brm(
+mod_poa_comp_ri_full <- brm(
   formula = ri_std ~ 1 + language_sum * poa_sum * stress_sum + rep_n +
     (1 + language_sum + rep_n | id) +
     (1 + rep_n | item),
@@ -84,14 +84,14 @@ mod_ri_poa_comp_full <- brm(
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = poa_bi,
-  file = here("data", "models", "mod_ri_poa_comp_full")
+  file = here("data", "models", "mod_poa_comp_ri_full")
 )
 
 
 # Spectral moments
 
 # COG
-mod_cog_poa_comp_full <- brm(
+mod_poa_comp_cog_full <- brm(
   formula = cog_std ~ 1 + language_sum * poa_sum * stress_sum + rep_n +
     (1 + language_sum + rep_n | id) +
     (1 + rep_n | item),
@@ -100,12 +100,12 @@ mod_cog_poa_comp_full <- brm(
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = poa_bi,
-  file = here("data", "models", "mod_cog_poa_comp_full")
+  file = here("data", "models", "mod_poa_comp_cog_full")
 )
 
 
 # SD
-mod_sd_poa_comp_full <- brm(
+mod_poa_comp_sd_full <- brm(
   formula = sd_std ~ 1 + language_sum * poa_sum * stress_sum + rep_n +
     (1 + language_sum + rep_n | id) +
     (1 + rep_n | item),
@@ -114,12 +114,12 @@ mod_sd_poa_comp_full <- brm(
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = poa_bi,
-  file = here("data", "models", "mod_sd_poa_comp_full")
+  file = here("data", "models", "mod_poa_comp_sd_full")
 )
 
 
 # Skewness
-mod_sk_poa_comp_full <- brm(
+mod_poa_comp_sk_full <- brm(
   formula = sk_std ~ 1 + language_sum * poa_sum * stress_sum + rep_n +
     (1 + language_sum + rep_n | id) +
     (1 + rep_n | item),
@@ -128,12 +128,12 @@ mod_sk_poa_comp_full <- brm(
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = poa_bi,
-  file = here("data", "models", "mod_sk_poa_comp_full")
+  file = here("data", "models", "mod_poa_comp_sk_full")
 )
 
 
 # Kurtosis
-mod_kt_poa_comp_full <- brm(
+mod_poa_comp_kt_full <- brm(
   formula = kt_std ~ 1 + language_sum * poa_sum * stress_sum + rep_n +
     (1 + language_sum + rep_n | id) +
     (1 + rep_n | item),
@@ -142,7 +142,7 @@ mod_kt_poa_comp_full <- brm(
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = poa_bi,
-  file = here("data", "models", "mod_kt_poa_comp_full")
+  file = here("data", "models", "mod_poa_comp_kt_full")
 )
 
 # -----------------------------------------------------------------------------
