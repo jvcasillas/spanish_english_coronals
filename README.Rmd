@@ -5,3 +5,7 @@ output: github_document
 # Spanish/English coronal stops
 
 Last update: `r Sys.Date()`
+
+```{r, 'basic-project-structure', comment=NA, echo=F}
+fs::dir_tree(recurse = 1)
+```
