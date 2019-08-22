@@ -57,8 +57,7 @@ priors <- c(
 
 # VOT
 mod_coronals_vot_bi_full <- brm(
-  formula = vot_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
-    language_sum:phon_sum + language_sum:stress_sum +
+  formula = vot_std ~ 1 + language_sum * phon_sum * stress_sum + rep_n +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -72,8 +71,7 @@ mod_coronals_vot_bi_full <- brm(
 
 # RI
 mod_coronals_ri_bi_full <- brm(
-  formula = ri_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
-    language_sum:phon_sum + language_sum:stress_sum +
+  formula = ri_std ~ 1 + language_sum * phon_sum * stress_sum + rep_n +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -89,8 +87,7 @@ mod_coronals_ri_bi_full <- brm(
 
 # COG
 mod_coronals_cog_bi_full <- brm(
-  formula = cog_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
-    language_sum:phon_sum + language_sum:stress_sum +
+  formula = cog_std ~ 1 + language_sum * phon_sum * stress_sum + rep_n +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -104,8 +101,7 @@ mod_coronals_cog_bi_full <- brm(
 
 # SD
 mod_coronals_sd_bi_full <- brm(
-  formula = sd_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
-    language_sum:phon_sum + language_sum:stress_sum +
+  formula = sd_std ~ 1 + language_sum * phon_sum * stress_sum + rep_n +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -119,8 +115,7 @@ mod_coronals_sd_bi_full <- brm(
 
 # Skewness
 mod_coronals_sk_bi_full <- brm(
-  formula = sk_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
-    language_sum:phon_sum + language_sum:stress_sum +
+  formula = sk_std ~ 1 + language_sum * phon_sum * stress_sum + rep_n +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -134,8 +129,7 @@ mod_coronals_sk_bi_full <- brm(
 
 # Kurtosis
 mod_coronals_kt_bi_full <- brm(
-  formula = kt_std ~ 1 + language_sum + phon_sum + stress_sum + rep_n +
-    language_sum:phon_sum + language_sum:stress_sum +
+  formula = kt_std ~ 1 + language_sum * phon_sum * stress_sum + rep_n +
     (1 + language_sum * phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -145,31 +139,5 @@ mod_coronals_kt_bi_full <- brm(
   data = coronals_bi,
   file = here("data", "models", "mod_coronals_kt_bi_full")
 )
-
-# -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-# Posterior prep --------------------------------------------------------------
-
-post_samples_bi_vot <- posterior_samples(mod_coronals_vot_bi_full) %>%
-  as_tibble(.) %>%
-  select(starts_with("b_"))
-
-post_samples_bi_ri <- posterior_samples(mod_coronals_ri_bi_full) %>%
-  as_tibble(.) %>%
-  select(starts_with("b_"))
-
-post_samples_bi_cog <- posterior_samples(mod_coronals_cog_bi_full) %>%
-  as_tibble(.) %>%
-  select(starts_with("b_"))
-
-
-
-
 
 # -----------------------------------------------------------------------------
