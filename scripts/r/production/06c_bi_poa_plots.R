@@ -3,6 +3,9 @@
 # -----------------------------------------------------------------------------
 
 
+source(here::here("scripts", "r", "production", "06a_bi_poa_analysis.R"))
+
+
  poa_bi %>%
   mutate(poa = if_else(group == "BIL", "coronal /t/", "bilabial /p/")) %>%
   group_by(language, poa, stress) %>%
