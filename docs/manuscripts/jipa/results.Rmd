@@ -1,16 +1,161 @@
 ---
-title: "Coronals"
-output: word_document
+author: 
+  - name          : "Miquel Simonet"
+    affiliation   : "1"
+    corresponding : yes
+    address       : "Postal address"
+    email         : "my@email.com"
+  - name          : "Joseph V. Casillas"
+    affilitation  : "2"
+  - name          : "Alex Aldrich"
+    affiliation   : "3"
+
+affiliation:
+  - id            : "1"
+    institution   : "University of Arizona"
+  - id            : "2"
+    institution   : "Rutgers University"
+  - id            : "3"
+    institution   : "Concordia University"
+
+keywords          : ""
+wordcount         : ""
+
+bibliography      : ["r-references.bib"]
+
+floatsintext      : yes
+figurelist        : yes
+tablelist         : yes
+footnotelist      : yes
+linenumbers       : yes
+mask              : no
+draft             : yes
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_word
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```{r 'doc-libs', include = FALSE}
+library("papaja")
+library("officer")
+library("flextable")
 ```
 
-```{r, libs}
+```{r 'setup', include=FALSE}
+set.seed(42)
+knitr::opts_chunk$set(echo = F, message = F, warning = F, 
+                      cache.extra = knitr::rand_seed)
+```
+
+
+# Overview
+
+## Bayesian data analysis
+
+This study employs Bayesian Data Analysis for quantitative inferential 
+statistics. 
+Specifically, this implies that we use Bayesian *credible intervals* to draw 
+statistical inferences.
+A Bayesian model calculates a posterior distribution, i.e., a distribution of 
+plausible parameter values, given the data, a data-generating model, and any 
+prior information we have about those parameter values. 
+Posterior distributions are computationally costly. 
+For this reason, we use the Hamiltonian Markov Chain Monte Carlo algorithm 
+to obtain a sample that incldues thousands of values from the posterior 
+distribution. 
+In practical terms, what this means is that we do not calculate a single 
+point estimate for an effect $\beta$, but rather we draw a sample of 4,000 
+plausible values for $\beta$. 
+This allows us to quantify our uncertainty regarding $\beta$ by summaryzing 
+the distribution of those values.
+We will use 3 statistics to describe the posterior distribution: (1) the mean, 
+(2) a credible interval, and (3) the posterior probability that the effect is
+greater than 0.
+The mean provides a point estimate for the distribution, the 95% credible 
+interval provides bounds for the effect, and the posterior probability that 
+the effect is greater than zero further quantifies our uncertainty.
+For example, if a hypothesis states that $\beta > 0$, we judge there to be 
+*compelling evidence* for this hypothesis if the mean point estimate is 
+a positive number, is (by a reasonably clear margin) not included in the 95% 
+credible interval of $\beta$, and the posterior $P(\beta > 0)$ is close to 
+one.
+
+These three statistics provide an intuitive interpretation of any given 
+effect. 
+For instance, consider a case in which the posterior mean of $\beta$ is 100 
+and the 95% credible interval is [40, 160].
+The interval tells us that we can be 95% certain the *true* value of $\beta$ 
+is between 40 and 160, given the data, our model, and our prior information. 
+Furthermore, the interval allows us to specify areas of uncertainty. 
+In this example, we can conclude that the effect is almost certain to be 
+positive. 
+The lower interval value of 40 tells us that 95% of the plausible values are 
+greater than 40. 
+We also note that the interval covers a wide range of values, thus we also 
+conclude that we are not very certain about the size of the effect. 
+This type of interepretation is not possible under a frequentist paradigm.
+
+
+
+## About the data
+
+### Metrics
+
+### Participants
+
+The data include 3 populations: monolingual English speakers, monolingual 
+Spanish speakers, Bilingual English-Spanish speakers.
+
+#### Monolingual English speakers
+
+The monolingual English speakers are from the U.S. Southwest. 
+Age and other info here. 
+
+#### Monolingual Spanish speakers
+
+The monolingual Spanish speakers com from Majorca, Spain. 
+They are actual bilingual. 
+There are N of them. 
+Age and other info here. 
+
+#### Bilingual speakers
+
+The English-Spanish bilinguals are from Southern Arizona, Northern Mexico. 
+Age, BLP and other info. 
+Note there are two samples from this population. 
+
+
+## About this document
+
+This document was written in RMarkdown using `papaja` and serves as a project 
+report for our research group. 
+From this point foward, the document is written as if it were the results 
+section of a future manuscript.
+This implies that it is written in a way that allows it to be copy and pasted 
+into the actual manuscript once it is available.
+
+
+\pagebreak
+
+
+```{r, 'project-libs'}
 source(here::here("scripts", "r", "production", "03_load_data.R"))
 
 ```
+
+# Results
+
+## Experiment 1: Monolinguals
+
+## Experiment 2: Bilinguals
+
+## Experiment 3: Bilingual POA data
+
+
+
+
+
 
 ```{r, mods}
 mod_coronals_kt_mono_full <- readRDS(
@@ -21,13 +166,18 @@ mod_coronals_kt_mono_full <- readRDS(
 ```{r, test-table}
 academicWriteR::mod_to_table(
   mod_coronals_kt_mono_full,
-  font_size = 12,
+  font_size = 11,
   left_align = 1,
-  param_names = c(Intercept = "(Intercept)",
-                  Group = "group_sum",
-                  Phoneme = "phon_sum",
-                  `Item repetition` = "rep_n", 
-                  `Group x Phoneme` = "group_sum:phon_sum"),
-  col = c(1, 2, 3), 
-  width = 1.5)
+  param_names = c(
+    Intercept = "(Intercept)",
+    Group = "group_sum",
+    Phoneme = "phon_sum",
+    `Lexical stress` = "stress_sum", 
+    `Item repetition` = "rep_n", 
+    `Group x Phoneme` = "group_sum:phon_sum", 
+    `Group x Lexical stress` = "group_sum:stress_sum", 
+    `Phoneme x Lexical stress` = "phon_sum:stress_sum", 
+    `Group x Phoneme x Lexical stress` = "group_sum:phon_sum:stress_sum"),
+  col = c(1, 2), 
+  width = 2.2)
 ```
