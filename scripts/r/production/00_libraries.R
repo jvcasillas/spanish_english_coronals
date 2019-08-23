@@ -1,5 +1,6 @@
 # Load libraries --------------------------------------------------------------
 
+library(purrr)
 library(dplyr)
 library(tidyr)
 library(readr)
