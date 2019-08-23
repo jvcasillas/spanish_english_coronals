@@ -1,7 +1,8 @@
-# Plots: monolinguals ----------------------------------------------------
+# Plots: monolinguals ---------------------------------------------------------
 #
-# - Plot raw data
-# - Plot raw data w/ model estimates
+# - Generate a single plot with all metrics
+# - Include raw data and model estimates from posterior distributions
+# - Save plots as .png and .pdf
 #
 # -----------------------------------------------------------------------------
 
@@ -10,7 +11,9 @@
 # Source files ----------------------------------------------------------------
 
 source(here::here("scripts", "r", "production", "04a_mono_analysis.R"))
-fits_mono <- read_csv(here("data", "tidy", "fits_mono.csv"))
+posterior_mono_all <-
+  readRDS(here("data", "models", "posterior_mono_all.rds")) %>%
+    mutate(metric = fct_relevel(metric, "vot", "ri"))
 
 # -----------------------------------------------------------------------------
 
@@ -18,111 +21,49 @@ fits_mono <- read_csv(here("data", "tidy", "fits_mono.csv"))
 
 
 
-# Plot raw data ---------------------------------------------------------------
+# Plot data -------------------------------------------------------------------
 
 # Average over item reps
-item_means <- coronals_mono %>%
+mono_subj_item_means <- coronals_mono %>%
   filter(kt > 0) %>%
   mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
   select(id, item, group_sum, phon_sum, stress_sum, contains("_std")) %>%
   gather(metric, val, -group_sum, -phon_sum, -stress_sum, -id, -item) %>%
   group_by(id, item, group_sum, phon_sum, stress_sum, metric) %>%
   summarize(val = mean(val)) %>%
-  mutate(metric = fct_relevel(metric, "vot_std", "ri_std"))
+  ungroup(.) %>%
+  separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
+  mutate(language = if_else(group_sum == 1, "english", "spanish"),
+         phon = if_else(phon_sum == 1, "d", "t"),
+         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
+         metric = fct_relevel(metric, "vot", "ri")) %>%
+  select(-trash, -group_sum, -phon_sum, -stress_sum)
 
-# Plot raw data
-coronals_mono %>%
-  filter(kt > 0) %>%
-  mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(group_sum, phon_sum, stress_sum, contains("_std")) %>%
-  gather(metric, val, -group_sum, -phon_sum, -stress_sum) %>%
-  mutate(metric = fct_relevel(metric, "vot_std", "ri_std")) %>%
-  ggplot(., aes(x = factor(group_sum), y = val, fill = factor(phon_sum),
-                shape = factor(stress_sum))) +
-    facet_wrap(~ metric, scales = "free_y") +
-    geom_beeswarm(data = item_means,
-                  aes(color = factor(phon_sum), shape = factor(stress_sum)),
-                  dodge.width = 0.5, alpha = 0.3) +
-    stat_summary(fun.data = mean_cl_boot,
-                 geom = "pointrange", position = position_dodge(0.5),
-                 size = 1, show.legend = F) +
-    scale_shape_manual(values = c(21, 23), name = "",
-                       labels = c("Untressed", "stressed")) +
+# Plot raw data with posterior summaries
+mono_all_metrics <- mono_subj_item_means %>%
+  ggplot(.) +
+    aes(x = language, y = val, fill = phon, color = phon, shape = stress) +
+    facet_wrap(~ metric, scales = "free_y",
+               labeller = as_labeller(facet_labels)) +
+    geom_beeswarm(dodge.width = 0.5, alpha = 0.3) +
+    stat_pointinterval(data = posterior_mono_all, show.legend = F,
+                       color = "black", .width = c(.80, .95),
+                       position = position_dodge(0.5)) +
+    stat_summary(data = posterior_mono_all, fun.y = mean, geom = "point",
+                 position = position_dodge(0.5), size = 2, show.legend = F) +
     scale_color_manual(values = my_colors, name = NULL,
-                       labels = c("/t/", "/d/")) +
-    scale_fill_manual(values= my_colors, name = NULL,
-                      labels = c("/t/", "/d/")) +
-    scale_x_discrete(labels = c("Spanish", "English")) +
+                       labels = c("/d/", "/t/")) +
+    scale_fill_manual(values = my_colors, name = NULL,
+                      labels = c("/d/", "/t/")) +
+    scale_shape_discrete(name = NULL, labels = c("Stressed", "Unstressed")) +
+    scale_x_discrete(labels = c("English", "Spanish")) +
     labs(y = "Metric(std. units)", x = NULL) +
     theme_grey(base_family = "Times", base_size = 16) +
-    theme(legend.position = "bottom")
+    my_theme_adj()
+
+path <- file.path(here("figs"), "mono_all_metrics.")
+devices <- c('pdf', 'png')
+walk(devices, ~ ggsave(filename = glue::glue(path, .x), device = .x),
+     height = 6.43, width = 11.4, units = "in")
 
 # -----------------------------------------------------------------------------
-
-
-
-# Plot models -----------------------------------------------------------------
-
-# Add fitted draws from each model to raw data
-
-if(F) {
-
-  mono_grid <- coronals_mono %>%
-    data_grid(id, item, phon_sum, group_sum, stress_sum, rep_n)
-
-  fits_mono <-
-    bind_rows(
-      mono_grid %>%
-        add_fitted_draws(mod_coronals_vot_mono_full, n = 2) %>%
-        mutate(metric = "vot_std"),
-      mono_grid %>%
-        add_fitted_draws(mod_coronals_ri_mono_full, n = 2) %>%
-        mutate(metric = "ri_std"),
-      mono_grid %>%
-        add_fitted_draws(mod_coronals_cog_mono_full, n = 2) %>%
-        mutate(metric = "cog_std"),
-      mono_grid %>%
-        add_fitted_draws(mod_coronals_sd_mono_full, n = 2) %>%
-        mutate(metric = "sd_std"),
-      mono_grid %>%
-        add_fitted_draws(mod_coronals_sk_mono_full, n = 2) %>%
-        mutate(metric = "sk_std"),
-      mono_grid %>%
-        add_fitted_draws(mod_coronals_kt_mono_full, n = 2) %>%
-        mutate(metric = "kt_std")) %>%
-  write_csv(., here("data", "tidy", "fits_mono.csv"))
-
-}
-
-# Make plot
-#mono_vot <-
-coronals_mono %>%
-  filter(kt > 0) %>%
-  mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(group_sum, phon_sum, stress_sum, contains("_std")) %>%
-  gather(metric, val, -group_sum, -phon_sum, -stress_sum) %>%
-  mutate(metric = fct_relevel(metric, "vot_std", "ri_std")) %>%
-  ggplot(., aes(x = factor(group_sum), y = val, fill = factor(phon_sum),
-                shape = factor(stress_sum))) +
-    facet_wrap(~ metric, scales = "free_y") +
-    geom_beeswarm(data = item_means,
-                  aes(color = factor(phon_sum), shape = factor(stress_sum)),
-                  dodge.width = 0.5, alpha = 0.2) +
-    stat_pointinterval(
-      data = fits_mono, aes(y = .value), show.legend = F,
-      .width = c(.80, .95), position = position_dodge(0.5)) +
-    stat_summary(
-      data = fits_mono,
-      aes(y = .value, color = factor(phon_sum), shape = factor(stress_sum)),
-      fun.y = median, geom = "point", position = position_dodge(0.5),
-      size = 4) +
-    scale_shape_manual(values = c(21, 23), name = "",
-                       labels = c("Untressed", "stressed")) +
-    scale_color_manual(values = my_colors, name = NULL,
-                       labels = c("/t/", "/d/")) +
-    scale_fill_manual(values = my_colors, name = NULL,
-                      labels = c("/t/", "/d/")) +
-    scale_x_discrete(labels = c("Spanish", "English")) +
-    labs(y = "Metric\n(std. units)", x = NULL) +
-    theme_grey(base_family = "Times", base_size = 16) +
-    my_theme_adj
