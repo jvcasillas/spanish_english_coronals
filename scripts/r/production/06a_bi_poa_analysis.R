@@ -35,7 +35,7 @@ poa_bi <- bind_rows(
             cog_std = (cog - mean(cog, na.rm = T)) / sd(cog, na.rm = T),
             sd_std = (sd - mean(sd, na.rm = T)) / sd(sd, na.rm = T),
             sk_std = (sk - mean(sk, na.rm = T)) / sd(sk, na.rm = T),
-            kt_std = (kt - mean(kt, na.rm = T)) / sd(kt, na.rm = T),
+            #kt_std = (kt - mean(kt, na.rm = T)) / sd(kt, na.rm = T),
             language_sum = if_else(language == "english", 1, -1),
             group_sum = if_else(group == "BIL", 1, -1),
             stress_sum = if_else(stress == "stressed", 1, -1),
@@ -141,13 +141,9 @@ mod_poa_comp_kt_full <- brm(
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
-  data = poa_bi,
+  data = filter(poa_bi, kt >= 0) %>%
+         mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)),
   file = here("data", "models", "mod_poa_comp_kt_full")
 )
 
 # -----------------------------------------------------------------------------
-
-
-
-
-
