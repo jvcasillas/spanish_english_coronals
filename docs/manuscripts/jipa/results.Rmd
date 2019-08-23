@@ -16,7 +16,7 @@ affiliation:
   - id            : "2"
     institution   : "Rutgers University"
   - id            : "3"
-    institution   : "Concordia University"
+    institution   : "Concordia College"
 
 keywords          : ""
 wordcount         : ""
@@ -148,22 +148,12 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 
 ## Experiment 1: Monolinguals
 
-## Experiment 2: Bilinguals
-
-## Experiment 3: Bilingual POA data
-
-
-
-
-
-
 ```{r, mods}
 mod_coronals_kt_mono_full <- readRDS(
   here("data", "models", "mod_coronals_kt_mono_full.rds"))
-
 ```
 
-```{r, test-table}
+```{r, test-table, eval=F}
 academicWriteR::mod_to_table(
   mod_coronals_kt_mono_full,
   font_size = 11,
@@ -181,3 +171,31 @@ academicWriteR::mod_to_table(
   col = c(1, 2), 
   width = 2.2)
 ```
+
+
+```{r, 'plot-monolinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish), and lexical stress (Stressed, Unstressed). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
+knitr::include_graphics(
+  here("figs", "mono_all_metrics.png")
+)
+```
+
+## Experiment 2: Bilinguals
+
+```{r, 'plot-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish), and lexical stress (Stressed, Unstressed). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
+knitr::include_graphics(
+  here("figs", "bi_all_metrics.png")
+)
+```
+
+## Experiment 3: Bilingual POA data
+
+```{r, 'plot-poa-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial), and lexical stress (Stressed, Unstressed). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
+knitr::include_graphics(
+  here("figs", "poa_all_metrics.png")
+)
+```
+
+
+
+
+
