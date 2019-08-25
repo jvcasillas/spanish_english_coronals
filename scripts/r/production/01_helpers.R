@@ -8,6 +8,40 @@ source(here::here("scripts", "r", "production", "00_libraries.R"))
 
 # Plotting functions ----------------------------------------------------------
 
+# Average over repetitions and prep vars
+plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
+
+  grouping_var <- enquo(grouping_var)
+  color_var <- enquo(color_var)
+
+  if (poa == F) {
+    group_mutate <- . %>%
+      mutate(., language = if_else(!!grouping_var == 1, "english", "spanish"),
+         phon = if_else(phon_sum == 1, "d", "t"),
+         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
+         metric = fct_relevel(metric, "vot", "ri"))
+  } else {
+     group_mutate <- . %>%
+       mutate(language = if_else(language_sum == 1, "english", "spanish"),
+         place = if_else(poa_sum == 1, "coronal", "bilabial"),
+         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
+         metric = fct_relevel(metric, "vot", "ri"))
+  }
+
+  dataframe %>%
+  filter(kt > 0) %>%
+  mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
+  select(id, item, !!grouping_var, !!color_var, stress_sum, contains("_std")) %>%
+  gather(metric, val, -!!grouping_var, -!!color_var, -stress_sum, -id, -item) %>%
+  group_by(id, item, !!grouping_var, !!color_var, stress_sum, metric) %>%
+  summarize(val = mean(val)) %>%
+  ungroup(.) %>%
+  separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
+  group_mutate %>%
+  select(-trash, -!!grouping_var, -!!color_var, -stress_sum)
+}
+
+
 # Named vector of facet labels
 facet_labels <- c(
   `vot` = "VOT",

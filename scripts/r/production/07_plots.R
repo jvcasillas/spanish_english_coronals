@@ -35,50 +35,12 @@ posterior_poa_all <-
 
 # Average over item reps ------------------------------------------------------
 
-mono_subj_item_means <- coronals_mono %>%
-  filter(kt > 0) %>%
-  mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(id, item, group_sum, phon_sum, stress_sum, contains("_std")) %>%
-  gather(metric, val, -group_sum, -phon_sum, -stress_sum, -id, -item) %>%
-  group_by(id, item, group_sum, phon_sum, stress_sum, metric) %>%
-  summarize(val = mean(val)) %>%
-  ungroup(.) %>%
-  separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
-  mutate(language = if_else(group_sum == 1, "english", "spanish"),
-         phon = if_else(phon_sum == 1, "d", "t"),
-         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
-         metric = fct_relevel(metric, "vot", "ri")) %>%
-  select(-trash, -group_sum, -phon_sum, -stress_sum)
-
-bi_subj_item_means <- coronals_bi %>%
-  filter(kt > 0) %>%
-  mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(id, item, language_sum, phon_sum, stress_sum, contains("_std")) %>%
-  gather(metric, val, -language_sum, -phon_sum, -stress_sum, -id, -item) %>%
-  group_by(id, item, language_sum, phon_sum, stress_sum, metric) %>%
-  summarize(val = mean(val)) %>%
-  ungroup(.) %>%
-  separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
-  mutate(language = if_else(language_sum == 1, "english", "spanish"),
-         phon = if_else(phon_sum == 1, "d", "t"),
-         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
-         metric = fct_relevel(metric, "vot", "ri")) %>%
-  select(-trash, -language_sum, -phon_sum, -stress_sum)
-
-poa_subj_item_means <- poa_bi %>%
-  filter(kt > 0) %>%
-  mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(id, item, language_sum, poa_sum, stress_sum, contains("_std")) %>%
-  gather(metric, val, -language_sum, -poa_sum, -stress_sum, -id, -item) %>%
-  group_by(id, item, language_sum, poa_sum, stress_sum, metric) %>%
-  summarize(val = mean(val)) %>%
-  ungroup(.) %>%
-  separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
-  mutate(language = if_else(language_sum == 1, "english", "spanish"),
-         place = if_else(poa_sum == 1, "coronal", "bilabial"),
-         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
-         metric = fct_relevel(metric, "vot", "ri")) %>%
-  select(-trash, -language_sum, -poa_sum, -stress_sum)
+mono_subj_item_means <-
+  plot_prep(coronals_mono, grouping_var = group_sum, color_var = phon_sum)
+bi_subj_item_means <-
+  plot_prep(coronals_bi, grouping_var = language_sum, color_var = phon_sum)
+poa_subj_item_means <-
+  plot_prep(poa_bi, grouping_var = language_sum, color_var = poa_sum, poa = T)
 
 # -----------------------------------------------------------------------------
 
