@@ -104,14 +104,16 @@ poa_all_metrics <- plot_metrics(
 
 # Save plots ------------------------------------------------------------------
 
-paths <- glue(here("figs"), "/{name}_all_metrics.",
-           name = c("mono", "bi", "poa"))
+path_mono <- file.path(here("figs"), "mono_all_metrics.")
+path_bi   <- file.path(here("figs"), "bi_all_metrics.")
+path_poa  <- file.path(here("figs"), "poa_all_metrics.")
 devices <- c('pdf', 'png')
 
-for (path in paths) {
-  for (device in devices) {
-   ggsave(glue(path, device), height = 6.43, width = 11.4, units = "in")
-  }
-}
+walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
+                       device = .x), height = 6.43, width = 11.4, units = "in")
+walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
+                       device = .x), height = 6.43, width = 11.4, units = "in")
+walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
+                       device = .x), height = 6.43, width = 11.4, units = "in")
 
 # -----------------------------------------------------------------------------
