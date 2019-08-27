@@ -15,7 +15,42 @@ source(here::here("scripts", "r", "production", "06a_bi_poa_analysis.R"))
 
 
 
-# Get posterior distributions -------------------------------------------------
+
+# Combined posterior ----------------------------------------------------------
+
+bind_rows(
+  posterior_samples(mod_poa_comp_vot_full) %>%
+    select(starts_with("b_")) %>%
+    mutate(metric = "VOT"),
+  posterior_samples(mod_poa_comp_ri_full) %>%
+    select(starts_with("b_")) %>%
+    mutate(metric = "RI"),
+  posterior_samples(mod_poa_comp_cog_full) %>%
+    select(starts_with("b_")) %>%
+    mutate(metric = "COG"),
+  posterior_samples(mod_poa_comp_sd_full) %>%
+    select(starts_with("b_")) %>%
+    mutate(metric = "SD"),
+  posterior_samples(mod_poa_comp_sk_full) %>%
+    select(starts_with("b_")) %>%
+    mutate(metric = "SK"),
+  posterior_samples(mod_poa_comp_kt_full) %>%
+    select(starts_with("b_")) %>%
+    mutate(metric = "KT")) %>%
+  gather(parameters, estimate, -metric) %>%
+  mutate(metric = fct_relevel(metric, "VOT", "RI"),
+         parameters = fct_relevel(parameters,
+          "b_language_sum:poa_sum:stress_sum", "b_poa_sum:stress_sum",
+          "b_language_sum:stress_sum", "b_language_sum:poa_sum", "b_rep_n",
+          "b_stress_sum", "b_poa_sum", "b_language_sum", "b_Intercept")) %>%
+  saveRDS(., here("data", "models", "posterior_poa_comp.rds"))
+
+# -----------------------------------------------------------------------------
+
+
+
+
+# Adjusted posterior distributions --------------------------------------------
 
 # Key info:
 # language_sum = if_else(language == "english", 1, -1),
@@ -24,7 +59,7 @@ source(here::here("scripts", "r", "production", "06a_bi_poa_analysis.R"))
 # poa_sum = if_else(phon == "t", 1, -1))
 
 
-posterior_poa_all <-
+posterior_poa_adj <-
   bind_rows(
     posterior_samples(mod_poa_comp_vot_full) %>%
     select(starts_with("b_")) %>%
@@ -69,6 +104,6 @@ posterior_poa_all <-
              sep = "_", remove = T) %>%
     mutate(metric = "kt")
   ) %>%
-  saveRDS(., here("data", "models", "posterior_poa_comp_all.rds"))
+  saveRDS(., here("data", "models", "posterior_poa_comp_adj.rds"))
 
 # -----------------------------------------------------------------------------

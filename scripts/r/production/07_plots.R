@@ -14,19 +14,27 @@ source(here::here("scripts", "r", "production", "04a_mono_analysis.R"))
 source(here::here("scripts", "r", "production", "05a_bi_analysis.R"))
 source(here::here("scripts", "r", "production", "06a_bi_poa_analysis.R"))
 
-posterior_mono_all <-
-  readRDS(here("data", "models", "posterior_mono_all.rds")) %>%
+posterior_mono_adj <-
+  readRDS(here("data", "models", "posterior_mono_adj.rds")) %>%
     mutate(metric = fct_relevel(metric, "vot", "ri"))
 
-posterior_bi_all <-
-  readRDS(here("data", "models", "posterior_bi_all.rds")) %>%
+posterior_bi_adj <-
+  readRDS(here("data", "models", "posterior_bi_adj.rds")) %>%
     mutate(metric = fct_relevel(metric, "vot", "ri"))
 
-posterior_poa_all <-
-  readRDS(here("data", "models", "posterior_poa_comp_all.rds")) %>%
+posterior_poa_adj <-
+  readRDS(here("data", "models", "posterior_poa_comp_adj.rds")) %>%
     mutate(place = if_else(place == "t", "coronal", "bilabial"),
            metric = fct_relevel(metric, "vot", "ri"))
 
+posterior_mono <-
+  readRDS(here("data", "models", "posterior_mono.rds"))
+
+posterior_bi <-
+  readRDS(here("data", "models", "posterior_bi.rds"))
+
+posterior_poa <-
+  readRDS(here("data", "models", "posterior_poa_comp.rds"))
 # -----------------------------------------------------------------------------
 
 
@@ -79,3 +87,44 @@ walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
                        device = .x), height = 6.43, width = 11.4, units = "in")
 
 # -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+posterior_mono %>%
+  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_halfeyeh(position = position_dodgev(0.6)) +
+    scale_y_discrete(labels = model_plot_mono_y_labs) +
+    scale_color_brewer(name = NULL, palette = "Dark2") +
+    coord_cartesian(xlim = c(-1, 1)) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj
+
+posterior_bi %>%
+  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_halfeyeh(position = position_dodgev(0.6)) +
+    scale_y_discrete(labels = model_plot_bi_y_labs) +
+    scale_color_brewer(name = NULL, palette = "Dark2") +
+    coord_cartesian(xlim = c(-1, 1)) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj
+
+posterior_poa %>%
+  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_halfeyeh(position = position_dodgev(0.6)) +
+    scale_y_discrete(labels = model_plot_poa_y_labs) +
+    scale_color_brewer(name = NULL, palette = "Dark2") +
+    coord_cartesian(xlim = c(-1, 1)) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj

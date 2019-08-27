@@ -190,4 +190,26 @@ plot_metrics <- function(dataframe, posterior, x, color, shape,
     my_theme_adj()
 }
 
+
+
+model_plot_mono_y_labs <-
+  c("Group x \nPhoneme x Stress", "Phoneme x Stress", "Group x Stress",
+    "Group x Phoneme", "Item rep", "Stress", "Phoneme", "Group", "Intercept")
+
+model_plot_bi_y_labs <-
+  c("Language x \nPhoneme x Stress", "Phoneme x Stress", "Language x Stress",
+    "Language x Phoneme", "Item rep", "Stress", "Phoneme", "Language",
+    "Intercept")
+
+model_plot_poa_y_labs <-
+  c("Language x \nPlace x Stress", "Place x Stress", "Language x Stress",
+    "Language x Place", "Item rep", "Stress", "Place", "Language",
+    "Intercept")
+
+model_theme_adj <-
+    theme(
+      axis.title.y = element_text(size = rel(.9), hjust = 0.95),
+      axis.title.x = element_text(size = rel(.9), hjust = 0.95),
+      legend.key = element_blank())
+
 # -----------------------------------------------------------------------------
