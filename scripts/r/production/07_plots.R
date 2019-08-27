@@ -56,19 +56,61 @@ poa_subj_item_means <-
 # Plot raw data with posterior summaries --------------------------------------
 
 mono_all_metrics <- plot_metrics(
-  dataframe = mono_subj_item_means, posterior = posterior_mono_all,
+  dataframe = mono_subj_item_means, posterior = posterior_mono_adj,
   x = language, color = phon, shape = stress)
 
 bi_all_metrics <- plot_metrics(
-  dataframe = bi_subj_item_means, posterior = posterior_bi_all,
+  dataframe = bi_subj_item_means, posterior = posterior_bi_adj,
   x = language, color = phon, shape = stress)
 
 poa_all_metrics <- plot_metrics(
-  dataframe = poa_subj_item_means, posterior = posterior_poa_all,
+  dataframe = poa_subj_item_means, posterior = posterior_poa_adj,
   x = language, color = place, shape = stress,
   color_labs =  c("Bilabial", "Coronal"))
 
 # -----------------------------------------------------------------------------
+
+
+
+
+
+# Posterior summary plots -----------------------------------------------------
+
+mono_summary <- posterior_mono %>%
+  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_halfeyeh(position = position_dodgev(0.6)) +
+    scale_y_discrete(labels = model_plot_mono_y_labs) +
+    scale_color_brewer(name = NULL, palette = "Dark2") +
+    coord_cartesian(xlim = c(-1, 1)) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj
+
+bi_summary <- posterior_bi %>%
+  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_halfeyeh(position = position_dodgev(0.6)) +
+    scale_y_discrete(labels = model_plot_bi_y_labs) +
+    scale_color_brewer(name = NULL, palette = "Dark2") +
+    coord_cartesian(xlim = c(-1, 1)) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj
+
+poa_summary <- posterior_poa %>%
+  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_halfeyeh(position = position_dodgev(0.6)) +
+    scale_y_discrete(labels = model_plot_poa_y_labs) +
+    scale_color_brewer(name = NULL, palette = "Dark2") +
+    coord_cartesian(xlim = c(-1, 1)) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj
+
+# -----------------------------------------------------------------------------
+
 
 
 
@@ -86,45 +128,16 @@ walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
 walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
                        device = .x), height = 6.43, width = 11.4, units = "in")
 
+
+path_mono_sum <- file.path(here("figs"), "mono_summary.")
+path_bi_sum   <- file.path(here("figs"), "bi_summary.")
+path_poa_sum  <- file.path(here("figs"), "poa_summary.")
+
+walk(devices, ~ ggsave(filename = glue(path_mono_sum, .x), plot = mono_summary,
+                       device = .x), height = 6.43, width = 11.4, units = "in")
+walk(devices, ~ ggsave(filename = glue(path_bi_sum, .x), plot = bi_summary,
+                       device = .x), height = 6.43, width = 11.4, units = "in")
+walk(devices, ~ ggsave(filename = glue(path_poa_sum, .x), plot = poa_summary,
+                       device = .x), height = 6.43, width = 11.4, units = "in")
+
 # -----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-posterior_mono %>%
-  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
-    geom_vline(xintercept = 0, lty = 3) +
-    stat_halfeyeh(position = position_dodgev(0.6)) +
-    scale_y_discrete(labels = model_plot_mono_y_labs) +
-    scale_color_brewer(name = NULL, palette = "Dark2") +
-    coord_cartesian(xlim = c(-1, 1)) +
-    labs(y = "Parameters", x = "Estimates") +
-    theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj
-
-posterior_bi %>%
-  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
-    geom_vline(xintercept = 0, lty = 3) +
-    stat_halfeyeh(position = position_dodgev(0.6)) +
-    scale_y_discrete(labels = model_plot_bi_y_labs) +
-    scale_color_brewer(name = NULL, palette = "Dark2") +
-    coord_cartesian(xlim = c(-1, 1)) +
-    labs(y = "Parameters", x = "Estimates") +
-    theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj
-
-posterior_poa %>%
-  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
-    geom_vline(xintercept = 0, lty = 3) +
-    stat_halfeyeh(position = position_dodgev(0.6)) +
-    scale_y_discrete(labels = model_plot_poa_y_labs) +
-    scale_color_brewer(name = NULL, palette = "Dark2") +
-    coord_cartesian(xlim = c(-1, 1)) +
-    labs(y = "Parameters", x = "Estimates") +
-    theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj
