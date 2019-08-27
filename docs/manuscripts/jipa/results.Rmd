@@ -179,11 +179,24 @@ knitr::include_graphics(
 )
 ```
 
+```{r, 'plot-monolinguals-summary', echo=FALSE, fig.cap="Model plot."}
+knitr::include_graphics(
+  here("figs", "mono_summary.png")
+)
+```
+
+
 ## Experiment 2: Bilinguals
 
 ```{r, 'plot-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish), and lexical stress (Stressed, Unstressed). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
 knitr::include_graphics(
   here("figs", "bi_all_metrics.png")
+)
+```
+
+```{r, 'plot-bilinguals-summary', echo=FALSE, fig.cap="Model plot."}
+knitr::include_graphics(
+  here("figs", "bi_summary.png")
 )
 ```
 
@@ -195,7 +208,11 @@ knitr::include_graphics(
 )
 ```
 
-
+```{r, 'plot-poa-bilinguals-summary', echo=FALSE, fig.cap="Model plot."}
+knitr::include_graphics(
+  here("figs", "poa_summary.png")
+)
+```
 
 
 
