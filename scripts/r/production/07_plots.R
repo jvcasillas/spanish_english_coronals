@@ -35,8 +35,8 @@ posterior_bi <-
 
 posterior_poa <-
   readRDS(here("data", "models", "posterior_poa_comp.rds"))
-# -----------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------
 
 
 
@@ -76,50 +76,23 @@ poa_all_metrics <- plot_metrics(
 
 # Posterior summary plots -----------------------------------------------------
 
-mono_summary <- posterior_mono %>%
-  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
-    geom_vline(xintercept = 0, lty = 3) +
-    stat_halfeyeh(position = position_dodgev(0.6)) +
-    scale_y_discrete(labels = model_plot_mono_y_labs) +
-    scale_color_brewer(name = NULL, palette = "Dark2") +
-    coord_cartesian(xlim = c(-1, 1)) +
-    labs(y = "Parameters", x = "Estimates") +
-    theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj
-
-bi_summary <- posterior_bi %>%
-  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
-    geom_vline(xintercept = 0, lty = 3) +
-    stat_halfeyeh(position = position_dodgev(0.6)) +
-    scale_y_discrete(labels = model_plot_bi_y_labs) +
-    scale_color_brewer(name = NULL, palette = "Dark2") +
-    coord_cartesian(xlim = c(-1, 1)) +
-    labs(y = "Parameters", x = "Estimates") +
-    theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj
-
-poa_summary <- posterior_poa %>%
-  ggplot(., aes(y = parameters, x = estimate, color = metric)) +
-    geom_vline(xintercept = 0, lty = 3) +
-    stat_halfeyeh(position = position_dodgev(0.6)) +
-    scale_y_discrete(labels = model_plot_poa_y_labs) +
-    scale_color_brewer(name = NULL, palette = "Dark2") +
-    coord_cartesian(xlim = c(-1, 1)) +
-    labs(y = "Parameters", x = "Estimates") +
-    theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj
+mono_summary <- model_summary_plot(posterior_mono, model_plot_mono_y_labs)
+bi_summary   <- model_summary_plot(posterior_bi, model_plot_bi_y_labs)
+poa_summary  <- model_summary_plot(posterior_poa, model_plot_poa_y_labs)
 
 # -----------------------------------------------------------------------------
 
 
 
-
 # Save plots ------------------------------------------------------------------
 
-path_mono <- file.path(here("figs"), "mono_all_metrics.")
-path_bi   <- file.path(here("figs"), "bi_all_metrics.")
-path_poa  <- file.path(here("figs"), "poa_all_metrics.")
-devices <- c('pdf', 'png')
+devices       <- c('pdf', 'png')
+path_mono     <- file.path(here("figs"), "mono_all_metrics.")
+path_bi       <- file.path(here("figs"), "bi_all_metrics.")
+path_poa      <- file.path(here("figs"), "poa_all_metrics.")
+path_mono_sum <- file.path(here("figs"), "mono_summary.")
+path_bi_sum   <- file.path(here("figs"), "bi_summary.")
+path_poa_sum  <- file.path(here("figs"), "poa_summary.")
 
 walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
                        device = .x), height = 6.43, width = 11.4, units = "in")
@@ -127,11 +100,6 @@ walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
                        device = .x), height = 6.43, width = 11.4, units = "in")
 walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
                        device = .x), height = 6.43, width = 11.4, units = "in")
-
-
-path_mono_sum <- file.path(here("figs"), "mono_summary.")
-path_bi_sum   <- file.path(here("figs"), "bi_summary.")
-path_poa_sum  <- file.path(here("figs"), "poa_summary.")
 
 walk(devices, ~ ggsave(filename = glue(path_mono_sum, .x), plot = mono_summary,
                        device = .x), height = 6.43, width = 11.4, units = "in")

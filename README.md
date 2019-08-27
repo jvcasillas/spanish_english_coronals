@@ -1,7 +1,7 @@
 
 # Spanish/English coronal stops
 
-Last update: 2019-08-23
+Last update: 2019-08-27
 
     .
     ├── README.Rmd
@@ -35,10 +35,16 @@ Last update: 2019-08-23
     ├── figs
     │   ├── bi_all_metrics.pdf
     │   ├── bi_all_metrics.png
+    │   ├── bi_summary.pdf
+    │   ├── bi_summary.png
     │   ├── mono_all_metrics.pdf
     │   ├── mono_all_metrics.png
+    │   ├── mono_summary.pdf
+    │   ├── mono_summary.png
     │   ├── poa_all_metrics.pdf
-    │   └── poa_all_metrics.png
+    │   ├── poa_all_metrics.png
+    │   ├── poa_summary.pdf
+    │   └── poa_summary.png
     ├── scripts
     │   ├── praat
     │   └── r

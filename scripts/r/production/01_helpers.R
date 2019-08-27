@@ -8,86 +8,88 @@ source(here::here("scripts", "r", "production", "00_libraries.R"))
 
 # Posterior prep --------------------------------------------------------------
 
+# Adjust posterior to match factor means
+
 mono_prep <- . %>%
   transmute(
-      english_d_stressed = b_Intercept + b_group_sum + b_phon_sum +
-        b_stress_sum + `b_group_sum:phon_sum` + `b_group_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-      english_d_unstressed = b_Intercept + b_group_sum + b_phon_sum -
-        b_stress_sum + `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
-        `b_phon_sum:stress_sum` - `b_group_sum:phon_sum:stress_sum`,
-      english_t_stressed = b_Intercept + b_group_sum - b_phon_sum +
-        b_stress_sum - `b_group_sum:phon_sum` + `b_group_sum:stress_sum` -
-        `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-      english_t_unstressed = b_Intercept + b_group_sum - b_phon_sum -
-        b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-      spanish_d_stressed = b_Intercept - b_group_sum + b_phon_sum +
-        b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-      spanish_d_unstressed = b_Intercept - b_group_sum + b_phon_sum -
-        b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
-        `b_phon_sum:stress_sum` - `b_group_sum:phon_sum:stress_sum`,
-      spanish_t_stressed = b_Intercept - b_group_sum - b_phon_sum +
-        b_stress_sum + `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
-        `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-      spanish_t_unstressed = b_Intercept - b_group_sum - b_phon_sum -
-        b_stress_sum + `b_group_sum:phon_sum` + `b_group_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`)
+    english_d_stressed = b_Intercept + b_group_sum + b_phon_sum +
+      b_stress_sum + `b_group_sum:phon_sum` + `b_group_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
+    english_d_unstressed = b_Intercept + b_group_sum + b_phon_sum -
+      b_stress_sum + `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
+      `b_phon_sum:stress_sum` - `b_group_sum:phon_sum:stress_sum`,
+    english_t_stressed = b_Intercept + b_group_sum - b_phon_sum +
+      b_stress_sum - `b_group_sum:phon_sum` + `b_group_sum:stress_sum` -
+      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
+    english_t_unstressed = b_Intercept + b_group_sum - b_phon_sum -
+      b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
+    spanish_d_stressed = b_Intercept - b_group_sum + b_phon_sum +
+      b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
+    spanish_d_unstressed = b_Intercept - b_group_sum + b_phon_sum -
+      b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
+      `b_phon_sum:stress_sum` - `b_group_sum:phon_sum:stress_sum`,
+    spanish_t_stressed = b_Intercept - b_group_sum - b_phon_sum +
+      b_stress_sum + `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
+      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
+    spanish_t_unstressed = b_Intercept - b_group_sum - b_phon_sum -
+      b_stress_sum + `b_group_sum:phon_sum` + `b_group_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`)
 
 bi_prep <- . %>%
   transmute(
-      english_d_stressed = b_Intercept + b_language_sum + b_phon_sum +
-        b_stress_sum + `b_language_sum:phon_sum` + `b_language_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-      english_d_unstressed = b_Intercept + b_language_sum + b_phon_sum -
-        b_stress_sum + `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
-        `b_phon_sum:stress_sum` - `b_language_sum:phon_sum:stress_sum`,
-      english_t_stressed = b_Intercept + b_language_sum - b_phon_sum +
-        b_stress_sum - `b_language_sum:phon_sum` + `b_language_sum:stress_sum` -
-        `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-      english_t_unstressed = b_Intercept + b_language_sum - b_phon_sum -
-        b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-      spanish_d_stressed = b_Intercept - b_language_sum + b_phon_sum +
-        b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-      spanish_d_unstressed = b_Intercept - b_language_sum + b_phon_sum -
-        b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
-        `b_phon_sum:stress_sum` - `b_language_sum:phon_sum:stress_sum`,
-      spanish_t_stressed = b_Intercept - b_language_sum - b_phon_sum +
-        b_stress_sum + `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
-        `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-      spanish_t_unstressed = b_Intercept - b_language_sum - b_phon_sum -
-        b_stress_sum + `b_language_sum:phon_sum` + `b_language_sum:stress_sum` +
-        `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`)
+    english_d_stressed = b_Intercept + b_language_sum + b_phon_sum +
+      b_stress_sum + `b_language_sum:phon_sum` + `b_language_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
+    english_d_unstressed = b_Intercept + b_language_sum + b_phon_sum -
+      b_stress_sum + `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
+      `b_phon_sum:stress_sum` - `b_language_sum:phon_sum:stress_sum`,
+    english_t_stressed = b_Intercept + b_language_sum - b_phon_sum +
+      b_stress_sum - `b_language_sum:phon_sum` + `b_language_sum:stress_sum` -
+      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
+    english_t_unstressed = b_Intercept + b_language_sum - b_phon_sum -
+      b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
+    spanish_d_stressed = b_Intercept - b_language_sum + b_phon_sum +
+      b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
+    spanish_d_unstressed = b_Intercept - b_language_sum + b_phon_sum -
+      b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
+      `b_phon_sum:stress_sum` - `b_language_sum:phon_sum:stress_sum`,
+    spanish_t_stressed = b_Intercept - b_language_sum - b_phon_sum +
+      b_stress_sum + `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
+      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
+    spanish_t_unstressed = b_Intercept - b_language_sum - b_phon_sum -
+      b_stress_sum + `b_language_sum:phon_sum` + `b_language_sum:stress_sum` +
+      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`)
 
 poa_prep <- . %>%
   transmute(
-      english_t_stressed = b_Intercept + b_language_sum + b_poa_sum +
-        b_stress_sum + `b_language_sum:poa_sum` + `b_language_sum:stress_sum` +
-        `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-      english_t_unstressed = b_Intercept + b_language_sum + b_poa_sum -
-        b_stress_sum + `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
-        `b_poa_sum:stress_sum` - `b_language_sum:poa_sum:stress_sum`,
-      english_p_stressed = b_Intercept + b_language_sum - b_poa_sum +
-        b_stress_sum - `b_language_sum:poa_sum` + `b_language_sum:stress_sum` -
-        `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-      english_p_unstressed = b_Intercept + b_language_sum - b_poa_sum -
-        b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` +
-        `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-      spanish_t_stressed = b_Intercept - b_language_sum + b_poa_sum +
-        b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` +
-        `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-      spanish_t_unstressed = b_Intercept - b_language_sum + b_poa_sum -
-        b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
-        `b_poa_sum:stress_sum` - `b_language_sum:poa_sum:stress_sum`,
-      spanish_p_stressed = b_Intercept - b_language_sum - b_poa_sum +
-        b_stress_sum + `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
-        `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-      spanish_p_unstressed = b_Intercept - b_language_sum - b_poa_sum -
-        b_stress_sum + `b_language_sum:poa_sum` + `b_language_sum:stress_sum` +
-        `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`)
+    english_t_stressed = b_Intercept + b_language_sum + b_poa_sum +
+      b_stress_sum + `b_language_sum:poa_sum` + `b_language_sum:stress_sum` +
+      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
+    english_t_unstressed = b_Intercept + b_language_sum + b_poa_sum -
+      b_stress_sum + `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
+      `b_poa_sum:stress_sum` - `b_language_sum:poa_sum:stress_sum`,
+    english_p_stressed = b_Intercept + b_language_sum - b_poa_sum +
+      b_stress_sum - `b_language_sum:poa_sum` + `b_language_sum:stress_sum` -
+      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
+    english_p_unstressed = b_Intercept + b_language_sum - b_poa_sum -
+      b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` +
+      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
+    spanish_t_stressed = b_Intercept - b_language_sum + b_poa_sum +
+      b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` +
+      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
+    spanish_t_unstressed = b_Intercept - b_language_sum + b_poa_sum -
+      b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
+      `b_poa_sum:stress_sum` - `b_language_sum:poa_sum:stress_sum`,
+    spanish_p_stressed = b_Intercept - b_language_sum - b_poa_sum +
+      b_stress_sum + `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
+      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
+    spanish_p_unstressed = b_Intercept - b_language_sum - b_poa_sum -
+      b_stress_sum + `b_language_sum:poa_sum` + `b_language_sum:stress_sum` +
+      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`)
 
 # -----------------------------------------------------------------------------
 
@@ -191,7 +193,7 @@ plot_metrics <- function(dataframe, posterior, x, color, shape,
 }
 
 
-
+# Y labs for model summary plots
 model_plot_mono_y_labs <-
   c("Group x \nPhoneme x Stress", "Phoneme x Stress", "Group x Stress",
     "Group x Phoneme", "Item rep", "Stress", "Phoneme", "Group", "Intercept")
@@ -206,10 +208,24 @@ model_plot_poa_y_labs <-
     "Language x Place", "Item rep", "Stress", "Place", "Language",
     "Intercept")
 
+# Theme adjustment for model summary plots
 model_theme_adj <-
     theme(
       axis.title.y = element_text(size = rel(.9), hjust = 0.95),
       axis.title.x = element_text(size = rel(.9), hjust = 0.95),
       legend.key = element_blank())
+
+# Make model summary plot
+model_summary_plot <- function(posterior, ylabs) {
+  ggplot(posterior, aes(y = parameters, x = estimate, color = metric)) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_halfeyeh(position = position_dodgev(0.6)) +
+    scale_y_discrete(labels = ylabs) +
+    scale_color_brewer(name = NULL, palette = "Dark2") +
+    coord_cartesian(xlim = c(-1, 1)) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj
+}
 
 # -----------------------------------------------------------------------------
