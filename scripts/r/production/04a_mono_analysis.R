@@ -58,7 +58,7 @@ priors <- c(
 
 # VOT
 mod_coronals_vot_mono_full <- brm(
-  formula = vot_std ~ 1 + group_sum * phon_sum * stress_sum + rep_n +
+  formula = vot_std ~ 1 + group_sum * phon_sum + rep_n +
     (1 + phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -72,7 +72,7 @@ mod_coronals_vot_mono_full <- brm(
 
 # RI
 mod_coronals_ri_mono_full <- brm(
-  formula = ri_std ~ 1 + group_sum * phon_sum * stress_sum + rep_n +
+  formula = ri_std ~ 1 + group_sum * phon_sum + rep_n +
     (1 + phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -88,7 +88,7 @@ mod_coronals_ri_mono_full <- brm(
 
 # COG
 mod_coronals_cog_mono_full <- brm(
-  formula = cog_std ~ 1 + group_sum * phon_sum * stress_sum + rep_n +
+  formula = cog_std ~ 1 + group_sum * phon_sum + rep_n +
     (1 + phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -102,7 +102,7 @@ mod_coronals_cog_mono_full <- brm(
 
 # SD
 mod_coronals_sd_mono_full <- brm(
-  formula = sd_std ~ 1 + group_sum * phon_sum * stress_sum + rep_n +
+  formula = sd_std ~ 1 + group_sum * phon_sum + rep_n +
     (1 + phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -116,7 +116,7 @@ mod_coronals_sd_mono_full <- brm(
 
 # Skewness
 mod_coronals_sk_mono_full <- brm(
-  formula = sk_std ~ 1 + group_sum * phon_sum * stress_sum + rep_n +
+  formula = sk_std ~ 1 + group_sum * phon_sum + rep_n +
     (1 + phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
@@ -130,7 +130,7 @@ mod_coronals_sk_mono_full <- brm(
 
 # Kurtosis
 mod_coronals_kt_mono_full <- brm(
-  formula = kt_std ~ 1 + group_sum * phon_sum * stress_sum + rep_n +
+  formula = kt_std ~ 1 + group_sum * phon_sum + rep_n +
     (1 + phon_sum + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,

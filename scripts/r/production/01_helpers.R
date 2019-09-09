@@ -12,30 +12,10 @@ source(here::here("scripts", "r", "production", "00_libraries.R"))
 
 mono_prep <- . %>%
   transmute(
-    english_d_stressed = b_Intercept + b_group_sum + b_phon_sum +
-      b_stress_sum + `b_group_sum:phon_sum` + `b_group_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-    english_d_unstressed = b_Intercept + b_group_sum + b_phon_sum -
-      b_stress_sum + `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
-      `b_phon_sum:stress_sum` - `b_group_sum:phon_sum:stress_sum`,
-    english_t_stressed = b_Intercept + b_group_sum - b_phon_sum +
-      b_stress_sum - `b_group_sum:phon_sum` + `b_group_sum:stress_sum` -
-      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-    english_t_unstressed = b_Intercept + b_group_sum - b_phon_sum -
-      b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-    spanish_d_stressed = b_Intercept - b_group_sum + b_phon_sum +
-      b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-    spanish_d_unstressed = b_Intercept - b_group_sum + b_phon_sum -
-      b_stress_sum - `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
-      `b_phon_sum:stress_sum` - `b_group_sum:phon_sum:stress_sum`,
-    spanish_t_stressed = b_Intercept - b_group_sum - b_phon_sum +
-      b_stress_sum + `b_group_sum:phon_sum` - `b_group_sum:stress_sum` -
-      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`,
-    spanish_t_unstressed = b_Intercept - b_group_sum - b_phon_sum -
-      b_stress_sum + `b_group_sum:phon_sum` + `b_group_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_group_sum:phon_sum:stress_sum`)
+    english_d = b_Intercept + b_group_sum + b_phon_sum + `b_group_sum:phon_sum`,
+    english_t = b_Intercept + b_group_sum - b_phon_sum - `b_group_sum:phon_sum`,
+    spanish_d = b_Intercept - b_group_sum + b_phon_sum - `b_group_sum:phon_sum`,
+    spanish_t = b_Intercept - b_group_sum - b_phon_sum + `b_group_sum:phon_sum`)
 
 bi_prep <- . %>%
   transmute(
@@ -112,27 +92,25 @@ plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
     group_mutate <- . %>%
       mutate(., language = if_else(!!grouping_var == 1, "english", "spanish"),
          phon = if_else(phon_sum == 1, "d", "t"),
-         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
          metric = fct_relevel(metric, "vot", "ri"))
   } else {
      group_mutate <- . %>%
        mutate(language = if_else(language_sum == 1, "english", "spanish"),
          place = if_else(poa_sum == 1, "coronal", "bilabial"),
-         stress = if_else(stress_sum == 1, "stressed", "unstressed"),
          metric = fct_relevel(metric, "vot", "ri"))
   }
 
   dataframe %>%
   filter(kt > 0) %>%
   mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(id, item, !!grouping_var, !!color_var, stress_sum, contains("_std")) %>%
-  gather(metric, val, -!!grouping_var, -!!color_var, -stress_sum, -id, -item) %>%
-  group_by(id, item, !!grouping_var, !!color_var, stress_sum, metric) %>%
+  select(id, item, !!grouping_var, !!color_var, contains("_std")) %>%
+  gather(metric, val, -!!grouping_var, -!!color_var, -id, -item) %>%
+  group_by(id, item, !!grouping_var, !!color_var, metric) %>%
   summarize(val = mean(val)) %>%
   ungroup(.) %>%
   separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
   group_mutate %>%
-  select(-trash, -!!grouping_var, -!!color_var, -stress_sum)
+  select(-trash, -!!grouping_var, -!!color_var)
 }
 
 
@@ -164,15 +142,13 @@ my_theme_adj <- function() {
 }
 
 # Generic plotting function
-plot_metrics <- function(dataframe, posterior, x, color, shape,
-                         color_labs = c("/d/", "/t/"),
-                         shape_labs = c("Stressed", "Unstressed")) {
+plot_metrics <- function(dataframe, posterior, x, color,
+                         color_labs = c("/d/", "/t/")) {
   x <- enquo(x)
   color <- enquo(color)
-  shape <- enquo(shape)
 
   ggplot(dataframe) +
-    aes(x = !!x, y = val, fill = !!color, color = !!color, shape = !!shape) +
+    aes(x = !!x, y = val, fill = !!color, color = !!color) +
     facet_wrap(~ metric, scales = "free_y",
                labeller = as_labeller(facet_labels)) +
     geom_beeswarm(dodge.width = 0.5, alpha = 0.3) +
@@ -185,7 +161,6 @@ plot_metrics <- function(dataframe, posterior, x, color, shape,
                        labels = color_labs) +
     scale_fill_manual(values = my_colors, name = NULL,
                       labels = color_labs) +
-    scale_shape_discrete(name = NULL, labels = shape_labs) +
     scale_x_discrete(labels = c("English", "Spanish")) +
     labs(y = "Metric (std. units)", x = NULL) +
     theme_grey(base_family = "Times", base_size = 16) +
@@ -195,8 +170,7 @@ plot_metrics <- function(dataframe, posterior, x, color, shape,
 
 # Y labs for model summary plots
 model_plot_mono_y_labs <-
-  c("Group x \nPhoneme x Stress", "Phoneme x Stress", "Group x Stress",
-    "Group x Phoneme", "Item rep", "Stress", "Phoneme", "Group", "Intercept")
+  c("Group x Phoneme", "Item rep", "Phoneme", "Group", "Intercept")
 
 model_plot_bi_y_labs <-
   c("Language x \nPhoneme x Stress", "Phoneme x Stress", "Language x Stress",
