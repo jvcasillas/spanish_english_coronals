@@ -154,7 +154,7 @@ path_bi_sum    <- file.path(here("figs"), "bi_summary.")
 path_poa_sum   <- file.path(here("figs"), "poa_summary.")
 
 walk(devices, ~ ggsave(filename = glue(path_vowel, .x), plot = vowel_all_metrics,
-                       device = .x, height = 7, width = 14, units = "in"))
+                       device = .x, height = 7, width = 8, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
                        device = .x, height = 7, width = 14, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
