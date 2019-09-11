@@ -17,6 +17,13 @@ mono_prep <- . %>%
     spanish_d = b_Intercept - b_group_sum + b_phon_sum - `b_group_sum:phon_sum`,
     spanish_t = b_Intercept - b_group_sum - b_phon_sum + `b_group_sum:phon_sum`)
 
+vowel_prep <- . %>%
+  transmute(
+    spanish_t = b_Intercept - b_language_sum - b_phon_sum,
+    english_t = b_Intercept + b_language_sum - b_phon_sum,
+    spanish_d = b_Intercept - b_language_sum + b_phon_sum,
+    english_d = b_Intercept + b_language_sum + b_phon_sum)
+
 bi_prep <- . %>%
   transmute(
     english_d_stressed = b_Intercept + b_language_sum + b_phon_sum +
@@ -74,6 +81,22 @@ poa_prep <- . %>%
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+# Vowel functions -------------------------------------------------------------
+
+# Calculate quantiles of posterior
+p <- c(0.025, 0.975, 0.1, 0.9)
+p_names <- map_chr(p, ~paste0(.x*100, "%"))
+p_funs <- map(p, ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
+  set_names(nm = p_names)
+
+# -----------------------------------------------------------------------------
 
 
 
@@ -172,6 +195,9 @@ plot_metrics <- function(dataframe, posterior, x, color,
 model_plot_mono_y_labs <-
   c("Group x Phoneme", "Item rep", "Phoneme", "Group", "Intercept")
 
+model_plot_vowel_y_labs <-
+  c("Item rep", "Phoneme", "Language", "Intercept")
+
 model_plot_bi_y_labs <-
   c("Language x \nPhoneme x Stress", "Phoneme x Stress", "Language x Stress",
     "Language x Phoneme", "Item rep", "Stress", "Phoneme", "Language",
@@ -202,4 +228,24 @@ model_summary_plot <- function(posterior, ylabs) {
     model_theme_adj
 }
 
+# Plot posterior summer for vowels
+plot_posterior_vowel_summary <- function() {
+  list(
+    geom_errorbar(data = posterior_summary, inherit.aes = F,
+      aes(x = f2_mean, ymin = `f1_2.5%`, ymax = `f1_97.5%`),
+      color = "grey10", size = 0.9, width = 0),
+    geom_errorbarh(data = posterior_summary, inherit.aes = F,
+      aes(y = f1_mean, xmin = `f2_2.5%`, xmax = `f2_97.5%`),
+      color = "grey10", size = 0.9, width = 0),
+    geom_errorbar(data = posterior_summary, inherit.aes = F,
+      aes(x = f2_mean, ymin = `f1_10%`, ymax = `f1_90%`),
+      color = "grey10", size = 2, width = 0),
+    geom_errorbarh(data = posterior_summary, inherit.aes = F,
+      aes(y = f1_mean, xmin = `f2_10%`, xmax = `f2_90%`),
+      color = "grey10", size = 2, width = 0),
+    geom_point(data = posterior_summary,
+               aes(x = f2_mean, y = f1_mean, fill = language),
+               color = "black", size = 5, pch = 21, stroke = 1)
+  )
+}
 # -----------------------------------------------------------------------------
