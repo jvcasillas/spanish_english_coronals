@@ -25,8 +25,8 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 coronals_vowels <- coronals %>%
   filter(., group %in% c("NEN", "NSP"), is.na(label)) %>%
   mutate(., language_sum = if_else(language == "english", 1, -1),
-            phon_sum = if_else(phon == "d", 1, -1)) %>%
-  mutate(., f1_std = (f1_mp - mean(f1_mp)) / sd(f1_mp),
+            phon_sum = if_else(phon == "d", 1, -1),
+            f1_std = (f1_mp - mean(f1_mp)) / sd(f1_mp),
             f2_std = (f2_mp - mean(f2_mp)) / sd(f2_mp))
 
 # Use all available cores for parallel computing

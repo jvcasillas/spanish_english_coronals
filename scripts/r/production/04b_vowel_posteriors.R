@@ -9,7 +9,7 @@
 
 # Source files ----------------------------------------------------------------
 
-source(here::here("scripts", "r", "production", "05a_vowel_analysis.R"))
+source(here::here("scripts", "r", "production", "04a_vowel_analysis.R"))
 
 # -----------------------------------------------------------------------------
 
@@ -21,10 +21,10 @@ source(here::here("scripts", "r", "production", "05a_vowel_analysis.R"))
 bind_rows(
   posterior_samples(mod_f1_mono_full) %>%
     select(starts_with("b_")) %>%
-    mutate(metric = "f1"),
+    mutate(metric = "F1"),
   posterior_samples(mod_f2_mono_full) %>%
     select(starts_with("b_")) %>%
-    mutate(metric = "f2")) %>%
+    mutate(metric = "F2")) %>%
   gather(parameters, estimate, -metric) %>%
   mutate(parameters = fct_relevel(parameters,
          "b_rep_n", "b_phon_sum", "b_language_sum", "b_Intercept")) %>%
