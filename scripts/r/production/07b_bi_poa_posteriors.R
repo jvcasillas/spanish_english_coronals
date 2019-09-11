@@ -40,9 +40,8 @@ bind_rows(
   gather(parameters, estimate, -metric) %>%
   mutate(metric = fct_relevel(metric, "VOT", "RI"),
          parameters = fct_relevel(parameters,
-          "b_language_sum:poa_sum:stress_sum", "b_poa_sum:stress_sum",
-          "b_language_sum:stress_sum", "b_language_sum:poa_sum", "b_rep_n",
-          "b_stress_sum", "b_poa_sum", "b_language_sum", "b_Intercept")) %>%
+          "b_language_sum:poa_sum", "b_rep_n", "b_f2_std", "b_f1_std",
+          "b_poa_sum", "b_language_sum", "b_Intercept")) %>%
   saveRDS(., here("data", "models", "posterior_poa_comp.rds"))
 
 # -----------------------------------------------------------------------------
@@ -54,8 +53,6 @@ bind_rows(
 
 # Key info:
 # language_sum = if_else(language == "english", 1, -1),
-# group_sum = if_else(group == "BIL", 1, -1),
-# stress_sum = if_else(stress == "stressed", 1, -1),
 # poa_sum = if_else(phon == "t", 1, -1))
 
 
@@ -65,42 +62,42 @@ posterior_poa_adj <-
     select(starts_with("b_")) %>%
     poa_prep %>%
     gather(language, val) %>%
-    separate(language, into = c("language", "place", "stress"),
+    separate(language, into = c("language", "place"),
              sep = "_", remove = T) %>%
     mutate(metric = "vot"),
   posterior_samples(mod_poa_comp_ri_full) %>%
     select(starts_with("b_")) %>%
     poa_prep %>%
     gather(language, val) %>%
-    separate(language, into = c("language", "place", "stress"),
+    separate(language, into = c("language", "place"),
              sep = "_", remove = T) %>%
     mutate(metric = "ri"),
   posterior_samples(mod_poa_comp_cog_full) %>%
     select(starts_with("b_")) %>%
     poa_prep %>%
     gather(language, val) %>%
-    separate(language, into = c("language", "place", "stress"),
+    separate(language, into = c("language", "place"),
              sep = "_", remove = T) %>%
     mutate(metric = "cog"),
   posterior_samples(mod_poa_comp_sd_full) %>%
     select(starts_with("b_")) %>%
     poa_prep %>%
     gather(language, val) %>%
-    separate(language, into = c("language", "place", "stress"),
+    separate(language, into = c("language", "place"),
              sep = "_", remove = T) %>%
     mutate(metric = "sd"),
   posterior_samples(mod_poa_comp_sk_full) %>%
     select(starts_with("b_")) %>%
     poa_prep %>%
     gather(language, val) %>%
-    separate(language, into = c("language", "place", "stress"),
+    separate(language, into = c("language", "place"),
              sep = "_", remove = T) %>%
     mutate(metric = "sk"),
   posterior_samples(mod_poa_comp_kt_full) %>%
     select(starts_with("b_")) %>%
     poa_prep %>%
     gather(language, val) %>%
-    separate(language, into = c("language", "place", "stress"),
+    separate(language, into = c("language", "place"),
              sep = "_", remove = T) %>%
     mutate(metric = "kt")
   ) %>%
