@@ -9,6 +9,12 @@ source(here::here("scripts", "r", "production", "00_libraries.R"))
 # Posterior prep --------------------------------------------------------------
 
 # Adjust posterior to match factor means
+vowel_prep <- . %>%
+  transmute(
+    spanish_t = b_Intercept - b_language_sum - b_phon_sum,
+    english_t = b_Intercept + b_language_sum - b_phon_sum,
+    spanish_d = b_Intercept - b_language_sum + b_phon_sum,
+    english_d = b_Intercept + b_language_sum + b_phon_sum)
 
 mono_prep <- . %>%
   transmute(
@@ -17,66 +23,19 @@ mono_prep <- . %>%
     spanish_d = b_Intercept - b_group_sum + b_phon_sum - `b_group_sum:phon_sum`,
     spanish_t = b_Intercept - b_group_sum - b_phon_sum + `b_group_sum:phon_sum`)
 
-vowel_prep <- . %>%
-  transmute(
-    spanish_t = b_Intercept - b_language_sum - b_phon_sum,
-    english_t = b_Intercept + b_language_sum - b_phon_sum,
-    spanish_d = b_Intercept - b_language_sum + b_phon_sum,
-    english_d = b_Intercept + b_language_sum + b_phon_sum)
-
 bi_prep <- . %>%
   transmute(
-    english_d_stressed = b_Intercept + b_language_sum + b_phon_sum +
-      b_stress_sum + `b_language_sum:phon_sum` + `b_language_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-    english_d_unstressed = b_Intercept + b_language_sum + b_phon_sum -
-      b_stress_sum + `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
-      `b_phon_sum:stress_sum` - `b_language_sum:phon_sum:stress_sum`,
-    english_t_stressed = b_Intercept + b_language_sum - b_phon_sum +
-      b_stress_sum - `b_language_sum:phon_sum` + `b_language_sum:stress_sum` -
-      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-    english_t_unstressed = b_Intercept + b_language_sum - b_phon_sum -
-      b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-    spanish_d_stressed = b_Intercept - b_language_sum + b_phon_sum +
-      b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-    spanish_d_unstressed = b_Intercept - b_language_sum + b_phon_sum -
-      b_stress_sum - `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
-      `b_phon_sum:stress_sum` - `b_language_sum:phon_sum:stress_sum`,
-    spanish_t_stressed = b_Intercept - b_language_sum - b_phon_sum +
-      b_stress_sum + `b_language_sum:phon_sum` - `b_language_sum:stress_sum` -
-      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`,
-    spanish_t_unstressed = b_Intercept - b_language_sum - b_phon_sum -
-      b_stress_sum + `b_language_sum:phon_sum` + `b_language_sum:stress_sum` +
-      `b_phon_sum:stress_sum` + `b_language_sum:phon_sum:stress_sum`)
+    english_t = b_Intercept + b_language_sum - b_phon_sum - `b_language_sum:phon_sum`,
+    english_d = b_Intercept + b_language_sum + b_phon_sum + `b_language_sum:phon_sum`,
+    spanish_d = b_Intercept - b_language_sum + b_phon_sum - `b_language_sum:phon_sum`,
+    spanish_t = b_Intercept - b_language_sum - b_phon_sum + `b_language_sum:phon_sum`)
 
 poa_prep <- . %>%
   transmute(
-    english_t_stressed = b_Intercept + b_language_sum + b_poa_sum +
-      b_stress_sum + `b_language_sum:poa_sum` + `b_language_sum:stress_sum` +
-      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-    english_t_unstressed = b_Intercept + b_language_sum + b_poa_sum -
-      b_stress_sum + `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
-      `b_poa_sum:stress_sum` - `b_language_sum:poa_sum:stress_sum`,
-    english_p_stressed = b_Intercept + b_language_sum - b_poa_sum +
-      b_stress_sum - `b_language_sum:poa_sum` + `b_language_sum:stress_sum` -
-      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-    english_p_unstressed = b_Intercept + b_language_sum - b_poa_sum -
-      b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` +
-      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-    spanish_t_stressed = b_Intercept - b_language_sum + b_poa_sum +
-      b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` +
-      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-    spanish_t_unstressed = b_Intercept - b_language_sum + b_poa_sum -
-      b_stress_sum - `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
-      `b_poa_sum:stress_sum` - `b_language_sum:poa_sum:stress_sum`,
-    spanish_p_stressed = b_Intercept - b_language_sum - b_poa_sum +
-      b_stress_sum + `b_language_sum:poa_sum` - `b_language_sum:stress_sum` -
-      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`,
-    spanish_p_unstressed = b_Intercept - b_language_sum - b_poa_sum -
-      b_stress_sum + `b_language_sum:poa_sum` + `b_language_sum:stress_sum` +
-      `b_poa_sum:stress_sum` + `b_language_sum:poa_sum:stress_sum`)
+    english_t = b_Intercept + b_language_sum + b_poa_sum + `b_language_sum:poa_sum`,
+    english_p = b_Intercept + b_language_sum - b_poa_sum - `b_language_sum:poa_sum`,
+    spanish_p = b_Intercept - b_language_sum - b_poa_sum + `b_language_sum:poa_sum`,
+    spanish_t = b_Intercept - b_language_sum + b_poa_sum - `b_language_sum:poa_sum`)
 
 # -----------------------------------------------------------------------------
 
@@ -103,7 +62,31 @@ p_funs <- map(p, ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
 
 
 
+
+
+
 # Plotting functions ----------------------------------------------------------
+
+# Plot posterior summer for vowels
+plot_posterior_vowel_summary <- function() {
+  list(
+    geom_errorbar(data = posterior_summary, inherit.aes = F,
+      aes(x = f2_mean, ymin = `f1_2.5%`, ymax = `f1_97.5%`),
+      color = "grey10", size = 0.9, width = 0),
+    geom_errorbarh(data = posterior_summary, inherit.aes = F,
+      aes(y = f1_mean, xmin = `f2_2.5%`, xmax = `f2_97.5%`),
+      color = "grey10", size = 0.9, width = 0),
+    geom_errorbar(data = posterior_summary, inherit.aes = F,
+      aes(x = f2_mean, ymin = `f1_10%`, ymax = `f1_90%`),
+      color = "grey10", size = 2, width = 0),
+    geom_errorbarh(data = posterior_summary, inherit.aes = F,
+      aes(y = f1_mean, xmin = `f2_10%`, xmax = `f2_90%`),
+      color = "grey10", size = 2, width = 0),
+    geom_point(data = posterior_summary,
+               aes(x = f2_mean, y = f1_mean, fill = language),
+               color = "black", size = 5, pch = 21, stroke = 1)
+  )
+}
 
 # Average over repetitions and prep vars
 plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
@@ -126,7 +109,7 @@ plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
   dataframe %>%
   filter(kt > 0) %>%
   mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(id, item, !!grouping_var, !!color_var, contains("_std")) %>%
+  select(id, item, !!grouping_var, !!color_var, contains("_std"), -f1_std, -f2_std) %>%
   gather(metric, val, -!!grouping_var, -!!color_var, -id, -item) %>%
   group_by(id, item, !!grouping_var, !!color_var, metric) %>%
   summarize(val = mean(val)) %>%
@@ -140,11 +123,11 @@ plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
 # Named vector of facet labels
 facet_labels <- c(
   `vot` = "VOT",
-  `ri` = "Relative intensity",
+  `ri`  = "Relative intensity",
   `cog` = "COG",
-  `kt` = "Kurtosis",
-  `sd` = "Standard deviation",
-  `sk` = "Skewness"
+  `kt`  = "Kurtosis",
+  `sd`  = "Standard deviation",
+  `sk`  = "Skewness"
   )
 
 # Custom colors
@@ -166,7 +149,8 @@ my_theme_adj <- function() {
 
 # Generic plotting function
 plot_metrics <- function(dataframe, posterior, x, color,
-                         color_labs = c("/d/", "/t/")) {
+                         color_labs = c("/d/", "/t/"),
+                         xlabs = c("English", "Spanish")) {
   x <- enquo(x)
   color <- enquo(color)
 
@@ -184,7 +168,7 @@ plot_metrics <- function(dataframe, posterior, x, color,
                        labels = color_labs) +
     scale_fill_manual(values = my_colors, name = NULL,
                       labels = color_labs) +
-    scale_x_discrete(labels = c("English", "Spanish")) +
+    scale_x_discrete(labels = xlabs) +
     labs(y = "Metric (std. units)", x = NULL) +
     theme_grey(base_family = "Times", base_size = 16) +
     my_theme_adj()
@@ -192,20 +176,18 @@ plot_metrics <- function(dataframe, posterior, x, color,
 
 
 # Y labs for model summary plots
-model_plot_mono_y_labs <-
-  c("Group x Phoneme", "Item rep", "Phoneme", "Group", "Intercept")
-
 model_plot_vowel_y_labs <-
   c("Item rep", "Phoneme", "Language", "Intercept")
 
+model_plot_mono_y_labs <-
+  c("Group x Phoneme", "Item rep", "F2", "F1", "Phoneme", "Group", "Intercept")
+
 model_plot_bi_y_labs <-
-  c("Language x \nPhoneme x Stress", "Phoneme x Stress", "Language x Stress",
-    "Language x Phoneme", "Item rep", "Stress", "Phoneme", "Language",
+  c("Language x Phoneme", "Item rep", "F2", "F1", "Phoneme", "Language",
     "Intercept")
 
 model_plot_poa_y_labs <-
-  c("Language x \nPlace x Stress", "Place x Stress", "Language x Stress",
-    "Language x Place", "Item rep", "Stress", "Place", "Language",
+  c("Language x Place", "Item rep", "F2", "F1", "Place", "Language",
     "Intercept")
 
 # Theme adjustment for model summary plots
@@ -228,24 +210,4 @@ model_summary_plot <- function(posterior, ylabs) {
     model_theme_adj
 }
 
-# Plot posterior summer for vowels
-plot_posterior_vowel_summary <- function() {
-  list(
-    geom_errorbar(data = posterior_summary, inherit.aes = F,
-      aes(x = f2_mean, ymin = `f1_2.5%`, ymax = `f1_97.5%`),
-      color = "grey10", size = 0.9, width = 0),
-    geom_errorbarh(data = posterior_summary, inherit.aes = F,
-      aes(y = f1_mean, xmin = `f2_2.5%`, xmax = `f2_97.5%`),
-      color = "grey10", size = 0.9, width = 0),
-    geom_errorbar(data = posterior_summary, inherit.aes = F,
-      aes(x = f2_mean, ymin = `f1_10%`, ymax = `f1_90%`),
-      color = "grey10", size = 2, width = 0),
-    geom_errorbarh(data = posterior_summary, inherit.aes = F,
-      aes(y = f1_mean, xmin = `f2_10%`, xmax = `f2_90%`),
-      color = "grey10", size = 2, width = 0),
-    geom_point(data = posterior_summary,
-               aes(x = f2_mean, y = f1_mean, fill = language),
-               color = "black", size = 5, pch = 21, stroke = 1)
-  )
-}
 # -----------------------------------------------------------------------------
