@@ -9,7 +9,7 @@
 
 # Source files ----------------------------------------------------------------
 
-source(here::here("scripts", "r", "production", "04a_mono_analysis.R"))
+source(here::here("scripts", "r", "production", "05a_mono_analysis.R"))
 
 # -----------------------------------------------------------------------------
 
@@ -40,8 +40,8 @@ bind_rows(
   gather(parameters, estimate, -metric) %>%
   mutate(metric = fct_relevel(metric, "VOT", "RI"),
          parameters = fct_relevel(parameters,
-          "b_group_sum:phon_sum", "b_rep_n", "b_phon_sum", "b_group_sum",
-          "b_Intercept")) %>%
+          "b_group_sum:phon_sum", "b_rep_n", "b_f2_std", "b_f1_std",
+          "b_phon_sum", "b_group_sum", "b_Intercept")) %>%
   saveRDS(., here("data", "models", "posterior_mono.rds"))
 
 

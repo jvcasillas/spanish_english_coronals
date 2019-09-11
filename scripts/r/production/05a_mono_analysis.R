@@ -34,6 +34,8 @@ coronals_mono <- coronals %>%
             sd_std = (sd - mean(sd, na.rm = T)) / sd(sd, na.rm = T),
             sk_std = (sk - mean(sk, na.rm = T)) / sd(sk, na.rm = T),
             #kt_std = (kt - mean(kt, na.rm = T)) / sd(kt, na.rm = T),
+            f1_std = (f1_mp - mean(f1_mp)) / sd(f1_mp),
+            f2_std = (f2_mp - mean(f2_mp)) / sd(f2_mp),
             phon_sum = if_else(phon == "d", 1, -1),
             group_sum = if_else(group == "NEN", 1, -1),
             language_sum = if_else(language == "english", 1, -1),
@@ -58,8 +60,8 @@ priors <- c(
 
 # VOT
 mod_coronals_vot_mono_full <- brm(
-  formula = vot_std ~ 1 + group_sum * phon_sum + rep_n +
-    (1 + phon_sum + rep_n | id) +
+  formula = vot_std ~ 1 + group_sum * phon_sum + f1_std + f2_std + rep_n +
+    (1 + phon_sum + f1_std + f2_std + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
@@ -72,8 +74,8 @@ mod_coronals_vot_mono_full <- brm(
 
 # RI
 mod_coronals_ri_mono_full <- brm(
-  formula = ri_std ~ 1 + group_sum * phon_sum + rep_n +
-    (1 + phon_sum + rep_n | id) +
+  formula = ri_std ~ 1 + group_sum * phon_sum + f1_std + f2_std + rep_n +
+    (1 + phon_sum + f1_std + f2_std + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
@@ -88,8 +90,8 @@ mod_coronals_ri_mono_full <- brm(
 
 # COG
 mod_coronals_cog_mono_full <- brm(
-  formula = cog_std ~ 1 + group_sum * phon_sum + rep_n +
-    (1 + phon_sum + rep_n | id) +
+  formula = cog_std ~ 1 + group_sum * phon_sum + f1_std + f2_std + rep_n +
+    (1 + phon_sum + f1_std + f2_std + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
@@ -102,8 +104,8 @@ mod_coronals_cog_mono_full <- brm(
 
 # SD
 mod_coronals_sd_mono_full <- brm(
-  formula = sd_std ~ 1 + group_sum * phon_sum + rep_n +
-    (1 + phon_sum + rep_n | id) +
+  formula = sd_std ~ 1 + group_sum * phon_sum + f1_std + f2_std + rep_n +
+    (1 + phon_sum + f1_std + f2_std + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
@@ -116,8 +118,8 @@ mod_coronals_sd_mono_full <- brm(
 
 # Skewness
 mod_coronals_sk_mono_full <- brm(
-  formula = sk_std ~ 1 + group_sum * phon_sum + rep_n +
-    (1 + phon_sum + rep_n | id) +
+  formula = sk_std ~ 1 + group_sum * phon_sum + f1_std + f2_std + rep_n +
+    (1 + phon_sum + f1_std + f2_std + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
@@ -130,8 +132,8 @@ mod_coronals_sk_mono_full <- brm(
 
 # Kurtosis
 mod_coronals_kt_mono_full <- brm(
-  formula = kt_std ~ 1 + group_sum * phon_sum + rep_n +
-    (1 + phon_sum + rep_n | id) +
+  formula = kt_std ~ 1 + group_sum * phon_sum + f1_std + f2_std + rep_n +
+    (1 + phon_sum + f1_std + f2_std + rep_n | id) +
     (1 + rep_n | item),
   prior = priors,
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
