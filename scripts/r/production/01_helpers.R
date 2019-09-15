@@ -210,4 +210,72 @@ model_summary_plot <- function(posterior, ylabs) {
     model_theme_adj
 }
 
+
+
+# Function for plotting posterior distrubutions with descriptives
+plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
+                           hdi = 0.95, labs = "Posterior summary",
+                           colors, xpos = -0.4, ypos = c(1.2, 1, 0.8)) {
+
+  # Quasi quotation for tidyeval
+  param <- enquo(parameter)
+
+  # Create column indicating whether posterior values are in or out of ROPE
+  post <- mutate(posterior,
+      region = case_when(
+        !!param <= rope[1] ~ 0,
+        !!param >= rope[2] ~ 2,
+        !!param > rope[1] & !!param < rope[2] ~ 1))
+
+  # Generate basic plot
+  plot_hold <- ggplot(post, aes(x = !!param)) +
+         geom_density(color = "grey75", fill = 'lightgrey', alpha = 0.4)
+
+  # Get proto object and add ROPE region, in_out column
+  plot_build <- ggplot_build(plot_hold)$data[[1]] %>%
+    mutate(rank = percent_rank(y),
+           region = case_when(
+             x <= rope[1] ~ 0,
+             x >= rope[2] ~ 2,
+             x > rope[1] & x < rope[2] ~ 1),
+           region = as.factor(region),
+           in_out = if_else(region == 1, "in", "out"))
+
+  # Calculate some descriptors of the posterior
+  summary_vals <- posterior %>%
+    summarize(
+      density = 0, # This is a holder for posterior point mean estimate
+      mean = mean(!!param),
+      mpe = p_direction(!!param) %>% round(., 3),
+      hdi_low = hdi(!!param, ci = hdi)$CI_low %>% round(., 3),
+      hdi_high = hdi(!!param, ci = hdi)$CI_high %>% round(., 3),
+      rope_p = rope(!!param, range = rope, ci = hdi)$ROPE_Percentage %>%
+          round(., 3))
+
+  # Summary tibble with summary_vals info and some text
+  post_summary <- tibble(
+    x = xpos, density = ypos,
+    text = c(glue::glue("MPE = ", summary_vals$mpe),
+             glue::glue("HDI = [{l}, {h}]", l = summary_vals$hdi_low,
+                                            h = summary_vals$hdi_high),
+             glue::glue("ROPE = ", summary_vals$rope_p)))
+
+  # Plot final object
+  plot_final <- plot_hold +
+    geom_area(data = plot_build, show.legend = F,
+              aes(x = x, y = y, fill = region)) +
+    scale_fill_manual(name = "", values = c("grey80", "grey90", "grey80"),
+                      labels = c("", "ROPE", "")) +
+    geom_segment(x = summary_vals$hdi_low, xend = summary_vals$hdi_high,
+                 y = 0, yend = 0, size = 1.5) +
+    geom_point(data = summary_vals, size = 6, pch = 21, fill = "white",
+               aes(x = mean, y = density)) +
+    geom_text(data = post_summary, hjust = 0, size = 4,
+        aes(x = x, y = density, label = text)) +
+    labs(y = NULL, x = labs) +
+    theme_minimal(base_size = 12, base_family = "Times")
+  print(plot_final)
+
+}
+
 # -----------------------------------------------------------------------------

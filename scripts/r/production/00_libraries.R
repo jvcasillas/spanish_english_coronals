@@ -9,7 +9,7 @@ library(glue)
 library(here)
 
 library(brms)
-library(HDInterval)
+library(bayestestR)
 library(modelr)
 
 library(ggplot2)
