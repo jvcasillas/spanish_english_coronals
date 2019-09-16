@@ -214,8 +214,9 @@ model_summary_plot <- function(posterior, ylabs) {
 
 # Function for plotting posterior distrubutions with descriptives
 plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
-                           hdi = 0.95, labs = "Posterior summary",
-                           colors, xpos = -0.4, ypos = c(1.2, 1, 0.8)) {
+                           hdi = 0.95, xpos = -0.4, ypos = c(1.2, 1, 0.8),
+                           xlab = "Parameter value", ylab = "Density",
+                           color = 2) {
 
   # Quasi quotation for tidyeval
   param <- enquo(parameter)
@@ -229,7 +230,7 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
 
   # Generate basic plot
   plot_hold <- ggplot(post, aes(x = !!param)) +
-         geom_density(color = "grey75", fill = 'lightgrey', alpha = 0.4)
+         geom_density(color = "grey65", fill = 'white', alpha = 0.4)
 
   # Get proto object and add ROPE region, in_out column
   plot_build <- ggplot_build(plot_hold)$data[[1]] %>%
@@ -245,7 +246,7 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
   summary_vals <- posterior %>%
     summarize(
       density = 0, # This is a holder for posterior point mean estimate
-      mean = mean(!!param),
+      mean = median(!!param),
       mpe = p_direction(!!param) %>% round(., 3),
       hdi_low = hdi(!!param, ci = hdi)$CI_low %>% round(., 3),
       hdi_high = hdi(!!param, ci = hdi)$CI_high %>% round(., 3),
@@ -262,18 +263,19 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
 
   # Plot final object
   plot_final <- plot_hold +
-    geom_area(data = plot_build, show.legend = F,
+    geom_area(data = plot_build, show.legend = F, alpha = 0.4,
               aes(x = x, y = y, fill = region)) +
-    scale_fill_manual(name = "", values = c("grey80", "grey90", "grey80"),
-                      labels = c("", "ROPE", "")) +
+    scale_fill_manual(labels = c("", "ROPE", ""),
+                      values = c(my_colors[color], "grey80", my_colors[color])) +
     geom_segment(x = summary_vals$hdi_low, xend = summary_vals$hdi_high,
-                 y = 0, yend = 0, size = 1.5) +
-    geom_point(data = summary_vals, size = 6, pch = 21, fill = "white",
+                 y = 0, yend = 0, size = 2) +
+    geom_point(data = summary_vals, size = 7, pch = 21, fill = "white",
                aes(x = mean, y = density)) +
-    geom_text(data = post_summary, hjust = 0, size = 4,
+    geom_text(data = post_summary, hjust = 0, size = 4, family = "Times",
         aes(x = x, y = density, label = text)) +
-    labs(y = NULL, x = labs) +
-    theme_minimal(base_size = 12, base_family = "Times")
+    labs(y = ylab, x = xlab) +
+    theme_minimal(base_size = 16, base_family = "Times") +
+    model_theme_adj
   print(plot_final)
 
 }
