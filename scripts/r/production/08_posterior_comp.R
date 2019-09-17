@@ -51,9 +51,9 @@ posterior_poa_adj <-
 
 
 
-# Comparison of short-lag stops in Engish (d) and Spanish (t) -----------------
+# Comparison of short-lag stops: monolinguals ---------------------------------
 
-d_t_post <- posterior_mono_adj %>%
+d_t_post_mono <- posterior_mono_adj %>%
   filter(metric == "vot", language == "english" & phon == "d" |
                           language == "spanish" & phon == "t") %>%
   select(-metric, -language) %>%
@@ -63,8 +63,32 @@ d_t_post <- posterior_mono_adj %>%
   spread(phon, val) %>%
   mutate(diff = d - t)
 
-plot_posterior(posterior = d_t_post, parameter = diff, rope = c(-0.1, 0.1),
-               hdi = 0.95, xpos = -0.45, ypos = c(1.2, 1, 0.8))
+d_t_mono_comp <- plot_posterior(
+  posterior = d_t_post_mono, parameter = diff, rope = c(-0.1, 0.1),
+  hdi = 0.95, xpos = -0.45, ypos = c(1.2, 1, 0.8))
+
+d_t_mono_comp[["plot_env"]][["summary_vals"]]
+
+# -----------------------------------------------------------------------------
+
+
+
+
+# Comparison of short-lag stops: bilinguals -----------------------------------
+
+d_t_post_bi <- posterior_bi_adj %>%
+  filter(metric == "vot", language == "english" & phon == "d" |
+                          language == "spanish" & phon == "t") %>%
+  select(-metric, -language) %>%
+  group_by(phon) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(phon, val) %>%
+  mutate(diff = d - t)
+
+d_t_bi_comp <- plot_posterior(
+  posterior = d_t_post_bi, parameter = diff, rope = c(-0.1, 0.1), hdi = 0.95,
+  xpos = -0.45, ypos = c(1.2, 1, 0.8))
 
 # -----------------------------------------------------------------------------
 
@@ -77,7 +101,7 @@ plot_posterior(posterior = d_t_post, parameter = diff, rope = c(-0.1, 0.1),
 
 # Comparison of English d and Spanish t: COG ----------------------------------
 
-poa_cog_post <- posterior_poa_adj %>%
+poa_coronal_cog_post <- posterior_poa_adj %>%
   filter(metric == "cog", place == "coronal") %>%
   select(-metric, -place) %>%
   group_by(language) %>%
@@ -86,12 +110,44 @@ poa_cog_post <- posterior_poa_adj %>%
   spread(language, val) %>%
   mutate(diff = english - spanish)
 
+poa_bilabial_cog_post <- posterior_poa_adj %>%
+  filter(metric == "cog", place == "bilabial") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+
 hold <- plot_posterior(
-  posterior = poa_cog_post, parameter = diff, rope = c(-0.1, 0.1), color = 2,
-  hdi = 0.95, xpos = 0.7, ypos = c(2, 1.75, 1.5))
+  posterior = poa_coronal_cog_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = 0.7, ypos = c(2, 1.75, 1.5))
+
+plot_posterior(
+  posterior = poa_bilabial_cog_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = -0.55, ypos = c(1.2, 1.1, 1))
 
 hold[["plot_env"]][["summary_vals"]]
 
 # -----------------------------------------------------------------------------
 
 
+
+
+
+
+# Combine comparison summaries ------------------------------------------------
+
+bind_rows(
+  d_t_mono_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "d_t_mono"),
+  d_t_bi_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "d_t_bi")
+  ) %>%
+  mutate_if(is.numeric, round, digits = 3) %>%
+  saveRDS(here("data", "models", "post_hoc_analyses.rds"))
+
+# -----------------------------------------------------------------------------
