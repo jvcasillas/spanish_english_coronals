@@ -248,18 +248,18 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
       density = 0, # This is a holder for posterior point mean estimate
       mean = median(!!param),
       mpe = p_direction(!!param) %>% round(., 3),
-      hdi_low = hdi(!!param, ci = hdi)$CI_low %>% round(., 3),
-      hdi_high = hdi(!!param, ci = hdi)$CI_high %>% round(., 3),
+      hdi_low = bayestestR::hdi(!!param, ci = hdi)$CI_low %>% round(., 3),
+      hdi_high = bayestestR::hdi(!!param, ci = hdi)$CI_high %>% round(., 3),
       rope_p = rope(!!param, range = rope, ci = hdi)$ROPE_Percentage %>%
           round(., 3))
 
   # Summary tibble with summary_vals info and some text
   post_summary <- tibble(
     x = xpos, density = ypos,
-    text = c(glue::glue("MPE = ", summary_vals$mpe),
-             glue::glue("HDI = [{l}, {h}]", l = summary_vals$hdi_low,
-                                            h = summary_vals$hdi_high),
-             glue::glue("ROPE = ", summary_vals$rope_p)))
+    text = c(glue("MPE = ", summary_vals$mpe),
+             glue("HDI = [{l}, {h}]", l = summary_vals$hdi_low,
+                                      h = summary_vals$hdi_high),
+             glue("ROPE = ", summary_vals$rope_p)))
 
   # Plot final object
   plot_final <- plot_hold +
