@@ -1,0 +1,19 @@
+
+```{r, 'bi-table'}
+my_border <- officer::fp_border(width = 1.5)
+
+read_csv(here("data", "tidy", "table_bi_model_summary.csv")) %>% 
+  flextable() %>%
+  width(j = c(2, 3, 4, 5, 6), width = c(1.4, 0.7, 1.25, 0.7, 0.7)) %>% 
+  align(i = NULL, j = 4, align = "right", part = "all") %>% 
+  padding(i = c(7, 14, 21, 28, 35), j = NULL, padding.bottom = 8, 
+          part = "body") %>%
+  font(fontname = "Times", part = "all") %>%
+  fontsize(size = 9, part = "all") %>%
+  border_remove(.) %>%
+  border(., part = "header",
+            border.top = my_border,
+            border.bottom = my_border) %>%
+  hline_bottom(., part = "body", border = my_border) %>%
+  set_caption(., caption = "test")
+```

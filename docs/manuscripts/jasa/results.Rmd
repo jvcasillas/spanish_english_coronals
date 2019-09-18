@@ -23,6 +23,12 @@ wordcount         : ""
 
 bibliography      : ["r-references.bib"]
 
+appendix:
+  - "appendix_a.Rmd"
+  - "appendix_b.Rmd"
+  - "appendix_c.Rmd"
+  - "appendix_d.Rmd"
+
 floatsintext      : yes
 figurelist        : yes
 tablelist         : yes
@@ -40,6 +46,7 @@ output            : papaja::apa6_word
 library("papaja")
 library("officer")
 library("flextable")
+library("brms")
 ```
 
 ```{r 'setup', include=FALSE}
@@ -99,44 +106,10 @@ We also note that the interval covers a wide range of values, thus we also
 conclude that we are not very certain about the size of the effect. 
 This type of interepretation is not possible under a frequentist paradigm.
 
-
-
-## About the data
-
-### Metrics
-
-### Participants
-
-The data include `r exp_n` participants from 3 populations: monolingual 
-English speakers, monolingual Spanish speakers, Bilingual English-Spanish 
-speakers.
-
-#### Monolingual English speakers
-
-The study ingludes `r mono_en_n` monolingual English speakers from the U.S. 
-Southwest. 
-Age and other info here. 
-
-#### Monolingual Spanish speakers
-
-The monolingual Spanish speakers come from Majorca, Spain. 
-There are `r mono_sp_n` of them. 
-Age and other info here. 
-
-#### Bilingual speakers
-
-The English-Spanish bilinguals (n = `r bi_coronals_n + bi_poa_n`) are from 
-Southern Arizona, Northern Mexico. 
-Age, BLP and other info. 
-Note there are two samples from this population. 
-The coronal dataset includes `r bi_coronals_n` speakers and the bilabial 
-dataset includes `r bi_poa_n` speakers. 
-
-
 ## About this document
 
-This document was written in RMarkdown using `papaja` and serves as a project 
-report for our research group. 
+This document was written in RMarkdown using `papaja` [@R-papaja] and serves 
+as a project report for our research group.
 From this point foward, the document is written as if it were the results 
 section of a future manuscript.
 This implies that it is written in a way that allows it to be copy and pasted 
@@ -146,12 +119,87 @@ into the actual manuscript once it is available.
 \pagebreak
 
 
-```{r, 'project-libs'}
-source(here::here("scripts", "r", "production", "03_load_data.R"))
 
-```
+
+# Method
+
+## Participants
+
+The data include `r exp_n` participants from 3 populations: monolingual 
+English speakers, monolingual Spanish speakers, Bilingual English-Spanish 
+speakers.
+
+### Monolingual English speakers
+
+The study ingludes `r mono_en_n` monolingual English speakers from the U.S. 
+Southwest. 
+Age and other info here. 
+
+### Monolingual Spanish speakers
+
+The monolingual Spanish speakers come from Majorca, Spain. 
+There are `r mono_sp_n` of them. 
+Age and other info here. 
+
+### Bilingual speakers
+
+The English-Spanish bilinguals (n = `r bi_coronals_n + bi_poa_n`) are from 
+Southern Arizona, Northern Mexico. 
+Age, BLP and other info. 
+Note there are two samples from this population. 
+The coronal dataset includes `r bi_coronals_n` speakers and the bilabial 
+dataset includes `r bi_poa_n` speakers. 
+
+## Metrics
+
+F1/F2, voice onset time, relative intensity, center of gravity, standard 
+deviation, skewness, kurtosis
+
+## Procedure
+
+Decide if we will present 3 separate experiments with 3 different methods 
+sections.
+
+## Statistical analyses
+
+All analyses were conducted in `R` [@R-base, `r r_version`]. 
+We use Bayesian multilevel models fitted in `Stan` using `brms` [@R-brms_a; @R-brms_b, `r brms_version`].
+Bayesian Data Analysis (BDA) has become a welcome alternative to frequentist 
+statistical analysis. 
+See XXX and XXX for tutorials and in depth explanations related BDA in the 
+psychological and speech sciences. 
+For all models, the criterion was standardized, or converted to z-scores, 
+in order to facilitate comparibility between metrics. 
+Continuous predictors were also standardized and categorical predictors were 
+sum-to-zero coded. 
+Thus for all models the intercept represents the outcome variable at the 
+average state. 
+We use regularizing, weakly informative priors in all models (specifics below) 
+with 4,000 iterations (2,000 warmup) running on 16 processing cores. 
+We quantify our uncertainty regarding a given effect by reporting point 
+estimates derived from the posterior predictive distribution, including the 
+95% Highest Density Credible Intervals (HDI). 
+Additionally, we assume a negligible effect size of &plusmn; 0.1 (CITE COHEN) 
+in order to establish a Region of Practical Equivalence (ROPE), for which we 
+assess the proportion of the HDI that falls within this interval.
+Finally, we report the Maximum Probability of Effect (MPE), or the Probability 
+of Direction, as the proportion of the posterior distribution that is of the 
+median's sign. 
+We assume there to be compelling evidence for a given effect when the HDI of 
+the posterior distribution does not contain 0 nor fall within the ROPE by a 
+reasonable margin and the MPE is greater than 97%. 
+
+
+
 
 # Results
+
+The results are divided into 4 subsections dealing with (1) phonetic 
+development over time, (2) learning trajectories, (3) comparisons with native 
+bilinguals, and (4) individual differences. 
+
+
+
 
 ## Experiment 0: Vowels
 
@@ -167,25 +215,7 @@ knitr::include_graphics(
 )
 ```
 
-```{r, 'vowel-table'}
-my_border <- officer::fp_border(width = 1.5)
 
-read_csv(here("data", "tidy", "table_vowel_model_summary.csv")) %>% 
-  flextable() %>%
-  width(., j = c(2, 3, 4, 5, 6), width = c(1.2, 0.7, 1.25, 0.7, 0.7)) %>% 
-  align(., i = NULL, j = 4, align = "right", part = "all") %>% 
-  padding(., i = 4, j = NULL, padding = NULL, padding.top = NULL,
-  padding.bottom = 8, padding.left = NULL, padding.right = NULL,
-  part = "body") %>% 
-  font(., fontname = "Times", part = "all") %>%
-  fontsize(., size = 11) %>%
-  border_remove(.) %>%
-  border(., part = "header",
-            border.top = my_border,
-            border.bottom = my_border) %>%
-  hline_bottom(., part = "body", border = my_border) %>%
-  set_caption(., caption = "test")
-```
 
 
 ## Experiment 1: Monolinguals
@@ -203,24 +233,7 @@ knitr::include_graphics(
 )
 ```
 
-```{r, 'mono-table'}
-my_border <- officer::fp_border(width = 1.5)
 
-read_csv(here("data", "tidy", "table_mono_model_summary.csv")) %>% 
-  flextable() %>%
-  width(j = c(2, 3, 4, 5, 6), width = c(1.4, 0.7, 1.25, 0.7, 0.7)) %>% 
-  align(i = NULL, j = 4, align = "right", part = "all") %>% 
-  padding(i = c(7, 14, 21, 28, 35), j = NULL, padding.bottom = 8, 
-          part = "body") %>%
-  font(fontname = "Times", part = "all") %>%
-  fontsize(size = 9, part = "all") %>%
-  border_remove(.) %>%
-  border(., part = "header",
-            border.top = my_border,
-            border.bottom = my_border) %>%
-  hline_bottom(., part = "body", border = my_border) %>%
-  set_caption(., caption = "test")
-```
 
 
 
@@ -240,24 +253,6 @@ knitr::include_graphics(
 ```
 
 
-```{r, 'bi-table'}
-my_border <- officer::fp_border(width = 1.5)
-
-read_csv(here("data", "tidy", "table_bi_model_summary.csv")) %>% 
-  flextable() %>%
-  width(j = c(2, 3, 4, 5, 6), width = c(1.4, 0.7, 1.25, 0.7, 0.7)) %>% 
-  align(i = NULL, j = 4, align = "right", part = "all") %>% 
-  padding(i = c(7, 14, 21, 28, 35), j = NULL, padding.bottom = 8, 
-          part = "body") %>%
-  font(fontname = "Times", part = "all") %>%
-  fontsize(size = 9, part = "all") %>%
-  border_remove(.) %>%
-  border(., part = "header",
-            border.top = my_border,
-            border.bottom = my_border) %>%
-  hline_bottom(., part = "body", border = my_border) %>%
-  set_caption(., caption = "test")
-```
 
 
 
@@ -277,23 +272,26 @@ knitr::include_graphics(
 ```
 
 
-```{r, 'bi-poa-table'}
-my_border <- officer::fp_border(width = 1.5)
 
-read_csv(here("data", "tidy", "table_bi_poa_model_summary.csv")) %>% 
-  flextable() %>%
-  width(j = c(2, 3, 4, 5, 6), width = c(1.4, 0.7, 1.25, 0.7, 0.7)) %>% 
-  align(i = NULL, j = 4, align = "right", part = "all") %>% 
-  padding(i = c(7, 14, 21, 28, 35), j = NULL, padding.bottom = 8, 
-          part = "body") %>%
-  font(fontname = "Times", part = "all") %>%
-  fontsize(size = 9, part = "all") %>%
-  border_remove(.) %>%
-  border(., part = "header",
-            border.top = my_border,
-            border.bottom = my_border) %>%
-  hline_bottom(., part = "body", border = my_border) %>%
-  set_caption(., caption = "test")
+
+
+
+
+# Results
+
+# Discussion
+
+
+\newpage
+
+# References
+```{r create_r-references}
+r_refs(file = "r-references.bib")
 ```
 
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
 
+<div id = "refs"></div>
+\endgroup
