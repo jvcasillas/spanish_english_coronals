@@ -99,8 +99,63 @@ d_t_bi_comp <- plot_posterior(
 
 
 
-# Comparison of English d and Spanish t: COG ----------------------------------
+# Comparison of POA - en vs. sp: ----------------------------------------------
 
+# VOT
+poa_coronal_vot_post <- posterior_poa_adj %>%
+  filter(metric == "vot", place == "coronal") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_bilabial_vot_post <- posterior_poa_adj %>%
+  filter(metric == "vot", place == "bilabial") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_coronal_vot_comp <- plot_posterior(
+  posterior = poa_coronal_vot_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = 1.0, ypos = c(2, 1.75, 1.5))
+
+poa_bilabial_vot_comp <- plot_posterior(
+  posterior = poa_bilabial_vot_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = 0.85, ypos = c(1.2, 1.1, 1))
+
+# RI
+poa_coronal_ri_post <- posterior_poa_adj %>%
+  filter(metric == "ri", place == "coronal") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_bilabial_ri_post <- posterior_poa_adj %>%
+  filter(metric == "ri", place == "bilabial") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_coronal_ri_comp <- plot_posterior(
+  posterior = poa_coronal_ri_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = 0.5, ypos = c(2, 1.75, 1.5))
+
+poa_bilabial_ri_comp <- plot_posterior(
+  posterior = poa_bilabial_ri_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = -0.3, ypos = c(1.2, 1, 0.8))
+
+# COG
 poa_coronal_cog_post <- posterior_poa_adj %>%
   filter(metric == "cog", place == "coronal") %>%
   select(-metric, -place) %>%
@@ -120,17 +175,99 @@ poa_bilabial_cog_post <- posterior_poa_adj %>%
   mutate(diff = english - spanish)
 
 
-hold <- plot_posterior(
+poa_coronal_cog_comp <- plot_posterior(
   posterior = poa_coronal_cog_post, parameter = diff, rope = c(-0.1, 0.1),
   color = 2, hdi = 0.95, xpos = 0.7, ypos = c(2, 1.75, 1.5))
 
-plot_posterior(
+poa_bilabial_cog_comp <- plot_posterior(
   posterior = poa_bilabial_cog_post, parameter = diff, rope = c(-0.1, 0.1),
-  color = 2, hdi = 0.95, xpos = -0.55, ypos = c(1.2, 1.1, 1))
+  color = 2, hdi = 0.95, xpos = -0.6, ypos = c(1.2, 1.1, 1))
 
-hold[["plot_env"]][["summary_vals"]]
+# KT
+poa_coronal_kt_post <- posterior_poa_adj %>%
+  filter(metric == "kt", place == "coronal") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_bilabial_kt_post <- posterior_poa_adj %>%
+  filter(metric == "kt", place == "bilabial") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+
+poa_coronal_kt_comp <- plot_posterior(
+  posterior = poa_coronal_kt_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = -1.15, ypos = c(2, 1.75, 1.5))
+
+poa_bilabial_kt_comp <- plot_posterior(
+  posterior = poa_bilabial_kt_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = -0.5, ypos = c(1.4, 1.2, 1))
+
+# SD
+poa_coronal_sd_post <- posterior_poa_adj %>%
+  filter(metric == "sd", place == "coronal") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_bilabial_sd_post <- posterior_poa_adj %>%
+  filter(metric == "sd", place == "bilabial") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+
+poa_coronal_sd_comp <- plot_posterior(
+  posterior = poa_coronal_sd_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = 0.5, ypos = c(2, 1.75, 1.5))
+
+poa_bilabial_sd_comp <- plot_posterior(
+  posterior = poa_bilabial_sd_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = -0.5, ypos = c(1.4, 1.2, 1))
+
+# SK
+poa_coronal_sk_post <- posterior_poa_adj %>%
+  filter(metric == "sk", place == "coronal") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_bilabial_sk_post <- posterior_poa_adj %>%
+  filter(metric == "sk", place == "bilabial") %>%
+  select(-metric, -place) %>%
+  group_by(language) %>%
+  mutate(grouped_id = row_number()) %>%
+  ungroup(.) %>%
+  spread(language, val) %>%
+  mutate(diff = english - spanish)
+
+poa_coronal_sk_comp <- plot_posterior(
+  posterior = poa_coronal_sk_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = -0.85, ypos = c(2, 1.75, 1.5))
+
+poa_bilabial_sk_comp <- plot_posterior(
+  posterior = poa_bilabial_sk_post, parameter = diff, rope = c(-0.1, 0.1),
+  color = 2, hdi = 0.95, xpos = -0.6, ypos = c(1.4, 1.2, 1))
 
 # -----------------------------------------------------------------------------
+
 
 
 
@@ -145,9 +282,46 @@ bind_rows(
     mutate(comp = "d_t_mono"),
   d_t_bi_comp[["plot_env"]][["summary_vals"]] %>%
     select(-density) %>%
-    mutate(comp = "d_t_bi")
+    mutate(comp = "d_t_bi"),
+  poa_coronal_vot_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_coronal_vot"),
+  poa_bilabial_vot_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_bilabial_vot"),
+  poa_coronal_ri_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_coronal_ri"),
+  poa_bilabial_ri_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_bilabial_ri"),
+  poa_coronal_cog_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_coronal_cog"),
+  poa_bilabial_cog_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_bilabial_cog"),
+  poa_coronal_kt_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_coronal_kt"),
+  poa_bilabial_kt_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_bilabial_kt"),
+  poa_coronal_sd_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_coronal_sd"),
+  poa_bilabial_sd_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_bilabial_sd"),
+  poa_coronal_sk_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_coronal_sk"),
+  poa_bilabial_sk_comp[["plot_env"]][["summary_vals"]] %>%
+    select(-density) %>%
+    mutate(comp = "poa_bilabial_sk")
   ) %>%
   mutate_if(is.numeric, round, digits = 3) %>%
   saveRDS(here("data", "models", "post_hoc_analyses.rds"))
 
 # -----------------------------------------------------------------------------
+
