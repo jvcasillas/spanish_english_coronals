@@ -48,6 +48,9 @@ knitr::opts_chunk$set(echo = F, message = F, warning = F,
                       cache.extra = knitr::rand_seed)
 ```
 
+```{r, 'load-all'}
+source(here::here("scripts", "r", "production", "10_small_data.R"))
+```
 
 # Overview
 
@@ -104,26 +107,30 @@ This type of interepretation is not possible under a frequentist paradigm.
 
 ### Participants
 
-The data include 3 populations: monolingual English speakers, monolingual 
-Spanish speakers, Bilingual English-Spanish speakers.
+The data include `r exp_n` participants from 3 populations: monolingual 
+English speakers, monolingual Spanish speakers, Bilingual English-Spanish 
+speakers.
 
 #### Monolingual English speakers
 
-The monolingual English speakers are from the U.S. Southwest. 
+The study ingludes `r mono_en_n` monolingual English speakers from the U.S. 
+Southwest. 
 Age and other info here. 
 
 #### Monolingual Spanish speakers
 
-The monolingual Spanish speakers com from Majorca, Spain. 
-They are actual bilingual. 
-There are N of them. 
+The monolingual Spanish speakers come from Majorca, Spain. 
+There are `r mono_sp_n` of them. 
 Age and other info here. 
 
 #### Bilingual speakers
 
-The English-Spanish bilinguals are from Southern Arizona, Northern Mexico. 
+The English-Spanish bilinguals (n = `r bi_coronals_n + bi_poa_n`) are from 
+Southern Arizona, Northern Mexico. 
 Age, BLP and other info. 
 Note there are two samples from this population. 
+The coronal dataset includes `r bi_coronals_n` speakers and the bilabial 
+dataset includes `r bi_poa_n` speakers. 
 
 
 ## About this document
@@ -146,71 +153,62 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 
 # Results
 
+## Experiment 0: Vowels
+
+```{r, 'plot-monolingual-vowels', echo=FALSE, fig.cap="F1 and F2 of /a/ from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
+knitr::include_graphics(
+  here("figs", "vowel_all_metrics.pdf")
+)
+```
+
+```{r, 'plot-monolingual-vowels-summary', echo=FALSE, fig.cap="Model plot."}
+knitr::include_graphics(
+  here("figs", "vowel_summary.pdf")
+)
+```
+
+
 ## Experiment 1: Monolinguals
 
-```{r, mods}
-mod_coronals_kt_mono_full <- readRDS(
-  here("data", "models", "mod_coronals_kt_mono_full.rds"))
-```
 
-```{r, test-table, eval=F}
-academicWriteR::mod_to_table(
-  mod_coronals_kt_mono_full,
-  font_size = 11,
-  left_align = 1,
-  param_names = c(
-    Intercept = "(Intercept)",
-    Group = "group_sum",
-    Phoneme = "phon_sum",
-    `Lexical stress` = "stress_sum", 
-    `Item repetition` = "rep_n", 
-    `Group x Phoneme` = "group_sum:phon_sum", 
-    `Group x Lexical stress` = "group_sum:stress_sum", 
-    `Phoneme x Lexical stress` = "phon_sum:stress_sum", 
-    `Group x Phoneme x Lexical stress` = "group_sum:phon_sum:stress_sum"),
-  col = c(1, 2), 
-  width = 2.2)
-```
-
-
-```{r, 'plot-monolinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish), and lexical stress (Stressed, Unstressed). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
+```{r, 'plot-monolinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals."}
 knitr::include_graphics(
-  here("figs", "mono_all_metrics.png")
+  here("figs", "mono_all_metrics.pdf")
 )
 ```
 
 ```{r, 'plot-monolinguals-summary', echo=FALSE, fig.cap="Model plot."}
 knitr::include_graphics(
-  here("figs", "mono_summary.png")
+  here("figs", "mono_summary.pdf")
 )
 ```
 
 
 ## Experiment 2: Bilinguals
 
-```{r, 'plot-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish), and lexical stress (Stressed, Unstressed). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
+```{r, 'plot-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals."}
 knitr::include_graphics(
-  here("figs", "bi_all_metrics.png")
+  here("figs", "bi_all_metrics.pdf")
 )
 ```
 
 ```{r, 'plot-bilinguals-summary', echo=FALSE, fig.cap="Model plot."}
 knitr::include_graphics(
-  here("figs", "bi_summary.png")
+  here("figs", "bi_summary.pdf")
 )
 ```
 
 ## Experiment 3: Bilingual POA data
 
-```{r, 'plot-poa-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial), and lexical stress (Stressed, Unstressed). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals."}
+```{r, 'plot-poa-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals."}
 knitr::include_graphics(
-  here("figs", "poa_all_metrics.png")
+  here("figs", "poa_all_metrics.pdf")
 )
 ```
 
 ```{r, 'plot-poa-bilinguals-summary', echo=FALSE, fig.cap="Model plot."}
 knitr::include_graphics(
-  here("figs", "poa_summary.png")
+  here("figs", "poa_summary.pdf")
 )
 ```
 
