@@ -19,13 +19,16 @@ posterior_vowels <-
   readRDS(here("data", "models", "posterior_vowels.rds"))
 
 posterior_mono <-
-  readRDS(here("data", "models", "posterior_mono.rds"))
+  readRDS(here("data", "models", "posterior_mono.rds")) %>%
+  filter(parameters != "b_rep_n")
 
 posterior_bi <-
-  readRDS(here("data", "models", "posterior_bi.rds"))
+  readRDS(here("data", "models", "posterior_bi.rds")) %>%
+  filter(parameters != "b_rep_n")
 
 posterior_poa <-
-  readRDS(here("data", "models", "posterior_poa_comp.rds"))
+  readRDS(here("data", "models", "posterior_poa_comp.rds")) %>%
+  filter(parameters != "b_rep_n")
 
 posterior_vowels_adj <-
   readRDS(here("data", "models", "posterior_vowels_adj.rds"))
@@ -80,8 +83,10 @@ vowel_all_metrics <- coronals_vowels %>%
     scale_color_manual(name = NULL, values = my_colors) +
     scale_fill_manual(name = NULL, values = my_colors) +
     labs(y = "F1 (std)", x = "F2 (std)") +
-    theme_minimal(base_size = 16, base_family = "Times") +
-    theme(legend.position = c(0.75, 0.25))
+    theme_minimal(base_size = 12, base_family = "Times") +
+    theme(legend.position = c(0.75, 0.25),
+          panel.grid.major = element_line(colour = 'grey90', size = 0.25),
+          panel.grid.minor = element_line(colour = 'grey90', size = 0.25))
 
 # -----------------------------------------------------------------------------
 
@@ -154,21 +159,21 @@ path_bi_sum    <- file.path(here("figs"), "bi_summary.")
 path_poa_sum   <- file.path(here("figs"), "poa_summary.")
 
 walk(devices, ~ ggsave(filename = glue(path_vowel, .x), plot = vowel_all_metrics,
-                       device = .x, height = 7, width = 8, units = "in"))
+                       device = .x, height = 4, width = 5, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
-                       device = .x, height = 7, width = 14, units = "in"))
+                       device = .x, height = 5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
-                       device = .x, height = 7, width = 14, units = "in"))
+                       device = .x, height = 5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
-                       device = .x, height = 7, width = 14, units = "in"))
+                       device = .x, height = 5, width = 9, units = "in"))
 
 walk(devices, ~ ggsave(filename = glue(path_vowel_sum, .x), plot = vowel_summary,
-                       device = .x, height = 6, width = 6, units = "in"))
+                       device = .x, height = 3, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono_sum, .x), plot = mono_summary,
-                       device = .x, height = 6, width = 6, units = "in"))
+                       device = .x, height = 5.5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi_sum, .x), plot = bi_summary,
-                       device = .x, height = 6, width = 6, units = "in"))
+                       device = .x, height = 5.5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_poa_sum, .x), plot = poa_summary,
-                       device = .x, height = 6, width = 6, units = "in"))
+                       device = .x, height = 5.5, width = 9, units = "in"))
 
 # -----------------------------------------------------------------------------

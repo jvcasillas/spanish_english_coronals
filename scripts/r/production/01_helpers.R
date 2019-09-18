@@ -140,7 +140,9 @@ my_theme_adj <- function() {
       legend.position = "bottom",
       axis.title.y = element_text(size = rel(.9), hjust = 0.95),
       axis.title.x = element_text(size = rel(.9)),
-      legend.key = element_blank()
+      legend.key = element_blank(),
+      panel.grid.major = element_line(colour = 'grey90', size = 0.25),
+      panel.grid.minor = element_line(colour = 'grey90', size = 0.25)
       ),
     guides(colour = guide_legend(override.aes = list(alpha = 1, size = 3)),
            shape = guide_legend(override.aes = list(size = 3)))
@@ -158,9 +160,9 @@ plot_metrics <- function(dataframe, posterior, x, color,
     aes(x = !!x, y = val, fill = !!color, color = !!color) +
     facet_wrap(~ metric, scales = "free_y",
                labeller = as_labeller(facet_labels)) +
-    geom_beeswarm(dodge.width = 0.5, alpha = 0.3) +
+    geom_beeswarm(dodge.width = 0.5, alpha = 0.15) +
     stat_pointinterval(data = posterior, show.legend = F,
-                       color = "black", .width = c(.80, .95),
+                       color = "black", .width = c(.80, .99),
                        position = position_dodge(0.5)) +
     stat_summary(data = posterior, fun.y = mean, geom = "point",
                  position = position_dodge(0.5), size = 2, show.legend = F) +
@@ -170,7 +172,7 @@ plot_metrics <- function(dataframe, posterior, x, color,
                       labels = color_labs) +
     scale_x_discrete(labels = xlabs) +
     labs(y = "Metric (std. units)", x = NULL) +
-    theme_grey(base_family = "Times", base_size = 16) +
+    theme_minimal(base_family = "Times", base_size = 17) +
     my_theme_adj()
 }
 
@@ -180,34 +182,40 @@ model_plot_vowel_y_labs <-
   c("Item rep", "Phoneme", "Language", "Intercept")
 
 model_plot_mono_y_labs <-
-  c("Group x Phoneme", "Item rep", "F2", "F1", "Phoneme", "Group", "Intercept")
+  c("Group x\nPhoneme", "F2", "F1", "Phoneme", "Group", "Intercept")
 
 model_plot_bi_y_labs <-
-  c("Language x Phoneme", "Item rep", "F2", "F1", "Phoneme", "Language",
+  c("Language x\nPhoneme", "F2", "F1", "Phoneme", "Language",
     "Intercept")
 
 model_plot_poa_y_labs <-
-  c("Language x Place", "Item rep", "F2", "F1", "Place", "Language",
+  c("Language x\nPlace", "F2", "F1", "Place", "Language",
     "Intercept")
 
 # Theme adjustment for model summary plots
-model_theme_adj <-
+model_theme_adj <- function() {
+  list(
     theme(
       axis.title.y = element_text(size = rel(.9), hjust = 0.95),
       axis.title.x = element_text(size = rel(.9), hjust = 0.95),
+      panel.grid.major = element_line(colour = 'grey90', size = 0.25),
+      panel.grid.minor = element_line(colour = 'grey90', size = 0.25),
+      legend.position = c(0.97, 0.5), legend.justification = c(1, 1),
       legend.key = element_blank())
+  )
+}
 
 # Make model summary plot
 model_summary_plot <- function(posterior, ylabs) {
   ggplot(posterior, aes(y = parameters, x = estimate, color = metric)) +
     geom_vline(xintercept = 0, lty = 3) +
-    stat_halfeyeh(position = position_dodgev(0.6)) +
+    stat_pointintervalh(position = position_dodgev(0.5)) +
     scale_y_discrete(labels = ylabs) +
     scale_color_brewer(name = NULL, palette = "Dark2") +
     coord_cartesian(xlim = c(-1, 1)) +
     labs(y = "Parameters", x = "Estimates") +
     theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj
+    model_theme_adj()
 }
 
 
@@ -275,7 +283,7 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
         aes(x = x, y = density, label = text)) +
     labs(y = ylab, x = xlab) +
     theme_minimal(base_size = 16, base_family = "Times") +
-    model_theme_adj
+    model_theme_adj()
   print(plot_final)
 
 }
