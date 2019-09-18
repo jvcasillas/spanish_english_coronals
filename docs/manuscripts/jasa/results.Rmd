@@ -49,7 +49,7 @@ knitr::opts_chunk$set(echo = F, message = F, warning = F,
 ```
 
 ```{r, 'load-all'}
-source(here::here("scripts", "r", "production", "10_small_data.R"))
+source(here::here("scripts", "r", "production", "99_small_data.R"))
 ```
 
 # Overview
@@ -167,6 +167,26 @@ knitr::include_graphics(
 )
 ```
 
+```{r, 'vowel-table'}
+my_border <- officer::fp_border(width = 1.5)
+
+read_csv(here("data", "tidy", "table_vowel_model_summary.csv")) %>% 
+  flextable() %>%
+  width(., j = c(2, 3, 4, 5, 6), width = c(1.2, 0.7, 1.25, 0.7, 0.7)) %>% 
+  align(., i = NULL, j = 4, align = "right", part = "all") %>% 
+  padding(., i = 4, j = NULL, padding = NULL, padding.top = NULL,
+  padding.bottom = 8, padding.left = NULL, padding.right = NULL,
+  part = "body") %>% 
+  font(., fontname = "Times", part = "all") %>%
+  fontsize(., size = 11) %>%
+  border_remove(.) %>%
+  border(., part = "header",
+            border.top = my_border,
+            border.bottom = my_border) %>%
+  hline_bottom(., part = "body", border = my_border) %>%
+  set_caption(., caption = "test")
+```
+
 
 ## Experiment 1: Monolinguals
 
@@ -183,6 +203,27 @@ knitr::include_graphics(
 )
 ```
 
+```{r, 'mono-table'}
+my_border <- officer::fp_border(width = 1.5)
+
+read_csv(here("data", "tidy", "table_mono_model_summary.csv")) %>% 
+  flextable() %>%
+  width(j = c(2, 3, 4, 5, 6), width = c(1.4, 0.7, 1.25, 0.7, 0.7)) %>% 
+  align(i = NULL, j = 4, align = "right", part = "all") %>% 
+  padding(i = c(7, 14, 21, 28, 35), j = NULL, padding.bottom = 8, 
+          part = "body") %>%
+  font(fontname = "Times", part = "all") %>%
+  fontsize(size = 9, part = "all") %>%
+  border_remove(.) %>%
+  border(., part = "header",
+            border.top = my_border,
+            border.bottom = my_border) %>%
+  hline_bottom(., part = "body", border = my_border) %>%
+  set_caption(., caption = "test")
+```
+
+
+
 
 ## Experiment 2: Bilinguals
 
@@ -198,6 +239,29 @@ knitr::include_graphics(
 )
 ```
 
+
+```{r, 'bi-table'}
+my_border <- officer::fp_border(width = 1.5)
+
+read_csv(here("data", "tidy", "table_bi_model_summary.csv")) %>% 
+  flextable() %>%
+  width(j = c(2, 3, 4, 5, 6), width = c(1.4, 0.7, 1.25, 0.7, 0.7)) %>% 
+  align(i = NULL, j = 4, align = "right", part = "all") %>% 
+  padding(i = c(7, 14, 21, 28, 35), j = NULL, padding.bottom = 8, 
+          part = "body") %>%
+  font(fontname = "Times", part = "all") %>%
+  fontsize(size = 9, part = "all") %>%
+  border_remove(.) %>%
+  border(., part = "header",
+            border.top = my_border,
+            border.bottom = my_border) %>%
+  hline_bottom(., part = "body", border = my_border) %>%
+  set_caption(., caption = "test")
+```
+
+
+
+
 ## Experiment 3: Bilingual POA data
 
 ```{r, 'plot-poa-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals."}
@@ -212,5 +276,24 @@ knitr::include_graphics(
 )
 ```
 
+
+```{r, 'bi-poa-table'}
+my_border <- officer::fp_border(width = 1.5)
+
+read_csv(here("data", "tidy", "table_bi_poa_model_summary.csv")) %>% 
+  flextable() %>%
+  width(j = c(2, 3, 4, 5, 6), width = c(1.4, 0.7, 1.25, 0.7, 0.7)) %>% 
+  align(i = NULL, j = 4, align = "right", part = "all") %>% 
+  padding(i = c(7, 14, 21, 28, 35), j = NULL, padding.bottom = 8, 
+          part = "body") %>%
+  font(fontname = "Times", part = "all") %>%
+  fontsize(size = 9, part = "all") %>%
+  border_remove(.) %>%
+  border(., part = "header",
+            border.top = my_border,
+            border.bottom = my_border) %>%
+  hline_bottom(., part = "body", border = my_border) %>%
+  set_caption(., caption = "test")
+```
 
 
