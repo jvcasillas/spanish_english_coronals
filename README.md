@@ -1,7 +1,7 @@
 
 # Spanish/English coronal stops
 
-Last update: 2019-08-27
+Last update: 2019-09-18
 
     .
     ├── README.Rmd
@@ -44,7 +44,11 @@ Last update: 2019-08-27
     │   ├── poa_all_metrics.pdf
     │   ├── poa_all_metrics.png
     │   ├── poa_summary.pdf
-    │   └── poa_summary.png
+    │   ├── poa_summary.png
+    │   ├── vowel_all_metrics.pdf
+    │   ├── vowel_all_metrics.png
+    │   ├── vowel_summary.pdf
+    │   └── vowel_summary.png
     ├── scripts
     │   ├── praat
     │   └── r
