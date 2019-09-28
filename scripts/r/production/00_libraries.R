@@ -22,5 +22,6 @@ library(ggstance)
 
 library(future)
 library(flextable)
+library(academicWriteR)
 
 # -----------------------------------------------------------------------------

@@ -15,5 +15,5 @@ read_csv(here("data", "tidy", "table_vowel_model_summary.csv")) %>%
             border.top = my_border,
             border.bottom = my_border) %>%
   hline_bottom(., part = "body", border = my_border) %>%
-  set_caption(., caption = "test")
+  set_caption(., caption = "Model summary for F1 and F2 as a function of language (English, Spanish), segment (/d/, /t/), and item repetition. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.")
 ```
