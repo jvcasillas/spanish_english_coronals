@@ -1,4 +1,3 @@
-# Overview
 
 ## Bayesian data analysis
 
@@ -47,11 +46,7 @@ We also note that the interval covers a wide range of values, thus we also
 conclude that we are not very certain about the size of the effect. 
 This type of interepretation is not possible under a frequentist paradigm.
 
-## About this document
 
-This document was written in RMarkdown using `papaja` [@R-papaja] and serves 
-as a project report for our research group.
-The document is written as if it were the results section of a future 
-manuscript.
-This implies that it is written in a way that allows it to be copy and pasted 
-into the actual manuscript once it is available.
+effectSize = (mu1 - mu2) / sqrt((sigma1^2 + sigma2^2) / 2)
+
+$$es = \frac{\mu_1 - \mu_2}{\sqrt{\frac{\sigma_1^2 + \sigma_2^2}{2}}}$$
