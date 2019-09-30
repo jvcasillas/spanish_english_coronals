@@ -19,7 +19,8 @@ affiliation:
     institution   : "Concordia College"
 
 authornote: |
-  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+  Add complete departmental affiliations for each author here. Each new line 
+  herein must be indented, like this line.
 
   Enter author note here.
 
@@ -35,12 +36,12 @@ bibliography      :
   - "stats-references.bib"
 
 appendix:
-  - "appendix_a.Rmd"
-  - "appendix_b.Rmd"
-  - "appendix_c.Rmd"
-  - "appendix_d.Rmd"
-  - "appendix_e.Rmd"
-  - "appendix_f.Rmd"
+  - "appendix-a.Rmd"
+  - "appendix-b.Rmd"
+  - "appendix-c.Rmd"
+  - "appendix-d.Rmd"
+  - "appendix-e.Rmd"
+  - "appendix-f.Rmd"
 
 floatsintext      : yes
 figurelist        : yes
@@ -87,9 +88,8 @@ The monolingual English speakers were recorded in English and the monolingual
 Spanish speakers were recorded in Spanish. 
 The Spanish-English bilinguals were recorded in both of their languages.
 
-### Monolingual English speakers
-
-The study includes `r mono_en_n` monolingual English speakers.
+**Monolingual English speakers.** The study includes `r mono_en_n` monolingual 
+English speakers.
 They were undergraduate students at the University of Arizona, born and raised 
 in the US Southwest. 
 The English speakers were functionally monolingual, though they reported having 
@@ -100,11 +100,10 @@ language and verified not having been exposed to any other languages while
 growing up.
 
 
-### Monolingual Spanish speakers
-
-The monolingual Spanish group comprised `r mono_sp_n` speakers that were 
-recruited from the *Universitat de les  Illes Balears* campus community and 
-were born and raised on the island of Majorca, Spain.
+**Monolingual Spanish speakers.** The monolingual Spanish group comprised 
+`r mono_sp_n` speakers that were recruited from the 
+*Universitat de les  Illes Balears* campus community and were born and raised 
+on the island of Majorca, Spain.
 They reported that, although they had studied some English in Spain, they were 
 not able to maintain a basic conversation in this language. 
 The participants of this group also speak Catalan. 
@@ -112,16 +111,15 @@ Importantly, there are no reported differences in the phonetic realization of
 voice timing between the Spanish and Catalan, nor are there place difference 
 between the coronal stops. 
 
-### Bilingual speakers
-
-The English-Spanish bilinguals (n = `r bi_coronals_n + bi_poa_n`) came from 
-Southern Arizona and Northern Mexico. 
+**Bilingual speakers.** The English-Spanish bilinguals (n = 
+`r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
 There are two samples from this population. 
 The coronal dataset includes `r bi_coronals_n` speakers and the bilabial 
 dataset includes `r bi_poa_n` speakers. 
 The Spanish-English bilinguals were undergraduate students at the University 
 of Arizona in Tucson, Arizona. 
-The bilinguals were brought up by Spanish-speaking families and were schooled  mostly in English. 
+The bilinguals were brought up by Spanish-speaking families and were schooled 
+mostly in English. 
 They reported using English and Spanish daily, both in the classroom as well 
 as with their friends and relatives.
 
@@ -139,23 +137,24 @@ sections.
 ## Statistical analyses
 
 All analyses were conducted in `R` [@R-base, `r r_version`]. 
-We use Bayesian multilevel models fitted in `Stan` using `brms` [@R-brms_a; @R-brms_b, `r brms_version`].
-Bayesian Data Analysis (BDA) has become a welcome alternative to frequentist 
-statistical analysis. 
-See @van2014bayesian and @vasishth2018bayesian for tutorials and in depth 
-explanations related BDA in the psychological and speech sciences.
+We use Bayesian multilevel models fitted in `Stan` using `brms` 
+[@R-brms_a; @R-brms_b, `r brms_version`].
+Bayesian Data Analysis (BDA) is an alternative to frequentist statistical 
+analysis.^[See @van2014bayesian and @vasishth2018bayesian for tutorials and in 
+depth explanations related to BDA in the psychological and speech sciences.] 
 For all models, the criterion was standardized, or converted to z-scores, 
-in order to facilitate comparibility between metrics. 
+in order to facilitate comparability between metrics. 
 Continuous predictors were also standardized and categorical predictors were 
 sum-to-zero coded. 
 Thus for all models the intercept represents the outcome variable at the 
 grand mean in standardized units. 
 We used regularizing, weakly informative priors in all models (specifics below) 
-with 4,000 iterations (2,000 warmup) running on 16 processing cores. 
+with 4,000 iterations (2,000 warm-up) running on 16 processing cores. 
 We quantify our uncertainty regarding a given effect by reporting point 
 estimates derived from the posterior predictive distribution, including the 
 95% Highest Density Credible Intervals (HDI). 
-Additionally, we assume a negligible effect size of &plusmn; 0.1 [@cohen1988statistical; @cohen2013statistical; @kruschke2018rejecting] 
+Additionally, we assume a negligible effect size of &plusmn; 0.1 
+[@cohen1988statistical; @cohen2013statistical; @kruschke2018rejecting] 
 in order to establish a Region of Practical Equivalence (ROPE), for which we 
 assess the proportion of the HDI that falls within this interval.
 Finally, we report the Maximum Probability of Effect (MPE), or the Probability 
@@ -171,13 +170,28 @@ reasonable margin and the MPE is close to 1.
 # Results
 
 The results are divided into 3 subsections dealing with (1) monolingual data, 
-(2) bilingual data, and (3) POA data.
+(2) bilingual data, and (3) POA data. 
+Each subsection presents the results of 6 metrics: VOT, relative intensity, 
+center of gravity, kurtosis, standard deviation, and skewness. 
+We report only relevant effects. 
+Please see the supplementary materials (Appendices A-D) for complete model 
+summaries. 
 
 ## Experiment 1: Monolinguals
 
-Model info here.
-
-
+We modeled VOT and the burst metrics as a function of language (English, 
+Spanish), phoneme (/d/, /t/), standardized F1 and F2, and item repetitions. 
+The model used regularizing, weakly informative priors \citep{Gelman_2017, 
+vasishth2018bayesian}.
+Specifically, all parameters were assumed to be distributed as normal with a 
+standard deviation of 5, i.e., $Normal(\mu = 0$, $\sigma = 5)$. 
+The standard deviation parameters for random effects and the model residual 
+error (sigma) were truncated to exclude negative values. 
+Figure\ \@ref(fig:plot-monolinguals) plots VOT and the burst metrics as a 
+function of language (English, Spanish) and phoneme (/d/, /t/).
+For all plots the y-axis represents the outcome variable in standardized units. 
+The x-axis indicates the language and voiced/voiceless pairs are represented 
+by color. 
 
 (ref:plot-monolinguals) VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals.
 
@@ -187,19 +201,26 @@ knitr::include_graphics(
 )
 ```
 
-### VOT
+**Voice-onset time**. English stops had higher VOT than Spanish stops 
+`r print_model_param(all_models$mod_coronals_vot_mono, "group_sum")` and the 
+voiceless segments had higher VOT than the voiceless segments 
+`r print_model_param(all_models$mod_coronals_vot_mono, "phon_sum")`. 
+For both language and phoneme none of the HDI fell within the ROPE and the MPE 
+was 100%. 
+Thus there was compelling evidence for an effect of language and phoneme, as 
+well as a moderate interaction between the two predictors 
+`r print_model_param(all_models$mod_coronals_vot_mono, "group_sum:phon_sum")`, 
+such that the voicing difference between Spanish coronals was larger than that 
+of the English coronals.
+For the language &#215; phoneme interaction .364 of the HDI was within the 
+ROPE and the MPE was .998. 
+The VOT data is plotted in first panel of Figure\ \@ref(fig:plot-monolinguals) 
+and the complete model summary is available in Appendix B.
+<!--
+\ \@ref(mono-table).
+-->
 
-`r print_model_param(all_models$mod_coronals_vot_mono, "group_sum")`  
-
-`r print_model_param(all_models$mod_coronals_vot_mono, "phon_sum")`  
-
-`r print_model_param(all_models$mod_coronals_vot_mono, "f1_std")`  
-
-`r print_model_param(all_models$mod_coronals_vot_mono, "f2_std")`  
-
-`r print_model_param(all_models$mod_coronals_vot_mono, "group_sum:phon_sum")`
-
-### RI
+**Relative intensity**. 
 
 `r print_model_param(all_models$mod_coronals_ri_mono, "group_sum")`  
 
@@ -211,7 +232,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_ri_mono, "group_sum:phon_sum")`
 
-### COG
+**Center of gravity.**
 
 `r print_model_param(all_models$mod_coronals_cog_mono, "group_sum")`  
 
@@ -223,7 +244,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_cog_mono, "group_sum:phon_sum")`
 
-### Kurtosis
+**Kurtosis.**
 
 `r print_model_param(all_models$mod_coronals_kt_mono, "group_sum")`  
 
@@ -235,7 +256,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_kt_mono, "group_sum:phon_sum")`
 
-### SD
+**Standard deviation.**
 
 `r print_model_param(all_models$mod_coronals_sd_mono, "group_sum")`  
 
@@ -247,7 +268,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_sd_mono, "group_sum:phon_sum")`
 
-### Skewness
+**Skewness.**
 
 `r print_model_param(all_models$mod_coronals_sk_mono, "group_sum")`  
 
@@ -260,7 +281,7 @@ knitr::include_graphics(
 `r print_model_param(all_models$mod_coronals_sk_mono, "group_sum:phon_sum")`
 
 
-(ref:plot-monolinguals-summary) Posterior medians  &plusmn; 95% and 66% credible intervals for VOT and burst metrics of monolingual coronal stops.
+(ref:plot-monolinguals-summary) Posterior medians &plusmn; 95% and 66% credible intervals for VOT and burst metrics of monolingual coronal stops.
 
 ```{r, 'plot-monolinguals-summary', echo=FALSE, fig.cap="(ref:plot-monolinguals-summary)"}
 knitr::include_graphics(
@@ -284,14 +305,15 @@ knitr::include_graphics(
 
 Model info here. 
 
+(ref:plot-bilinguals) VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals.
 
-```{r, 'plot-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals."}
+```{r, 'plot-bilinguals', echo=FALSE, fig.cap="(ref:plot-bilinguals)"}
 knitr::include_graphics(
   here("figs", "bi_all_metrics.pdf")
 )
 ```
 
-### VOT
+**Voice-onset time.**
 
 `r print_model_param(all_models$mod_coronals_vot_bi, "language_sum")`  
 
@@ -303,7 +325,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_vot_bi, "language_sum:phon_sum")`
 
-### RI
+**Relative intensity.**
 
 `r print_model_param(all_models$mod_coronals_ri_bi, "language_sum")`  
 
@@ -315,7 +337,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_ri_bi, "language_sum:phon_sum")`
 
-### COG
+**Center of gravity.**
 
 `r print_model_param(all_models$mod_coronals_cog_bi, "language_sum")`  
 
@@ -327,7 +349,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_cog_bi, "language_sum:phon_sum")`
 
-### Kurtosis
+**Kurtosis.**
 
 `r print_model_param(all_models$mod_coronals_kt_bi, "language_sum")`  
 
@@ -339,7 +361,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_kt_bi, "language_sum:phon_sum")`
 
-### SD
+**Standard deviation.**
 
 `r print_model_param(all_models$mod_coronals_sd_bi, "language_sum")`  
 
@@ -351,7 +373,7 @@ knitr::include_graphics(
 
 `r print_model_param(all_models$mod_coronals_sd_bi, "language_sum:phon_sum")`
 
-### Skewness
+**Skewness.**
 
 `r print_model_param(all_models$mod_coronals_sk_bi, "language_sum")`  
 
@@ -365,8 +387,9 @@ knitr::include_graphics(
 
 
 
+(ref:plot-bilinguals-summary) Posterior medians &plusmn; 95% and 66% credible intervals for VOT and burst metrics of bilingual coronal stops.
 
-```{r, 'plot-bilinguals-summary', echo=FALSE, fig.cap="Model plot."}
+```{r, 'plot-bilinguals-summary', echo=FALSE, fig.cap="(ref:plot-bilinguals-summary)"}
 knitr::include_graphics(
   here("figs", "bi_summary.pdf")
 )
@@ -386,13 +409,95 @@ knitr::include_graphics(
 
 ## Experiment 3: Bilingual POA data
 
-```{r, 'plot-poa-bilinguals', echo=FALSE, fig.cap="VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals."}
+Model info here. 
+
+
+(ref:plot-poa-bilinguals) VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals.
+
+```{r, 'plot-poa-bilinguals', echo=FALSE, fig.cap="(ref:plot-poa-bilinguals)"}
 knitr::include_graphics(
   here("figs", "poa_all_metrics.pdf")
 )
 ```
 
-```{r, 'plot-poa-bilinguals-summary', echo=FALSE, fig.cap="Model plot."}
+**Voice-onset time.**
+
+`r print_model_param(all_models$mod_poa_comp_vot, "language_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_vot, "poa_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_vot, "f1_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_vot, "f2_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_vot, "language_sum:poa_sum")`
+
+**Relative intensity.**
+
+`r print_model_param(all_models$mod_poa_comp_ri, "language_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_ri, "poa_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_ri, "f1_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_ri, "f2_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_ri, "language_sum:poa_sum")`
+
+**Center of gravity.**
+
+`r print_model_param(all_models$mod_poa_comp_cog, "language_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_cog, "poa_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_cog, "f1_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_cog, "f2_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_cog, "language_sum:poa_sum")`
+
+**Kurtosis.**
+
+`r print_model_param(all_models$mod_poa_comp_kt, "language_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_kt, "poa_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_kt, "f1_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_kt, "f2_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_kt, "language_sum:poa_sum")`
+
+**Standard deviation.**
+
+`r print_model_param(all_models$mod_poa_comp_sd, "language_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_sd, "poa_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_sd, "f1_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_sd, "f2_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_sd, "language_sum:poa_sum")`
+
+**Skewness.**
+
+`r print_model_param(all_models$mod_poa_comp_sk, "language_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_sk, "poa_sum")`  
+
+`r print_model_param(all_models$mod_poa_comp_sk, "f1_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_sk, "f2_std")`  
+
+`r print_model_param(all_models$mod_poa_comp_sk, "language_sum:poa_sum")`
+
+
+
+
+(ref:plot-poa-bilinguals-summary) Posterior medians &plusmn; 95% and 66% credible intervals for VOT and burst metrics of bilingual voiceless bilabial and coronal stops.
+
+```{r, 'plot-poa-bilinguals-summary', echo=FALSE, fig.cap="plot-poa-bilinguals-summary"}
 knitr::include_graphics(
   here("figs", "poa_summary.pdf")
 )
@@ -402,8 +507,14 @@ knitr::include_graphics(
 
 
 
+
+
+
 # Discussion
 
+## Summary of findings
+
+## Interpretation and implications
 
 
 \newpage
