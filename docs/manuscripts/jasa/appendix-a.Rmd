@@ -41,8 +41,8 @@ standardized F1 and F2 were used in subsequent analyses of the coronal stops
 to control for any coarticulatory effects on the burst. 
 Figure\ \@ref(fig:plot-monolingual-vowels) plots the F1 &#215; F2 data and 
 Figure\ \@ref(fig:plot-monolingual-vowels-summary) plots the model summary. 
-A complete summary of the F1 and F2 models is available in Table 1. 
-
+A complete summary of the F1 and F2 models is available in 
+Table A\@ref(tab:vowel-table). 
 
 (ref:plot-monolingual-vowels) F1 &#215; F2 of /a/ from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals.
 
@@ -64,6 +64,8 @@ knitr::include_graphics(
 
 
 
+Table: (\#tab:vowel-table) Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.
+
 ```{r, 'vowel-table', echo=F, fig.cap="(ref:vowel-table)"}
 my_border <- officer::fp_border(width = 1.5)
 
@@ -79,6 +81,6 @@ read_csv(here("data", "tidy", "table_vowel_model_summary.csv")) %>%
   border(., part = "header",
             border.top = my_border,
             border.bottom = my_border) %>%
-  hline_bottom(., part = "body", border = my_border) %>%
-  set_caption(., caption = "*Table A1*: Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.")
+  hline_bottom(., part = "body", border = my_border) #%>%
+  #set_caption(., caption = "*Table A1*: Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.")
 ```

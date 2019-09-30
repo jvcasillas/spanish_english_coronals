@@ -215,10 +215,7 @@ of the English coronals.
 For the language &#215; phoneme interaction .364 of the HDI was within the 
 ROPE and the MPE was .998. 
 The VOT data is plotted in first panel of Figure\ \@ref(fig:plot-monolinguals) 
-and the complete model summary is available in Appendix B.
-<!--
-\ \@ref(mono-table).
--->
+and the complete model summary is available in Table B\@ref(tab:mono-table).
 
 **Relative intensity**. 
 

@@ -1,7 +1,8 @@
 
-## Model summaries for monolingual data {#mono-table}
+Table: (\#tab:mono-table) Model summary for VOT and burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), F1, F2, and item repetition for monolingual coronal stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.
 
 ```{r, 'mono-table'}
+
 my_border <- officer::fp_border(width = 1.5)
 
 read_csv(here("data", "tidy", "table_mono_model_summary.csv")) %>% 
@@ -17,6 +18,6 @@ read_csv(here("data", "tidy", "table_mono_model_summary.csv")) %>%
   border(., part = "header",
             border.top = my_border,
             border.bottom = my_border) %>%
-  hline_bottom(., part = "body", border = my_border) %>%
-  set_caption(., caption = "*Table B1*: Model summary for VOT and burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), F1, F2, and item repetition for monolingual coronal stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.")
+  hline_bottom(., part = "body", border = my_border) #%>%
+  #set_caption(., caption = "Table (\\#tab:mono-table) Model summary for VOT and burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), F1, F2, and item repetition for monolingual coronal stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.")
 ```
