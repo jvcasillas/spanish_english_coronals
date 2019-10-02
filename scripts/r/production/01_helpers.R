@@ -289,3 +289,40 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
 }
 
 # -----------------------------------------------------------------------------
+
+
+
+
+
+# Printing functions ----------------------------------------------------------
+
+# Round and format numbers to exactly N digits
+round_exactly_n <- function(x, n = 3) {
+  if (x < 1) {
+    rounded_n <- format(round(x, digits = n), nsmall = n)
+    out <- substr(as.character(rounded_n), start = 2, stop = n + 2)
+  } else {
+  out <- format(round(x, digits = n), nsmall = n)
+  }
+  return(out)
+}
+
+# Convert probability (0-1) to percent
+convert_to_percent <- function(x) {
+  out <- round(x * 100, digits = 2)
+  return(out)
+}
+
+get_rope <- . %>%
+ rope(ci = 0.95) %>%
+ select(Parameter, ROPE_Percentage) %>%
+ spread(Parameter, ROPE_Percentage) %>%
+ mutate_all(convert_to_percent)
+
+get_mpe <- . %>%
+  p_direction() %>%
+  select(Parameter, pd) %>%
+  spread(Parameter, pd) %>%
+  mutate_all(round_exactly_n)
+
+# -----------------------------------------------------------------------------
