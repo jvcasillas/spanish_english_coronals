@@ -72,8 +72,13 @@ knitr::include_graphics(
 
 ```{r, 'vowel-table', echo=F}
 read_csv(here("data", "tidy", "table_vowel_model_summary.csv"), na = "NA") %>% 
+  mutate_at(.vars = c("Estimate", "HDI"), 
+            str_replace, pattern = "-", replacement = "&minus;") %>% 
   knitr::kable(format = "pandoc", 
     align = c("l", "l", "r", "r", "r", "r"), 
-    caption = "Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.", 
+    caption = "Model summary for F1 and F2 as a function of language 
+               (English, Spanish), phoneme (/d/, /t/), and item repetition for 
+               monolingual data. The percentage of the HDI contained within 
+               the ROPE is based on an effect size of &plusmn;0.1.",
     label = "vowel-table")
 ```
