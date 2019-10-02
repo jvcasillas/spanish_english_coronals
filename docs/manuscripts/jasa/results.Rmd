@@ -61,6 +61,8 @@ library("papaja")
 library("officer")
 library("flextable")
 library("brms")
+library("knitr")
+library("kableExtra")
 ```
 
 ```{r 'setup', include=FALSE}
@@ -68,13 +70,12 @@ set.seed(42)
 knitr::opts_chunk$set(echo = F, message = F, warning = F, 
                       cache.extra = knitr::rand_seed)
 options(width=80)
+options(kableExtra.auto_format = FALSE)
 ```
 
 ```{r, 'load-all'}
 source(here::here("scripts", "r", "production", "99_small_data.R"))
 ```
-
-
 
 # Method
 
@@ -215,7 +216,8 @@ of the English coronals.
 For the language &#215; phoneme interaction .364 of the HDI was within the 
 ROPE and the MPE was .998. 
 The VOT data is plotted in first panel of Figure\ \@ref(fig:plot-monolinguals) 
-and the complete model summary is available in Table B\@ref(tab:mono-table).
+and the complete model summary is available in Table \@ref(tab:mono-table).
+
 
 **Relative intensity**. 
 
