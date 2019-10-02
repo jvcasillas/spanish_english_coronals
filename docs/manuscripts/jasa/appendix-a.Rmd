@@ -24,9 +24,13 @@ The model suggested weak evidence for a language effect on F1
 `r print_model_param(all_models$mod_f1_mono_full, "language_sum")`
 and F2 
 `r print_model_param(all_models$mod_f2_mono_full, "language_sum")`. 
-Fifteen and eighteen percent of the HDI's fell within the specified ROPE for 
-F1 and F2, respectively. 
-The probability that &beta; was greater than 0 was .979 for F1 and .958 for F2. 
+For F1 and F2, 
+`r f1_rope$b_language_sum`% and 
+`r f1_rope$b_language_sum`% of the respective HDI's fell within the specified 
+ROPE.
+The probability that &beta; was greater than 0 was 
+`r f1_mpe$b_language_sum` for F1 and 
+`r f2_mpe$b_language_sum` for F2. 
 Together, the point estimates suggest the spectral centroid of the Spanish 
 vowel was slightly higher and more posterior with respect to that of the 
 English vowel.
@@ -34,15 +38,18 @@ There was no evidence for a phoneme effect on F1
 `r print_model_param(all_models$mod_f1_mono_full, "phon_sum")`, 
 nor on F2 
 `r print_model_param(all_models$mod_f2_mono_full, "phon_sum")`. 
-In both cases 100% of the HDI fell within the ROPE and the probability that 
-&beta; was less than 0 was .717 for F1 and .555 for F2. 
+In both cases 
+`r f1_rope$b_phon_sum`% of the HDI fell within the ROPE and the probability 
+that &beta; was less than 0 was 
+`r f1_mpe$b_phon_sum` for F1 and 
+`r f2_mpe$b_phon_sum` for F2.
 Given the possibility of a small effect of language on the spectal envelope, 
 standardized F1 and F2 were used in subsequent analyses of the coronal stops 
 to control for any coarticulatory effects on the burst. 
 Figure\ \@ref(fig:plot-monolingual-vowels) plots the F1 &#215; F2 data and 
 Figure\ \@ref(fig:plot-monolingual-vowels-summary) plots the model summary. 
 A complete summary of the F1 and F2 models is available in 
-Table A\@ref(tab:vowel-table). 
+Table \@ref(tab:vowel-table). 
 
 (ref:plot-monolingual-vowels) F1 &#215; F2 of /a/ from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals.
 
@@ -63,24 +70,10 @@ knitr::include_graphics(
 
 
 
-
-Table: (\#tab:vowel-table) Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.
-
-```{r, 'vowel-table', echo=F, fig.cap="(ref:vowel-table)"}
-my_border <- officer::fp_border(width = 1.5)
-
-read_csv(here("data", "tidy", "table_vowel_model_summary.csv")) %>% 
-  flextable() %>%
-  width(., j = c(2, 3, 4, 5, 6), width = c(1.2, 0.7, 1.25, 0.7, 0.7)) %>% 
-  align(., i = NULL, j = 4, align = "right", part = "all") %>% 
-  padding(., i = NULL,  padding.bottom = 0, padding.top = 0, part = "body") %>%
-  padding(., i = 4,  padding.bottom = 4, padding.top = 0, part = "body") %>%
-  font(., fontname = "Times", part = "all") %>%
-  fontsize(., size = 11) %>%
-  border_remove(.) %>%
-  border(., part = "header",
-            border.top = my_border,
-            border.bottom = my_border) %>%
-  hline_bottom(., part = "body", border = my_border) #%>%
-  #set_caption(., caption = "*Table A1*: Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.")
+```{r, 'vowel-table', echo=F}
+read_csv(here("data", "tidy", "table_vowel_model_summary.csv"), na = "NA") %>% 
+  knitr::kable(format = "pandoc", 
+    align = c("l", "l", "r", "r", "r", "r"), 
+    caption = "Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.", 
+    label = "vowel-table")
 ```
