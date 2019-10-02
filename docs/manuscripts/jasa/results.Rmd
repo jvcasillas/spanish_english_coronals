@@ -62,7 +62,6 @@ library("officer")
 library("flextable")
 library("brms")
 library("knitr")
-library("kableExtra")
 ```
 
 ```{r 'setup', include=FALSE}
@@ -70,7 +69,6 @@ set.seed(42)
 knitr::opts_chunk$set(echo = F, message = F, warning = F, 
                       cache.extra = knitr::rand_seed)
 options(width=80)
-options(kableExtra.auto_format = FALSE)
 ```
 
 ```{r, 'load-all'}
