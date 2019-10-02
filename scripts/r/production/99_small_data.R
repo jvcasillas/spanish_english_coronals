@@ -26,7 +26,6 @@ brms_version <- glue("version ",
 # -----------------------------------------------------------------------------
 
 
-
 # Sample sizes ----------------------------------------------------------------
 
 sample_size <- bind_rows(
@@ -44,5 +43,35 @@ mono_en_n     <- sample_size %>% filter(group == "NEN") %>% pull(n)
 bi_coronals_n <- sample_size %>% filter(group == "BIL") %>% pull(n)
 bi_poa_n      <- sample_size %>% filter(group == "POA") %>% pull(n)
 exp_n         <- sample_size %>% pull(n) %>% sum
+
+# -----------------------------------------------------------------------------
+
+
+# Vowel analysis --------------------------------------------------------------
+
+f1_rope <- all_models$mod_f1_mono_full %>% get_rope()
+f2_rope <- all_models$mod_f2_mono_full %>% get_rope()
+f1_mpe  <- all_models$mod_f1_mono_full %>% get_mpe()
+f2_mpe  <- all_models$mod_f2_mono_full %>% get_mpe()
+
+# -----------------------------------------------------------------------------
+
+
+# Monolingual analyses --------------------------------------------------------
+
+mono_vot_rope <- all_models$mod_coronals_vot_mono %>% get_rope()
+mono_vot_mpe  <- all_models$mod_coronals_vot_mono %>% get_mpe()
+
+# -----------------------------------------------------------------------------
+
+
+# Bilingual analyses ----------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------
+
+
+# POA analyses ----------------------------------------------------------------
+
 
 # -----------------------------------------------------------------------------
