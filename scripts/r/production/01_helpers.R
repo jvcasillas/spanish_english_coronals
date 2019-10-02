@@ -296,6 +296,25 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
 
 # Printing functions ----------------------------------------------------------
 
+
+# Make table
+make_model_table <- .  %>%
+describe_posterior(centrality = "mean", ci = 0.95, rope_ci = 0.95,
+                         test = c("rope", "p_direction")) %>%
+        as_tibble %>%
+        select(-CI, -ROPE_CI, -ROPE_low, -ROPE_high) %>%
+        mutate_if(is.numeric, round, digits = 3) %>%
+        mutate(CI_low = format(CI_low, nsmall = 3),
+               CI_low = str_replace(CI_low, " ", ""),
+               CI_high = format(CI_high, nsmall = 3),
+               CI_high = str_replace(CI_high, " ", "")) %>%
+        unite(HDI, CI_low, CI_high, sep = ", ") %>%
+        mutate(HDI = paste0("[", HDI, "]")) %>%
+        select(Parameter, Estimate = Mean, HDI, ROPE = ROPE_Percentage,
+               MPE = pd)
+
+
+
 # Round and format numbers to exactly N digits
 round_exactly_n <- function(x, n = 3) {
   if (x < 1) {
