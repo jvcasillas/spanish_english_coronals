@@ -208,6 +208,9 @@ model_theme_adj <- function() {
 # Make model summary plot
 model_summary_plot <- function(posterior, ylabs) {
   ggplot(posterior, aes(y = parameters, x = estimate, color = metric)) +
+    geom_rect(data = tibble(xmin = -0.1, xmax = 0.1), inherit.aes = FALSE,
+              aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
+              fill = "lightblue", color = "white", alpha = 0.2) +
     geom_vline(xintercept = 0, lty = 3) +
     stat_pointintervalh(position = position_dodgev(0.5)) +
     scale_y_discrete(labels = ylabs) +
@@ -312,8 +315,6 @@ describe_posterior(centrality = "mean", ci = 0.95, rope_ci = 0.95,
         mutate(HDI = paste0("[", HDI, "]")) %>%
         select(Parameter, Estimate = Mean, HDI, ROPE = ROPE_Percentage,
                MPE = pd)
-
-
 
 # Round and format numbers to exactly N digits
 round_exactly_n <- function(x, n = 3) {
