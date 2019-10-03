@@ -1,17 +1,31 @@
-# Source vowel models ---------------------------------------------------------
+# Create model summary tables -------------------------------------------------
+#
+# - use model objects to get summaries
+# - combine in large data frames
+# - edit as necessary
+# - save as .csv
+# - to be loaded in project report and converted to pandoc table
+#
+# -----------------------------------------------------------------------------
+
+
+# Source  models --------------------------------------------------------------
 
 source(here::here("scripts", "r", "production", "04a_vowel_analysis.R"))
+source(here::here("scripts", "r", "production", "05a_mono_analysis.R"))
+source(here::here("scripts", "r", "production", "06a_bi_analysis.R"))
+source(here::here("scripts", "r", "production", "07a_bi_poa_analysis.R"))
 
 # -----------------------------------------------------------------------------
+
+
+# F1/F2 table -----------------------------------------------------------------
 
 fix_vowel_params <- . %>%
   str_replace("b_Intercept", "Intercept") %>%
   str_replace("b_language_sum", "Language") %>%
   str_replace("b_phon_sum", "Phoneme") %>%
   str_replace("b_rep_n", "Item rep.")
-
-
-
 
 f1_f2_table <-
 bind_rows(
@@ -28,24 +42,7 @@ bind_rows(
 # -----------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Source monolingual models ---------------------------------------------------
-
-source(here::here("scripts", "r", "production", "05a_mono_analysis.R"))
-
-# -----------------------------------------------------------------------------
+# Monolingual table -----------------------------------------------------------
 
 fix_mono_params <- . %>%
   str_replace("b_Intercept", "Intercept") %>%
@@ -83,28 +80,7 @@ bind_rows(
 # -----------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Source bilingual models -----------------------------------------------------
-
-source(here::here("scripts", "r", "production", "06a_bi_analysis.R"))
-
-# -----------------------------------------------------------------------------
+# Bilingual table -------------------------------------------------------------
 
 fix_bi_params <- . %>%
   str_replace("b_Intercept", "Intercept") %>%
@@ -114,7 +90,6 @@ fix_bi_params <- . %>%
   str_replace("b_f2_std", "F2") %>%
   str_replace("b_rep_n", "Item rep.") %>%
   str_replace(".phon_sum", " x Phoneme")
-
 
 bi_table <-
 bind_rows(
@@ -143,26 +118,7 @@ bind_rows(
 # -----------------------------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Source bilingual models -----------------------------------------------------
-
-source(here::here("scripts", "r", "production", "07a_bi_poa_analysis.R"))
-
-# -----------------------------------------------------------------------------
+# Bilingual POA table ---------------------------------------------------------
 
 fix_bi_poa_params <- . %>%
   str_replace("b_Intercept", "Intercept") %>%
@@ -172,7 +128,6 @@ fix_bi_poa_params <- . %>%
   str_replace("b_f2_std", "F2") %>%
   str_replace("b_rep_n", "Item rep.") %>%
   str_replace(".poa_sum", " x Place")
-
 
 bi_poa_table <-
 bind_rows(
