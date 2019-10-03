@@ -7,8 +7,19 @@ read_csv(here("data", "tidy", "table_mono_model_summary.csv"), na = "NA") %>%
   mutate(Parameter = str_replace(Parameter, "x", "&#215;")) %>% 
   knitr::kable(format = "pandoc", 
     align = c("l", "l", "r", "r", "r", "r"), 
-    caption = "Model summary for VOT and burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), F1, F2, and item repetition for monolingual coronal stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn; 0.1.", 
+    caption = "Model summary for VOT and burst metrics as a function of 
+               language (English, Spanish), phoneme (/d/, /t/), F1, F2, and 
+               item repetition for monolingual coronal stops. The percentage 
+               of the HDI contained within the ROPE is based on an effect size 
+               of &plusmn; 0.1.", 
     label = "mono-table")
 ```
 
 
+(ref:plot-monolinguals-d-t) Posterior distribution comparing the short-lag stops, English /d/ and Spanish /t/. The white point represents the posterior mean &pm; 95% HDI and the grey region represents the ROPE (&pm; 0.1).
+
+```{r, 'plot-monolinguals-d-t', echo=FALSE, fig.cap="(ref:plot-monolinguals-d-t)"}
+knitr::include_graphics(
+  here("figs", "mono_post_hoc_d_t.pdf")
+)
+```
