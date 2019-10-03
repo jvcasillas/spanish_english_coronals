@@ -59,8 +59,19 @@ f2_mpe  <- all_models$mod_f2_mono_full %>% get_mpe()
 
 # Monolingual analyses --------------------------------------------------------
 
+# VOT
 mono_vot_rope <- all_models$mod_coronals_vot_mono %>% get_rope()
 mono_vot_mpe  <- all_models$mod_coronals_vot_mono %>% get_mpe()
+mono_comp_d_t <- glue::glue("(&beta; = {mean}; CI = {hdi}; ROPE = {rope}; MPE = {mpe})",
+                 mean = pull(all_models$post_hoc_analyses[1, 2]),
+                 hdi = pull(all_models$post_hoc_analyses[1, 3]),
+                 rope = pull(all_models$post_hoc_analyses[1, 4]),
+                 mpe = pull(all_models$post_hoc_analyses[1, 5]))
+
+
+
+
+# RI
 
 # -----------------------------------------------------------------------------
 
