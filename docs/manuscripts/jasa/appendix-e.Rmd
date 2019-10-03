@@ -3,8 +3,8 @@
 
 This study employs Bayesian Data Analysis for quantitative inferential 
 statistics. 
-Specifically, this implies that we use Bayesian *credible intervals* to draw 
-statistical inferences.
+Specifically, this implies that we use Bayesian *credible intervals*---and 
+other metrics---to draw statistical inferences.
 A Bayesian model calculates a posterior distribution, i.e., a distribution of 
 plausible parameter values, given the data, a data-generating model, and any 
 prior information we have about those parameter values. 
@@ -18,26 +18,33 @@ plausible values for &beta;.
 This allows us to quantify our uncertainty regarding &beta; by summaryzing 
 the distribution of those values.
 We will use 4 statistics to describe the posterior distribution: (1) the mean, 
-(2) the highest density credible interval (HDI), (3) a Region of Practical 
-Equivalence (ROPE), and (4) the Maximum Probability of Effect (MPE).
+(2) the highest density credible interval (HDI), (3) the proportion of the 
+HDI that falls within a Region of Practical Equivalence (ROPE), and (4) the 
+Maximum Probability of Effect (MPE).
 The mean provides a point estimate for the distribution. 
 The 95% highest density credible interval provides bounds for the effect. 
 The ROPE designates a region of practical equivalence for a negligible effect 
 and calculates the proportion of the HDI that falls within this interval.^[We 
 utilize a ROPE of &pm; 1 for standardized values. For non-standardized values 
-XXX recommomends using the formula in \@ref(eq:rope)] 
-The MPE calculates the proportion of the posterior distribution that is of the median's sign (or the probability that the effect is positive or negative). 
-For example, if a hypothesis states that &beta; &gt; 0, we judge there to be 
+@kruschke2018rejecting recommomends using the formula in \@ref(eq:rope)] 
+The MPE calculates the proportion of the posterior distribution that is of the 
+median's sign (or the probability that the effect is positive or negative). 
+
+\begin{equation}
+es = \frac{\mu_1 - \mu_2}{\sqrt{\frac{\sigma_1^2 + \sigma_2^2}{2}}}
+(\#eq:rope)
+\end{equation}
+
+If, for instance, a hypothesis states that &beta; &gt; 0, we judge there to be 
 *compelling evidence* for this hypothesis if the mean point estimate is 
 a positive number, if the 95% credible interval of &beta; does not contain 0 
 and is outside the ROPE by a reasonably clear margin, and the posterior 
 *P*(&beta; &gt; 0) is close to one. 
-
 Together these four statistics allow us to quantify our uncertainty and 
 provide an intuitive interpretation of any given effect.
-For instance, consider a case in which the posterior mean of &beta; is 100 
-and the 95% credible interval is [40, 160].
-The interval tells us that we can be 95% certain the *true* value of &beta; 
+Consider a case in which the posterior mean of &beta; is 100 and the 95% 
+credible interval is [40, 160]. 
+The interval tells us that we can be 95% certain the *true* value of &beta;
 is between 40 and 160, given the data, our model, and our prior information. 
 Furthermore, the interval allows us to specify areas of uncertainty. 
 In this example, we can conclude that the effect is almost certain to be 
@@ -47,8 +54,3 @@ greater than 40.
 We also note that the interval covers a wide range of values, thus we also 
 conclude that we are not very certain about the size of the effect. 
 This type of interepretation is not possible under a frequentist paradigm.
-
-\begin{equation}
-es = \frac{\mu_1 - \mu_2}{\sqrt{\frac{\sigma_1^2 + \sigma_2^2}{2}}}
-(\#eq:rope)
-\end{equation}
