@@ -59,7 +59,6 @@ output            : papaja::apa6_word
 ```{r 'doc-libs', include = FALSE}
 library("papaja")
 library("officer")
-library("flextable")
 library("brms")
 library("knitr")
 ```
@@ -202,44 +201,74 @@ knitr::include_graphics(
 
 **Voice-onset time**. English stops had higher VOT than Spanish stops 
 `r print_model_param(all_models$mod_coronals_vot_mono, "group_sum")` and the 
-voiceless segments had higher VOT than the voiceless segments 
+voiceless segments had higher VOT than the voiced segments 
 `r print_model_param(all_models$mod_coronals_vot_mono, "phon_sum")`. 
-For both language and phoneme none of the HDI fell within the ROPE and the MPE 
-was 100%. 
-Thus there was compelling evidence for an effect of language and phoneme, as 
-well as a moderate interaction between the two predictors 
+The HDI's for language and phoneme were completely outside the ROPE and the 
+MPE was 100%.
+Thus there was compelling evidence for an effect of both language and phoneme, 
+as well as a moderate interaction between the two predictors
 `r print_model_param(all_models$mod_coronals_vot_mono, "group_sum:phon_sum")`, 
-such that the voicing difference between Spanish coronals was larger than that 
-of the English coronals.
-For the language &#215; phoneme interaction .364 of the HDI was within the 
-ROPE and the MPE was .998. 
-The VOT data is plotted in first panel of Figure\ \@ref(fig:plot-monolinguals) 
-and the complete model summary is available in Table \@ref(tab:mono-table).
+such that the voicing difference between Spanish coronals was slightly larger 
+than that of the English coronals.
+For the language &#215; phoneme interaction 
+`r mono_vot_rope$b_group_sum.phon_sum`% of the HDI fell within the 
+ROPE and the MPE was 
+`r mono_vot_mpe$b_group_sum.phon_sum`. 
+Additionally, we compared the short-lag stops of each language, English /d/ 
+and Spanish /t/, and found no envidence that the segments differed from each 
+other `r mono_comp_d_t`.
+The VOT data is plotted in the first panel of Figure 
+\@ref(fig:plot-monolinguals). 
+The complete model summary and the short-lag stop comparison are available in 
+Table \@ref(tab:mono-table) and Figure \@ref(fig:plot-monolinguals-d-t) of the 
+supplementary materials.
 
 
-**Relative intensity**. 
 
-`r print_model_param(all_models$mod_coronals_ri_mono, "group_sum")`  
 
-`r print_model_param(all_models$mod_coronals_ri_mono, "phon_sum")`  
 
-`r print_model_param(all_models$mod_coronals_ri_mono, "f1_std")`  
+**Relative intensity**. The relative intensity data is plotted in the top 
+middle panel of Figure \@ref(fig:plot-monolinguals). 
+English and Spanish stops differed very little with regard to relative 
+intensity. 
+The model provided no compelling evidence for a language effect
+`r print_model_param(all_models$mod_coronals_ri_mono, "group_sum")`, nor for 
+phoneme 
+`r print_model_param(all_models$mod_coronals_ri_mono, "phon_sum")` or vowel 
+height effects 
+`r print_model_param(all_models$mod_coronals_ri_mono, "f1_std")`. 
+Frontness of the following vowel did modulate relative intensity of the burst
+`r print_model_param(all_models$mod_coronals_ri_mono, "f2_std")` such that 
+higher F2 values were associated with lower relative intensity. 
+Finally, there was no compelling evidence for a language &#215; phoneme 
+interaction
+`r print_model_param(all_models$mod_coronals_ri_mono, "group_sum:phon_sum")`. 
 
-`r print_model_param(all_models$mod_coronals_ri_mono, "f2_std")`  
 
-`r print_model_param(all_models$mod_coronals_ri_mono, "group_sum:phon_sum")`
 
-**Center of gravity.**
 
-`r print_model_param(all_models$mod_coronals_cog_mono, "group_sum")`  
 
-`r print_model_param(all_models$mod_coronals_cog_mono, "phon_sum")`  
 
-`r print_model_param(all_models$mod_coronals_cog_mono, "f1_std")`  
+**Center of gravity.** The center of gravity (COG) data is plotted in the 
+third panel of Figure \@ref(fig:plot-monolinguals). 
+English stops had a higher COG than Spanish stops
+`r print_model_param(all_models$mod_coronals_cog_mono, "group_sum")`, and the 
+voiceless segments had a higher COG than the voiceled segments 
+`r print_model_param(all_models$mod_coronals_cog_mono, "phon_sum")`. 
+In both cases the HDI's were completely outside the ROPE and the MPE was 100%.
+This suggests compelling evidence for an effect of both language and phoneme. 
+The two predictors did not interact 
+`r print_model_param(all_models$mod_coronals_cog_mono, "group_sum:phon_sum")`, 
+nor did F1 
+`r print_model_param(all_models$mod_coronals_cog_mono, "f1_std")` or F2 
+`r print_model_param(all_models$mod_coronals_cog_mono, "f2_std")` have any 
+influence on COG.  
+ 
 
-`r print_model_param(all_models$mod_coronals_cog_mono, "f2_std")`  
 
-`r print_model_param(all_models$mod_coronals_cog_mono, "group_sum:phon_sum")`
+
+
+
 
 **Kurtosis.**
 
