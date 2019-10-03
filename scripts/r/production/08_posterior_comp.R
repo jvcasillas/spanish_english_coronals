@@ -63,11 +63,9 @@ d_t_post_mono <- posterior_mono_adj %>%
   spread(phon, val) %>%
   mutate(diff = d - t)
 
-d_t_mono_comp <- plot_posterior(
+mono_post_hoc_d_t <- plot_posterior(
   posterior = d_t_post_mono, parameter = diff, rope = c(-0.1, 0.1),
-  hdi = 0.95, xpos = -0.45, ypos = c(1.2, 1, 0.8))
-
-d_t_mono_comp[["plot_env"]][["summary_vals"]]
+  hdi = 0.95, xpos = -0.48, ypos = c(1.2, 1, 0.8))
 
 # -----------------------------------------------------------------------------
 
@@ -86,9 +84,9 @@ d_t_post_bi <- posterior_bi_adj %>%
   spread(phon, val) %>%
   mutate(diff = d - t)
 
-d_t_bi_comp <- plot_posterior(
+bi_post_hoc_d_t <- plot_posterior(
   posterior = d_t_post_bi, parameter = diff, rope = c(-0.1, 0.1), hdi = 0.95,
-  xpos = -0.45, ypos = c(1.2, 1, 0.8))
+  xpos = -0.72, ypos = c(1.2, 1, 0.8))
 
 # -----------------------------------------------------------------------------
 
@@ -277,51 +275,53 @@ poa_bilabial_sk_comp <- plot_posterior(
 # Combine comparison summaries ------------------------------------------------
 
 bind_rows(
-  d_t_mono_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "d_t_mono"),
-  d_t_bi_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "d_t_bi"),
-  poa_coronal_vot_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_coronal_vot"),
-  poa_bilabial_vot_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_bilabial_vot"),
-  poa_coronal_ri_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_coronal_ri"),
-  poa_bilabial_ri_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_bilabial_ri"),
-  poa_coronal_cog_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_coronal_cog"),
-  poa_bilabial_cog_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_bilabial_cog"),
-  poa_coronal_kt_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_coronal_kt"),
-  poa_bilabial_kt_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_bilabial_kt"),
-  poa_coronal_sd_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_coronal_sd"),
-  poa_bilabial_sd_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_bilabial_sd"),
-  poa_coronal_sk_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_coronal_sk"),
-  poa_bilabial_sk_comp[["plot_env"]][["summary_vals"]] %>%
-    select(-density) %>%
-    mutate(comp = "poa_bilabial_sk")
+  d_t_post_mono$diff %>% make_model_table %>% mutate(Parameter = "mono_d_t"),
+  d_t_post_bi$diff %>% make_model_table %>% mutate(Parameter = "bi_d_t"),
+  poa_coronal_vot_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_coronal_vot"),
+  poa_bilabial_vot_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_bilabial_vot"),
+  poa_coronal_ri_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_coronal_ri"),
+  poa_bilabial_ri_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_bilabial_ri"),
+  poa_coronal_cog_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_coronal_cog"),
+  poa_bilabial_cog_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_bilabial_cog"),
+  poa_coronal_kt_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_coronal_kt"),
+  poa_bilabial_kt_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_bilabial_kt"),
+  poa_coronal_sd_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_coronal_sd"),
+  poa_bilabial_sd_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_bilabial_sd"),
+  poa_coronal_sk_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_coronal_sk"),
+  poa_bilabial_sk_post$diff %>% make_model_table %>%
+    mutate(Parameter = "poa_bilabial_sk")
   ) %>%
   mutate_if(is.numeric, round, digits = 3) %>%
   saveRDS(here("data", "models", "post_hoc_analyses.rds"))
 
 # -----------------------------------------------------------------------------
 
+
+
+
+
+# Save plots ------------------------------------------------------------------
+
+devices             <- c('pdf', 'png')
+path_mono_post_hoc  <- file.path(here("figs"), "mono_post_hoc_d_t.")
+path_bi_post_hoc    <- file.path(here("figs"), "bi_post_hoc_d_t.")
+
+walk(devices, ~ ggsave(filename = glue(path_mono_post_hoc, .x),
+                       plot = mono_post_hoc_d_t,
+                       device = .x, height = 4, width = 8, units = "in"))
+walk(devices, ~ ggsave(filename = glue(path_bi_post_hoc, .x),
+                       plot = bi_post_hoc_d_t,
+                       device = .x, height = 4, width = 8, units = "in"))
+
+# -----------------------------------------------------------------------------
