@@ -69,6 +69,13 @@ mono_post_hoc_d_t <- plot_posterior(
 
 # -----------------------------------------------------------------------------
 
+# Comparison of spanish /dt/ KT
+
+# Comparison of English /dt/ KT
+
+
+
+
 
 
 
