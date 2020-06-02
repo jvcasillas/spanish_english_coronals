@@ -9,7 +9,7 @@ source(here("scripts", "r", "production", "01_helpers.R"))
 # Tidy coronal data -----------------------------------------------------------
 
 # Store column names as vector
-headers <- c("id", "f1_start", "f2_start", "f1_mp", "f2_mp", "vot", "ri",
+headers <- c("id", "f1_start", "f2_start", "f1_cent", "f2_cent", "vot", "ri",
              "cog", "sd", "sk", "kt", "label")
 
 # Targets with stressed initial syllables
@@ -25,7 +25,7 @@ initial_stress <- c(
 # create group, id, item, and language variables from id col
 # clean up levels of language that include numbers
 raw_prod_df <- read_csv(
-  file = here("data", "raw", "data_20190803.csv"),
+  file = here("data", "raw", "data_20200631.csv"),
   col_names = headers) %>%
   separate(id, into = c("group", "id", "item", "language", "misc"),
               sep = "_") %>%
