@@ -34,8 +34,8 @@ coronals_bi <- coronals %>%
             sd_std = (sd - mean(sd, na.rm = T)) / sd(sd, na.rm = T),
             sk_std = (sk - mean(sk, na.rm = T)) / sd(sk, na.rm = T),
             #kt_std = (kt - mean(kt, na.rm = T)) / sd(kt, na.rm = T),
-            f1_std = (f1_mp - mean(f1_mp)) / sd(f1_mp),
-            f2_std = (f2_mp - mean(f2_mp)) / sd(f2_mp),
+            f1_std = (f1_cent - mean(f1_cent)) / sd(f1_cent),
+            f2_std = (f2_cent - mean(f2_cent)) / sd(f2_cent),
             phon_sum = if_else(phon == "d", 1, -1),
             language_sum = if_else(language == "english", 1, -1),
             stress_sum = if_else(stress == "stressed", 1, -1))
