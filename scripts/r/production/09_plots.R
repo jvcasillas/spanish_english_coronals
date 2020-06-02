@@ -71,22 +71,31 @@ posterior_summary <-
 
 vowel_all_metrics <- coronals_vowels %>%
   mutate(language = fct_recode(language, English = "english",
-                                         Spanish = "spanish")) %>%
+                               Spanish = "spanish")) %>%
   ggplot(., aes(x = f2_std, y = f1_std, color = language)) +
-    geom_point(alpha = 0.2) +
-    stat_ellipse(type = "norm", show.legend = FALSE, geom = "polygon",
-                 alpha = 0.05) +
-    plot_posterior_vowel_summary() +
-    coord_cartesian(xlim = c(-2.5, 2.5)) +
-    scale_y_reverse() +
-    scale_x_reverse(position = "top") +
-    scale_color_manual(name = NULL, values = my_colors) +
-    scale_fill_manual(name = NULL, values = my_colors) +
-    labs(y = "F1 (std)", x = "F2 (std)") +
-    theme_minimal(base_size = 12, base_family = "Times") +
-    theme(legend.position = c(0.75, 0.25),
-          panel.grid.major = element_line(colour = 'grey90', size = 0.25),
-          panel.grid.minor = element_line(colour = 'grey90', size = 0.25))
+  geom_point(alpha = 0.2, aes(shape = phon), show.legend = F) +
+  stat_ellipse(type = "norm", show.legend = FALSE, geom = "polygon",
+               alpha = 0.05) +
+  plot_posterior_vowel_summary() +
+  scale_y_reverse() +
+  scale_x_reverse() +
+  scale_color_manual(name = NULL, values = my_colors) +
+  scale_fill_manual(name = NULL, values = my_colors) +
+  scale_shape_manual(name = NULL, values = c(16, 17)) +
+  labs(y = "F1 (std)", x = "F2 (std)") +
+  theme_bw(base_size = 12, base_family = "Times") +
+  theme(legend.position = c(0.75, 0.25),
+        panel.grid.major = element_line(colour = 'grey90', size = 0.25),
+        panel.grid.minor = element_line(colour = 'grey90', size = 0.25),
+        legend.background = element_blank(),
+        legend.key = element_rect(colour = NA, fill = NA))
+
+vowel_all_metrics_marginal <- ggMarginal(
+  vowel_all_metrics, type = "density",
+  groupColour = TRUE,
+  groupFill = TRUE,
+  size = 4
+)
 
 # -----------------------------------------------------------------------------
 
@@ -137,7 +146,8 @@ poa_all_metrics <- plot_metrics(
 
 # Posterior summary plots -----------------------------------------------------
 
-vowel_summary <- model_summary_plot(posterior_vowels, model_plot_vowel_y_labs)
+vowel_summary <- model_summary_plot(posterior_vowels, model_plot_vowel_y_labs,
+                                    rope = c(-0.05, 0.05))
 mono_summary  <- model_summary_plot(posterior_mono, model_plot_mono_y_labs)
 bi_summary    <- model_summary_plot(posterior_bi, model_plot_bi_y_labs)
 poa_summary   <- model_summary_plot(posterior_poa, model_plot_poa_y_labs)
@@ -149,7 +159,7 @@ poa_summary   <- model_summary_plot(posterior_poa, model_plot_poa_y_labs)
 # Save plots ------------------------------------------------------------------
 
 devices        <- c('pdf', 'png')
-path_vowel     <- file.path(here("figs"), "vowel_all_metrics.")
+path_vowel     <- file.path(here("figs"), "vowel_all_metrics_marginal.")
 path_mono      <- file.path(here("figs"), "mono_all_metrics.")
 path_bi        <- file.path(here("figs"), "bi_all_metrics.")
 path_poa       <- file.path(here("figs"), "poa_all_metrics.")
@@ -158,8 +168,8 @@ path_mono_sum  <- file.path(here("figs"), "mono_summary.")
 path_bi_sum    <- file.path(here("figs"), "bi_summary.")
 path_poa_sum   <- file.path(here("figs"), "poa_summary.")
 
-walk(devices, ~ ggsave(filename = glue(path_vowel, .x), plot = vowel_all_metrics,
-                       device = .x, height = 4, width = 5, units = "in"))
+walk(devices, ~ ggsave(filename = glue(path_vowel, .x), plot = vowel_all_metrics_marginal,
+                       device = .x, height = 5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
                        device = .x, height = 5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
