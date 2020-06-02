@@ -34,8 +34,8 @@ coronals_mono <- coronals %>%
             sd_std = (sd - mean(sd, na.rm = T)) / sd(sd, na.rm = T),
             sk_std = (sk - mean(sk, na.rm = T)) / sd(sk, na.rm = T),
             #kt_std = (kt - mean(kt, na.rm = T)) / sd(kt, na.rm = T),
-            f1_std = (f1_mp - mean(f1_mp)) / sd(f1_mp),
-            f2_std = (f2_mp - mean(f2_mp)) / sd(f2_mp),
+            f1_std = (f1_cent - mean(f1_cent)) / sd(f1_cent),
+            f2_std = (f2_cent - mean(f2_cent)) / sd(f2_cent),
             phon_sum = if_else(phon == "d", 1, -1),
             group_sum = if_else(group == "NEN", 1, -1),
             language_sum = if_else(language == "english", 1, -1),
@@ -145,3 +145,21 @@ mod_coronals_kt_mono_full <- brm(
 )
 
 # -----------------------------------------------------------------------------
+
+
+mod_coronals_mv_mono_full <- brm(
+  formula = mvbind(ri_std, cog_std, sd_std, sk_std) ~ 1 +
+    group_sum + phon_sum + rep_n +
+    (1 + phon_sum + f1_std + f2_std + rep_n |2| id) +
+    (1 + rep_n | item),
+  prior = priors,
+  warmup = 1000, iter = 4000, chains = 6, cores = parallel::detectCores(),
+  family = gaussian(),
+  #control = list(adapt_delta = 0.999, max_treedepth = 15),
+  data = coronals_mono,
+  file = here("data", "models", "mod_coronals_mv_mono_full")
+)
+
+
+
+
