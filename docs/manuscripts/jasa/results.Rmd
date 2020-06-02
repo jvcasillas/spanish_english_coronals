@@ -1,4 +1,7 @@
 ---
+title             : "The title"
+shorttitle        : "Title"
+
 author: 
   - name          : "Miquel Simonet"
     affiliation   : "1"
@@ -262,7 +265,7 @@ The two predictors did not interact
 nor did F1 
 `r print_model_param(all_models$mod_coronals_cog_mono, "f1_std")` or F2 
 `r print_model_param(all_models$mod_coronals_cog_mono, "f2_std")` have any 
-influence on COG.  
+influence on COG. 
  
 
 
@@ -270,17 +273,28 @@ influence on COG.
 
 
 
-**Kurtosis.**
+**Kurtosis.** The kurtosis data is plotted in the second row, first column 
+of Figure \@ref(fig:plot-monolinguals).
+English stop burts had a lower kurtosis with regard to Spanish stop burts 
+`r print_model_param(all_models$mod_coronals_kt_mono, "group_sum")`, and the 
+voiced segments presumably had a higher kurtosis than the voiceled segments 
+`r print_model_param(all_models$mod_coronals_kt_mono, "phon_sum")`, though 
+there was evidence of a language &times; phoneme interaction 
+`r print_model_param(all_models$mod_coronals_kt_mono, "group_sum:phon_sum")`. 
+<!--
+need to add post hoc comparisons here
+-->
+Specifically, kurtosis was higher in the voiced stop burts of Spanish (XXX), 
+but there was no evidence of a voicing difference in the English data (XXX). 
+Neither F1
+`r print_model_param(all_models$mod_coronals_kt_mono, "f1_std")` nor F2 
+`r print_model_param(all_models$mod_coronals_kt_mono, "f2_std")` had any 
+influence on kurtosis.   
 
-`r print_model_param(all_models$mod_coronals_kt_mono, "group_sum")`  
 
-`r print_model_param(all_models$mod_coronals_kt_mono, "phon_sum")`  
 
-`r print_model_param(all_models$mod_coronals_kt_mono, "f1_std")`  
 
-`r print_model_param(all_models$mod_coronals_kt_mono, "f2_std")`  
 
-`r print_model_param(all_models$mod_coronals_kt_mono, "group_sum:phon_sum")`
 
 **Standard deviation.**
 
@@ -293,6 +307,10 @@ influence on COG.
 `r print_model_param(all_models$mod_coronals_sd_mono, "f2_std")`  
 
 `r print_model_param(all_models$mod_coronals_sd_mono, "group_sum:phon_sum")`
+
+
+
+
 
 **Skewness.**
 
@@ -318,8 +336,11 @@ knitr::include_graphics(
 
 
 
+### Interim discussion
 
-
+General summary and patterns. 
+ANything noteworthy (i.e. VOT of short-lag stops, F1 in RI, 
+KT interaction, etc.)
 
 
 
