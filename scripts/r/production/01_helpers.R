@@ -11,10 +11,14 @@ source(here::here("scripts", "r", "production", "00_libraries.R"))
 # Adjust posterior to match factor means
 vowel_prep <- . %>%
   transmute(
-    spanish_t = b_Intercept - b_language_sum - b_phon_sum,
-    english_t = b_Intercept + b_language_sum - b_phon_sum,
-    spanish_d = b_Intercept - b_language_sum + b_phon_sum,
-    english_d = b_Intercept + b_language_sum + b_phon_sum)
+    f1_spanish_t = b_f1std_Intercept - b_f1std_language_sum - b_f1std_phon_sum,
+    f2_spanish_t = b_f2std_Intercept - b_f2std_language_sum - b_f2std_phon_sum,
+    f1_english_t = b_f1std_Intercept + b_f1std_language_sum - b_f1std_phon_sum,
+    f2_english_t = b_f2std_Intercept + b_f2std_language_sum - b_f2std_phon_sum,
+    f1_spanish_d = b_f1std_Intercept - b_f1std_language_sum + b_f1std_phon_sum,
+    f2_spanish_d = b_f2std_Intercept - b_f2std_language_sum + b_f2std_phon_sum,
+    f1_english_d = b_f1std_Intercept + b_f1std_language_sum + b_f1std_phon_sum,
+    f2_english_d = b_f2std_Intercept + b_f2std_language_sum + b_f2std_phon_sum)
 
 mono_prep <- . %>%
   transmute(
@@ -206,9 +210,9 @@ model_theme_adj <- function() {
 }
 
 # Make model summary plot
-model_summary_plot <- function(posterior, ylabs) {
+model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
   ggplot(posterior, aes(y = parameters, x = estimate, color = metric)) +
-    geom_rect(data = tibble(xmin = -0.1, xmax = 0.1), inherit.aes = FALSE,
+    geom_rect(data = tibble(xmin = rope[1], xmax = rope[2]), inherit.aes = FALSE,
               aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
               fill = "lightblue", color = "white", alpha = 0.2) +
     geom_vline(xintercept = 0, lty = 3) +
@@ -300,7 +304,7 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
 # Printing functions ----------------------------------------------------------
 
 
-# Make table
+# Make table (take mod obj and tweak it)
 make_model_table <- .  %>%
 describe_posterior(centrality = "mean", ci = 0.95, rope_ci = 0.95,
                          test = c("rope", "p_direction")) %>%
@@ -333,12 +337,14 @@ convert_to_percent <- function(x) {
   return(out)
 }
 
+# Take model obj and calculate rope
 get_rope <- . %>%
  rope(ci = 0.95) %>%
  select(Parameter, ROPE_Percentage) %>%
  spread(Parameter, ROPE_Percentage) %>%
  mutate_all(convert_to_percent)
 
+# Take model obj and calculate MPE
 get_mpe <- . %>%
   p_direction() %>%
   select(Parameter, pd) %>%
