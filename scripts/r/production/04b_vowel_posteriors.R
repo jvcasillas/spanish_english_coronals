@@ -1,8 +1,7 @@
-# Posterior distributions: monolinguals ---------------------------------------
+# Posterior distributions: vowels ---------------------------------------------
 #
-# - Get posterior distributions of all 'mono' models and
-#   combine them into a single dataframe for plotting and
-#   post-hoc scrutiny
+# - Get posterior distributions of mv 'mono' model and
+#   prep it for plotting and post-hoc scrutiny
 #
 # -----------------------------------------------------------------------------
 
@@ -16,7 +15,7 @@ source(here::here("scripts", "r", "production", "04a_vowel_analysis.R"))
 
 
 
-# Combined posterior ----------------------------------------------------------
+# Tidy posterior in long format -----------------------------------------------
 
 posterior_samples(mod_f1f2_mv_mono_full) %>%
   select(starts_with("b_")) %>%
@@ -37,7 +36,7 @@ posterior_samples(mod_f1f2_mv_mono_full) %>%
 
 
 
-# Adjusted posterior distributions --------------------------------------------
+# Adjusted posterior distribution ---------------------------------------------
 
 # Key info:
 # phon_sum = if_else(phon == "d", 1, -1),

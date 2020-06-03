@@ -1,7 +1,12 @@
 # Analysis 2: Vowels ----------------------------------------------------------
 #
-# - F1 and F2 ~ language
-# -
+# - Multivariate bayesian regression
+# - F1 and F2 ~ language (spanish, english) and phon (d, t)
+# - Goal is compare the production of /a/ from both languages to see if
+#   they are different
+# - If they are acoustically different from each other then one would question
+#   how much coarticulatory differences may be contribution to spectral
+#   measurements of the preceding burst
 #
 # -----------------------------------------------------------------------------
 
@@ -21,15 +26,16 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 #
 # - create subset (only mono, exclude errors)
 # - code variables (sum code group, phon, language, and stress)
+# - standardize F1 and F2 N(mu = 0, sigma = 1)
+# - establish a ROPE of 0.05 (suggestion from Kruchske 2018 for regression
+#   with standardized variables)
 
 coronals_vowels <- coronals %>%
-  filter(., group %in% c("NEN", "NSP"), is.na(label)) %>%
-  mutate(., language_sum = if_else(language == "english", 1, -1),
-            phon_sum = if_else(phon == "d", 1, -1),
-            f1_std = (f1_cent - mean(f1_cent)) / sd(f1_cent),
-            f2_std = (f2_cent - mean(f2_cent)) / sd(f2_cent),
-            mean_f1 = mean(f1_std), mean_f2 = mean(f2_std),
-            euc_dist = sqrt((0 - 0)^2 + (f1_std - f2_std)^2))
+  filter(group %in% c("NEN", "NSP"), is.na(label)) %>%
+  mutate(language_sum = if_else(language == "english", 1, -1),
+         phon_sum = if_else(phon == "d", 1, -1),
+         f1_std = (f1_cent - mean(f1_cent)) / sd(f1_cent),
+         f2_std = (f2_cent - mean(f2_cent)) / sd(f2_cent))
 
 
 # Use all available cores for parallel computing
@@ -50,12 +56,14 @@ priors <- c(
 
 # F1/F2 multivariate model  ---------------------------------------------------
 
+# Model formula
 mv_vowel_model <- bf(
   mvbind(f1_std, f2_std) ~ 1 + language_sum + phon_sum + rep_n +
         (1 + phon_sum + rep_n |p| id) +
         (1 + rep_n |q| item)
 )
 
+# Fit model
 mod_f1f2_mv_mono_full <- brm(
   formula = mv_vowel_model,
   prior = priors,
