@@ -82,15 +82,19 @@ plot_posterior_vowel_summary <- function() {
       color = "grey10", size = 0.9, width = 0),
     geom_errorbar(data = posterior_summary, inherit.aes = F,
       aes(x = f2_mean, ymin = `f1_10%`, ymax = `f1_90%`),
-      color = "grey10", size = 2, width = 0),
+      color = "grey10", size = 1.5, width = 0),
     geom_errorbarh(data = posterior_summary, inherit.aes = F,
       aes(y = f1_mean, xmin = `f2_10%`, xmax = `f2_90%`),
-      color = "grey10", size = 2, width = 0),
+      color = "grey10", size = 1.5, width = 0),
     geom_point(data = posterior_summary,
-               aes(x = f2_mean, y = f1_mean, fill = language),
-               color = "black", size = 5, pch = 21, stroke = 1)
+      aes(x = f2_mean, y = f1_mean, fill = lang_phon, shape = lang_phon),
+      color = "black", size = 4, stroke = 1)
   )
 }
+
+# Legend labels for vowel plot
+vowel_leg <- c("English /d/", "English /t/", "Spanish /d/", "Spanish /t/")
+
 
 # Average over repetitions and prep vars
 plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
@@ -135,7 +139,7 @@ facet_labels <- c(
   )
 
 # Custom colors
-my_colors <- c("#7A475D", "#2980B9", "#2C9286")
+my_colors <- c("#7A475D", "#2980B9", "#2C9286", "#dcefe5")
 
 # Plot adjustments
 my_theme_adj <- function() {
@@ -218,7 +222,7 @@ model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
     geom_vline(xintercept = 0, lty = 3) +
     stat_pointintervalh(position = position_dodgev(0.5)) +
     scale_y_discrete(labels = ylabs) +
-    scale_color_brewer(name = NULL, palette = "Dark2") +
+    scale_color_manual(name = NULL, values = my_colors) +
     coord_cartesian(xlim = c(-1, 1)) +
     labs(y = "Parameters", x = "Estimates") +
     theme_minimal(base_family = "Times", base_size = 16) +

@@ -60,31 +60,35 @@ posterior_poa_adj <-
 posterior_summary <-
   bind_cols(
     posterior_vowels_adj %>%
-      group_by(language) %>%
-      summarize(f1_mean = mean(f1), f2_mean = mean(f2)),
+      group_by(language, phon) %>%
+      summarize(f1_mean = mean(f1), f2_mean = mean(f2)) %>%
+      ungroup(),
     posterior_vowels_adj %>%
-      group_by(language) %>%
-      summarize_at(vars(f1, f2), p_funs)
-  ) %>% select(-language1) %>%
-  mutate(language = fct_recode(language, English = "english",
-                                         Spanish = "spanish"))
+      group_by(language, phon) %>%
+      summarize_at(vars(f1, f2), p_funs) %>%
+      ungroup()
+  ) %>% select(-language1, -phon1) %>%
+  unite(col = "lang_phon", language, phon, sep = " ")
 
 vowel_all_metrics <- coronals_vowels %>%
-  mutate(language = fct_recode(language, English = "english",
-                               Spanish = "spanish")) %>%
-  ggplot(., aes(x = f2_std, y = f1_std, color = language)) +
-  geom_point(alpha = 0.2, aes(shape = phon), show.legend = F) +
+  unite(col = "lang_phon", language, phon, sep = " ") %>%
+  ggplot(., aes(x = f2_std, y = f1_std, color = lang_phon, shape = lang_phon,
+                fill = lang_phon)) +
+  geom_point(alpha = 0, show.legend = F) +
+  geom_point(inherit.aes = F, aes(x = f2_std, y = f1_std, shape = lang_phon),
+    data = unite(coronals_vowels, col = "lang_phon", language, phon, sep = " "),
+    alpha = 0.3, fill = "grey", color = "grey50", show.legend = F) +
   stat_ellipse(type = "norm", show.legend = FALSE, geom = "polygon",
                alpha = 0.05) +
   plot_posterior_vowel_summary() +
   scale_y_reverse() +
   scale_x_reverse() +
-  scale_color_manual(name = NULL, values = my_colors) +
-  scale_fill_manual(name = NULL, values = my_colors) +
-  scale_shape_manual(name = NULL, values = c(16, 17)) +
+  scale_color_manual(name = NULL, values = my_colors, labels = vowel_leg) +
+  scale_fill_manual(name = NULL, values = my_colors, labels = vowel_leg) +
+  scale_shape_manual(name = NULL, values = 21:24, labels = vowel_leg) +
   labs(y = "F1 (std)", x = "F2 (std)") +
   theme_bw(base_size = 12, base_family = "Times") +
-  theme(legend.position = c(0.75, 0.25),
+  theme(legend.position = c(0.85, 0.25),
         panel.grid.major = element_line(colour = 'grey90', size = 0.25),
         panel.grid.minor = element_line(colour = 'grey90', size = 0.25),
         legend.background = element_blank(),
