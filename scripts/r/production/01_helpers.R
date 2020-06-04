@@ -231,7 +231,7 @@ model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
 
 
 
-# Function for plotting posterior distrubutions with descriptives
+# Function for plotting posterior distributions with descriptives
 plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
                            hdi = 0.95, xpos = -0.4, ypos = c(1.2, 1, 0.8),
                            xlab = "Parameter value", ylab = "Density",
@@ -305,24 +305,58 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
 
 
 
+
+
+
+
+
+
+
+
+
 # Printing functions ----------------------------------------------------------
 
 
-# Make table (take mod obj and tweak it)
-make_model_table <- .  %>%
-describe_posterior(centrality = "mean", ci = 0.95, rope_ci = 0.95,
-                         test = c("rope", "p_direction")) %>%
-        as_tibble %>%
-        select(-CI, -ROPE_CI, -ROPE_low, -ROPE_high) %>%
-        mutate_if(is.numeric, round, digits = 3) %>%
-        mutate(CI_low = format(CI_low, nsmall = 3),
-               CI_low = str_replace(CI_low, " ", ""),
-               CI_high = format(CI_high, nsmall = 3),
-               CI_high = str_replace(CI_high, " ", "")) %>%
-        unite(HDI, CI_low, CI_high, sep = ", ") %>%
-        mutate(HDI = paste0("[", HDI, "]")) %>%
-        select(Parameter, Estimate = Mean, HDI, ROPE = ROPE_Percentage,
-               MPE = pd)
+# Make model summary table (give it a posterior dist.)
+make_model_table <- function(v, name_v, ci = 0.95, rope = c(-0.05, 0.05)) {
+  tibble(
+    column   = name_v,
+    Estimate = mean(v),
+    hdi_lo   = hdi(v, .width = ci)[1],
+    hdi_hi   = hdi(v, .width = ci)[2],
+    ROPE     = rope(v, ci = ci, range = rope)$ROPE_Percentage,
+    MPE      = p_direction(v, effects = "all")[1]
+  )}
+
+
+# Report posterior estimates, HDI, ROPE, and MPE in prose
+report_posterior <- function(df, param, metric = NULL) {
+
+  if (is.null(metric)) {
+    # Extract wanted value from model output
+    est  <- df[df$Parameter == param, "Estimate"]
+    cis  <- df[df$Parameter == param, "HDI"]
+    rope <- df[df$Parameter == param, "ROPE"]
+    mpe  <- df[df$Parameter == param, "MPE"]
+  } else {
+    # Extract wanted value from model output
+    est  <- df[df$Parameter == param & df$Metric == metric, "Estimate"]
+    cis  <- df[df$Parameter == param & df$Metric == metric, "HDI"]
+    rope <- df[df$Parameter == param & df$Metric == metric, "ROPE"]
+    mpe  <- df[df$Parameter == param & df$Metric == metric, "MPE"]
+  }
+
+  capture.output(
+    paste0("(&beta; = ", est, ", HDI = ", cis, ", ROPE = ", rope,
+           ", MPE = ", mpe, ")", "\n") %>%
+      cat()) %>%
+    paste()
+}
+
+
+#
+# CAN PROBABLY DELETE EVERYTHING FROM HERE DOWN
+#
 
 # Round and format numbers to exactly N digits
 round_exactly_n <- function(x, n = 3) {
