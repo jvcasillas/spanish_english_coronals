@@ -21,28 +21,16 @@ The model included weakly informative priors with the mean centered at 0 and
 a standard deviation of 2. 
 
 The model suggested weak evidence for a language effect on F1 
-`r print_model_param(all_models$mod_f1_mono_full, "language_sum")`
+`r report_posterior(f1_f2_table, param = "Language", metric = "F1")`
 and F2 
-`r print_model_param(all_models$mod_f2_mono_full, "language_sum")`. 
-For F1 and F2, 
-`r f1_rope$b_language_sum`% and 
-`r f1_rope$b_language_sum`% of the respective HDI's fell within the specified 
-ROPE.
-The probability that &beta; was greater than 0 was 
-`r f1_mpe$b_language_sum` for F1 and 
-`r f2_mpe$b_language_sum` for F2. 
+`r report_posterior(f1_f2_table, param = "Language", metric = "F2")`. 
 Together, the point estimates suggest the spectral centroid of the Spanish 
 vowel was slightly higher and more posterior with respect to that of the 
 English vowel.
 There was no evidence for a phoneme effect on F1 
-`r print_model_param(all_models$mod_f1_mono_full, "phon_sum")`, 
+`r report_posterior(f1_f2_table, param = "Phoneme", metric = "F1")`, 
 nor on F2 
-`r print_model_param(all_models$mod_f2_mono_full, "phon_sum")`. 
-In both cases 
-`r f1_rope$b_phon_sum`% of the HDI fell within the ROPE and the probability 
-that &beta; was less than 0 was 
-`r f1_mpe$b_phon_sum` for F1 and 
-`r f2_mpe$b_phon_sum` for F2.
+`r report_posterior(f1_f2_table, param = "Phoneme", metric = "F2")`. 
 Given the possibility of a small effect of language on the spectal envelope, 
 standardized F1 and F2 were used in subsequent analyses of the coronal stops 
 to control for any coarticulatory effects on the burst. 
@@ -55,7 +43,7 @@ Table \@ref(tab:vowel-table).
 
 ```{r, 'plot-monolingual-vowels', echo=FALSE, fig.cap="(ref:plot-monolingual-vowels)"}
 knitr::include_graphics(
-  here("figs", "vowel_all_metrics.pdf")
+  here("figs", "vowel_all_metrics_marginal.pdf")
 )
 ```
 
@@ -71,9 +59,12 @@ knitr::include_graphics(
 
 
 ```{r, 'vowel-table', echo=F}
-read_csv(here("data", "tidy", "table_vowel_model_summary.csv"), na = "NA") %>% 
-  mutate_at(.vars = c("Estimate", "HDI"), 
-            str_replace, pattern = "-", replacement = "&minus;") %>% 
+f1_f2_table %>% 
+  mutate(Metric = case_when(
+      identifier == "F1_Intercept" ~ "F1", 
+      identifier == "F2_Intercept" ~ "F2", 
+      TRUE ~ " ")) %>% 
+  select(-identifier) %>% 
   knitr::kable(format = "pandoc", 
     align = c("l", "l", "r", "r", "r", "r"), 
     caption = "Model summary for F1 and F2 as a function of language (English, 
