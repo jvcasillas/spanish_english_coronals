@@ -6,6 +6,36 @@ source(here::here("scripts", "r", "production", "00_libraries.R"))
 
 
 
+
+# Misc functions --------------------------------------------------------------
+
+simple_scale <- function(x) {
+  out   <- (x - mean(x, na.rm = T)) / sd(x, na.rm = T)
+  return(out)
+}
+
+smart_scale <- function(x) {
+  # Find min. val. and add its abs. val + 1
+  # to every value in vector, then log transform and
+  # standardize
+  min   <- na.omit(x) %>% min()
+  pos_x <- x + (abs(min) + 1)
+  log_x <- log(pos_x)
+  out   <- (log_x - mean(log_x, na.rm = T)) / sd(log_x, na.rm = T)
+  return(out)
+}
+
+
+# -----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
 # Posterior prep --------------------------------------------------------------
 
 # Adjust posterior to match factor means
