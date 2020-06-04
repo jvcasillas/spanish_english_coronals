@@ -41,6 +41,38 @@ coronals_mono <- coronals %>%
             language_sum = if_else(language == "english", 1, -1),
             stress_sum = if_else(stress == "stressed", 1, -1))
 
+
+coronals_mono %>%
+  select(group, language, f1_cent, f2_cent, vot, ri, cog, sd, sk, kt) %>%
+  mutate(across(c("cog", "kt", "sk"),
+                .fns = list(std = ~smart_scale(.)))) %>%
+  mutate(across(c("f1_cent", "f2_cent", "ri", "vot", "sd"),
+                .fns = list(std = ~simple_scale(.)))) %>%
+  pivot_longer(
+    cols = c("f1_cent", "f2_cent", "vot", "ri", "cog", "sd", "sk", "kt",
+             "f1_cent_std", "f2_cent_std", "vot_std", "ri_std", "cog_std",
+             "sd_std", "sk_std", "kt_std"),
+    values_to = "val") %>%
+  mutate(type = str_detect(name, "_std"),
+         name = fct_relevel(
+           name, "f1_cent", "f2_cent", "vot", "cog", "kt", "sk", "ri", "sd",
+           "f1_cent_std", "f2_cent_std", "vot_std", "cog_std", "kt_std",
+           "sk_std", "ri_std")) %>%
+  ggplot(., aes(x = val, color = language)) +
+  facet_wrap(. ~ name, scales = "free", nrow = 2, ncol = 8) +
+  geom_histogram() +
+  theme_bw(base_size = 6)
+
+
+
+
+
+
+
+
+
+
+
 # Use all available cores for parallel computing
 options(mc.cores = parallel::detectCores())
 
