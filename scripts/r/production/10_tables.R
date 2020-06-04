@@ -21,25 +21,35 @@ source(here::here("scripts", "r", "production", "07a_bi_poa_analysis.R"))
 
 # F1/F2 table -----------------------------------------------------------------
 
-fix_vowel_params <- . %>%
-  str_replace("b_Intercept", "Intercept") %>%
-  str_replace("b_language_sum", "Language") %>%
-  str_replace("b_phon_sum", "Phoneme") %>%
-  str_replace("b_rep_n", "Item rep.")
-
-f1_f2_table <-
-bind_rows(
-  bind_cols(
-    tibble(Metric = c("F1", "", "", "")),
-    mod_f1_mono_full %>% make_model_table()),
-  bind_cols(
-    tibble(Metric = c("F2", "", "", "")),
-    mod_f2_mono_full %>% make_model_table())
-  ) %>%
-  mutate(Parameter = fix_vowel_params(Parameter)) %>%
+f1_f2_table <- posterior_samples(mod_f1f2_mv_mono_full) %>%
+  select(starts_with("b_")) %>%
+  imap_dfr(make_model_table) %>%
+  arrange(column) %>%
+  mutate_if(is.numeric, round, digits = 3) %>%
+  mutate_if(is.numeric, format, nsmall = 3) %>%
+  mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
+         hdi_hi = str_replace(hdi_hi, " ", "")) %>%
+  unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
+  separate(column, into = c("Metric", "Parameter"), sep = 8) %>%
+  mutate(
+    HDI = paste0("[", HDI, "]"),
+    Metric = if_else(Metric == "b_f1std_", "F1", "F2"),
+    Parameter = case_when(
+      Parameter == "Intercept" ~ "Intercept",
+      Parameter == "language_sum" ~ "Language",
+      Parameter == "phon_sum" ~ "Phoneme",
+      TRUE ~ "Item rep.")) %>%
+  mutate_at(c("Estimate", "HDI"), str_replace,
+            pattern = "-", replacement = "&minus;") %>%
+  unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
   write_csv(here("data", "tidy", "table_vowel_model_summary.csv"))
 
 # -----------------------------------------------------------------------------
+
+
+
+
+
 
 
 # Monolingual table -----------------------------------------------------------
