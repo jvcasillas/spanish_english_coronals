@@ -49,10 +49,9 @@ exp_n         <- sample_size %>% pull(n) %>% sum
 
 # Vowel analysis --------------------------------------------------------------
 
-f1_rope <- all_models$mod_f1_mono_full %>% get_rope()
-f2_rope <- all_models$mod_f2_mono_full %>% get_rope()
-f1_mpe  <- all_models$mod_f1_mono_full %>% get_mpe()
-f2_mpe  <- all_models$mod_f2_mono_full %>% get_mpe()
+f1_f2_table <- read_csv(here("data", "tidy", "table_vowel_model_summary.csv"))
+
+
 
 # -----------------------------------------------------------------------------
 
