@@ -18,6 +18,20 @@ source(here::here("scripts", "r", "production", "05a_mono_analysis.R"))
 
 # Combined posterior ----------------------------------------------------------
 
+select(starts_with("b_")) %>%
+  pivot_longer(cols = everything(), values_to = "estimate") %>%
+  separate(col = name, into = c("pt1", "metric", "pt2", "pt3"), sep = "_") %>%
+  unite(col = "parameters", pt1, pt2, pt3, sep = "_") %>%
+  mutate(metric = str_replace(metric, "std", ""),
+         metric = str_replace(metric, "f", "F"),
+         parameters = str_replace(parameters, "_NA", ""),
+         parameters = fct_relevel(parameters,
+           "b_rep_n", "b_phon_sum", "b_language_sum", "b_Intercept")) %>%
+  select(metric, parameters, estimate) %>%
+  arrange(metric)
+
+
+
 bind_rows(
   posterior_samples(mod_coronals_vot_mono_full) %>%
     select(starts_with("b_")) %>%
