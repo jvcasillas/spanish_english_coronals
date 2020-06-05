@@ -25,7 +25,7 @@ initial_stress <- c(
 # create group, id, item, and language variables from id col
 # clean up levels of language that include numbers
 raw_prod_df <- read_csv(
-  file = here("data", "raw", "data_20200631.csv"),
+  file = here("data", "raw", "data_20200605.csv"),
   col_names = headers) %>%
   separate(id, into = c("group", "id", "item", "language", "misc"),
               sep = "_") %>%

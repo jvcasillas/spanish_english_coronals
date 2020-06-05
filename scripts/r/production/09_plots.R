@@ -73,6 +73,26 @@ coronals_mono %>%
   theme_minimal() +
   my_theme_adj()
 
+
+coronals_bi %>%
+  pivot_longer(
+    cols = c("f1_cent", "f2_cent", "vot", "ri", "cog", "sd", "sk", "kt",
+             "f1_cent_std", "f2_cent_std", "vot_std", "ri_std", "cog_std",
+             "sd_std", "sk_std", "kt_std"),
+    values_to = "val") %>%
+  mutate(type = str_detect(name, "_std"),
+         name = fct_relevel(
+           name, "f1_cent", "f2_cent", "vot", "ri", "sd", "cog", "kt", "sk",
+           "f1_cent_std", "f2_cent_std", "vot_std", "ri_std", "sd_std",
+           "cog_std", "kt_std")) %>%
+  ggplot(., aes(x = val, fill = language)) +
+  facet_wrap(. ~ name, scales = "free", nrow = 2, ncol = 8) +
+  geom_histogram(color = "black") +
+  scale_fill_manual(name = NULL, values = my_colors,
+                    labels = c("English", "Spanish")) +
+  theme_minimal() +
+  my_theme_adj()
+
 # -----------------------------------------------------------------------------
 
 
