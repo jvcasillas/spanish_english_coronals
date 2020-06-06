@@ -83,19 +83,45 @@ mono_mv_prep <- . %>%
 
 
 
-
-
-
-
-
-
-
-bi_prep <- . %>%
+bi_vot_prep <- . %>%
   transmute(
     english_t = b_Intercept + b_language_sum - b_phon_sum - `b_language_sum:phon_sum`,
     english_d = b_Intercept + b_language_sum + b_phon_sum + `b_language_sum:phon_sum`,
     spanish_d = b_Intercept - b_language_sum + b_phon_sum - `b_language_sum:phon_sum`,
     spanish_t = b_Intercept - b_language_sum - b_phon_sum + `b_language_sum:phon_sum`)
+
+bi_mv_prep <- . %>%
+  transmute(
+    cog_english_d = b_cogstd_Intercept + b_cogstd_language_sum + b_cogstd_phon_sum + `b_cogstd_language_sum:phon_sum`,
+    cog_english_t = b_cogstd_Intercept + b_cogstd_language_sum - b_cogstd_phon_sum - `b_cogstd_language_sum:phon_sum`,
+    cog_spanish_d = b_cogstd_Intercept - b_cogstd_language_sum + b_cogstd_phon_sum - `b_cogstd_language_sum:phon_sum`,
+    cog_spanish_t = b_cogstd_Intercept - b_cogstd_language_sum - b_cogstd_phon_sum + `b_cogstd_language_sum:phon_sum`,
+    ri_english_d = b_ristd_Intercept + b_ristd_language_sum + b_ristd_phon_sum + `b_ristd_language_sum:phon_sum`,
+    ri_english_t = b_ristd_Intercept + b_ristd_language_sum - b_ristd_phon_sum - `b_ristd_language_sum:phon_sum`,
+    ri_spanish_d = b_ristd_Intercept - b_ristd_language_sum + b_ristd_phon_sum - `b_ristd_language_sum:phon_sum`,
+    ri_spanish_t = b_ristd_Intercept - b_ristd_language_sum - b_ristd_phon_sum + `b_ristd_language_sum:phon_sum`,
+    sd_english_d = b_sdstd_Intercept + b_sdstd_language_sum + b_sdstd_phon_sum + `b_sdstd_language_sum:phon_sum`,
+    sd_english_t = b_sdstd_Intercept + b_sdstd_language_sum - b_sdstd_phon_sum - `b_sdstd_language_sum:phon_sum`,
+    sd_spanish_d = b_sdstd_Intercept - b_sdstd_language_sum + b_sdstd_phon_sum - `b_sdstd_language_sum:phon_sum`,
+    sd_spanish_t = b_sdstd_Intercept - b_sdstd_language_sum - b_sdstd_phon_sum + `b_sdstd_language_sum:phon_sum`,
+    sk_english_d = b_skstd_Intercept + b_skstd_language_sum + b_skstd_phon_sum + `b_skstd_language_sum:phon_sum`,
+    sk_english_t = b_skstd_Intercept + b_skstd_language_sum - b_skstd_phon_sum - `b_skstd_language_sum:phon_sum`,
+    sk_spanish_d = b_skstd_Intercept - b_skstd_language_sum + b_skstd_phon_sum - `b_skstd_language_sum:phon_sum`,
+    sk_spanish_t = b_skstd_Intercept - b_skstd_language_sum - b_skstd_phon_sum + `b_skstd_language_sum:phon_sum`,
+    kt_english_d = b_ktstd_Intercept + b_ktstd_language_sum + b_ktstd_phon_sum + `b_ktstd_language_sum:phon_sum`,
+    kt_english_t = b_ktstd_Intercept + b_ktstd_language_sum - b_ktstd_phon_sum - `b_ktstd_language_sum:phon_sum`,
+    kt_spanish_d = b_ktstd_Intercept - b_ktstd_language_sum + b_ktstd_phon_sum - `b_ktstd_language_sum:phon_sum`,
+    kt_spanish_t = b_ktstd_Intercept - b_ktstd_language_sum - b_ktstd_phon_sum + `b_ktstd_language_sum:phon_sum`)
+
+
+
+
+
+
+
+
+
+
 
 poa_prep <- . %>%
   transmute(
@@ -178,12 +204,11 @@ plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
   }
 
   dataframe %>%
-  filter(kt > 0) %>%
-  mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(id, item, !!grouping_var, !!color_var, contains("_std"), -f1_cent, -f2_cent) %>%
+  select(id, item, !!grouping_var, !!color_var, contains("_std"),
+         -f1_cent_std, -f2_cent_std) %>%
   gather(metric, val, -!!grouping_var, -!!color_var, -id, -item) %>%
   group_by(id, item, !!grouping_var, !!color_var, metric) %>%
-  summarize(val = mean(val)) %>%
+  summarize(val = mean(val), .groups = "drop") %>%
   ungroup(.) %>%
   separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
   group_mutate %>%
@@ -235,7 +260,7 @@ plot_metrics <- function(dataframe, posterior, x, color,
     stat_pointinterval(data = posterior, show.legend = F,
                        color = "black", .width = c(.80, .99),
                        position = position_dodge(0.5)) +
-    stat_summary(data = posterior, fun.y = mean, geom = "point",
+    stat_summary(data = posterior, fun = mean, geom = "point",
                  position = position_dodge(0.5), size = 2, show.legend = F) +
     scale_color_manual(values = my_colors, name = NULL,
                        labels = color_labs) +
