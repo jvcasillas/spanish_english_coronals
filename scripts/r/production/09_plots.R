@@ -113,14 +113,12 @@ posterior_summary <-
   bind_cols(
     posterior_vowels_adj %>%
       group_by(language, phon) %>%
-      summarize(f1_mean = mean(f1), f2_mean = mean(f2)) %>%
-      ungroup(),
+      summarize(f1_mean = mean(f1), f2_mean = mean(f2), .groups = "drop"),
     posterior_vowels_adj %>%
       group_by(language, phon) %>%
-      summarize_at(vars(f1, f2), p_funs) %>%
-      ungroup()
-  ) %>% select(-language1, -phon1) %>%
-  unite(col = "lang_phon", language, phon, sep = " ")
+      summarize_at(vars(f1, f2), p_funs, .groups = "drop")) %>%
+  select(-language...5, -phon...6) %>%
+  unite(col = "lang_phon", language...1, phon...2, sep = " ")
 
 vowel_all_metrics <- coronals_vowels %>%
   unite(col = "lang_phon", language, phon, sep = " ") %>%
