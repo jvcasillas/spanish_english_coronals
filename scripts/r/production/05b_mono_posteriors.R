@@ -72,8 +72,7 @@ bind_rows(
                  values_to = "val") %>%
     separate(language, into = c("metric", "language", "phon"),
              sep = "_", remove = T) %>%
-    select(language, phon, val, metric)
-  ) %>%
+    select(language, phon, val, metric)) %>%
   saveRDS(., here("data", "models", "posterior_mono_adj.rds"))
 
 # -----------------------------------------------------------------------------
