@@ -18,46 +18,32 @@ source(here::here("scripts", "r", "production", "05a_mono_analysis.R"))
 
 # Combined posterior ----------------------------------------------------------
 
-select(starts_with("b_")) %>%
-  pivot_longer(cols = everything(), values_to = "estimate") %>%
-  separate(col = name, into = c("pt1", "metric", "pt2", "pt3"), sep = "_") %>%
-  unite(col = "parameters", pt1, pt2, pt3, sep = "_") %>%
-  mutate(metric = str_replace(metric, "std", ""),
-         metric = str_replace(metric, "f", "F"),
-         parameters = str_replace(parameters, "_NA", ""),
-         parameters = fct_relevel(parameters,
-           "b_rep_n", "b_phon_sum", "b_language_sum", "b_Intercept")) %>%
-  select(metric, parameters, estimate) %>%
-  arrange(metric)
-
-
-
 bind_rows(
   posterior_samples(mod_coronals_vot_mono_full) %>%
     select(starts_with("b_")) %>%
-    mutate(metric = "VOT"),
-  posterior_samples(mod_coronals_ri_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mutate(metric = "RI"),
-  posterior_samples(mod_coronals_cog_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mutate(metric = "COG"),
-  posterior_samples(mod_coronals_sd_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mutate(metric = "SD"),
-  posterior_samples(mod_coronals_sk_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mutate(metric = "SK"),
-  posterior_samples(mod_coronals_kt_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mutate(metric = "KT")) %>%
-  gather(parameters, estimate, -metric) %>%
-  mutate(metric = fct_relevel(metric, "VOT", "RI"),
-         parameters = fct_relevel(parameters,
-          "b_group_sum:phon_sum", "b_rep_n", "b_f2_std", "b_f1_std",
-          "b_phon_sum", "b_group_sum", "b_Intercept")) %>%
+    pivot_longer(cols = everything(), values_to = "estimate") %>%
+    mutate(metric = "vot",
+           name = str_replace(name, "cent_std", "cent"),
+           name = str_replace(name, ":phon_sum", ":phon"),
+           name = fct_relevel(name,
+            "b_group_sum:phon", "b_rep_n", "b_f1_cent", "b_f2_cent",
+            "b_phon_sum", "b_group_sum", "b_Intercept")) %>%
+    select(metric, parameters = name, estimate) %>%
+    arrange(metric),
+  posterior_samples(mod_coronals_mv_mono_full) %>%
+  select(starts_with("b_")) %>%
+    pivot_longer(cols = everything(), values_to = "estimate") %>%
+    separate(col = name, into = c("pt1", "metric", "pt2", "pt3"), sep = "_") %>%
+    unite(col = "parameters", pt1, pt2, pt3, sep = "_") %>%
+    mutate(metric = str_replace(metric, "std", ""),
+           parameters = str_replace(parameters, "_NA", ""),
+           parameters = fct_relevel(parameters,
+            "b_group_sum:phon", "b_rep_n", "b_f1_cent", "b_f2_cent",
+            "b_phon_sum", "b_group_sum", "b_Intercept")) %>%
+    select(metric, parameters, estimate) %>%
+    arrange(metric)
+  ) %>%
   saveRDS(., here("data", "models", "posterior_mono.rds"))
-
 
 # -----------------------------------------------------------------------------
 
@@ -69,53 +55,24 @@ bind_rows(
 # Key info:
 # phon_sum = if_else(phon == "d", 1, -1),
 # group_sum = if_else(group == "NEN", 1, -1),
-# language_sum = if_else(language == "english", 1, -1),
-# stress_sum = if_else(stress == "stressed", 1, -1))
 
-posterior_mono_adj <-
-  bind_rows(
-    posterior_samples(mod_coronals_vot_mono_full) %>%
+bind_rows(
+  posterior_samples(mod_coronals_vot_mono_full) %>%
     select(starts_with("b_")) %>%
-    mono_prep %>%
-    gather(language, val) %>%
+    mono_vot_prep %>%
+    pivot_longer(cols = everything(), names_to = "language",
+                 values_to = "val") %>%
     separate(language, into = c("language", "phon"),
              sep = "_", remove = T) %>%
     mutate(metric = "vot"),
-  posterior_samples(mod_coronals_ri_mono_full) %>%
+  posterior_samples(mod_coronals_mv_mono_full) %>%
     select(starts_with("b_")) %>%
-    mono_prep %>%
-    gather(language, val) %>%
-    separate(language, into = c("language", "phon"),
+    mono_mv_prep %>%
+    pivot_longer(cols = everything(), names_to = "language",
+                 values_to = "val") %>%
+    separate(language, into = c("metric", "language", "phon"),
              sep = "_", remove = T) %>%
-    mutate(metric = "ri"),
-  posterior_samples(mod_coronals_cog_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mono_prep %>%
-    gather(language, val) %>%
-    separate(language, into = c("language", "phon"),
-             sep = "_", remove = T) %>%
-    mutate(metric = "cog"),
-  posterior_samples(mod_coronals_sd_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mono_prep %>%
-    gather(language, val) %>%
-    separate(language, into = c("language", "phon"),
-             sep = "_", remove = T) %>%
-    mutate(metric = "sd"),
-  posterior_samples(mod_coronals_sk_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mono_prep %>%
-    gather(language, val) %>%
-    separate(language, into = c("language", "phon"),
-             sep = "_", remove = T) %>%
-    mutate(metric = "sk"),
-  posterior_samples(mod_coronals_kt_mono_full) %>%
-    select(starts_with("b_")) %>%
-    mono_prep %>%
-    gather(language, val) %>%
-    separate(language, into = c("language", "phon"),
-             sep = "_", remove = T) %>%
-    mutate(metric = "kt")
+    select(language, phon, val, metric)
   ) %>%
   saveRDS(., here("data", "models", "posterior_mono_adj.rds"))
 

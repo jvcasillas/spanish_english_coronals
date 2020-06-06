@@ -50,12 +50,45 @@ vowel_prep <- . %>%
     f1_english_d = b_f1std_Intercept + b_f1std_language_sum + b_f1std_phon_sum,
     f2_english_d = b_f2std_Intercept + b_f2std_language_sum + b_f2std_phon_sum)
 
-mono_prep <- . %>%
+mono_vot_prep <- . %>%
   transmute(
     english_d = b_Intercept + b_group_sum + b_phon_sum + `b_group_sum:phon_sum`,
     english_t = b_Intercept + b_group_sum - b_phon_sum - `b_group_sum:phon_sum`,
     spanish_d = b_Intercept - b_group_sum + b_phon_sum - `b_group_sum:phon_sum`,
     spanish_t = b_Intercept - b_group_sum - b_phon_sum + `b_group_sum:phon_sum`)
+
+mono_mv_prep <- . %>%
+  transmute(
+    cog_english_d = b_cogstd_Intercept + b_cogstd_group_sum + b_cogstd_phon_sum + `b_cogstd_group_sum:phon_sum`,
+    cog_english_t = b_cogstd_Intercept + b_cogstd_group_sum - b_cogstd_phon_sum - `b_cogstd_group_sum:phon_sum`,
+    cog_spanish_d = b_cogstd_Intercept - b_cogstd_group_sum + b_cogstd_phon_sum - `b_cogstd_group_sum:phon_sum`,
+    cog_spanish_t = b_cogstd_Intercept - b_cogstd_group_sum - b_cogstd_phon_sum + `b_cogstd_group_sum:phon_sum`,
+    ri_english_d = b_ristd_Intercept + b_ristd_group_sum + b_ristd_phon_sum + `b_ristd_group_sum:phon_sum`,
+    ri_english_t = b_ristd_Intercept + b_ristd_group_sum - b_ristd_phon_sum - `b_ristd_group_sum:phon_sum`,
+    ri_spanish_d = b_ristd_Intercept - b_ristd_group_sum + b_ristd_phon_sum - `b_ristd_group_sum:phon_sum`,
+    ri_spanish_t = b_ristd_Intercept - b_ristd_group_sum - b_ristd_phon_sum + `b_ristd_group_sum:phon_sum`,
+    sd_english_d = b_sdstd_Intercept + b_sdstd_group_sum + b_sdstd_phon_sum + `b_sdstd_group_sum:phon_sum`,
+    sd_english_t = b_sdstd_Intercept + b_sdstd_group_sum - b_sdstd_phon_sum - `b_sdstd_group_sum:phon_sum`,
+    sd_spanish_d = b_sdstd_Intercept - b_sdstd_group_sum + b_sdstd_phon_sum - `b_sdstd_group_sum:phon_sum`,
+    sd_spanish_t = b_sdstd_Intercept - b_sdstd_group_sum - b_sdstd_phon_sum + `b_sdstd_group_sum:phon_sum`,
+    sk_english_d = b_skstd_Intercept + b_skstd_group_sum + b_skstd_phon_sum + `b_skstd_group_sum:phon_sum`,
+    sk_english_t = b_skstd_Intercept + b_skstd_group_sum - b_skstd_phon_sum - `b_skstd_group_sum:phon_sum`,
+    sk_spanish_d = b_skstd_Intercept - b_skstd_group_sum + b_skstd_phon_sum - `b_skstd_group_sum:phon_sum`,
+    sk_spanish_t = b_skstd_Intercept - b_skstd_group_sum - b_skstd_phon_sum + `b_skstd_group_sum:phon_sum`,
+    kt_english_d = b_ktstd_Intercept + b_ktstd_group_sum + b_ktstd_phon_sum + `b_ktstd_group_sum:phon_sum`,
+    kt_english_t = b_ktstd_Intercept + b_ktstd_group_sum - b_ktstd_phon_sum - `b_ktstd_group_sum:phon_sum`,
+    kt_spanish_d = b_ktstd_Intercept - b_ktstd_group_sum + b_ktstd_phon_sum - `b_ktstd_group_sum:phon_sum`,
+    kt_spanish_t = b_ktstd_Intercept - b_ktstd_group_sum - b_ktstd_phon_sum + `b_ktstd_group_sum:phon_sum`)
+
+
+
+
+
+
+
+
+
+
 
 bi_prep <- . %>%
   transmute(
@@ -147,7 +180,7 @@ plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
   dataframe %>%
   filter(kt > 0) %>%
   mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)) %>%
-  select(id, item, !!grouping_var, !!color_var, contains("_std"), -f1_std, -f2_std) %>%
+  select(id, item, !!grouping_var, !!color_var, contains("_std"), -f1_cent, -f2_cent) %>%
   gather(metric, val, -!!grouping_var, -!!color_var, -id, -item) %>%
   group_by(id, item, !!grouping_var, !!color_var, metric) %>%
   summarize(val = mean(val)) %>%
