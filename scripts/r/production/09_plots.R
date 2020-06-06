@@ -110,15 +110,16 @@ coronals_bi %>%
 # Vowel plot ------------------------------------------------------------------
 
 posterior_summary <-
-  bind_cols(
+  left_join(
     posterior_vowels_adj %>%
       group_by(language, phon) %>%
-      summarize(f1_mean = mean(f1), f2_mean = mean(f2), .groups = "drop"),
+      summarize(f1_mean = mean(f1), f2_mean = mean(f2)),
     posterior_vowels_adj %>%
       group_by(language, phon) %>%
-      summarize_at(vars(f1, f2), p_funs, .groups = "drop")) %>%
-  select(-language...5, -phon...6) %>%
-  unite(col = "lang_phon", language...1, phon...2, sep = " ")
+      summarize_at(vars(f1, f2), p_funs) %>%
+      ungroup(.),
+    by = c("language", "phon")) %>%
+  unite(col = "lang_phon", language, phon, sep = " ")
 
 vowel_all_metrics <- coronals_vowels %>%
   unite(col = "lang_phon", language, phon, sep = " ") %>%
