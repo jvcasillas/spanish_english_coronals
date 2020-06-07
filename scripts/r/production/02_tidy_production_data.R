@@ -51,7 +51,7 @@ raw_prod_df <- read_csv(
 
 # Store column names as a vector
 headers_aldrich <- c('id', 'item', 'n_intervals', 'status', 'f1_start',
-                     'f2_start', 'f1_mp', 'f2_mp', 'v_dur', 'vot', 'ri',
+                     'f2_start', 'f1_cent', 'f2_cent', 'vot', 'ri',
                      'cog', 'sd', 'sk', 'kt', 'notes')
 
 # Targets with stressed initial syllables
@@ -67,7 +67,7 @@ initial_stress_aldrich <- c(
 
 # Load data, set column names
 # create cols to match coronal data
-raw_aldrich_df <- read_csv(here("data", "raw", "bl_data_aldrich2019.csv"),
+raw_aldrich_df <- read_csv(here("data", "raw", "bl_data_aldrich2019_20200606.csv"),
          col_names = headers_aldrich) %>%
   filter(status == "hit", is.na(notes)) %>%
   separate(col = id, into = c("id", "language"), sep = c(3, 4), remove = T) %>%
