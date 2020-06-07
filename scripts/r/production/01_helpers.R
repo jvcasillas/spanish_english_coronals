@@ -275,8 +275,7 @@ plot_metrics <- function(dataframe, posterior, x, color,
     geom_point(alpha = 0.3, aes(shape = !!color),
       position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.2)) +
     stat_pointinterval(data = posterior, aes(shape = !!color),
-      show.legend = F, color = "black", .width = c(.80, .99),
-      position = position_dodge(0.5)) +
+      show.legend = F, color = "black", position = position_dodge(0.5)) +
     stat_summary(data = posterior, aes(shape = !!color),
       fun = mean, geom = "point", position = position_dodge(0.5),
       size = 2, show.legend = F) +

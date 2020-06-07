@@ -194,7 +194,7 @@ For all plots the y-axis represents the outcome variable in standardized units.
 The x-axis indicates the language and voiced/voiceless pairs are represented 
 by color. 
 
-(ref:plot-monolinguals) VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals.
+(ref:plot-monolinguals) VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 66% credible intervals.
 
 ```{r, 'plot-monolinguals', echo=FALSE, fig.cap="(ref:plot-monolinguals)"}
 knitr::include_graphics(
@@ -348,7 +348,7 @@ KT interaction, etc.)
 
 Model info here. 
 
-(ref:plot-bilinguals) VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals.
+(ref:plot-bilinguals) VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 66% credible intervals.
 
 ```{r, 'plot-bilinguals', echo=FALSE, fig.cap="(ref:plot-bilinguals)"}
 knitr::include_graphics(
@@ -456,7 +456,7 @@ knitr::include_graphics(
 Model info here. 
 
 
-(ref:plot-poa-bilinguals) VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 99% and 80% credible intervals.
+(ref:plot-poa-bilinguals) VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 66% credible intervals.
 
 ```{r, 'plot-poa-bilinguals', echo=FALSE, fig.cap="(ref:plot-poa-bilinguals)"}
 knitr::include_graphics(
