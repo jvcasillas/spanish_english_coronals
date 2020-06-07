@@ -1,12 +1,13 @@
 # Coronales script ------------------------------------------------------------
 #
 # Created: 2019-08-20
+# Updated: 2020-06-06
 #
 # This script does the following: 
 #
 # 1. Calculate spectral moments based on a 6ms window after stop release
 # 2. Calculate VOT
-# 3. Calculate relative intensity (burst - midpoint of following vowel)
+# 3. Calculate relative intensity (midpoint of vowel - burst)
 # 4. F1/F2 measurements at the beginning and midpoint of the vowel
 #
 # -----------------------------------------------------------------------------
@@ -36,10 +37,10 @@ for i to numberOfFiles
 
 	if n_intervals = 1
 		msg$ = "miss"
-		f1start = 999
-		f2start = 999
-		f1mp = 999
-		f2mp = 999
+		f1_start = 999
+		f2_start = 999
+		f1_cent = 999
+		f2_cent = 999
 		vot = 999
 		ri = 999
 		cog = 999
@@ -67,22 +68,40 @@ for i to numberOfFiles
 			# Vowel info
 			vowelStart = voicing
 			vowelEnd  = Get end time of interval: 1, v_int
-			durationV =  (vowelEnd - vowelStart) * 1000
-			mp = vowelStart + ((vowelEnd - vowelStart) * 0.50)
+			durationV =  (vowelEnd - vowelStart)
+			mp = vowelStart + (durationV * 0.50)
+			per20 = vowelStart + (durationV * 0.20)
+			per35 = vowelStart + (durationV * 0.35)
+			per50 = vowelStart + (durationV * 0.50)
+			per65 = vowelStart + (durationV * 0.65)
+			per80 = vowelStart + (durationV * 0.80)
 
 			# Vowel formants
 			select Sound 'prefix$'
 			do ("To Formant (burg)...", 0, 5, 5500, 0.025, 50)
-			f1H = do ("Get value at time...", 1, vowelStart, "Hertz", "Linear")
-			f2H = do ("Get value at time...", 2, vowelStart, "Hertz", "Linear")
-			f1Hmp = do ("Get value at time...", 1, mp, "Hertz", "Linear")
-			f2Hmp = do ("Get value at time...", 2, mp, "Hertz", "Linear")
+			f1_00 = do ("Get value at time...", 1, vowelStart, "Hertz", "Linear")
+			f1_20 = do ("Get value at time...", 1, per20, "Hertz", "Linear")
+			f1_35 = do ("Get value at time...", 1, per35, "Hertz", "Linear")
+			f1_50 = do ("Get value at time...", 1, per50, "Hertz", "Linear")    
+			f1_65 = do ("Get value at time...", 1, per65, "Hertz", "Linear")
+			f1_80 = do ("Get value at time...", 1, per80, "Hertz", "Linear")
 		
+			f2_00 = do ("Get value at time...", 2, vowelStart, "Hertz", "Linear")
+			f2_20 = do ("Get value at time...", 2, per20, "Hertz", "Linear")
+			f2_35 = do ("Get value at time...", 2, per35, "Hertz", "Linear")
+			f2_50 = do ("Get value at time...", 2, per50, "Hertz", "Linear")    
+			f2_65 = do ("Get value at time...", 2, per65, "Hertz", "Linear")
+			f2_80 = do ("Get value at time...", 2, per80, "Hertz", "Linear")
+
+        	# Calculate spectral centroids
+			f1_cent_hz = (f1_20 + f1_35 + f1_50 + f1_65 + f1_80)/5
+			f2_cent_hz = (f2_20 + f2_35 + f2_50 + f2_65 + f2_80)/5
+
 			# Convert to mel
-			f1start = hertzToMel(f1H)
-			f2start = hertzToMel(f2H)
-			f1mp = hertzToMel(f1Hmp)
-			f2mp = hertzToMel(f2Hmp)
+			f1_start = hertzToMel(f1_00)
+			f2_start = hertzToMel(f2_00)
+			f1_cent = hertzToMel(f1_cent_hz)
+			f2_cent = hertzToMel(f2_cent_hz)
 
 			# Spectral moments and RI
 			select Sound 'prefix$'
@@ -110,8 +129,8 @@ for i to numberOfFiles
 	endif
 
 
-	printline 'prefix$','item$','n_intervals','msg$','f1start:2','f2start:2','f1mp:2',
-	...'f2mp:2','durationV:2','vot:2','ri:2','cog:2','sd:2','sk:2','kt:2','notes$'
+	printline 'prefix$','item$','n_intervals','msg$','f1_start:2','f2_start:2','f1_cent:2',
+	...'f2_cent:2','vot:2','ri:2','cog:2','sd:2','sk:2','kt:2','notes$'
 	select all
 	minus Strings dirFiles
 	Remove
