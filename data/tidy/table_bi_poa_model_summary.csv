@@ -1,43 +1,43 @@
-Metric,Parameter,Estimate,HDI,ROPE,MPE
-VOT,Intercept,-0.094,"[-0.212, 0.023]",0.55,0.944
-,Language,0.773,"[0.663, 0.878]",0,1
-,Place,0.14,"[0.032, 0.242]",0.211,0.996
-,F1,0.017,"[-0.014, 0.048]",1,0.853
-,F2,-0.006,"[-0.040, 0.029]",1,0.628
-,Item rep.,0.002,"[-0.037, 0.039]",1,0.538
-,Language x Place,0.025,"[-0.079, 0.133]",0.934,0.686
-RI,Intercept,0.211,"[-0.009, 0.428]",0.139,0.97
-,Language,0.115,"[0.033, 0.192]",0.341,0.997
-,Place,-0.41,"[-0.622, -0.179]",0,1
-,F1,-0.22,"[-0.309, -0.126]",0,1
-,F2,-0.176,"[-0.252, -0.103]",0,1
-,Item rep.,0.01,"[-0.062, 0.081]",1,0.622
-,Language x Place,0.028,"[-0.055, 0.108]",0.984,0.752
-COG,Intercept,-0.386,"[-0.520, -0.250]",0,1
-,Language,0.303,"[0.196, 0.411]",0,1
-,Place,0.647,"[0.522, 0.771]",0,1
-,F1,0.042,"[-0.005, 0.092]",1,0.953
-,F2,-0.037,"[-0.083, 0.011]",1,0.942
-,Item rep.,0.001,"[-0.049, 0.049]",1,0.52
-,Language x Place,0.291,"[0.178, 0.396]",0,1
-Kurtosis,Intercept,0.433,"[0.275, 0.589]",0,1
-,Language,-0.233,"[-0.301, -0.163]",0,1
-,Place,-0.829,"[-0.969, -0.677]",0,1
-,F1,0.003,"[-0.040, 0.048]",1,0.552
-,F2,0.009,"[-0.042, 0.056]",1,0.656
-,Item rep.,-0.044,"[-0.092, 0.004]",1,0.963
-,Language x Place,-0.191,"[-0.259, -0.123]",0,1
-SD,Intercept,-0.501,"[-0.633, -0.370]",0,1
-,Language,0.234,"[0.145, 0.321]",0,1
-,Place,0.782,"[0.661, 0.900]",0,1
-,F1,0.011,"[-0.034, 0.058]",1,0.687
-,F2,-0.017,"[-0.066, 0.029]",1,0.765
-,Item rep.,0.024,"[-0.026, 0.071]",1,0.843
-,Language x Place,0.204,"[0.118, 0.291]",0,1
-Skewness,Intercept,0.546,"[0.350, 0.745]",0,1
-,Language,-0.126,"[-0.228, -0.027]",0.286,0.992
-,Place,-0.865,"[-1.042, -0.680]",0,1
-,F1,0.006,"[-0.059, 0.076]",1,0.555
-,F2,0.014,"[-0.030, 0.059]",1,0.732
-,Item rep.,-0.013,"[-0.066, 0.046]",1,0.684
-,Language x Place,-0.092,"[-0.192, 0.007]",0.561,0.967
+identifier,Metric,Parameter,Estimate,HDI,ROPE,MPE
+VOT_Intercept,VOT,Intercept,&minus;0.087,"[&minus;0.198, 0.022]",0.235,0.943
+VOT_Language,VOT,Language, 0.802,"[ 0.694, 0.910]",0.000,1.000
+VOT_Place,VOT,Place, 0.141,"[ 0.041, 0.246]",0.014,0.995
+VOT_F1,VOT,F1, 0.020,"[&minus;0.008, 0.049]",1.000,0.912
+VOT_F2,VOT,F2,&minus;0.005,"[&minus;0.041, 0.029]",1.000,0.629
+VOT_Item rep.,VOT,Item rep.,&minus;0.004,"[&minus;0.032, 0.025]",1.000,0.610
+VOT_Language x Place,VOT,Language x Place, 0.050,"[&minus;0.062, 0.155]",0.492,0.828
+COG_Intercept,COG,Intercept,&minus;0.576,"[&minus;0.677, -0.475]",0.000,1.000
+COG_Language,COG,Language, 0.212,"[ 0.152,  0.272]",0.000,1.000
+COG_Place,COG,Place, 0.957,"[ 0.864,  1.049]",0.000,1.000
+COG_F1,COG,F1, 0.021,"[&minus;0.006,  0.048]",1.000,0.937
+COG_F2,COG,F2,&minus;0.015,"[&minus;0.042,  0.013]",1.000,0.852
+COG_Item rep.,COG,Item rep., 0.008,"[&minus;0.022,  0.038]",1.000,0.693
+COG_Language x Place,COG,Language x Place, 0.206,"[ 0.147,  0.267]",0.000,1.000
+KT_Intercept,KT,Intercept, 0.578,"[ 0.447,  0.709]",0.000,1.000
+KT_Language,KT,Language,&minus;0.206,"[&minus;0.265, -0.153]",0.000,1.000
+KT_Place,KT,Place,&minus;0.893,"[&minus;1.018, -0.767]",0.000,1.000
+KT_F1,KT,F1, 0.016,"[&minus;0.016,  0.047]",1.000,0.838
+KT_F2,KT,F2,&minus;0.014,"[&minus;0.046,  0.018]",1.000,0.812
+KT_Item rep.,KT,Item rep.,&minus;0.028,"[&minus;0.062,  0.007]",0.916,0.945
+KT_Language x Place,KT,Language x Place,&minus;0.167,"[&minus;0.222, -0.110]",0.000,1.000
+RI_Intercept,RI,Intercept, 0.218,"[ 0.009,  0.431]",0.033,0.977
+RI_Language,RI,Language, 0.094,"[ 0.021,  0.174]",0.101,0.991
+RI_Place,RI,Place,&minus;0.494,"[&minus;0.692, -0.298]",0.000,1.000
+RI_F1,RI,F1,&minus;0.242,"[&minus;0.295, -0.191]",0.000,1.000
+RI_F2,RI,F2,&minus;0.064,"[&minus;0.120, -0.010]",0.296,0.990
+RI_Item rep.,RI,Item rep., 0.035,"[&minus;0.021,  0.091]",0.715,0.890
+RI_Language x Place,RI,Language x Place, 0.000,"[&minus;0.078,  0.076]",0.848,0.503
+SD_Intercept,SD,Intercept,&minus;0.486,"[&minus;0.602, -0.364]",0.000,1.000
+SD_Language,SD,Language, 0.229,"[ 0.148,  0.313]",0.000,1.000
+SD_Place,SD,Place, 0.766,"[ 0.662,  0.869]",0.000,1.000
+SD_F1,SD,F1,&minus;0.014,"[&minus;0.051,  0.025]",0.994,0.763
+SD_F2,SD,F2, 0.005,"[&minus;0.033,  0.045]",1.000,0.610
+SD_Item rep.,SD,Item rep., 0.019,"[&minus;0.023,  0.062]",0.944,0.812
+SD_Language x Place,SD,Language x Place, 0.208,"[ 0.128,  0.291]",0.000,1.000
+SK_Intercept,SK,Intercept, 0.529,"[ 0.409,  0.649]",0.000,1.000
+SK_Language,SK,Language,&minus;0.225,"[&minus;0.292, -0.161]",0.000,1.000
+SK_Place,SK,Place,&minus;0.893,"[&minus;1.006, -0.780]",0.000,1.000
+SK_F1,SK,F1,&minus;0.022,"[&minus;0.053,  0.010]",0.985,0.920
+SK_F2,SK,F2, 0.011,"[&minus;0.023,  0.042]",1.000,0.740
+SK_Item rep.,SK,Item rep.,&minus;0.001,"[&minus;0.036,  0.033]",1.000,0.530
+SK_Language x Place,SK,Language x Place,&minus;0.189,"[&minus;0.254, -0.125]",0.000,1.000

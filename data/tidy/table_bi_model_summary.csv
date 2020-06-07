@@ -1,43 +1,43 @@
-Metric,Parameter,Estimate,HDI,ROPE,MPE
-VOT,Intercept,-0.075,"[-0.216, 0.072]",0.638,0.85
-,Language,0.476,"[0.391, 0.565]",0,1
-,Phoneme,-0.622,"[-0.737, -0.497]",0,1
-,F1,0.001,"[-0.028, 0.031]",1,0.536
-,F2,-0.009,"[-0.041, 0.021]",1,0.705
-,Item rep.,-0.003,"[-0.034, 0.026]",1,0.575
-,Language x Phoneme,-0.007,"[-0.085, 0.070]",1,0.565
-RI,Intercept,-0.025,"[-0.226, 0.184]",0.706,0.598
-,Language,0.135,"[0.026, 0.237]",0.24,0.994
-,Phoneme,-0.084,"[-0.158, -0.014]",0.677,0.988
-,F1,-0.271,"[-0.377, -0.166]",0,1
-,F2,-0.193,"[-0.248, -0.138]",0,1
-,Item rep.,0.004,"[-0.043, 0.052]",1,0.566
-,Language x Phoneme,0.005,"[-0.062, 0.071]",1,0.555
-COG,Intercept,-0.107,"[-0.286, 0.073]",0.464,0.885
-,Language,0.581,"[0.441, 0.721]",0,1
-,Phoneme,-0.218,"[-0.272, -0.164]",0,1
-,F1,0.02,"[-0.023, 0.063]",1,0.821
-,F2,-0.021,"[-0.064, 0.018]",1,0.842
-,Item rep.,0.02,"[-0.019, 0.055]",1,0.852
-,Language x Phoneme,-0.047,"[-0.110, 0.016]",0.977,0.929
-Kurtosis,Intercept,0.066,"[-0.095, 0.226]",0.675,0.797
-,Language,-0.596,"[-0.693, -0.498]",0,1
-,Phoneme,0.254,"[0.182, 0.322]",0,1
-,F1,-0,"[-0.051, 0.052]",1,0.503
-,F2,0.005,"[-0.044, 0.055]",1,0.584
-,Item rep.,-0.044,"[-0.089, 0.003]",1,0.969
-,Language x Phoneme,-0.11,"[-0.209, -0.012]",0.408,0.984
-SD,Intercept,-0.127,"[-0.285, 0.025]",0.363,0.948
-,Language,0.556,"[0.436, 0.680]",0,1
-,Phoneme,-0.22,"[-0.296, -0.147]",0,1
-,F1,0.003,"[-0.045, 0.051]",1,0.548
-,F2,-0.013,"[-0.061, 0.031]",1,0.706
-,Item rep.,0.028,"[-0.015, 0.070]",1,0.909
-,Language x Phoneme,0.074,"[-0.011, 0.165]",0.74,0.953
-Skewness,Intercept,0.122,"[-0.041, 0.276]",0.377,0.935
-,Language,-0.514,"[-0.597, -0.427]",0,1
-,Phoneme,0.306,"[0.225, 0.394]",0,1
-,F1,-0.01,"[-0.056, 0.035]",1,0.663
-,F2,-0.003,"[-0.047, 0.044]",1,0.543
-,Item rep.,-0.009,"[-0.057, 0.039]",1,0.651
-,Language x Phoneme,-0.202,"[-0.297, -0.113]",0,1
+identifier,Metric,Parameter,Estimate,HDI,ROPE,MPE
+VOT_Intercept,VOT,Intercept,&minus;0.079,"[&minus;0.220,  0.060]",0.318,0.869
+VOT_Language,VOT,Language, 0.524,"[ 0.480,  0.566]",0.000,1.000
+VOT_Phoneme,VOT,Phoneme,&minus;0.636,"[&minus;0.756, -0.514]",0.000,1.000
+VOT_F1,VOT,F1, 0.015,"[&minus;0.013,  0.045]",1.000,0.849
+VOT_F2,VOT,F2,&minus;0.014,"[&minus;0.045,  0.019]",1.000,0.808
+VOT_Item rep.,VOT,Item rep.,&minus;0.008,"[&minus;0.033,  0.017]",1.000,0.744
+VOT_Language x Phoneme,VOT,Language x Phoneme, 0.024,"[&minus;0.017,  0.066]",0.917,0.868
+COG_Intercept,COG,Intercept,&minus;0.131,"[&minus;0.267,  0.003]",0.093,0.971
+COG_Language,COG,Language, 0.662,"[ 0.632,  0.693]",0.000,1.000
+COG_Phoneme,COG,Phoneme,&minus;0.310,"[&minus;0.348, -0.272]",0.000,1.000
+COG_F1,COG,F1, 0.033,"[&minus;0.005,  0.069]",0.838,0.957
+COG_F2,COG,F2,&minus;0.015,"[&minus;0.051,  0.021]",0.995,0.789
+COG_Item rep.,COG,Item rep., 0.013,"[&minus;0.022,  0.047]",1.000,0.765
+COG_Language x Phoneme,COG,Language x Phoneme, 0.097,"[ 0.067,  0.128]",0.000,1.000
+KT_Intercept,KT,Intercept, 0.163,"[ 0.033,  0.290]",0.020,0.994
+KT_Language,KT,Language,&minus;0.636,"[&minus;0.668, -0.604]",0.000,1.000
+KT_Phoneme,KT,Phoneme, 0.277,"[ 0.233,  0.318]",0.000,1.000
+KT_F1,KT,F1,&minus;0.013,"[&minus;0.052,  0.026]",0.995,0.752
+KT_F2,KT,F2,&minus;0.010,"[&minus;0.046,  0.030]",1.000,0.683
+KT_Item rep.,KT,Item rep.,&minus;0.029,"[&minus;0.064,  0.008]",0.899,0.938
+KT_Language x Phoneme,KT,Language x Phoneme,&minus;0.174,"[&minus;0.206, -0.142]",0.000,1.000
+RI_Intercept,RI,Intercept,&minus;0.023,"[&minus;0.233,  0.178]",0.395,0.587
+RI_Language,RI,Language, 0.094,"[ 0.029,  0.160]",0.071,0.997
+RI_Phoneme,RI,Phoneme,&minus;0.072,"[&minus;0.152,  0.005]",0.278,0.965
+RI_F1,RI,F1,&minus;0.228,"[&minus;0.279, -0.178]",0.000,1.000
+RI_F2,RI,F2,&minus;0.071,"[&minus;0.127, -0.015]",0.214,0.994
+RI_Item rep.,RI,Item rep., 0.005,"[&minus;0.038,  0.051]",0.997,0.597
+RI_Language x Phoneme,RI,Language x Phoneme, 0.005,"[&minus;0.058,  0.073]",0.908,0.561
+SD_Intercept,SD,Intercept,&minus;0.115,"[&minus;0.260,  0.027]",0.168,0.943
+SD_Language,SD,Language, 0.570,"[ 0.534,  0.606]",0.000,1.000
+SD_Phoneme,SD,Phoneme,&minus;0.232,"[&minus;0.294, -0.180]",0.000,1.000
+SD_F1,SD,F1,&minus;0.004,"[&minus;0.047,  0.037]",1.000,0.571
+SD_F2,SD,F2, 0.007,"[&minus;0.035,  0.049]",1.000,0.627
+SD_Item rep.,SD,Item rep., 0.014,"[&minus;0.025,  0.053]",0.987,0.757
+SD_Language x Phoneme,SD,Language x Phoneme, 0.084,"[ 0.049,  0.121]",0.003,1.000
+SK_Intercept,SK,Intercept, 0.119,"[&minus;0.015,  0.257]",0.140,0.958
+SK_Language,SK,Language,&minus;0.613,"[&minus;0.645, -0.580]",0.000,1.000
+SK_Phoneme,SK,Phoneme, 0.299,"[ 0.260,  0.341]",0.000,1.000
+SK_F1,SK,F1,&minus;0.025,"[&minus;0.063,  0.015]",0.915,0.898
+SK_F2,SK,F2,&minus;0.009,"[&minus;0.047,  0.029]",1.000,0.668
+SK_Item rep.,SK,Item rep.,&minus;0.008,"[&minus;0.045,  0.027]",1.000,0.664
+SK_Language x Phoneme,SK,Language x Phoneme,&minus;0.141,"[&minus;0.173, -0.109]",0.000,1.000

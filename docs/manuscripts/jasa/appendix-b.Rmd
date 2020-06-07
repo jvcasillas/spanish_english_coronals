@@ -1,10 +1,18 @@
 
 
 ```{r, 'mono-table'}
-read_csv(here("data", "tidy", "table_mono_model_summary.csv"), na = "NA") %>% 
-  mutate_at(.vars = c("Estimate", "HDI"), 
-            str_replace, pattern = "-", replacement = "&minus;") %>% 
-  mutate(Parameter = str_replace(Parameter, "x", "&#215;")) %>% 
+mono_table %>%  
+  mutate(
+    Parameter = str_replace(Parameter, "x", "&#215;"), 
+    Metric = case_when(
+    identifier == "VOT_Intercept" ~ "VOT", 
+    identifier == "COG_Intercept" ~ "COG", 
+    identifier == "KT_Intercept" ~ "KT", 
+    identifier == "RI_Intercept" ~ "RI", 
+    identifier == "SD_Intercept" ~ "SD", 
+    identifier == "SK_Intercept" ~ "SK", 
+    TRUE ~ " ")) %>% 
+  select(-identifier) %>% 
   knitr::kable(format = "pandoc", 
     align = c("l", "l", "r", "r", "r", "r"), 
     caption = "Model summary for VOT and burst metrics as a function of 
@@ -14,6 +22,14 @@ read_csv(here("data", "tidy", "table_mono_model_summary.csv"), na = "NA") %>%
                of &plusmn; 0.1.", 
     label = "mono-table")
 ```
+
+
+
+
+
+
+
+
 
 
 (ref:plot-monolinguals-d-t) Posterior distribution comparing the short-lag stops, English /d/ and Spanish /t/. The white point represents the posterior mean &pm; 95% HDI and the grey region represents the ROPE (&pm; 0.1).

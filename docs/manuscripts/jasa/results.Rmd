@@ -203,23 +203,19 @@ knitr::include_graphics(
 ```
 
 **Voice-onset time**. English stops had higher VOT than Spanish stops 
-`r print_model_param(all_models$mod_coronals_vot_mono, "group_sum")` and the 
+`r report_posterior(mono_table, param = "Group", metric = "VOT")` and the 
 voiceless segments had higher VOT than the voiced segments 
-`r print_model_param(all_models$mod_coronals_vot_mono, "phon_sum")`. 
+`r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`. 
 The HDI's for language and phoneme were completely outside the ROPE and the 
 MPE was 100%.
 Thus there was compelling evidence for an effect of both language and phoneme, 
 as well as a moderate interaction between the two predictors
-`r print_model_param(all_models$mod_coronals_vot_mono, "group_sum:phon_sum")`, 
+`r report_posterior(mono_table, param = "Group x Phoneme", metric = "VOT")`, 
 such that the voicing difference between Spanish coronals was slightly larger 
 than that of the English coronals.
-For the language &#215; phoneme interaction 
-`r mono_vot_rope$b_group_sum.phon_sum`% of the HDI fell within the 
-ROPE and the MPE was 
-`r mono_vot_mpe$b_group_sum.phon_sum`. 
 Additionally, we compared the short-lag stops of each language, English /d/ 
 and Spanish /t/, and found no evidence that the segments differed from each 
-other `r mono_comp_d_t`.
+other REPORT HERE MAYBE.
 The VOT data is plotted in the first panel of Figure 
 \@ref(fig:plot-monolinguals). 
 The complete model summary and the short-lag stop comparison are available in 
@@ -234,18 +230,18 @@ supplementary materials.
 middle panel of Figure \@ref(fig:plot-monolinguals). 
 English and Spanish stops differed very little with regard to relative 
 intensity. 
-The model provided no compelling evidence for a language effect
-`r print_model_param(all_models$mod_coronals_ri_mono, "group_sum")`, nor for 
+The model provided no compelling evidence for a group effect
+`r report_posterior(mono_table, param = "Group", metric = "RI")`, nor for 
 phoneme 
-`r print_model_param(all_models$mod_coronals_ri_mono, "phon_sum")` or vowel 
+`r report_posterior(mono_table, param = "Phoneme", metric = "RI")` or vowel 
 height effects 
-`r print_model_param(all_models$mod_coronals_ri_mono, "f1_std")`. 
+`r report_posterior(mono_table, param = "F1", metric = "RI")`. 
 Frontness of the following vowel did modulate relative intensity of the burst
-`r print_model_param(all_models$mod_coronals_ri_mono, "f2_std")` such that 
+`r report_posterior(mono_table, param = "F2", metric = "RI")` such that 
 higher F2 values were associated with lower relative intensity. 
 Finally, there was no compelling evidence for a language &#215; phoneme 
 interaction
-`r print_model_param(all_models$mod_coronals_ri_mono, "group_sum:phon_sum")`. 
+`r report_posterior(mono_table, param = "Group x Phoneme", metric = "RI")`. 
 
 
 
@@ -255,16 +251,16 @@ interaction
 **Center of gravity.** The center of gravity (COG) data is plotted in the 
 third panel of Figure \@ref(fig:plot-monolinguals). 
 English stops had a higher COG than Spanish stops
-`r print_model_param(all_models$mod_coronals_cog_mono, "group_sum")`, and the 
-voiceless segments had a higher COG than the voiceled segments 
-`r print_model_param(all_models$mod_coronals_cog_mono, "phon_sum")`. 
+`r report_posterior(mono_table, param = "Group", metric = "COG")`, and the 
+voiceless segments had a higher COG than the voiced segments 
+`r report_posterior(mono_table, param = "Phoneme", metric = "COG")`. 
 In both cases the HDI's were completely outside the ROPE and the MPE was 100%.
 This suggests compelling evidence for an effect of both language and phoneme. 
 The two predictors did not interact 
-`r print_model_param(all_models$mod_coronals_cog_mono, "group_sum:phon_sum")`, 
+`r report_posterior(mono_table, param = "Group x Phoneme", metric = "COG")`, 
 nor did F1 
-`r print_model_param(all_models$mod_coronals_cog_mono, "f1_std")` or F2 
-`r print_model_param(all_models$mod_coronals_cog_mono, "f2_std")` have any 
+`r report_posterior(mono_table, param = "F1", metric = "COG")` or F2 
+`r report_posterior(mono_table, param = "F2", metric = "COG")` have any 
 influence on COG. 
  
 
@@ -275,20 +271,20 @@ influence on COG.
 
 **Kurtosis.** The kurtosis data is plotted in the second row, first column 
 of Figure \@ref(fig:plot-monolinguals).
-English stop burts had a lower kurtosis with regard to Spanish stop burts 
-`r print_model_param(all_models$mod_coronals_kt_mono, "group_sum")`, and the 
+English stop bursts had a lower kurtosis with regard to Spanish stop bursts 
+`r report_posterior(mono_table, param = "Group", metric = "KT")`, and the 
 voiced segments presumably had a higher kurtosis than the voiceled segments 
-`r print_model_param(all_models$mod_coronals_kt_mono, "phon_sum")`, though 
+`r report_posterior(mono_table, param = "Phoneme", metric = "KT")`, though 
 there was evidence of a language &times; phoneme interaction 
-`r print_model_param(all_models$mod_coronals_kt_mono, "group_sum:phon_sum")`. 
+`r report_posterior(mono_table, param = "Group x Phoneme", metric = "KT")`. 
 <!--
 need to add post hoc comparisons here
 -->
-Specifically, kurtosis was higher in the voiced stop burts of Spanish (XXX), 
+Specifically, kurtosis was higher in the voiced stop bursts of Spanish (XXX), 
 but there was no evidence of a voicing difference in the English data (XXX). 
 Neither F1
-`r print_model_param(all_models$mod_coronals_kt_mono, "f1_std")` nor F2 
-`r print_model_param(all_models$mod_coronals_kt_mono, "f2_std")` had any 
+`r report_posterior(mono_table, param = "F1", metric = "KT")` nor F2 
+`r report_posterior(mono_table, param = "F2", metric = "KT")` had any 
 influence on kurtosis.   
 
 
@@ -298,15 +294,15 @@ influence on kurtosis.
 
 **Standard deviation.**
 
-`r print_model_param(all_models$mod_coronals_sd_mono, "group_sum")`  
+`r report_posterior(mono_table, param = "Group", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_mono, "phon_sum")`  
+`r report_posterior(mono_table, param = "Phoneme", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_mono, "f1_std")`  
+`r report_posterior(mono_table, param = "F1", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_mono, "f2_std")`  
+`r report_posterior(mono_table, param = "F2", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_mono, "group_sum:phon_sum")`
+`r report_posterior(mono_table, param = "Group x Phoneme", metric = "SD")`
 
 
 
@@ -314,15 +310,15 @@ influence on kurtosis.
 
 **Skewness.**
 
-`r print_model_param(all_models$mod_coronals_sk_mono, "group_sum")`  
+`r report_posterior(mono_table, param = "Group", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_mono, "phon_sum")`  
+`r report_posterior(mono_table, param = "Phoneme", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_mono, "f1_std")`  
+`r report_posterior(mono_table, param = "F1", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_mono, "f2_std")`  
+`r report_posterior(mono_table, param = "F2", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_mono, "group_sum:phon_sum")`
+`r report_posterior(mono_table, param = "Group x Phoneme", metric = "SK")`
 
 
 (ref:plot-monolinguals-summary) Posterior medians &plusmn; 95% and 66% credible intervals for VOT and burst metrics of monolingual coronal stops.
@@ -362,75 +358,76 @@ knitr::include_graphics(
 
 **Voice-onset time.**
 
-`r print_model_param(all_models$mod_coronals_vot_bi, "language_sum")`  
+`r report_posterior(bi_table, param = "Language", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_coronals_vot_bi, "phon_sum")`  
+`r report_posterior(bi_table, param = "Phoneme", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_coronals_vot_bi, "f1_std")`  
+`r report_posterior(bi_table, param = "F1", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_coronals_vot_bi, "f2_std")`  
+`r report_posterior(bi_table, param = "F2", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_coronals_vot_bi, "language_sum:phon_sum")`
+`r report_posterior(bi_table, param = "Language x Phoneme", metric = "VOT")`
 
 **Relative intensity.**
 
-`r print_model_param(all_models$mod_coronals_ri_bi, "language_sum")`  
+`r report_posterior(bi_table, param = "Language", metric = "RI")`  
 
-`r print_model_param(all_models$mod_coronals_ri_bi, "phon_sum")`  
+`r report_posterior(bi_table, param = "Phoneme", metric = "RI")`  
 
-`r print_model_param(all_models$mod_coronals_ri_bi, "f1_std")`  
+`r report_posterior(bi_table, param = "F1", metric = "RI")`  
 
-`r print_model_param(all_models$mod_coronals_ri_bi, "f2_std")`  
+`r report_posterior(bi_table, param = "F2", metric = "RI")`  
 
-`r print_model_param(all_models$mod_coronals_ri_bi, "language_sum:phon_sum")`
+`r report_posterior(bi_table, param = "Language x Phoneme", metric = "RI")`
 
 **Center of gravity.**
 
-`r print_model_param(all_models$mod_coronals_cog_bi, "language_sum")`  
+`r report_posterior(bi_table, param = "Language", metric = "COG")`  
 
-`r print_model_param(all_models$mod_coronals_cog_bi, "phon_sum")`  
+`r report_posterior(bi_table, param = "Phoneme", metric = "COG")`  
 
-`r print_model_param(all_models$mod_coronals_cog_bi, "f1_std")`  
+`r report_posterior(bi_table, param = "F1", metric = "COG")`  
 
-`r print_model_param(all_models$mod_coronals_cog_bi, "f2_std")`  
+`r report_posterior(bi_table, param = "F2", metric = "COG")`  
 
-`r print_model_param(all_models$mod_coronals_cog_bi, "language_sum:phon_sum")`
+`r report_posterior(bi_table, param = "Language x Phoneme", metric = "COG")`
 
 **Kurtosis.**
 
-`r print_model_param(all_models$mod_coronals_kt_bi, "language_sum")`  
+`r report_posterior(bi_table, param = "Language", metric = "KT")`  
 
-`r print_model_param(all_models$mod_coronals_kt_bi, "phon_sum")`  
+`r report_posterior(bi_table, param = "Phoneme", metric = "KT")`  
 
-`r print_model_param(all_models$mod_coronals_kt_bi, "f1_std")`  
+`r report_posterior(bi_table, param = "F1", metric = "KT")`  
 
-`r print_model_param(all_models$mod_coronals_kt_bi, "f2_std")`  
+`r report_posterior(bi_table, param = "F2", metric = "KT")`  
 
-`r print_model_param(all_models$mod_coronals_kt_bi, "language_sum:phon_sum")`
+`r report_posterior(bi_table, param = "Language x Phoneme", metric = "KT")`
+
 
 **Standard deviation.**
 
-`r print_model_param(all_models$mod_coronals_sd_bi, "language_sum")`  
+`r report_posterior(bi_table, param = "Language", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_bi, "phon_sum")`  
+`r report_posterior(bi_table, param = "Phoneme", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_bi, "f1_std")`  
+`r report_posterior(bi_table, param = "F1", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_bi, "f2_std")`  
+`r report_posterior(bi_table, param = "F2", metric = "SD")`  
 
-`r print_model_param(all_models$mod_coronals_sd_bi, "language_sum:phon_sum")`
+`r report_posterior(bi_table, param = "Language x Phoneme", metric = "SD")`
 
 **Skewness.**
 
-`r print_model_param(all_models$mod_coronals_sk_bi, "language_sum")`  
+`r report_posterior(bi_table, param = "Language", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_bi, "phon_sum")`  
+`r report_posterior(bi_table, param = "Phoneme", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_bi, "f1_std")`  
+`r report_posterior(bi_table, param = "F1", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_bi, "f2_std")`  
+`r report_posterior(bi_table, param = "F2", metric = "SK")`  
 
-`r print_model_param(all_models$mod_coronals_sk_bi, "language_sum:phon_sum")`
+`r report_posterior(bi_table, param = "Language x Phoneme", metric = "SK")`
 
 
 
@@ -469,75 +466,75 @@ knitr::include_graphics(
 
 **Voice-onset time.**
 
-`r print_model_param(all_models$mod_poa_comp_vot, "language_sum")`  
+`r report_posterior(bi_poa_table, param = "Language", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_poa_comp_vot, "poa_sum")`  
+`r report_posterior(bi_poa_table, param = "Place", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_poa_comp_vot, "f1_std")`  
+`r report_posterior(bi_poa_table, param = "F1", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_poa_comp_vot, "f2_std")`  
+`r report_posterior(bi_poa_table, param = "F2", metric = "VOT")`  
 
-`r print_model_param(all_models$mod_poa_comp_vot, "language_sum:poa_sum")`
+`r report_posterior(bi_poa_table, param = "Language x Place", metric = "VOT")`
 
 **Relative intensity.**
 
-`r print_model_param(all_models$mod_poa_comp_ri, "language_sum")`  
+`r report_posterior(bi_poa_table, param = "Language", metric = "RI")`  
 
-`r print_model_param(all_models$mod_poa_comp_ri, "poa_sum")`  
+`r report_posterior(bi_poa_table, param = "Place", metric = "RI")`  
 
-`r print_model_param(all_models$mod_poa_comp_ri, "f1_std")`  
+`r report_posterior(bi_poa_table, param = "F1", metric = "RI")`  
 
-`r print_model_param(all_models$mod_poa_comp_ri, "f2_std")`  
+`r report_posterior(bi_poa_table, param = "F2", metric = "RI")`  
 
-`r print_model_param(all_models$mod_poa_comp_ri, "language_sum:poa_sum")`
+`r report_posterior(bi_poa_table, param = "Language x Place", metric = "RI")`
 
 **Center of gravity.**
 
-`r print_model_param(all_models$mod_poa_comp_cog, "language_sum")`  
+`r report_posterior(bi_poa_table, param = "Language", metric = "COG")`  
 
-`r print_model_param(all_models$mod_poa_comp_cog, "poa_sum")`  
+`r report_posterior(bi_poa_table, param = "Place", metric = "COG")`  
 
-`r print_model_param(all_models$mod_poa_comp_cog, "f1_std")`  
+`r report_posterior(bi_poa_table, param = "F1", metric = "COG")`  
 
-`r print_model_param(all_models$mod_poa_comp_cog, "f2_std")`  
+`r report_posterior(bi_poa_table, param = "F2", metric = "COG")`  
 
-`r print_model_param(all_models$mod_poa_comp_cog, "language_sum:poa_sum")`
+`r report_posterior(bi_poa_table, param = "Language x Place", metric = "COG")`
 
 **Kurtosis.**
 
-`r print_model_param(all_models$mod_poa_comp_kt, "language_sum")`  
+`r report_posterior(bi_poa_table, param = "Language", metric = "KT")`  
 
-`r print_model_param(all_models$mod_poa_comp_kt, "poa_sum")`  
+`r report_posterior(bi_poa_table, param = "Place", metric = "KT")`  
 
-`r print_model_param(all_models$mod_poa_comp_kt, "f1_std")`  
+`r report_posterior(bi_poa_table, param = "F1", metric = "KT")`  
 
-`r print_model_param(all_models$mod_poa_comp_kt, "f2_std")`  
+`r report_posterior(bi_poa_table, param = "F2", metric = "KT")`  
 
-`r print_model_param(all_models$mod_poa_comp_kt, "language_sum:poa_sum")`
+`r report_posterior(bi_poa_table, param = "Language x Place", metric = "KT")`
 
 **Standard deviation.**
 
-`r print_model_param(all_models$mod_poa_comp_sd, "language_sum")`  
+`r report_posterior(bi_poa_table, param = "Language", metric = "SD")`  
 
-`r print_model_param(all_models$mod_poa_comp_sd, "poa_sum")`  
+`r report_posterior(bi_poa_table, param = "Place", metric = "SD")`  
 
-`r print_model_param(all_models$mod_poa_comp_sd, "f1_std")`  
+`r report_posterior(bi_poa_table, param = "F1", metric = "SD")`  
 
-`r print_model_param(all_models$mod_poa_comp_sd, "f2_std")`  
+`r report_posterior(bi_poa_table, param = "F2", metric = "SD")`  
 
-`r print_model_param(all_models$mod_poa_comp_sd, "language_sum:poa_sum")`
+`r report_posterior(bi_poa_table, param = "Language x Place", metric = "SD")`
 
 **Skewness.**
 
-`r print_model_param(all_models$mod_poa_comp_sk, "language_sum")`  
+`r report_posterior(bi_poa_table, param = "Language", metric = "SK")`  
 
-`r print_model_param(all_models$mod_poa_comp_sk, "poa_sum")`  
+`r report_posterior(bi_poa_table, param = "Place", metric = "SK")`  
 
-`r print_model_param(all_models$mod_poa_comp_sk, "f1_std")`  
+`r report_posterior(bi_poa_table, param = "F1", metric = "SK")`  
 
-`r print_model_param(all_models$mod_poa_comp_sk, "f2_std")`  
+`r report_posterior(bi_poa_table, param = "F2", metric = "SK")`  
 
-`r print_model_param(all_models$mod_poa_comp_sk, "language_sum:poa_sum")`
+`r report_posterior(bi_poa_table, param = "Language x Place", metric = "SK")`
 
 
 
