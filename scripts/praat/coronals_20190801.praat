@@ -50,11 +50,11 @@ for i to numberOfFiles
 		vowelEnd  = Get end point: 3, 3
 		durationV =  vowelEnd - vowelStart
 		mp = vowelStart + (durationV * 0.50)
-        per20 = vowelStart + (durationV * 0.20)
-        per35 = vowelStart + (durationV * 0.35)
-        per50 = vowelStart + (durationV * 0.50)
-        per65 = vowelStart + (durationV * 0.65)
-        per80 = vowelStart + (durationV * 0.80)
+		per20 = vowelStart + (durationV * 0.20)
+		per35 = vowelStart + (durationV * 0.35)
+		per50 = vowelStart + (durationV * 0.50)
+		per65 = vowelStart + (durationV * 0.65)
+		per80 = vowelStart + (durationV * 0.80)
 
 		# Vowel formants
 		select Sound 'prefix$'
@@ -99,7 +99,6 @@ for i to numberOfFiles
 		To Intensity... 100 0 yes
 		riB = Get mean... release window dB
 		riV = Get value at time: mp, "Cubic"
-
 		ri = riV - riB
 
 	endif
