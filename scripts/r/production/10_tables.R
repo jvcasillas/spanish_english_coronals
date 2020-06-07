@@ -21,14 +21,15 @@ source(here::here("scripts", "r", "production", "07a_bi_poa_analysis.R"))
 
 # F1/F2 table -----------------------------------------------------------------
 
-f1_f2_table <- posterior_samples(mod_f1f2_mv_mono_full) %>%
+posterior_samples(mod_f1f2_mv_mono_full) %>%
   select(starts_with("b_")) %>%
   imap_dfr(make_model_table) %>%
   arrange(column) %>%
   mutate_if(is.numeric, round, digits = 3) %>%
   mutate_if(is.numeric, format, nsmall = 3) %>%
   mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
-         hdi_hi = str_replace(hdi_hi, " ", "")) %>%
+         hdi_hi = str_replace(hdi_hi, " ", ""),
+         Estimate = str_replace(Estimate, " ", "")) %>%
   unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
   separate(column, into = c("Metric", "Parameter"), sep = 8) %>%
   mutate(
@@ -39,7 +40,7 @@ f1_f2_table <- posterior_samples(mod_f1f2_mv_mono_full) %>%
       Parameter == "language_sum" ~ "Language",
       Parameter == "phon_sum" ~ "Phoneme",
       TRUE ~ "Item rep.")) %>%
-  mutate_at(c("Estimate", "HDI"), str_replace,
+  mutate_at(c("Estimate", "HDI"), str_replace_all,
             pattern = "-", replacement = "&minus;") %>%
   unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
   write_csv(here("data", "tidy", "table_vowel_model_summary.csv"))
@@ -69,9 +70,12 @@ bind_rows(
              TRUE ~ "Group x Phoneme")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
+    mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
+           hdi_hi = str_replace(hdi_hi, " ", ""),
+           Estimate = str_replace(Estimate, " ", "")) %>%
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(HDI = paste0("[", HDI, "]")) %>%
-    mutate_at(c("Estimate", "HDI"), str_replace,
+    mutate_at(c("Estimate", "HDI"), str_replace_all,
               pattern = "-", replacement = "&minus;") %>%
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(identifier, Metric, Parameter, Estimate, HDI, ROPE, MPE),
@@ -84,6 +88,9 @@ bind_rows(
     unite(col = "Parameter", p1, p2, sep = "_") %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
+    mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
+           hdi_hi = str_replace(hdi_hi, " ", ""),
+           Estimate = str_replace(Estimate, " ", "")) %>%
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(
       HDI = paste0("[", HDI, "]"),
@@ -99,7 +106,7 @@ bind_rows(
       TRUE ~ "Group"),
       Parameter = fct_relevel(Parameter, "Intercept", "Group", "Phoneme",
                               "F1", "F2", "Item rep.")) %>%
-      mutate_at(c("Estimate", "HDI"), str_replace,
+      mutate_at(c("Estimate", "HDI"), str_replace_all,
                 pattern = "-", replacement = "&minus;") %>%
       unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
       select(-p0, -p3) %>%
@@ -126,9 +133,12 @@ bind_rows(
              TRUE ~ "Language x Phoneme")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
+    mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
+           hdi_hi = str_replace(hdi_hi, " ", ""),
+           Estimate = str_replace(Estimate, " ", "")) %>%
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(HDI = paste0("[", HDI, "]")) %>%
-    mutate_at(c("Estimate", "HDI"), str_replace,
+    mutate_at(c("Estimate", "HDI"), str_replace_all,
               pattern = "-", replacement = "&minus;") %>%
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(identifier, Metric, Parameter, Estimate, HDI, ROPE, MPE),
@@ -141,6 +151,9 @@ bind_rows(
     unite(col = "Parameter", p1, p2, sep = "_") %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
+    mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
+           hdi_hi = str_replace(hdi_hi, " ", ""),
+           Estimate = str_replace(Estimate, " ", "")) %>%
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(
       HDI = paste0("[", HDI, "]"),
@@ -156,7 +169,7 @@ bind_rows(
         TRUE ~ "Language"),
       Parameter = fct_relevel(Parameter, "Intercept", "Language", "Phoneme",
                               "F1", "F2", "Item rep.")) %>%
-    mutate_at(c("Estimate", "HDI"), str_replace,
+    mutate_at(c("Estimate", "HDI"), str_replace_all,
               pattern = "-", replacement = "&minus;") %>%
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(-p0, -p3) %>%
@@ -183,9 +196,12 @@ bind_rows(
              TRUE ~ "Language x Place")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
+    mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
+           hdi_hi = str_replace(hdi_hi, " ", ""),
+           Estimate = str_replace(Estimate, " ", "")) %>%
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(HDI = paste0("[", HDI, "]")) %>%
-    mutate_at(c("Estimate", "HDI"), str_replace,
+    mutate_at(c("Estimate", "HDI"), str_replace_all,
               pattern = "-", replacement = "&minus;") %>%
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(identifier, Metric, Parameter, Estimate, HDI, ROPE, MPE),
@@ -198,6 +214,9 @@ bind_rows(
     unite(col = "Parameter", p1, p2, sep = "_") %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
+    mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
+           hdi_hi = str_replace(hdi_hi, " ", ""),
+           Estimate = str_replace(Estimate, " ", "")) %>%
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(
       HDI = paste0("[", HDI, "]"),
@@ -213,7 +232,7 @@ bind_rows(
         TRUE ~ "Language"),
       Parameter = fct_relevel(Parameter, "Intercept", "Language", "Place",
                               "F1", "F2", "Item rep.")) %>%
-    mutate_at(c("Estimate", "HDI"), str_replace,
+    mutate_at(c("Estimate", "HDI"), str_replace_all,
               pattern = "-", replacement = "&minus;") %>%
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(-p0, -p3) %>%

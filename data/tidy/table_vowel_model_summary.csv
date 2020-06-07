@@ -1,9 +1,9 @@
 identifier,Metric,Parameter,Estimate,HDI,ROPE,MPE
 F1_Intercept,F1,Intercept,&minus;0.025,"[&minus;0.281, 0.243]",0.314,0.581
-F1_Language,F1,Language, 0.015,"[&minus;0.223, 0.236]",0.349,0.551
-F1_Phoneme,F1,Phoneme, 0.124,"[0.011, 0.241]",0.077,0.982
-F1_Item rep.,F1,Item rep., 0.018,"[&minus;0.057, 0.086]",0.821,0.690
+F1_Language,F1,Language,0.015,"[&minus;0.223, 0.236]",0.349,0.551
+F1_Phoneme,F1,Phoneme,0.124,"[0.011, 0.241]",0.077,0.982
+F1_Item rep.,F1,Item rep.,0.018,"[&minus;0.057, 0.086]",0.821,0.690
 F2_Intercept,F2,Intercept,&minus;0.057,"[&minus;0.311, 0.196]",0.296,0.672
-F2_Language,F2,Language, 0.225,"[&minus;0.012, 0.473]",0.053,0.966
-F2_Phoneme,F2,Phoneme, 0.128,"[&minus;0.057, 0.310]",0.178,0.915
-F2_Item rep.,F2,Item rep., 0.030,"[&minus;0.043, 0.099]",0.734,0.804
+F2_Language,F2,Language,0.225,"[&minus;0.012, 0.473]",0.053,0.966
+F2_Phoneme,F2,Phoneme,0.128,"[&minus;0.057, 0.310]",0.178,0.915
+F2_Item rep.,F2,Item rep.,0.030,"[&minus;0.043, 0.099]",0.734,0.804

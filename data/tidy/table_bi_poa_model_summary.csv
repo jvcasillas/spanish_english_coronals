@@ -1,43 +1,43 @@
 identifier,Metric,Parameter,Estimate,HDI,ROPE,MPE
 VOT_Intercept,VOT,Intercept,&minus;0.087,"[&minus;0.198, 0.022]",0.235,0.943
-VOT_Language,VOT,Language, 0.802,"[ 0.694, 0.910]",0.000,1.000
-VOT_Place,VOT,Place, 0.141,"[ 0.041, 0.246]",0.014,0.995
-VOT_F1,VOT,F1, 0.020,"[&minus;0.008, 0.049]",1.000,0.912
+VOT_Language,VOT,Language,0.802,"[0.694, 0.910]",0.000,1.000
+VOT_Place,VOT,Place,0.141,"[0.041, 0.246]",0.014,0.995
+VOT_F1,VOT,F1,0.020,"[&minus;0.008, 0.049]",1.000,0.912
 VOT_F2,VOT,F2,&minus;0.005,"[&minus;0.041, 0.029]",1.000,0.629
 VOT_Item rep.,VOT,Item rep.,&minus;0.004,"[&minus;0.032, 0.025]",1.000,0.610
-VOT_Language x Place,VOT,Language x Place, 0.050,"[&minus;0.062, 0.155]",0.492,0.828
-COG_Intercept,COG,Intercept,&minus;0.576,"[&minus;0.677, -0.475]",0.000,1.000
-COG_Language,COG,Language, 0.212,"[ 0.152,  0.272]",0.000,1.000
-COG_Place,COG,Place, 0.957,"[ 0.864,  1.049]",0.000,1.000
-COG_F1,COG,F1, 0.021,"[&minus;0.006,  0.048]",1.000,0.937
-COG_F2,COG,F2,&minus;0.015,"[&minus;0.042,  0.013]",1.000,0.852
-COG_Item rep.,COG,Item rep., 0.008,"[&minus;0.022,  0.038]",1.000,0.693
-COG_Language x Place,COG,Language x Place, 0.206,"[ 0.147,  0.267]",0.000,1.000
-KT_Intercept,KT,Intercept, 0.578,"[ 0.447,  0.709]",0.000,1.000
-KT_Language,KT,Language,&minus;0.206,"[&minus;0.265, -0.153]",0.000,1.000
-KT_Place,KT,Place,&minus;0.893,"[&minus;1.018, -0.767]",0.000,1.000
-KT_F1,KT,F1, 0.016,"[&minus;0.016,  0.047]",1.000,0.838
-KT_F2,KT,F2,&minus;0.014,"[&minus;0.046,  0.018]",1.000,0.812
-KT_Item rep.,KT,Item rep.,&minus;0.028,"[&minus;0.062,  0.007]",0.916,0.945
-KT_Language x Place,KT,Language x Place,&minus;0.167,"[&minus;0.222, -0.110]",0.000,1.000
-RI_Intercept,RI,Intercept, 0.218,"[ 0.009,  0.431]",0.033,0.977
-RI_Language,RI,Language, 0.094,"[ 0.021,  0.174]",0.101,0.991
-RI_Place,RI,Place,&minus;0.494,"[&minus;0.692, -0.298]",0.000,1.000
-RI_F1,RI,F1,&minus;0.242,"[&minus;0.295, -0.191]",0.000,1.000
-RI_F2,RI,F2,&minus;0.064,"[&minus;0.120, -0.010]",0.296,0.990
-RI_Item rep.,RI,Item rep., 0.035,"[&minus;0.021,  0.091]",0.715,0.890
-RI_Language x Place,RI,Language x Place, 0.000,"[&minus;0.078,  0.076]",0.848,0.503
-SD_Intercept,SD,Intercept,&minus;0.486,"[&minus;0.602, -0.364]",0.000,1.000
-SD_Language,SD,Language, 0.229,"[ 0.148,  0.313]",0.000,1.000
-SD_Place,SD,Place, 0.766,"[ 0.662,  0.869]",0.000,1.000
-SD_F1,SD,F1,&minus;0.014,"[&minus;0.051,  0.025]",0.994,0.763
-SD_F2,SD,F2, 0.005,"[&minus;0.033,  0.045]",1.000,0.610
-SD_Item rep.,SD,Item rep., 0.019,"[&minus;0.023,  0.062]",0.944,0.812
-SD_Language x Place,SD,Language x Place, 0.208,"[ 0.128,  0.291]",0.000,1.000
-SK_Intercept,SK,Intercept, 0.529,"[ 0.409,  0.649]",0.000,1.000
-SK_Language,SK,Language,&minus;0.225,"[&minus;0.292, -0.161]",0.000,1.000
-SK_Place,SK,Place,&minus;0.893,"[&minus;1.006, -0.780]",0.000,1.000
-SK_F1,SK,F1,&minus;0.022,"[&minus;0.053,  0.010]",0.985,0.920
-SK_F2,SK,F2, 0.011,"[&minus;0.023,  0.042]",1.000,0.740
-SK_Item rep.,SK,Item rep.,&minus;0.001,"[&minus;0.036,  0.033]",1.000,0.530
-SK_Language x Place,SK,Language x Place,&minus;0.189,"[&minus;0.254, -0.125]",0.000,1.000
+VOT_Language x Place,VOT,Language x Place,0.050,"[&minus;0.062, 0.155]",0.492,0.828
+COG_Intercept,COG,Intercept,&minus;0.576,"[&minus;0.677, &minus;0.475]",0.000,1.000
+COG_Language,COG,Language,0.212,"[0.152, 0.272]",0.000,1.000
+COG_Place,COG,Place,0.957,"[0.864, 1.049]",0.000,1.000
+COG_F1,COG,F1,0.021,"[&minus;0.006, 0.048]",1.000,0.937
+COG_F2,COG,F2,&minus;0.015,"[&minus;0.042, 0.013]",1.000,0.852
+COG_Item rep.,COG,Item rep.,0.008,"[&minus;0.022, 0.038]",1.000,0.693
+COG_Language x Place,COG,Language x Place,0.206,"[0.147, 0.267]",0.000,1.000
+KT_Intercept,KT,Intercept,0.578,"[0.447, 0.709]",0.000,1.000
+KT_Language,KT,Language,&minus;0.206,"[&minus;0.265, &minus;0.153]",0.000,1.000
+KT_Place,KT,Place,&minus;0.893,"[&minus;1.018, &minus;0.767]",0.000,1.000
+KT_F1,KT,F1,0.016,"[&minus;0.016, 0.047]",1.000,0.838
+KT_F2,KT,F2,&minus;0.014,"[&minus;0.046, 0.018]",1.000,0.812
+KT_Item rep.,KT,Item rep.,&minus;0.028,"[&minus;0.062, 0.007]",0.916,0.945
+KT_Language x Place,KT,Language x Place,&minus;0.167,"[&minus;0.222, &minus;0.110]",0.000,1.000
+RI_Intercept,RI,Intercept,0.218,"[0.009, 0.431]",0.033,0.977
+RI_Language,RI,Language,0.094,"[0.021, 0.174]",0.101,0.991
+RI_Place,RI,Place,&minus;0.494,"[&minus;0.692, &minus;0.298]",0.000,1.000
+RI_F1,RI,F1,&minus;0.242,"[&minus;0.295, &minus;0.191]",0.000,1.000
+RI_F2,RI,F2,&minus;0.064,"[&minus;0.120, &minus;0.010]",0.296,0.990
+RI_Item rep.,RI,Item rep.,0.035,"[&minus;0.021, 0.091]",0.715,0.890
+RI_Language x Place,RI,Language x Place,0.000,"[&minus;0.078, 0.076]",0.848,0.503
+SD_Intercept,SD,Intercept,&minus;0.486,"[&minus;0.602, &minus;0.364]",0.000,1.000
+SD_Language,SD,Language,0.229,"[0.148, 0.313]",0.000,1.000
+SD_Place,SD,Place,0.766,"[0.662, 0.869]",0.000,1.000
+SD_F1,SD,F1,&minus;0.014,"[&minus;0.051, 0.025]",0.994,0.763
+SD_F2,SD,F2,0.005,"[&minus;0.033, 0.045]",1.000,0.610
+SD_Item rep.,SD,Item rep.,0.019,"[&minus;0.023, 0.062]",0.944,0.812
+SD_Language x Place,SD,Language x Place,0.208,"[0.128, 0.291]",0.000,1.000
+SK_Intercept,SK,Intercept,0.529,"[0.409, 0.649]",0.000,1.000
+SK_Language,SK,Language,&minus;0.225,"[&minus;0.292, &minus;0.161]",0.000,1.000
+SK_Place,SK,Place,&minus;0.893,"[&minus;1.006, &minus;0.780]",0.000,1.000
+SK_F1,SK,F1,&minus;0.022,"[&minus;0.053, 0.010]",0.985,0.920
+SK_F2,SK,F2,0.011,"[&minus;0.023, 0.042]",1.000,0.740
+SK_Item rep.,SK,Item rep.,&minus;0.001,"[&minus;0.036, 0.033]",1.000,0.530
+SK_Language x Place,SK,Language x Place,&minus;0.189,"[&minus;0.254, &minus;0.125]",0.000,1.000
