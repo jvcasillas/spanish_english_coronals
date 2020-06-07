@@ -1,12 +1,18 @@
 # Analysis 3: bilinguals POA --------------------------------------------------
 #
-# - VOT
-# - RI
-# - Spectral moments
-#    - sd
-#    - cog
-#    - sk
-#    - kt
+# This script will fit two separate models:
+# - VOT ~ language and phoneme
+# - Spectral moments and RI
+#    - (RI, COG, SD, SK, KT) ~ language and poa
+#
+# The purpose of these analyses is to determine if there is a difference
+# in VOT between languages for coronal stops (yes).
+# We then ask if we can also capture coronal stop burst differences using
+# relative intensity and spectral moments.
+# Importantly, we respond to the second question using a multivariate model
+# in order to assess not only how relative intensity and spectral moments
+# of the stop burst vary as function of language, but also to model the
+# residual covariance between them.
 # -----------------------------------------------------------------------------
 
 
@@ -26,32 +32,26 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 # - create subset (only bilinguals, exclude errors)
 # - code variables (sum code group, phon, language, and stress)
 
-poa_bi <- bind_rows(
-  coronals %>%
-    filter(., group == "BIL", is.na(label), phon == "t"),
-  bilabials) %>%
-  mutate(., vot_std = (vot - mean(vot)) / sd(vot),
-            ri_std = (ri - mean(ri, na.rm = T)) / sd(ri, na.rm = T),
-            cog_std = (cog - mean(cog)) / sd(cog),
-            sd_std = (sd - mean(sd)) / sd(sd),
-            sk_std = (sk - mean(sk)) / sd(sk),
-            #kt_std = (kt - mean(kt)) / sd(kt),
-            f1_std = (f1_cent - mean(f1_cent)) / sd(f1_cent),
-            f2_std = (f2_cent - mean(f2_cent)) / sd(f2_cent),
-            language_sum = if_else(language == "english", 1, -1),
-            group_sum = if_else(group == "BIL", 1, -1),
-            stress_sum = if_else(stress == "stressed", 1, -1),
-            poa_sum = if_else(phon == "t", 1, -1))
-
-
+poa_bi <-
+  bind_rows(
+    coronals %>%
+      filter(group == "BIL", is.na(label), phon == "t"),
+    bilabials) %>%
+  mutate(across(c("cog", "kt", "sk"),
+                .fns = list(std = ~smart_scale(.)))) %>%
+  mutate(across(c("f1_cent", "f2_cent", "ri", "vot", "sd"),
+                .fns = list(std = ~simple_scale(.)))) %>%
+  mutate(poa_sum = if_else(phon == "t", 1, -1),
+         language_sum = if_else(language == "english", 1, -1))
 
 # Use all available cores for parallel computing
 options(mc.cores = parallel::detectCores())
 
 # Regularizing, weakly informative priors
 priors <- c(
-  set_prior("normal(0, 5)", class = "Intercept"),
-  set_prior("normal(0, 5)", class = "b")
+  set_prior("normal(0, 2)", class = "Intercept",
+            resp = c("ristd", "sdstd", "cogstd", "ktstd", "skstd")),
+  set_prior("normal(0, 2)", class = "b")
 )
 
 # -----------------------------------------------------------------------------
@@ -63,11 +63,17 @@ priors <- c(
 # Fit models ------------------------------------------------------------------
 
 # VOT
+vot_poa_model_formula <- bf(
+  vot_std ~ 1 +
+    language_sum * poa_sum +
+    f1_cent_std + f2_cent_std + rep_n +
+    (1 + language_sum | id) +
+    (1 | item))
+
 mod_poa_comp_vot_full <- brm(
-  formula = vot_std ~ 1 + language_sum * poa_sum + f1_std + f2_std + rep_n +
-    (1 + language_sum + f1_std + f2_std + rep_n | id) +
-    (1 + rep_n | item),
-  prior = priors,
+  formula = vot_poa_model_formula,
+  prior = c(set_prior("normal(0, 2)", class = "Intercept"),
+            set_prior("normal(0, 2)", class = "b")),
   warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
   family = gaussian(),
   control = list(adapt_delta = 0.999, max_treedepth = 15),
@@ -76,76 +82,24 @@ mod_poa_comp_vot_full <- brm(
 )
 
 
-# RI
-mod_poa_comp_ri_full <- brm(
-  formula = ri_std ~ 1 + language_sum * poa_sum + f1_std + f2_std + rep_n +
-    (1 + language_sum + f1_std + f2_std + rep_n | id) +
-    (1 + rep_n | item),
-  prior = priors,
-  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
-  family = gaussian(),
-  control = list(adapt_delta = 0.999, max_treedepth = 15),
-  data = poa_bi,
-  file = here("data", "models", "mod_poa_comp_ri_full")
-)
-
 
 # Spectral moments
+mv_poa_model_formula <- bf(
+  mvbind(ri_std, cog_std, sd_std, sk_std, kt_std) ~ 1 +
+    language_sum * poa_sum +
+    f1_cent_std + f2_cent_std + rep_n +
+    (1 + language_sum |p| id) +
+    (1 |q| item)
+) + set_rescor(rescor = TRUE)
 
-# COG
-mod_poa_comp_cog_full <- brm(
-  formula = cog_std ~ 1 + language_sum * poa_sum + f1_std + f2_std + rep_n +
-    (1 + language_sum + f1_std + f2_std + rep_n | id) +
-    (1 + rep_n | item),
+mod_poa_comp_mv_full <- brm(
+  formula = mv_poa_model_formula,
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
+  warmup = 1000, iter = 4000, chains = 6, cores = parallel::detectCores(),
   family = gaussian(),
-  control = list(adapt_delta = 0.999, max_treedepth = 15),
+  control = list(adapt_delta = 0.99, max_treedepth = 12),
   data = poa_bi,
-  file = here("data", "models", "mod_poa_comp_cog_full")
-)
-
-
-# SD
-mod_poa_comp_sd_full <- brm(
-  formula = sd_std ~ 1 + language_sum * poa_sum + f1_std + f2_std + rep_n +
-    (1 + language_sum + f1_std + f2_std + rep_n | id) +
-    (1 + rep_n | item),
-  prior = priors,
-  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
-  family = gaussian(),
-  control = list(adapt_delta = 0.999, max_treedepth = 15),
-  data = poa_bi,
-  file = here("data", "models", "mod_poa_comp_sd_full")
-)
-
-
-# Skewness
-mod_poa_comp_sk_full <- brm(
-  formula = sk_std ~ 1 + language_sum * poa_sum + f1_std + f2_std + rep_n +
-    (1 + language_sum + f1_std + f2_std + rep_n | id) +
-    (1 + rep_n | item),
-  prior = priors,
-  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
-  family = gaussian(),
-  control = list(adapt_delta = 0.999, max_treedepth = 15),
-  data = poa_bi,
-  file = here("data", "models", "mod_poa_comp_sk_full")
-)
-
-
-# Kurtosis
-mod_poa_comp_kt_full <- brm(
-  formula = kt_std ~ 1 + language_sum * poa_sum + f1_std + f2_std + rep_n +
-    (1 + language_sum + f1_std + f2_std + rep_n | id) +
-    (1 + rep_n | item),
-  prior = priors,
-  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
-  family = gaussian(),
-  control = list(adapt_delta = 0.999, max_treedepth = 15),
-  data = filter(poa_bi, kt >= 0) %>%
-         mutate(kt_log = log(kt), kt_std = (kt_log - mean(kt_log)) / sd(kt_log)),
-  file = here("data", "models", "mod_poa_comp_kt_full")
+  file = here("data", "models", "mod_poa_comp_mv_full")
 )
 
 # -----------------------------------------------------------------------------

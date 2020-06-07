@@ -79,7 +79,6 @@ mod_coronals_vot_bi_full <- brm(
   file = here("data", "models", "mod_coronals_vot_bi_full")
 )
 
-
 # mod_2 <- update(mod_coronals_vot_mono_full, formula = vot_mono_model_formula_2)
 # loo1 <- loo(mod_coronals_vot_mono_full, save_psis = T)
 # loo2 <- loo(mod_2, save_psis = T)
