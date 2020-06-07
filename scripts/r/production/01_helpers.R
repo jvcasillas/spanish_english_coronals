@@ -114,21 +114,35 @@ bi_mv_prep <- . %>%
     kt_spanish_t = b_ktstd_Intercept - b_ktstd_language_sum - b_ktstd_phon_sum + `b_ktstd_language_sum:phon_sum`)
 
 
-
-
-
-
-
-
-
-
-
-poa_prep <- . %>%
+poa_vot_prep <- . %>%
   transmute(
     english_t = b_Intercept + b_language_sum + b_poa_sum + `b_language_sum:poa_sum`,
     english_p = b_Intercept + b_language_sum - b_poa_sum - `b_language_sum:poa_sum`,
     spanish_p = b_Intercept - b_language_sum - b_poa_sum + `b_language_sum:poa_sum`,
     spanish_t = b_Intercept - b_language_sum + b_poa_sum - `b_language_sum:poa_sum`)
+
+poa_mv_prep <- . %>%
+  transmute(
+    cog_english_t = b_cogstd_Intercept + b_cogstd_language_sum + b_cogstd_poa_sum + `b_cogstd_language_sum:poa_sum`,
+    cog_english_p = b_cogstd_Intercept + b_cogstd_language_sum - b_cogstd_poa_sum - `b_cogstd_language_sum:poa_sum`,
+    cog_spanish_t = b_cogstd_Intercept - b_cogstd_language_sum + b_cogstd_poa_sum - `b_cogstd_language_sum:poa_sum`,
+    cog_spanish_p = b_cogstd_Intercept - b_cogstd_language_sum - b_cogstd_poa_sum + `b_cogstd_language_sum:poa_sum`,
+    ri_english_t = b_ristd_Intercept + b_ristd_language_sum + b_ristd_poa_sum + `b_ristd_language_sum:poa_sum`,
+    ri_english_p = b_ristd_Intercept + b_ristd_language_sum - b_ristd_poa_sum - `b_ristd_language_sum:poa_sum`,
+    ri_spanish_t = b_ristd_Intercept - b_ristd_language_sum + b_ristd_poa_sum - `b_ristd_language_sum:poa_sum`,
+    ri_spanish_p = b_ristd_Intercept - b_ristd_language_sum - b_ristd_poa_sum + `b_ristd_language_sum:poa_sum`,
+    sd_english_t = b_sdstd_Intercept + b_sdstd_language_sum + b_sdstd_poa_sum + `b_sdstd_language_sum:poa_sum`,
+    sd_english_p = b_sdstd_Intercept + b_sdstd_language_sum - b_sdstd_poa_sum - `b_sdstd_language_sum:poa_sum`,
+    sd_spanish_t = b_sdstd_Intercept - b_sdstd_language_sum + b_sdstd_poa_sum - `b_sdstd_language_sum:poa_sum`,
+    sd_spanish_p = b_sdstd_Intercept - b_sdstd_language_sum - b_sdstd_poa_sum + `b_sdstd_language_sum:poa_sum`,
+    sk_english_t = b_skstd_Intercept + b_skstd_language_sum + b_skstd_poa_sum + `b_skstd_language_sum:poa_sum`,
+    sk_english_p = b_skstd_Intercept + b_skstd_language_sum - b_skstd_poa_sum - `b_skstd_language_sum:poa_sum`,
+    sk_spanish_t = b_skstd_Intercept - b_skstd_language_sum + b_skstd_poa_sum - `b_skstd_language_sum:poa_sum`,
+    sk_spanish_p = b_skstd_Intercept - b_skstd_language_sum - b_skstd_poa_sum + `b_skstd_language_sum:poa_sum`,
+    kt_english_t = b_ktstd_Intercept + b_ktstd_language_sum + b_ktstd_poa_sum + `b_ktstd_language_sum:poa_sum`,
+    kt_english_p = b_ktstd_Intercept + b_ktstd_language_sum - b_ktstd_poa_sum - `b_ktstd_language_sum:poa_sum`,
+    kt_spanish_t = b_ktstd_Intercept - b_ktstd_language_sum + b_ktstd_poa_sum - `b_ktstd_language_sum:poa_sum`,
+    kt_spanish_p = b_ktstd_Intercept - b_ktstd_language_sum - b_ktstd_poa_sum + `b_ktstd_language_sum:poa_sum`)
 
 # -----------------------------------------------------------------------------
 
@@ -227,7 +241,10 @@ facet_labels <- c(
   )
 
 # Custom colors
-my_colors <- c("#7A475D", "#2980B9", "#2C9286", "#dcefe5")
+# my_colors <- c("#7A475D", "#2980B9", "#2C9286", "#dcefe5")
+my_colors <- c("#7A475D", "#2980B9", "#ff96d3", "#2C9286", "#ff7a3c", "#dcefe5")
+
+
 
 # Plot adjustments
 my_theme_adj <- function() {
@@ -303,14 +320,20 @@ model_theme_adj <- function() {
 
 # Make model summary plot
 model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
-  ggplot(posterior, aes(y = parameters, x = estimate, color = metric)) +
+  ggplot(posterior, aes(y = parameters, x = estimate)) +
     geom_rect(data = tibble(xmin = rope[1], xmax = rope[2]), inherit.aes = FALSE,
               aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
               fill = "lightblue", color = "white", alpha = 0.2) +
     geom_vline(xintercept = 0, lty = 3) +
-    stat_pointintervalh(position = position_dodgev(0.5)) +
+    stat_pointintervalh(position = position_dodgev(0.5), stroke = 1,
+                        aes(shape = metric)) +
+    stat_summaryh(fun.x = mean, geom = "point",
+                  position = position_dodgev(0.5), size = 2,
+                  aes(color = metric, shape = metric, fill = metric)) +
     scale_y_discrete(labels = ylabs) +
     scale_color_manual(name = NULL, values = my_colors) +
+    scale_fill_manual(name = NULL, values = my_colors) +
+    scale_shape_manual(name = NULL, values = c(15:17, 19, 23, 25)) +
     coord_cartesian(xlim = c(-1, 1)) +
     labs(y = "Parameters", x = "Estimates") +
     theme_minimal(base_family = "Times", base_size = 16) +
