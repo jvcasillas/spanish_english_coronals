@@ -181,11 +181,11 @@ vowel_all_metrics_marginal <- ggMarginal(
 
 # Average over item reps ------------------------------------------------------
 
-mono_subj_item_means <-
+mono_subj_means <-
   plot_prep(coronals_mono, grouping_var = group_sum, color_var = phon_sum)
-bi_subj_item_means <-
+bi_subj_means <-
   plot_prep(coronals_bi, grouping_var = language_sum, color_var = phon_sum)
-poa_subj_item_means <-
+poa_subj_means <-
   plot_prep(poa_bi, grouping_var = language_sum, color_var = poa_sum, poa = T)
 
 # -----------------------------------------------------------------------------
@@ -194,15 +194,15 @@ poa_subj_item_means <-
 # Plot raw data with posterior summaries --------------------------------------
 
 mono_all_metrics <- plot_metrics(
-  dataframe = mono_subj_item_means, posterior = posterior_mono_adj,
+  dataframe = mono_subj_means, posterior = posterior_mono_adj,
   x = language, color = phon)
 
 bi_all_metrics <- plot_metrics(
-  dataframe = bi_subj_item_means, posterior = posterior_bi_adj,
+  dataframe = bi_subj_means, posterior = posterior_bi_adj,
   x = language, color = phon)
 
 poa_all_metrics <- plot_metrics(
-  dataframe = poa_subj_item_means, posterior = posterior_poa_adj,
+  dataframe = poa_subj_means, posterior = posterior_poa_adj,
   x = place, color = language, color_labs =  c("English", "Spanish"),
   xlabs = c("Bilabial", "Coronal"))
 
@@ -245,19 +245,19 @@ path_poa_sum   <- file.path(here("figs"), "poa_summary.")
 walk(devices, ~ ggsave(filename = glue(path_vowel, .x), plot = vowel_all_metrics_marginal,
                        device = .x, height = 5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
-                       device = .x, height = 5, width = 9, units = "in"))
+                       device = .x, height = 2.85, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
-                       device = .x, height = 5, width = 9, units = "in"))
+                       device = .x, height = 2.85, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
-                       device = .x, height = 5, width = 9, units = "in"))
+                       device = .x, height = 2.85, width = 9, units = "in"))
 
 walk(devices, ~ ggsave(filename = glue(path_vowel_sum, .x), plot = vowel_summary,
                        device = .x, height = 3, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono_sum, .x), plot = mono_summary,
-                       device = .x, height = 5.5, width = 9, units = "in"))
+                       device = .x, height = 5.7, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi_sum, .x), plot = bi_summary,
-                       device = .x, height = 5.5, width = 9, units = "in"))
+                       device = .x, height = 5.7, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_poa_sum, .x), plot = poa_summary,
-                       device = .x, height = 5.5, width = 9, units = "in"))
+                       device = .x, height = 5.7, width = 9, units = "in"))
 
 # -----------------------------------------------------------------------------

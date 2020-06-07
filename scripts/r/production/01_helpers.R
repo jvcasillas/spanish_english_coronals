@@ -25,7 +25,6 @@ smart_scale <- function(x) {
   return(out)
 }
 
-
 # -----------------------------------------------------------------------------
 
 
@@ -221,7 +220,7 @@ plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
   select(id, item, !!grouping_var, !!color_var, contains("_std"),
          -f1_cent_std, -f2_cent_std) %>%
   gather(metric, val, -!!grouping_var, -!!color_var, -id, -item) %>%
-  group_by(id, item, !!grouping_var, !!color_var, metric) %>%
+  group_by(id, !!grouping_var, !!color_var, metric) %>%
   summarize(val = mean(val), .groups = "drop") %>%
   ungroup(.) %>%
   separate(metric, into = c("metric", "trash"), sep = "_", remove = T) %>%
@@ -271,21 +270,23 @@ plot_metrics <- function(dataframe, posterior, x, color,
 
   ggplot(dataframe) +
     aes(x = !!x, y = val, fill = !!color, color = !!color) +
-    facet_wrap(~ metric, scales = "free_y",
-               labeller = as_labeller(facet_labels)) +
-    geom_beeswarm(dodge.width = 0.5, alpha = 0.15) +
-    stat_pointinterval(data = posterior, show.legend = F,
-                       color = "black", .width = c(.80, .99),
-                       position = position_dodge(0.5)) +
-    stat_summary(data = posterior, fun = mean, geom = "point",
-                 position = position_dodge(0.5), size = 2, show.legend = F) +
-    scale_color_manual(values = my_colors, name = NULL,
-                       labels = color_labs) +
-    scale_fill_manual(values = my_colors, name = NULL,
-                      labels = color_labs) +
+    facet_grid(. ~ metric, labeller = as_labeller(facet_labels)) +
+    geom_hline(yintercept = 0, lty = 2, size = 0.25) +
+    geom_point(alpha = 0.3, aes(shape = !!color),
+      position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.2)) +
+    stat_pointinterval(data = posterior, aes(shape = !!color),
+      show.legend = F, color = "black", .width = c(.80, .99),
+      position = position_dodge(0.5)) +
+    stat_summary(data = posterior, aes(shape = !!color),
+      fun = mean, geom = "point", position = position_dodge(0.5),
+      size = 2, show.legend = F) +
+    scale_color_manual(values = my_colors, name = NULL, labels = color_labs) +
+    scale_fill_manual(values = my_colors, name = NULL, labels = color_labs) +
+    scale_shape_manual(values = 16:17, name = NULL, labels = color_labs) +
     scale_x_discrete(labels = xlabs) +
+    coord_cartesian(ylim = c(-2, 2)) +
     labs(y = "Metric (std. units)", x = NULL) +
-    theme_minimal(base_family = "Times", base_size = 17) +
+    theme_classic(base_family = "Times", base_size = 12) +
     my_theme_adj()
 }
 
@@ -325,10 +326,10 @@ model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
               aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
               fill = "lightblue", color = "white", alpha = 0.2) +
     geom_vline(xintercept = 0, lty = 3) +
-    stat_pointintervalh(position = position_dodgev(0.5), stroke = 1,
+    stat_pointintervalh(position = position_dodgev(0.7), stroke = 1,
                         aes(shape = metric)) +
     stat_summaryh(fun.x = mean, geom = "point",
-                  position = position_dodgev(0.5), size = 2,
+                  position = position_dodgev(0.7), size = 2,
                   aes(color = metric, shape = metric, fill = metric)) +
     scale_y_discrete(labels = ylabs) +
     scale_color_manual(name = NULL, values = my_colors) +
@@ -463,41 +464,5 @@ report_posterior <- function(df, param, metric = NULL) {
       cat()) %>%
     paste()
 }
-
-
-#
-# CAN PROBABLY DELETE EVERYTHING FROM HERE DOWN
-#
-
-# Round and format numbers to exactly N digits
-round_exactly_n <- function(x, n = 3) {
-  if (x < 1) {
-    rounded_n <- format(round(x, digits = n), nsmall = n)
-    out <- substr(as.character(rounded_n), start = 2, stop = n + 2)
-  } else {
-  out <- format(round(x, digits = n), nsmall = n)
-  }
-  return(out)
-}
-
-# Convert probability (0-1) to percent
-convert_to_percent <- function(x) {
-  out <- round(x * 100, digits = 2)
-  return(out)
-}
-
-# Take model obj and calculate rope
-get_rope <- . %>%
- rope(ci = 0.95) %>%
- select(Parameter, ROPE_Percentage) %>%
- spread(Parameter, ROPE_Percentage) %>%
- mutate_all(convert_to_percent)
-
-# Take model obj and calculate MPE
-get_mpe <- . %>%
-  p_direction() %>%
-  select(Parameter, pd) %>%
-  spread(Parameter, pd) %>%
-  mutate_all(round_exactly_n)
 
 # -----------------------------------------------------------------------------
