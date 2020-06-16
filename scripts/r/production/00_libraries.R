@@ -20,6 +20,7 @@ library("tidybayes")
 library("bayesplot")
 library("ggstance")
 library("ggExtra")
+library("jcolors")
 
 library("future")
 library("flextable")

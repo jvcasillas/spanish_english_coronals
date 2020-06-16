@@ -331,8 +331,8 @@ model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
                   position = position_dodgev(0.7), size = 2,
                   aes(color = metric, shape = metric, fill = metric)) +
     scale_y_discrete(labels = ylabs) +
-    scale_color_manual(name = NULL, values = my_colors) +
-    scale_fill_manual(name = NULL, values = my_colors) +
+    scale_color_jcolors(name = NULL, palette = "rainbow") +
+    scale_fill_jcolors(name = NULL, palette = "rainbow") +
     scale_shape_manual(name = NULL, values = c(15:17, 19, 23, 25)) +
     coord_cartesian(xlim = c(-1, 1)) +
     labs(y = "Parameters", x = "Estimates") +
