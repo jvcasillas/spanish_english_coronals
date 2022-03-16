@@ -1,7 +1,7 @@
-setwd("~/Dropbox/SpeechPros/figures/")
+# setwd("~/Dropbox/SpeechPros/figures/")
 
 # read data
-vot = read.delim("~/Dropbox/SpeechPros/figures/SP2014_data_bil.txt", header=TRUE)
+vot = read.delim("SP2014_data_bil.txt", header=TRUE)
 summary(vot)
 
 # create subsets for plots
@@ -76,3 +76,19 @@ require(tikzDevice)
 	abline(lm(VOT~stress,data=sp_d), col="darkgreen", lty=2, lwd=2)
 	abline(h=0, lty=6)
 dev.off()
+
+
+
+
+vot %>% 
+  as_tibble() %>% 
+  filter(cons == "t", lang == "English") %>% 
+  group_by(stress) %>% 
+  summarize(mean_vot = mean(VOT), sd_vot = sd(VOT))
+
+
+read.delim("SP2014_data_eng.txt", header=TRUE, sep = " ") %>% 
+  as_tibble() %>% 
+  filter(cons == "t") %>% 
+  group_by(stress) %>% 
+  summarize(mean_vot = mean(vot), sd_vot = sd(vot))
