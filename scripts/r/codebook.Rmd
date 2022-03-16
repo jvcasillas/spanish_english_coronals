@@ -9,7 +9,7 @@ measures
 ## Format
 
 - no header included, must be hardcoded when read
-- id: includes serveral variables separated by `_`
+- id: includes several variables separated by `_`
   - group
   - id
   - item
