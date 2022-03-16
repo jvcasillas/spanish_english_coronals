@@ -55,6 +55,7 @@ for i to numberOfFiles
 		per50 = vowelStart + (durationV * 0.50)
 		per65 = vowelStart + (durationV * 0.65)
 		per80 = vowelStart + (durationV * 0.80)
+		durV = durationV * 100
 
 		# Vowel formants
 		select Sound 'prefix$'
@@ -103,7 +104,7 @@ for i to numberOfFiles
 
 	endif
 
-	printline 'prefix$','f1_start:2','f2_start:2','f1_cent:2','f2_cent:2','vot:2','ri:2','cog:2','sd:2','sk:2','kt:2','labID$'
+	printline 'prefix$','f1_start:2','f2_start:2','f1_cent:2','f2_cent:2','vot:2','ri:2','cog:2','sd:2','sk:2','kt:2','durV:2','labID$'
 	select all
 	minus Strings dirFiles
 	Remove
