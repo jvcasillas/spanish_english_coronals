@@ -1,7 +1,9 @@
 # Post-hoc comparisons --------------------------------------------------------
 #
+# Last update: 2020-06-16
+#
 # Questions of interest:
-# - Can any of the metrics distinguish between english and spanish for
+# - Can any of the metrics distinguish between English and Spanish for
 #   coronal stops?
 # - We want to show that X metric can distinguish between dental and alveolars
 #   (english vs. spanish), but the same between-lang difference should not

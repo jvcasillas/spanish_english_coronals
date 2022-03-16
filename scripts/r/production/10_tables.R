@@ -1,5 +1,7 @@
 # Create model summary tables -------------------------------------------------
 #
+# Last update: 2020-06-16
+#
 # - use model objects to get summaries
 # - combine in large data frames
 # - edit as necessary

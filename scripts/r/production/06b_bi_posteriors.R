@@ -1,5 +1,7 @@
 # Posterior distributions: bilinguals -----------------------------------------
 #
+# Last update: 2020-06-16
+#
 # - Get posterior distributions of all 'bi' models and
 #   combine them into a single dataframe for plotting and
 #   post-hoc scrutiny

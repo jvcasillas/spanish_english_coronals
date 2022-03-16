@@ -1,5 +1,7 @@
 # Analysis 3: bilinguals POA --------------------------------------------------
 #
+# Last update: 2020-06-16
+#
 # This script will fit two separate models:
 # - VOT ~ language and phoneme
 # - Spectral moments and RI

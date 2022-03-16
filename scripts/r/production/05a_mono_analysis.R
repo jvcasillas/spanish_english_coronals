@@ -1,5 +1,7 @@
 # Analysis 1: monolinguals ----------------------------------------------------
 #
+# Last update: 2020-06-16
+#
 # This script will fit two separate models:
 # - VOT ~ group and phoneme
 # - Spectral moments and RI

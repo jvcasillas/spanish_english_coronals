@@ -1,5 +1,7 @@
 # Posterior distributions: monolinguals ---------------------------------------
 #
+# Last update: 2020-06-16
+#
 # - Get posterior distributions of all 'mono' models and
 #   combine them into a single dataframe for plotting and
 #   post-hoc scrutiny

@@ -1,7 +1,11 @@
 # Plots -----------------------------------------------------------------------
 #
+# Last update: 2020-06-16
+#
+# - Plot vowel analyses
 # - Generate a single plot with all metrics
 # - Include raw data and model estimates from posterior distributions
+# - Generate model summary plots
 # - Save plots as .png and .pdf
 #
 # -----------------------------------------------------------------------------

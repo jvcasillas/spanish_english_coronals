@@ -1,3 +1,8 @@
+# Tidy production data --------------------------------------------------------
+#
+# Last update: 2020-06-16
+#
+
 # Source libraries and helpers ------------------------------------------------
 
 source(here::here("scripts", "r", "production", "00_libraries.R"))

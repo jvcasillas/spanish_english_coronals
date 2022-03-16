@@ -1,3 +1,8 @@
+# Small data for reporting analyses -------------------------------------------
+#
+# Last update: 2020-06-16
+#
+
 # Source files ----------------------------------------------------------------
 
 source(here::here("scripts", "r", "production", "03_load_data.R"))

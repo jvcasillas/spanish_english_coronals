@@ -1,5 +1,7 @@
 # Posterior distributions: vowels ---------------------------------------------
 #
+# Last update: 2020-06-16
+#
 # - Get posterior distributions of mv 'mono' model and
 #   prep it for plotting and post-hoc scrutiny
 #

@@ -1,5 +1,7 @@
 # Analysis 2: Vowels ----------------------------------------------------------
 #
+# Last update: 2020-06-16
+#
 # - Multivariate bayesian regression
 # - F1 and F2 ~ language (spanish, english) and phon (d, t)
 # - Goal is compare the production of /a/ from both languages to see if

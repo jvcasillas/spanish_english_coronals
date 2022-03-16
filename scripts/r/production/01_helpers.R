@@ -1,3 +1,9 @@
+# Helper functions ----------- ------------------------------------------------
+#
+# Last update: 2020-06-16
+#
+
+
 # Source libraries ----------- ------------------------------------------------
 
 source(here::here("scripts", "r", "production", "00_libraries.R"))
@@ -9,11 +15,13 @@ source(here::here("scripts", "r", "production", "00_libraries.R"))
 
 # Misc functions --------------------------------------------------------------
 
+# Scale continuous variables
 simple_scale <- function(x) {
   out   <- (x - mean(x, na.rm = T)) / sd(x, na.rm = T)
   return(out)
 }
 
+# Smart scaling for skewed distributions with negative values
 smart_scale <- function(x) {
   # Find min. val. and add its abs. val + 1
   # to every value in vector, then log transform and
@@ -38,6 +46,9 @@ smart_scale <- function(x) {
 # Posterior prep --------------------------------------------------------------
 
 # Adjust posterior to match factor means
+# These adjusted posterior distributions are used for plotting
+
+# Vowel model
 vowel_prep <- . %>%
   transmute(
     f1_spanish_t = b_f1std_Intercept - b_f1std_language_sum - b_f1std_phon_sum,
@@ -49,6 +60,7 @@ vowel_prep <- . %>%
     f1_english_d = b_f1std_Intercept + b_f1std_language_sum + b_f1std_phon_sum,
     f2_english_d = b_f2std_Intercept + b_f2std_language_sum + b_f2std_phon_sum)
 
+# Monolingual analyses
 mono_vot_prep <- . %>%
   transmute(
     english_d = b_Intercept + b_group_sum + b_phon_sum + `b_group_sum:phon_sum`,
@@ -81,7 +93,7 @@ mono_mv_prep <- . %>%
 
 
 
-
+# Bilingual coronal analyses
 bi_vot_prep <- . %>%
   transmute(
     english_t = b_Intercept + b_language_sum - b_phon_sum - `b_language_sum:phon_sum`,
@@ -113,6 +125,8 @@ bi_mv_prep <- . %>%
     kt_spanish_t = b_ktstd_Intercept - b_ktstd_language_sum - b_ktstd_phon_sum + `b_ktstd_language_sum:phon_sum`)
 
 
+
+# Bilingual POA analyses
 poa_vot_prep <- . %>%
   transmute(
     english_t = b_Intercept + b_language_sum + b_poa_sum + `b_language_sum:poa_sum`,
@@ -157,7 +171,7 @@ poa_mv_prep <- . %>%
 
 # Calculate quantiles of posterior
 p <- c(0.025, 0.975, 0.1, 0.9)
-p_names <- map_chr(p, ~paste0(.x*100, "%"))
+p_names <- map_chr(p, ~paste0(.x * 100, "%"))
 p_funs <- map(p, ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
   set_names(nm = p_names)
 
@@ -173,7 +187,7 @@ p_funs <- map(p, ~partial(quantile, probs = .x, na.rm = TRUE)) %>%
 
 # Plotting functions ----------------------------------------------------------
 
-# Plot posterior summer for vowels
+# Plot posterior summary for vowels
 plot_posterior_vowel_summary <- function() {
   list(
     geom_errorbar(data = posterior_summary, inherit.aes = F,
