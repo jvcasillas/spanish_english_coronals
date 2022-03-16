@@ -289,10 +289,12 @@ plot_metrics <- function(dataframe, posterior, x, color,
     geom_point(alpha = 0.3, aes(shape = !!color),
       position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.2)) +
     stat_pointinterval(data = posterior, aes(shape = !!color),
-      show.legend = F, color = "black", position = position_dodge(0.5)) +
-    stat_summary(data = posterior, aes(shape = !!color),
+      .width = c(.80, .99), show.legend = F, point_size = 2,
+      point_color = "grey90", point_fill = "grey90",
+      position = position_dodge(0.5)) +
+    stat_summary(data = posterior, aes(shape = !!color, fill = !!color),
       fun = mean, geom = "point", position = position_dodge(0.5),
-      size = 2, show.legend = F) +
+      size = 1, stroke = 1, show.legend = F) +
     scale_color_manual(values = my_colors, name = NULL, labels = color_labs) +
     scale_fill_manual(values = my_colors, name = NULL, labels = color_labs) +
     scale_shape_manual(values = 16:17, name = NULL, labels = color_labs) +

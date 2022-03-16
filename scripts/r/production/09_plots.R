@@ -252,11 +252,11 @@ path_poa_sum   <- file.path(here("figs"), "poa_summary.")
 walk(devices, ~ ggsave(filename = glue(path_vowel, .x), plot = vowel_all_metrics_marginal,
                        device = .x, height = 5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
-                       device = .x, height = 2.85, width = 9, units = "in"))
+                       device = .x, height = 3, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
-                       device = .x, height = 2.85, width = 9, units = "in"))
+                       device = .x, height = 3, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
-                       device = .x, height = 2.85, width = 9, units = "in"))
+                       device = .x, height = 3, width = 9, units = "in"))
 
 walk(devices, ~ ggsave(filename = glue(path_vowel_sum, .x), plot = vowel_summary,
                        device = .x, height = 3, width = 9, units = "in"))

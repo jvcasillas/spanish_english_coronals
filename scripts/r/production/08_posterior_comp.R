@@ -284,8 +284,10 @@ poa_bilabial_sk_comp <- plot_posterior(
 # Combine comparison summaries ------------------------------------------------
 
 bind_rows(
-  d_t_post_mono$diff %>% make_model_table %>% mutate(Parameter = "mono_d_t"),
-  d_t_post_bi$diff %>% make_model_table %>% mutate(Parameter = "bi_d_t"),
+  d_t_post_mono$diff %>% make_model_table %>%
+    mutate(Parameter = "mono_d_t"),
+  d_t_post_bi$diff %>% make_model_table %>%
+    mutate(Parameter = "bi_d_t"),
   poa_coronal_vot_post$diff %>% make_model_table %>%
     mutate(Parameter = "poa_coronal_vot"),
   poa_bilabial_vot_post$diff %>% make_model_table %>%

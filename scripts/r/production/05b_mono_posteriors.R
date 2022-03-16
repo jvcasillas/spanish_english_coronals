@@ -21,27 +21,28 @@ source(here::here("scripts", "r", "production", "05a_mono_analysis.R"))
 # Combined posterior ----------------------------------------------------------
 
 bind_rows(
-  posterior_samples(mod_coronals_vot_mono_full) %>%
+  as_tibble(mod_coronals_vot_mono_full) %>%
     select(starts_with("b_")) %>%
     pivot_longer(cols = everything(), values_to = "estimate") %>%
     mutate(metric = "vot",
            name = str_replace(name, "cent_std", "cent"),
-           name = str_replace(name, ":phon_sum", ":phon"),
            name = fct_relevel(name,
-            "b_group_sum:phon", "b_rep_n", "b_f1_cent", "b_f2_cent",
+            "b_group_sum:phon_sum", "b_rep_n", "b_f1_cent", "b_f2_cent",
             "b_phon_sum", "b_group_sum", "b_Intercept")) %>%
     select(metric, parameters = name, estimate) %>%
     arrange(metric),
-  posterior_samples(mod_coronals_mv_mono_full) %>%
+  as_tibble(mod_coronals_mv_mono_full) %>%
   select(starts_with("b_")) %>%
     pivot_longer(cols = everything(), values_to = "estimate") %>%
-    separate(col = name, into = c("pt1", "metric", "pt2", "pt3"), sep = "_") %>%
-    unite(col = "parameters", pt1, pt2, pt3, sep = "_") %>%
-    mutate(metric = str_replace(metric, "std", ""),
-           parameters = str_replace(parameters, "_NA", ""),
-           parameters = fct_relevel(parameters,
-            "b_group_sum:phon", "b_rep_n", "b_f1_cent", "b_f2_cent",
-            "b_phon_sum", "b_group_sum", "b_Intercept")) %>%
+    separate(col = name, into = c("pt1", "metric", "pt2"), sep = c(2, 8)) %>%
+    unite(col = "parameters", pt1, pt2, sep = "_") %>%
+    mutate(metric = str_replace(metric, "_", ""),
+      parameters = str_replace(parameters, "_", ""),
+      parameters = str_replace(parameters, "__", "_"),
+      parameters = str_replace_all(parameters, "_std", ""),
+      parameters = fct_relevel(parameters,
+        "b_group_sum:phon_sum", "b_rep_n", "b_f1_cent", "b_f2_cent",
+        "b_phon_sum", "b_group_sum", "b_Intercept")) %>%
     select(metric, parameters, estimate) %>%
     arrange(metric)
   ) %>%
@@ -59,7 +60,7 @@ bind_rows(
 # group_sum = if_else(group == "NEN", 1, -1),
 
 bind_rows(
-  posterior_samples(mod_coronals_vot_mono_full) %>%
+  as_tibble(mod_coronals_vot_mono_full) %>%
     select(starts_with("b_")) %>%
     mono_vot_prep %>%
     pivot_longer(cols = everything(), names_to = "language",
@@ -67,7 +68,7 @@ bind_rows(
     separate(language, into = c("language", "phon"),
              sep = "_", remove = T) %>%
     mutate(metric = "vot"),
-  posterior_samples(mod_coronals_mv_mono_full) %>%
+  as_tibble(mod_coronals_mv_mono_full) %>%
     select(starts_with("b_")) %>%
     mono_mv_prep %>%
     pivot_longer(cols = everything(), names_to = "language",
