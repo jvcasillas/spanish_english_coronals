@@ -1,6 +1,6 @@
 # Tidy production data --------------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-16
 #
 
 # Source libraries and helpers ------------------------------------------------
@@ -45,7 +45,7 @@ raw_prod_df <- read_csv(
      language %in% c("english", "english1", "english2", "english3") ~ "english",
      TRUE ~ "spanish"),
     stress = if_else(item %in% initial_stress, "stressed", "unstressed")) %>%
-  write_csv(., path = here("data", "tidy", "tidy_coronals.csv"))
+  write_csv(file = here("data", "tidy", "tidy_coronals.csv"))
 
 # -----------------------------------------------------------------------------
 
@@ -89,6 +89,6 @@ raw_aldrich_df <- read_csv(here("data", "raw", "bl_data_aldrich2019_20200606.csv
   select(group, id, item, language, misc, starts_with("f"), vot, ri, cog, sd,
          sk, kt, label = notes, rep_n, phon, voicing, stress) %>%
   filter(phon == "p") %>%
-  write_csv(., path = here("data", "tidy", "tidy_bilabials.csv"))
+  write_csv(file = here("data", "tidy", "tidy_bilabials.csv"))
 
  # ----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 # Helper functions ----------- ------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-16
 #
 
 
@@ -51,14 +51,14 @@ smart_scale <- function(x) {
 # Vowel model
 vowel_prep <- . %>%
   transmute(
-    f1_spanish_t = b_f1std_Intercept - b_f1std_language_sum - b_f1std_phon_sum,
-    f2_spanish_t = b_f2std_Intercept - b_f2std_language_sum - b_f2std_phon_sum,
-    f1_english_t = b_f1std_Intercept + b_f1std_language_sum - b_f1std_phon_sum,
-    f2_english_t = b_f2std_Intercept + b_f2std_language_sum - b_f2std_phon_sum,
-    f1_spanish_d = b_f1std_Intercept - b_f1std_language_sum + b_f1std_phon_sum,
-    f2_spanish_d = b_f2std_Intercept - b_f2std_language_sum + b_f2std_phon_sum,
-    f1_english_d = b_f1std_Intercept + b_f1std_language_sum + b_f1std_phon_sum,
-    f2_english_d = b_f2std_Intercept + b_f2std_language_sum + b_f2std_phon_sum)
+    f1_spanish_t = b_f1std_Intercept - b_f1std_language_sum - b_f1std_phon_sum + `b_f1std_language_sum:phon_sum`,
+    f2_spanish_t = b_f2std_Intercept - b_f2std_language_sum - b_f2std_phon_sum + `b_f2std_language_sum:phon_sum`,
+    f1_english_t = b_f1std_Intercept + b_f1std_language_sum - b_f1std_phon_sum - `b_f1std_language_sum:phon_sum`,
+    f2_english_t = b_f2std_Intercept + b_f2std_language_sum - b_f2std_phon_sum - `b_f2std_language_sum:phon_sum`,
+    f1_spanish_d = b_f1std_Intercept - b_f1std_language_sum + b_f1std_phon_sum - `b_f1std_language_sum:phon_sum`,
+    f2_spanish_d = b_f2std_Intercept - b_f2std_language_sum + b_f2std_phon_sum - `b_f2std_language_sum:phon_sum`,
+    f1_english_d = b_f1std_Intercept + b_f1std_language_sum + b_f1std_phon_sum + `b_f1std_language_sum:phon_sum`,
+    f2_english_d = b_f2std_Intercept + b_f2std_language_sum + b_f2std_phon_sum + `b_f2std_language_sum:phon_sum`)
 
 # Monolingual analyses
 mono_vot_prep <- . %>%
@@ -204,7 +204,7 @@ plot_posterior_vowel_summary <- function() {
       color = "grey10", size = 1.5, width = 0),
     geom_point(data = posterior_summary,
       aes(x = f2_mean, y = f1_mean, fill = lang_phon, shape = lang_phon),
-      color = "black", size = 4, stroke = 1)
+      color = "black", size = 4, stroke = 0.5)
   )
 }
 
@@ -254,7 +254,7 @@ facet_labels <- c(
   )
 
 # Custom colors
-# my_colors <- c("#7A475D", "#2980B9", "#2C9286", "#dcefe5")
+my_colors0 <- c("#7A475D", "#2980B9", "#2C9286", "#dcefe5")
 my_colors <- c("#7A475D", "#2980B9", "#ff96d3", "#2C9286", "#ff7a3c", "#dcefe5")
 
 
@@ -306,7 +306,7 @@ plot_metrics <- function(dataframe, posterior, x, color,
 
 # Y labs for model summary plots
 model_plot_vowel_y_labs <-
-  c("Item rep", "Phoneme", "Language", "Intercept")
+  c("Item rep", "Language x\nPhoneme", "Phoneme", "Language", "Intercept")
 
 model_plot_mono_y_labs <-
   c("Group x\nPhoneme", "F2", "F1", "Phoneme", "Group", "Intercept")
@@ -339,14 +339,14 @@ model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
               aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
               fill = "lightblue", color = "white", alpha = 0.2) +
     geom_vline(xintercept = 0, lty = 3) +
-    stat_pointintervalh(position = position_dodgev(0.7), stroke = 1,
-                        aes(shape = metric)) +
-    stat_summaryh(fun.x = mean, geom = "point",
+    stat_pointinterval(position = position_dodgev(0.7), stroke = 1,
+                        aes(shape = metric, fill = metric)) +
+    stat_summary(fun = median, geom = "point",
                   position = position_dodgev(0.7), size = 2,
                   aes(color = metric, shape = metric, fill = metric)) +
     scale_y_discrete(labels = ylabs) +
-    scale_color_jcolors(name = NULL, palette = "rainbow") +
-    scale_fill_jcolors(name = NULL, palette = "rainbow") +
+    scale_color_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9) +
+    scale_fill_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9) +
     scale_shape_manual(name = NULL, values = c(15:17, 19, 23, 25)) +
     coord_cartesian(xlim = c(-1, 1)) +
     labs(y = "Parameters", x = "Estimates") +

@@ -58,6 +58,10 @@ posterior_poa_adj <-
 
 # Data transformations --------------------------------------------------------
 
+#
+# Plots to compare raw values with log transformed z scores
+#
+
 coronals_mono %>%
   pivot_longer(
     cols = c("f1_cent", "f2_cent", "vot", "ri", "cog", "sd", "sk", "kt",
@@ -136,7 +140,7 @@ posterior_summary <-
   left_join(
     posterior_vowels_adj %>%
       group_by(language, phon) %>%
-      summarize(f1_mean = mean(f1), f2_mean = mean(f2)),
+      summarize(f1_mean = mean(f1), f2_mean = mean(f2), .groups = "drop"),
     posterior_vowels_adj %>%
       group_by(language, phon) %>%
       summarize_at(vars(f1, f2), p_funs) %>%
@@ -153,12 +157,12 @@ vowel_all_metrics <- coronals_vowels %>%
     data = unite(coronals_vowels, col = "lang_phon", language, phon, sep = " "),
     alpha = 0.3, fill = "grey", color = "grey50", show.legend = F) +
   stat_ellipse(type = "norm", show.legend = FALSE, geom = "polygon",
-               alpha = 0.05) +
+    alpha = 0.2) +
   plot_posterior_vowel_summary() +
   scale_y_reverse() +
   scale_x_reverse() +
-  scale_color_manual(name = NULL, values = my_colors, labels = vowel_leg) +
-  scale_fill_manual(name = NULL, values = my_colors, labels = vowel_leg) +
+  scale_color_manual(name = NULL, values = my_colors0, labels = vowel_leg) +
+  scale_fill_manual(name = NULL, values = my_colors0, labels = vowel_leg) +
   scale_shape_manual(name = NULL, values = 21:24, labels = vowel_leg) +
   labs(y = "F1 (std)", x = "F2 (std)") +
   theme_bw(base_size = 12, base_family = "Times") +
@@ -224,8 +228,7 @@ poa_all_metrics <- plot_metrics(
 
 # Posterior summary plots -----------------------------------------------------
 
-vowel_summary <- model_summary_plot(posterior_vowels, model_plot_vowel_y_labs,
-                                    rope = c(-0.05, 0.05))
+vowel_summary <- model_summary_plot(posterior_vowels, model_plot_vowel_y_labs)
 mono_summary  <- model_summary_plot(posterior_mono, model_plot_mono_y_labs)
 bi_summary    <- model_summary_plot(posterior_bi, model_plot_bi_y_labs)
 poa_summary   <- model_summary_plot(posterior_poa, model_plot_poa_y_labs)

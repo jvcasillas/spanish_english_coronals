@@ -1,6 +1,6 @@
 # Analysis 2: Vowels ----------------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-16
 #
 # - Multivariate bayesian regression
 # - F1 and F2 ~ language (spanish, english) and phon (d, t)
@@ -43,12 +43,6 @@ coronals_vowels <- coronals %>%
 # Use all available cores for parallel computing
 options(mc.cores = parallel::detectCores())
 
-# Regularizing, weakly informative priors
-priors <- c(
-  set_prior("normal(0, 2)", class = "Intercept"),
-  set_prior("normal(0, 2)", class = "b")
-)
-
 # -----------------------------------------------------------------------------
 
 
@@ -60,18 +54,41 @@ priors <- c(
 
 # Model formula
 mv_vowel_model <- bf(
-  mvbind(f1_std, f2_std) ~ 1 + language_sum + phon_sum + rep_n +
+  mvbind(f1_std, f2_std) ~ 1 + language_sum * phon_sum + rep_n +
         (1 + phon_sum + rep_n |p| id) +
         (1 + rep_n |q| item)
+) + set_rescor(TRUE)
+
+# Get prior
+get_prior(
+  formula = mv_vowel_model,
+  family = gaussian(),
+  data = coronals_vowels
+) %>%
+  as_tibble() %>%
+  select(prior, class, coef, group, resp) %>%
+  as.data.frame()
+
+# Regularizing, weakly informative priors
+priors <- c(
+  prior(normal(0, 1), class = "Intercept", resp = "f1std"),
+  prior(normal(0, 1), class = "Intercept", resp = "f2std"),
+  prior(normal(0, 1), class = "b", resp = "f1std"),
+  prior(normal(0, 1), class = "b", resp = "f2std"),
+  prior(cauchy(0, 0.2), class = "sd", resp = "f1std"),
+  prior(cauchy(0, 0.2), class = "sd", resp = "f2std"),
+  prior(cauchy(0, 0.2), class = "sigma", resp = "f1std"),
+  prior(cauchy(0, 0.2), class = "sigma", resp = "f2std"),
+  prior(lkj(2), class = "cor"),
+  prior(lkj(2), class = "rescor")
 )
 
 # Fit model
 mod_f1f2_mv_mono_full <- brm(
   formula = mv_vowel_model,
   prior = priors,
-  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
+  warmup = 1000, iter = 10000, chains = 4, cores = 4, thin = 10,
   family = gaussian(),
-  control = list(adapt_delta = 0.999, max_treedepth = 15),
   data = coronals_vowels,
   file = here("data", "models", "mod_f1f2_mv_mono_full")
 )
