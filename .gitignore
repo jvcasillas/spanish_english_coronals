@@ -5,3 +5,6 @@
 
 # Project adds
 .DS_Store
+
+# Ignore old rproj files
+*.Rproj
