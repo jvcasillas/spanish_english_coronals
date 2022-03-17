@@ -1,6 +1,6 @@
 # Analysis 2: bilinguals ------------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-16
 #
 # This script will fit two separate models:
 # - VOT ~ language and phoneme
@@ -41,18 +41,11 @@ coronals_bi <- coronals %>%
   mutate(across(c("f1_cent", "f2_cent", "ri", "vot", "sd"),
                 .fns = list(std = ~simple_scale(.)))) %>%
   mutate(phon_sum = if_else(phon == "d", 1, -1),
-         language_sum = if_else(language == "english", 1, -1))
-
+         language_sum = if_else(language == "english", 1, -1)) %>%
+  filter(!is.na(ri_std)) # Remove 2 rows with NA for ri_std
 
 # Use all available cores for parallel computing
 options(mc.cores = parallel::detectCores())
-
-# Regularizing, weakly informative priors
-priors <- c(
-  set_prior("normal(0, 2)", class = "Intercept",
-            resp = c("ristd", "sdstd", "cogstd", "ktstd", "skstd")),
-  set_prior("normal(0, 2)", class = "b")
-)
 
 # -----------------------------------------------------------------------------
 
@@ -67,26 +60,39 @@ vot_bi_model_formula <- bf(
   vot_std ~ 1 +
     language_sum * phon_sum +
     f1_cent_std + f2_cent_std + rep_n +
-    (1 + phon_sum | id) +
+    (1 + phon_sum + f1_cent_std + f2_cent_std + rep_n | id) +
     (1 | item))
 
+# Get prior
+get_prior(
+  formula = vot_bi_model_formula,
+  family = gaussian(),
+  data = coronals_bi
+  ) %>%
+  as_tibble() %>%
+  select(prior, class, coef, group) %>%
+  as.data.frame()
+
+# Regularizing, weakly informative priors
+priors_vot <- c(
+  prior(normal(0, 1), class = "Intercept"),
+  prior(normal(0, 1), class = "b"),
+  prior(cauchy(0, 0.2), class = "sd"),
+  prior(cauchy(0, 0.5), class = "sigma"),
+  prior(lkj(2), class = "cor")
+  )
+
+# Fit VOT model
 mod_coronals_vot_bi_full <- brm(
   formula = vot_bi_model_formula,
-  prior = c(set_prior("normal(0, 2)", class = "Intercept"),
-            set_prior("normal(0, 2)", class = "b")),
-  warmup = 1000, iter = 4000, chains = 4, cores = parallel::detectCores(),
+  prior = priors_vot,
+  warmup = 1000, iter = 2000, chains = 4, cores = 4,
   family = gaussian(),
-  control = list(adapt_delta = 0.999, max_treedepth = 15),
+  control = list(adapt_delta = 0.9),
+  backend = "cmdstanr",
   data = coronals_bi,
   file = here("data", "models", "mod_coronals_vot_bi_full")
 )
-
-# mod_2 <- update(mod_coronals_vot_mono_full, formula = vot_mono_model_formula_2)
-# loo1 <- loo(mod_coronals_vot_mono_full, save_psis = T)
-# loo2 <- loo(mod_2, save_psis = T)
-# loo_compare(loo1, loo2)
-
-
 
 
 # Spectral moments
@@ -94,16 +100,53 @@ mv_bi_model_formula <- bf(
   mvbind(ri_std, cog_std, sd_std, sk_std, kt_std) ~ 1 +
     language_sum * phon_sum +
     f1_cent_std + f2_cent_std + rep_n +
-    (1 + phon_sum |p| id) +
+    (1 + phon_sum + f1_cent_std + f2_cent_std + rep_n |p| id) +
     (1 |q| item)
 ) + set_rescor(rescor = TRUE)
 
+# Get prior
+get_prior(
+  formula = mv_bi_model_formula,
+  family = gaussian(),
+  data = coronals_bi
+  ) %>%
+  as_tibble() %>%
+  select(prior, class, coef, group) %>%
+  as.data.frame()
+
+# Set priors
+priors_bi_spectral_moments <- c(
+  prior(normal(0, 1), class = "Intercept", resp = "ristd"),
+  prior(normal(0, 1), class = "Intercept", resp = "cogstd"),
+  prior(normal(0, 1), class = "Intercept", resp = "sdstd"),
+  prior(normal(0, 1), class = "Intercept", resp = "skstd"),
+  prior(normal(0, 1), class = "Intercept", resp = "ktstd"),
+  prior(normal(0, 1), class = "b", resp = "ristd"),
+  prior(normal(0, 1), class = "b", resp = "cogstd"),
+  prior(normal(0, 1), class = "b", resp = "sdstd"),
+  prior(normal(0, 1), class = "b", resp = "skstd"),
+  prior(normal(0, 1), class = "b", resp = "ktstd"),
+  prior(cauchy(0, 0.2), class = "sd", resp = "ristd"),
+  prior(normal(0, 0.2), class = "sd", resp = "cogstd"),
+  prior(normal(0, 0.2), class = "sd", resp = "sdstd"),
+  prior(normal(0, 0.2), class = "sd", resp = "skstd"),
+  prior(normal(0, 0.2), class = "sd", resp = "ktstd"),
+  prior(cauchy(0, 0.5), class = "sigma", resp = "ristd"),
+  prior(cauchy(0, 0.5), class = "sigma", resp = "cogstd"),
+  prior(cauchy(0, 0.5), class = "sigma", resp = "sdstd"),
+  prior(cauchy(0, 0.5), class = "sigma", resp = "skstd"),
+  prior(cauchy(0, 0.5), class = "sigma", resp = "ktstd"),
+  prior(lkj(2), class = "cor"),
+  prior(lkj(2), class = "rescor")
+  )
+
+# Fit MV model
 mod_coronals_mv_bi_full <- brm(
   formula = mv_bi_model_formula,
-  prior = priors,
-  warmup = 1000, iter = 4000, chains = 6, cores = parallel::detectCores(),
+  prior = priors_bi_spectral_moments,
+  warmup = 1000, iter = 2000, chains = 4, cores = 4,
   family = gaussian(),
-  control = list(adapt_delta = 0.99, max_treedepth = 12),
+  backend = "cmdstanr",
   data = coronals_bi,
   file = here("data", "models", "mod_coronals_mv_bi_full")
 )

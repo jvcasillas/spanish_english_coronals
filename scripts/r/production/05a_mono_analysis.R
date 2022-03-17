@@ -100,7 +100,7 @@ mv_mono_model_formula <- bf(
   mvbind(ri_std, cog_std, sd_std, sk_std, kt_std) ~ 1 +
      group_sum * phon_sum +
      f1_cent_std + f2_cent_std + rep_n +
-     (1 + phon_sum |p| id) +
+     (1 + phon_sum + f1_cent_std + f2_cent_std + rep_n |p| id) +
      (1 |q| item)
   ) + set_rescor(rescor = TRUE)
 
@@ -146,7 +146,7 @@ mod_coronals_mv_mono_full <- brm(
   family = gaussian(),
   backend = "cmdstanr",
   data = coronals_mono,
-  file = here("data", "models", "mod_coronals_mv_mono_fullx")
+  file = here("data", "models", "mod_coronals_mv_mono_full")
 )
 
 # -----------------------------------------------------------------------------

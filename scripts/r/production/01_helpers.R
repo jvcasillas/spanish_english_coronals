@@ -267,8 +267,8 @@ my_theme_adj <- function() {
       axis.title.y = element_text(size = rel(.9), hjust = 0.95),
       axis.title.x = element_text(size = rel(.9)),
       legend.key = element_blank(),
-      panel.grid.major = element_line(colour = 'grey90', size = 0.25),
-      panel.grid.minor = element_line(colour = 'grey90', size = 0.25)
+      panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+      panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
       ),
     guides(colour = guide_legend(override.aes = list(alpha = 1, size = 3)),
            shape = guide_legend(override.aes = list(size = 3)))
@@ -347,9 +347,12 @@ model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
                   position = position_dodgev(0.7), size = 2,
                   aes(color = metric, shape = metric, fill = metric)) +
     scale_y_discrete(labels = ylabs) +
-    scale_color_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9) +
-    scale_fill_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9) +
-    scale_shape_manual(name = NULL, values = c(15:17, 19, 23, 25)) +
+    scale_color_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9,
+      labels = facet_labels) +
+    scale_fill_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9,
+      labels = facet_labels) +
+    scale_shape_manual(name = NULL, values = c(15:17, 19, 23, 25),
+      labels = facet_labels) +
     coord_cartesian(xlim = c(-1, 1)) +
     labs(y = "Parameters", x = "Estimates") +
     theme_minimal(base_family = "Times", base_size = 16) +

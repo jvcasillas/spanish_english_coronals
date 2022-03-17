@@ -167,8 +167,8 @@ vowel_all_metrics <- coronals_vowels %>%
   labs(y = "F1 (std)", x = "F2 (std)") +
   theme_bw(base_size = 12, base_family = "Times") +
   theme(legend.position = c(0.85, 0.25),
-        panel.grid.major = element_line(colour = 'grey90', size = 0.25),
-        panel.grid.minor = element_line(colour = 'grey90', size = 0.25),
+        panel.grid.major = element_line(colour = 'grey90', size = 0.15),
+        panel.grid.minor = element_line(colour = 'grey90', size = 0.15),
         legend.background = element_blank(),
         legend.key = element_rect(colour = NA, fill = NA))
 

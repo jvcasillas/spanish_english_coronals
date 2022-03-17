@@ -37,6 +37,7 @@ bind_rows(
     separate(col = name, into = c("pt1", "metric", "pt2"), sep = c(2, 8)) %>%
     unite(col = "parameters", pt1, pt2, sep = "_") %>%
     mutate(metric = str_replace(metric, "_", ""),
+      metric = str_remove(metric, "std"),
       parameters = str_replace(parameters, "_", ""),
       parameters = str_replace(parameters, "__", "_"),
       parameters = str_replace_all(parameters, "_std", ""),
