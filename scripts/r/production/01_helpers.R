@@ -255,7 +255,7 @@ facet_labels <- c(
 
 # Custom colors
 my_colors0 <- c("#7A475D", "#2980B9", "#2C9286", "#dcefe5")
-my_colors <- c("#7A475D", "#2980B9", "#ff96d3", "#2C9286", "#ff7a3c", "#dcefe5")
+my_colors <- viridis::viridis(6, option = "C", begin = 0.2, end = 0.9)
 
 
 
@@ -283,21 +283,21 @@ plot_metrics <- function(dataframe, posterior, x, color,
   color <- enquo(color)
 
   ggplot(dataframe) +
-    aes(x = !!x, y = val, fill = !!color, color = !!color) +
+    aes(x = !!x, y = val) +
     facet_grid(. ~ metric, labeller = as_labeller(facet_labels)) +
     geom_hline(yintercept = 0, lty = 2, size = 0.25) +
-    geom_point(alpha = 0.3, aes(shape = !!color),
+    geom_point(alpha = 0.3, aes(fill = !!color, shape = !!color), stroke = 0.5,
       position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.2)) +
-    stat_pointinterval(data = posterior, aes(shape = !!color),
-      .width = c(.80, .99), show.legend = F, point_size = 2,
-      point_color = "grey90", point_fill = "grey90",
-      position = position_dodge(0.5)) +
-    stat_summary(data = posterior, aes(shape = !!color, fill = !!color),
-      fun = mean, geom = "point", position = position_dodge(0.5),
-      size = 1, stroke = 1, show.legend = F) +
-    scale_color_manual(values = my_colors, name = NULL, labels = color_labs) +
-    scale_fill_manual(values = my_colors, name = NULL, labels = color_labs) +
-    scale_shape_manual(values = 16:17, name = NULL, labels = color_labs) +
+    stat_pointinterval(data = posterior, point_size = 1.5, stroke = 0.5,
+      aes(shape = !!color, point_fill = !!color), show.legend = F,
+      .width = c(.80, .99), position = position_dodge(0.5)) +
+    scale_color_manual(values = my_colors[c(2, 5)], name = NULL,
+      labels = color_labs) +
+    scale_fill_manual(values = my_colors[c(2, 5)], name = NULL,
+      labels = color_labs) +
+    scale_fill_manual(values = my_colors[c(2, 5)], name = NULL,
+      labels = color_labs, aesthetics = "point_fill") +
+    scale_shape_manual(values = c(21, 25), name = NULL, labels = color_labs) +
     scale_x_discrete(labels = xlabs) +
     coord_cartesian(ylim = c(-2, 2)) +
     labs(y = "Metric (std. units)", x = NULL) +
@@ -306,20 +306,35 @@ plot_metrics <- function(dataframe, posterior, x, color,
 }
 
 
-# Y labs for model summary plots
-model_plot_vowel_y_labs <-
-  c("Item rep", "Language x\nPhoneme", "Phoneme", "Language", "Intercept")
+# Facet labs for model summary plots
+y_labels_vowels <- c(
+  "Item rep.", "Language\nx Phoneme", "Phoneme", "Language", "Intercept"
+  )
 
-model_plot_mono_y_labs <-
-  c("Group x\nPhoneme", "F2", "F1", "Phoneme", "Group", "Intercept")
+facet_labels_mono <- c(
+  `b_group_sum` = "Group",
+  `b_phon_sum` = "Place",
+  `b_f1_cent` = "F1",
+  `b_f2_cent` = "F2",
+  `b_group_sum:phon_sum`  = "Group x\nPhoneme"
+  )
 
-model_plot_bi_y_labs <-
-  c("Language x\nPhoneme", "F2", "F1", "Phoneme", "Language",
-    "Intercept")
+facet_labels_bi <- c(
+  `b_language_sum` = "Language",
+  `b_phon_sum` = "Place",
+  `b_f1_cent` = "F1",
+  `b_f2_cent` = "F2",
+  `b_language_sum:phon_sum`  = "Language\nx Phoneme"
+  )
 
-model_plot_poa_y_labs <-
-  c("Language x\nPlace", "F2", "F1", "Place", "Language",
-    "Intercept")
+# Named vector of facet labels
+facet_labels_poa <- c(
+  `b_language_sum` = "Language",
+  `b_poa_sum` = "Place",
+  `b_f1_cent` = "F1",
+  `b_f2_cent` = "F2",
+  `b_language_sum:poa_sum`  = "Language\nx place"
+  )
 
 # Theme adjustment for model summary plots
 model_theme_adj <- function() {
@@ -336,30 +351,52 @@ model_theme_adj <- function() {
 
 # Make model summary plot
 model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
-  ggplot(posterior, aes(y = parameters, x = estimate)) +
+  ggplot(posterior, aes(y = NULL, x = estimate)) +
+    facet_grid(parameters ~ ., labeller = as_labeller(ylabs)) +
     geom_rect(data = tibble(xmin = rope[1], xmax = rope[2]), inherit.aes = FALSE,
-              aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
-              fill = "lightblue", color = "white", alpha = 0.2) +
+      aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
+      fill = "lightblue", color = "white", alpha = 0.2) +
     geom_vline(xintercept = 0, lty = 3) +
-    stat_pointinterval(position = position_dodgev(0.7), stroke = 1,
-                        aes(shape = metric, fill = metric)) +
-    stat_summary(fun = median, geom = "point",
-                  position = position_dodgev(0.7), size = 2,
-                  aes(color = metric, shape = metric, fill = metric)) +
-    scale_y_discrete(labels = ylabs) +
-    scale_color_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9,
-      labels = facet_labels) +
-    scale_fill_viridis_d(name = NULL, option = "C", begin = 0.1, end = 0.9,
-      labels = facet_labels) +
-    scale_shape_manual(name = NULL, values = c(15:17, 19, 23, 25),
+    stat_pointinterval(position = position_dodgev(0.7), point_size = 2,
+      color = "black", aes(shape = metric)) +
+    stat_pointinterval(position = position_dodgev(0.7), point_size = 1.25,
+      aes(shape = metric, point_color = metric, point_fill = metric)) +
+    scale_fill_manual(name = NULL, values = my_colors,
+      labels = facet_labels, aesthetics = "point_fill") +
+    scale_color_manual(name = NULL, values = my_colors,
+      labels = facet_labels, aesthetics = "point_color") +
+    scale_shape_manual(name = NULL, values = c(21:25, 8),
       labels = facet_labels) +
     coord_cartesian(xlim = c(-1, 1)) +
     labs(y = "Parameters", x = "Estimates") +
     theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj()
+    model_theme_adj() +
+    theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 }
 
-
+# Make model summary plot - vowels
+model_summary_vowels_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
+  ggplot(posterior, aes(y = parameters, x = estimate)) +
+    geom_rect(data = tibble(xmin = rope[1], xmax = rope[2]), inherit.aes = FALSE,
+      aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf),
+      fill = "lightblue", color = "white", alpha = 0.2) +
+    geom_vline(xintercept = 0, lty = 3) +
+    stat_pointinterval(position = position_dodgev(0.7), point_size = 2,
+      color = "black", aes(shape = metric)) +
+    stat_pointinterval(position = position_dodgev(0.7), point_size = 1.25,
+      aes(shape = metric, point_color = metric, point_fill = metric)) +
+    scale_fill_manual(name = NULL, values = my_colors[c(2, 6)],
+      labels = facet_labels, aesthetics = "point_fill") +
+    scale_color_manual(name = NULL, values = my_colors[c(2, 6)],
+      labels = facet_labels, aesthetics = "point_color") +
+    scale_shape_manual(name = NULL, values = c(21:25, 8),
+      labels = facet_labels) +
+    coord_cartesian(xlim = c(-1, 1)) +
+    scale_y_discrete(labels = ylabs) +
+    labs(y = "Parameters", x = "Estimates") +
+    theme_minimal(base_family = "Times", base_size = 16) +
+    model_theme_adj()
+}
 
 # Function for plotting posterior distributions with descriptives
 plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
