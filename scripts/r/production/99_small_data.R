@@ -1,6 +1,6 @@
 # Small data for reporting analyses -------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-17
 #
 
 # Source files ----------------------------------------------------------------
@@ -85,6 +85,5 @@ bi_table <- read_csv(here("data", "tidy", "table_bi_model_summary.csv"))
 # POA analyses ----------------------------------------------------------------
 
 bi_poa_table <- read_csv(here("data", "tidy", "table_bi_poa_model_summary.csv"))
-
 
 # -----------------------------------------------------------------------------

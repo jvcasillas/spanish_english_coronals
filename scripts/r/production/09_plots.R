@@ -12,6 +12,7 @@
 
 
 
+
 # Source files ----------------------------------------------------------------
 
 source(here::here("scripts", "r", "production", "04a_vowel_analysis.R"))
@@ -20,19 +21,31 @@ source(here::here("scripts", "r", "production", "06a_bi_analysis.R"))
 source(here::here("scripts", "r", "production", "07a_bi_poa_analysis.R"))
 
 posterior_vowels <-
-  readRDS(here("data", "models", "posterior_vowels.rds"))
+  readRDS(here("data", "models", "posterior_vowels.rds")) %>%
+  mutate(parameters = fct_relevel(parameters, "b_Intercept", "b_language_sum",
+    "b_phon_sum", "b_language_sum:phon_sum", "b_rep_n"))
 
 posterior_mono <-
   readRDS(here("data", "models", "posterior_mono.rds")) %>%
-  filter(parameters != "b_rep_n")
+  filter(!(parameters %in% c("b_rep_n", "b_Intercept"))) %>%
+  mutate(parameters = fct_relevel(parameters, "b_group_sum", "b_phon_sum",
+    "b_f1_cent", "b_f2_cent", "b_group_sum:phon_sum"),
+    metric = fct_relevel(metric, "vot", "ri", "cog", "kt", "sd", "sk"))
 
 posterior_bi <-
   readRDS(here("data", "models", "posterior_bi.rds")) %>%
-  filter(parameters != "b_rep_n")
+  filter(!(parameters %in% c("b_rep_n", "b_Intercept"))) %>%
+  mutate(parameters = fct_relevel(parameters, "b_language_sum", "b_phon_sum",
+    "b_f1_cent", "b_f2_cent", "b_language_sum:phon_sum"),
+    metric = fct_relevel(metric, "vot", "ri", "cog", "kt", "sd", "sk"))
 
 posterior_poa <-
   readRDS(here("data", "models", "posterior_poa_comp.rds")) %>%
-  filter(parameters != "b_rep_n")
+  filter(!(parameters %in% c("b_rep_n", "b_Intercept"))) %>%
+  mutate(parameters = fct_relevel(parameters, "b_language_sum", "b_poa_sum",
+    "b_f1_cent", "b_f2_cent", "b_language_sum:poa_sum"),
+    metric = fct_relevel(metric, "vot", "ri", "cog", "kt", "sd", "sk"))
+
 
 posterior_vowels_adj <-
   readRDS(here("data", "models", "posterior_vowels_adj.rds"))
@@ -51,7 +64,6 @@ posterior_poa_adj <-
            metric = fct_relevel(metric, "vot", "ri"))
 
 # -----------------------------------------------------------------------------
-
 
 
 
@@ -101,6 +113,7 @@ coronals_bi %>%
   theme_minimal() +
   my_theme_adj()
 
+
 poa_bi %>%
   pivot_longer(
     cols = c("f1_cent", "f2_cent", "vot", "ri", "cog", "sd", "sk", "kt",
@@ -125,16 +138,7 @@ poa_bi %>%
 
 
 
-
-
-
-
-
-
-
-
-
-# Vowel plot ------------------------------------------------------------------
+# Vowel plots -----------------------------------------------------------------
 
 posterior_summary <-
   left_join(
@@ -184,11 +188,10 @@ vowel_all_metrics_marginal <- ggMarginal(
 
 
 
+# Plot raw data prep ----------------------------------------------------------
 
-
-
-# Average over item reps ------------------------------------------------------
-
+# Average over item reps for mono, bi, and poa data
+# This will provide by-subj means for next plot
 mono_subj_means <-
   plot_prep(coronals_mono, grouping_var = group_sum, color_var = phon_sum)
 bi_subj_means <-
@@ -197,6 +200,8 @@ poa_subj_means <-
   plot_prep(poa_bi, grouping_var = language_sum, color_var = poa_sum, poa = T)
 
 # -----------------------------------------------------------------------------
+
+
 
 
 # Plot raw data with posterior summaries --------------------------------------
@@ -219,21 +224,15 @@ poa_all_metrics <- plot_metrics(
 
 
 
-
-
-
-
-
-
-
 # Posterior summary plots -----------------------------------------------------
 
-vowel_summary <- model_summary_plot(posterior_vowels, model_plot_vowel_y_labs)
-mono_summary  <- model_summary_plot(posterior_mono, model_plot_mono_y_labs)
-bi_summary    <- model_summary_plot(posterior_bi, model_plot_bi_y_labs)
-poa_summary   <- model_summary_plot(posterior_poa, model_plot_poa_y_labs)
+vowel_summary <- model_summary_vowels_plot(posterior_vowels, y_labels_vowels)
+mono_summary  <- model_summary_plot(posterior_mono, facet_labels_mono)
+bi_summary    <- model_summary_plot(posterior_bi, facet_labels_bi)
+poa_summary   <- model_summary_plot(posterior_poa, facet_labels_poa)
 
 # -----------------------------------------------------------------------------
+
 
 
 
@@ -252,11 +251,11 @@ path_poa_sum   <- file.path(here("figs"), "poa_summary.")
 walk(devices, ~ ggsave(filename = glue(path_vowel, .x), plot = vowel_all_metrics_marginal,
                        device = .x, height = 5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_mono, .x), plot = mono_all_metrics,
-                       device = .x, height = 3, width = 9, units = "in"))
+                       device = .x, height = 3.5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_bi, .x), plot = bi_all_metrics,
-                       device = .x, height = 3, width = 9, units = "in"))
+                       device = .x, height = 3.5, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_poa, .x), plot = poa_all_metrics,
-                       device = .x, height = 3, width = 9, units = "in"))
+                       device = .x, height = 3.5, width = 9, units = "in"))
 
 walk(devices, ~ ggsave(filename = glue(path_vowel_sum, .x), plot = vowel_summary,
                        device = .x, height = 3, width = 9, units = "in"))

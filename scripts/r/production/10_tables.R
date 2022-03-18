@@ -1,6 +1,6 @@
 # Create model summary tables -------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-18
 #
 # - use model objects to get summaries
 # - combine in large data frames
@@ -21,12 +21,13 @@ source(here::here("scripts", "r", "production", "07a_bi_poa_analysis.R"))
 # -----------------------------------------------------------------------------
 
 
+
+
 # F1/F2 table -----------------------------------------------------------------
 
-posterior_samples(mod_f1f2_mv_mono_full) %>%
+as_tibble(mod_f1f2_mv_mono_full) %>%
   select(starts_with("b_")) %>%
   imap_dfr(make_model_table) %>%
-  arrange(column) %>%
   mutate_if(is.numeric, round, digits = 3) %>%
   mutate_if(is.numeric, format, nsmall = 3) %>%
   mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -41,10 +42,12 @@ posterior_samples(mod_f1f2_mv_mono_full) %>%
       Parameter == "Intercept" ~ "Intercept",
       Parameter == "language_sum" ~ "Language",
       Parameter == "phon_sum" ~ "Phoneme",
+      Parameter == "language_sum:phon_sum" ~ "Language:Phoneme",
       TRUE ~ "Item rep.")) %>%
   mutate_at(c("Estimate", "HDI"), str_replace_all,
             pattern = "-", replacement = "&minus;") %>%
   unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
+  arrange(Metric) %>%
   write_csv(here("data", "tidy", "table_vowel_model_summary.csv"))
 
 # -----------------------------------------------------------------------------
@@ -52,13 +55,10 @@ posterior_samples(mod_f1f2_mv_mono_full) %>%
 
 
 
-
-
-
 # Monolingual table -----------------------------------------------------------
 
 bind_rows(
-  posterior_samples(mod_coronals_vot_mono_full) %>%
+  as_tibble(mod_coronals_vot_mono_full) %>%
     select(starts_with("b_")) %>%
     imap_dfr(make_model_table) %>%
     mutate(Metric = "VOT",
@@ -69,7 +69,7 @@ bind_rows(
              column == "b_f1_cent_std" ~ "F1",
              column == "b_f2_cent_std" ~ "F2",
              column == "b_rep_n" ~ "Item rep.",
-             TRUE ~ "Group x Phoneme")) %>%
+             TRUE ~ "Group:Phoneme")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -82,12 +82,11 @@ bind_rows(
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(identifier, Metric, Parameter, Estimate, HDI, ROPE, MPE),
 
-  posterior_samples(mod_coronals_mv_mono_full) %>%
+  as_tibble(mod_coronals_mv_mono_full) %>%
     select(starts_with("b_")) %>%
     imap_dfr(make_model_table) %>%
     arrange(column) %>%
-    separate(column, into = c("p0", "Metric", "p1", "p2", "p3"), sep = "_") %>%
-    unite(col = "Parameter", p1, p2, sep = "_") %>%
+    separate(column, into = c("p0", "Metric", "Parameter"), sep = "_", extra = "merge") %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -96,23 +95,24 @@ bind_rows(
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(
       HDI = paste0("[", HDI, "]"),
-      Metric = str_replace(Metric, "std", ""),
+      Metric = str_remove(Metric, "std"),
       Metric = toupper(Metric),
       Parameter = case_when(
-      Parameter == "Intercept_NA" ~ "Intercept",
-      Parameter == "f1_cent" ~ "F1",
-      Parameter == "f2_cent" ~ "F2",
+      Parameter == "Intercept" ~ "Intercept",
+      Parameter == "f1_cent_std" ~ "F1",
+      Parameter == "f2_cent_std" ~ "F2",
       Parameter == "phon_sum" ~ "Phoneme",
       Parameter == "rep_n" ~ "Item rep.",
-      Parameter == "group_sum:phon" ~ "Group x Phoneme",
+      Parameter == "group_sum:phon_sum" ~ "Group:Phoneme",
       TRUE ~ "Group"),
       Parameter = fct_relevel(Parameter, "Intercept", "Group", "Phoneme",
                               "F1", "F2", "Item rep.")) %>%
       mutate_at(c("Estimate", "HDI"), str_replace_all,
                 pattern = "-", replacement = "&minus;") %>%
       unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
-      select(-p0, -p3) %>%
-      arrange(Metric, Parameter)) %>%
+      select(-p0) %>%
+      arrange(Metric, Parameter)
+  ) %>%
   write_csv(here("data", "tidy", "table_mono_model_summary.csv"))
 
 # -----------------------------------------------------------------------------
@@ -121,7 +121,7 @@ bind_rows(
 # Bilingual table -------------------------------------------------------------
 
 bind_rows(
-  posterior_samples(mod_coronals_vot_bi_full) %>%
+  as_tibble(mod_coronals_vot_bi_full) %>%
     select(starts_with("b_")) %>%
     imap_dfr(make_model_table) %>%
     mutate(Metric = "VOT",
@@ -132,7 +132,7 @@ bind_rows(
              column == "b_f1_cent_std" ~ "F1",
              column == "b_f2_cent_std" ~ "F2",
              column == "b_rep_n" ~ "Item rep.",
-             TRUE ~ "Language x Phoneme")) %>%
+             TRUE ~ "Language:Phoneme")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -145,12 +145,11 @@ bind_rows(
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(identifier, Metric, Parameter, Estimate, HDI, ROPE, MPE),
 
-  posterior_samples(mod_coronals_mv_bi_full) %>%
+  as_tibble(mod_coronals_mv_bi_full) %>%
     select(starts_with("b_")) %>%
     imap_dfr(make_model_table) %>%
     arrange(column) %>%
-    separate(column, into = c("p0", "Metric", "p1", "p2", "p3"), sep = "_") %>%
-    unite(col = "Parameter", p1, p2, sep = "_") %>%
+    separate(column, into = c("p0", "Metric", "Parameter"), sep = "_", extra = "merge") %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -159,23 +158,24 @@ bind_rows(
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(
       HDI = paste0("[", HDI, "]"),
-      Metric = str_replace(Metric, "std", ""),
+      Metric = str_remove(Metric, "std"),
       Metric = toupper(Metric),
       Parameter = case_when(
-        Parameter == "Intercept_NA" ~ "Intercept",
-        Parameter == "f1_cent" ~ "F1",
-        Parameter == "f2_cent" ~ "F2",
-        Parameter == "phon_sum" ~ "Phoneme",
-        Parameter == "rep_n" ~ "Item rep.",
-        Parameter == "language_sum:phon" ~ "Language x Phoneme",
-        TRUE ~ "Language"),
+      Parameter == "Intercept" ~ "Intercept",
+      Parameter == "f1_cent_std" ~ "F1",
+      Parameter == "f2_cent_std" ~ "F2",
+      Parameter == "phon_sum" ~ "Phoneme",
+      Parameter == "rep_n" ~ "Item rep.",
+      Parameter == "language_sum:phon_sum" ~ "Language:Phoneme",
+      TRUE ~ "Language"),
       Parameter = fct_relevel(Parameter, "Intercept", "Language", "Phoneme",
                               "F1", "F2", "Item rep.")) %>%
-    mutate_at(c("Estimate", "HDI"), str_replace_all,
-              pattern = "-", replacement = "&minus;") %>%
-    unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
-    select(-p0, -p3) %>%
-    arrange(Metric, Parameter)) %>%
+      mutate_at(c("Estimate", "HDI"), str_replace_all,
+                pattern = "-", replacement = "&minus;") %>%
+      unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
+      select(-p0) %>%
+      arrange(Metric, Parameter)
+  ) %>%
   write_csv(here("data", "tidy", "table_bi_model_summary.csv"))
 
 # -----------------------------------------------------------------------------
@@ -184,7 +184,7 @@ bind_rows(
 # Bilingual POA table ---------------------------------------------------------
 
 bind_rows(
-  posterior_samples(mod_poa_comp_vot_full) %>%
+  as_tibble(mod_poa_comp_vot_full) %>%
     select(starts_with("b_")) %>%
     imap_dfr(make_model_table) %>%
     mutate(Metric = "VOT",
@@ -195,7 +195,7 @@ bind_rows(
              column == "b_f1_cent_std" ~ "F1",
              column == "b_f2_cent_std" ~ "F2",
              column == "b_rep_n" ~ "Item rep.",
-             TRUE ~ "Language x Place")) %>%
+             TRUE ~ "Language:Place")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -208,12 +208,11 @@ bind_rows(
     unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
     select(identifier, Metric, Parameter, Estimate, HDI, ROPE, MPE),
 
-  posterior_samples(mod_poa_comp_mv_full) %>%
+  as_tibble(mod_poa_comp_mv_full) %>%
     select(starts_with("b_")) %>%
     imap_dfr(make_model_table) %>%
     arrange(column) %>%
-    separate(column, into = c("p0", "Metric", "p1", "p2", "p3"), sep = "_") %>%
-    unite(col = "Parameter", p1, p2, sep = "_") %>%
+    separate(column, into = c("p0", "Metric", "Parameter"), sep = "_", extra = "merge") %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -222,23 +221,24 @@ bind_rows(
     unite(HDI, hdi_lo, hdi_hi, sep = ", ") %>%
     mutate(
       HDI = paste0("[", HDI, "]"),
-      Metric = str_replace(Metric, "std", ""),
+      Metric = str_remove(Metric, "std"),
       Metric = toupper(Metric),
       Parameter = case_when(
-        Parameter == "Intercept_NA" ~ "Intercept",
-        Parameter == "f1_cent" ~ "F1",
-        Parameter == "f2_cent" ~ "F2",
-        Parameter == "poa_sum" ~ "Place",
-        Parameter == "rep_n" ~ "Item rep.",
-        Parameter == "language_sum:poa" ~ "Language x Place",
-        TRUE ~ "Language"),
+      Parameter == "Intercept" ~ "Intercept",
+      Parameter == "f1_cent_std" ~ "F1",
+      Parameter == "f2_cent_std" ~ "F2",
+      Parameter == "poa_sum" ~ "Place",
+      Parameter == "rep_n" ~ "Item rep.",
+      Parameter == "language_sum:poa_sum" ~ "Language:Place",
+      TRUE ~ "Language"),
       Parameter = fct_relevel(Parameter, "Intercept", "Language", "Place",
                               "F1", "F2", "Item rep.")) %>%
-    mutate_at(c("Estimate", "HDI"), str_replace_all,
-              pattern = "-", replacement = "&minus;") %>%
-    unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
-    select(-p0, -p3) %>%
-    arrange(Metric, Parameter)) %>%
+      mutate_at(c("Estimate", "HDI"), str_replace_all,
+                pattern = "-", replacement = "&minus;") %>%
+      unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
+      select(-p0) %>%
+      arrange(Metric, Parameter)
+  ) %>%
   write_csv(here("data", "tidy", "table_bi_poa_model_summary.csv"))
 
 # -----------------------------------------------------------------------------
