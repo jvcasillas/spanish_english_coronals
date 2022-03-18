@@ -1,6 +1,6 @@
 # Posterior distributions: bilinguals -----------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-17
 #
 # - Get posterior distributions of all 'bi' models and
 #   combine them into a single dataframe for plotting and
@@ -21,26 +21,28 @@ source(here::here("scripts", "r", "production", "07a_bi_poa_analysis.R"))
 # Combined posterior ----------------------------------------------------------
 
 bind_rows(
-  posterior_samples(mod_poa_comp_vot_full) %>%
+  as_tibble(mod_poa_comp_vot_full) %>%
     select(starts_with("b_")) %>%
     pivot_longer(cols = everything(), values_to = "estimate") %>%
     mutate(metric = "vot",
            name = str_replace(name, "cent_std", "cent"),
-           name = str_replace(name, ":poa_sum", ":poa"),
            name = fct_relevel(name,
-            "b_language_sum:poa", "b_rep_n", "b_f1_cent", "b_f2_cent",
+            "b_language_sum:poa_sum", "b_rep_n", "b_f1_cent", "b_f2_cent",
             "b_poa_sum", "b_language_sum", "b_Intercept")) %>%
     select(metric, parameters = name, estimate) %>%
     arrange(metric),
-  posterior_samples(mod_poa_comp_mv_full) %>%
+  as_tibble(mod_poa_comp_mv_full) %>%
     select(starts_with("b_")) %>%
     pivot_longer(cols = everything(), values_to = "estimate") %>%
-    separate(col = name, into = c("pt1", "metric", "pt2", "pt3"), sep = "_") %>%
-    unite(col = "parameters", pt1, pt2, pt3, sep = "_") %>%
-    mutate(metric = str_replace(metric, "std", ""),
-           parameters = str_replace(parameters, "_NA", ""),
-           parameters = fct_relevel(parameters,
-            "b_language_sum:poa", "b_rep_n", "b_f2_cent", "b_f1_cent",
+    separate(col = name, into = c("pt1", "metric", "pt2"), sep = c(2, 8)) %>%
+    unite(col = "parameters", pt1, pt2, sep = "_") %>%
+    mutate(metric = str_replace(metric, "_", ""),
+      metric = str_remove(metric, "std"),
+      parameters = str_replace(parameters, "_", ""),
+      parameters = str_replace(parameters, "__", "_"),
+      parameters = str_replace_all(parameters, "_std", ""),
+      parameters = fct_relevel(parameters,
+            "b_language_sum:poa_sum", "b_rep_n", "b_f2_cent", "b_f1_cent",
             "b_poa_sum", "b_language_sum", "b_Intercept")) %>%
     select(metric, parameters, estimate) %>%
     arrange(metric)) %>%
@@ -58,7 +60,7 @@ bind_rows(
 # poa_sum = if_else(phon == "t", 1, -1))
 
 bind_rows(
-  posterior_samples(mod_poa_comp_vot_full) %>%
+  as_tibble(mod_poa_comp_vot_full) %>%
     select(starts_with("b_")) %>%
     poa_vot_prep %>%
     pivot_longer(cols = everything(), names_to = "language",
@@ -66,7 +68,7 @@ bind_rows(
     separate(language, into = c("language", "place"),
              sep = "_", remove = T) %>%
     mutate(metric = "vot"),
-  posterior_samples(mod_poa_comp_mv_full) %>%
+  as_tibble(mod_poa_comp_mv_full) %>%
     select(starts_with("b_")) %>%
     poa_mv_prep %>%
     pivot_longer(cols = everything(), names_to = "language",
