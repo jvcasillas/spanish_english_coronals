@@ -81,118 +81,72 @@ source(here::here("scripts", "r", "production", "99_small_data.R"))
 
 ## Participants
 
-The data include `r exp_n` participants from 3 populations: monolingual 
-English speakers, monolingual Spanish speakers, and bilingual Spanish-English 
-speakers.
+The data include `r exp_n` participants from 3 populations: monolingual English speakers, monolingual Spanish speakers, and bilingual Spanish-English speakers.
 All participants were females between the ages of 18 and 23. 
-The monolingual English speakers were recorded in English and the monolingual 
-Spanish speakers were recorded in Spanish. 
+The monolingual English speakers were recorded in English and the monolingual  Spanish speakers were recorded in Spanish.
 The Spanish-English bilinguals were recorded in both of their languages.
 
-**Monolingual English speakers.** The study includes `r mono_en_n` monolingual 
-English speakers.
-They were undergraduate students at the University of Arizona, born and raised 
-in the US Southwest. 
-The English speakers were functionally monolingual, though they reported having 
-taken introductory Spanish courses. 
+**Monolingual English speakers.** The study includes `r mono_en_n` monolingual  English speakers.
+They were undergraduate students at the University of Arizona, born and raised  in the US Southwest.
+The English speakers were functionally monolingual, though they reported having  taken introductory Spanish courses.
 They were not able to maintain a basic conversation in Spanish.
-All of the participants in this group reported English as their native 
-language and verified not having been exposed to any other languages while 
-growing up.
+All of the participants in this group reported English as their native language and verified not having been exposed to any other languages while growing up.
 
 
-**Monolingual Spanish speakers.** The monolingual Spanish group comprised 
-`r mono_sp_n` speakers that were recruited from the 
-*Universitat de les  Illes Balears* campus community and were born and raised 
-on the island of Majorca, Spain.
-They reported that, although they had studied some English in Spain, they were 
-not able to maintain a basic conversation in this language. 
+**Monolingual Spanish speakers.** The monolingual Spanish group comprised `r mono_sp_n` speakers that were recruited from the *Universitat de les  Illes Balears* campus community and were born and raised on the island of Majorca, Spain.
+They reported that, although they had studied some English in Spain, they were  not able to maintain a basic conversation in this language.
 The participants of this group also speak Catalan. 
-Importantly, there are no reported differences in the phonetic realization of 
-voice timing between the Spanish and Catalan, nor are there place difference 
-between the coronal stops. 
+Importantly, there are no reported differences in the phonetic realization of  voice timing between the Spanish and Catalan, nor are there place difference between the coronal stops.
 
-**Bilingual speakers.** The English-Spanish bilinguals (n = 
-`r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
+**Bilingual speakers.** The English-Spanish bilinguals (n =  `r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
 There are two samples from this population. 
-The coronal dataset includes `r bi_coronals_n` speakers and the bilabial 
-dataset includes `r bi_poa_n` speakers. 
-The Spanish-English bilinguals were undergraduate students at the University 
-of Arizona in Tucson, Arizona. 
-The bilinguals were brought up by Spanish-speaking families and were schooled 
-mostly in English. 
-They reported using English and Spanish daily, both in the classroom as well 
-as with their friends and relatives.
+The coronal dataset includes `r bi_coronals_n` speakers and the bilabial dataset includes `r bi_poa_n` speakers.
+The Spanish-English bilinguals were undergraduate students at the University of Arizona in Tucson, Arizona.
+The bilinguals were brought up by Spanish-speaking families and were schooled  mostly in English.
+They reported using English and Spanish daily, both in the classroom as well as with their friends and relatives.
 
 
 ## Metrics
 
-F1/F2, voice onset time, relative intensity, center of gravity, standard 
-deviation, skewness, kurtosis
+F1/F2, voice onset time, relative intensity, center of gravity, standard  deviation, skewness, kurtosis
 
 ## Procedure
 
-Decide if we will present 3 separate experiments with 3 different methods 
-sections.
+Decide if we will present 3 separate experiments with 3 different methods  sections.
 
 ## Statistical analyses
 
 All analyses were conducted in `R` [@R-base, `r r_version`]. 
-We use Bayesian multilevel models fitted in `Stan` using `brms` 
-[@R-brms_a; @R-brms_b, `r brms_version`].
-Bayesian Data Analysis (BDA) is an alternative to frequentist statistical 
-analysis.^[See @van2014bayesian and @vasishth2018bayesian for tutorials and in 
-depth explanations related to BDA in the psychological and speech sciences.] 
-For all models, the criterion was standardized, or converted to z-scores, 
-in order to facilitate comparability between metrics. 
-Continuous predictors were also standardized and categorical predictors were 
-sum-to-zero coded. 
-Thus for all models the intercept represents the outcome variable at the 
-grand mean in standardized units. 
-We used regularizing, weakly informative priors in all models (specifics below) 
-with 4,000 iterations (2,000 warm-up) running on 16 processing cores. 
-We quantify our uncertainty regarding a given effect by reporting point 
-estimates derived from the posterior predictive distribution, including the 
-95% Highest Density Credible Intervals (HDI). 
-Additionally, we assume a negligible effect size of &plusmn; 0.1 
-[@cohen1988statistical; @cohen2013statistical; @kruschke2018rejecting] 
-in order to establish a Region of Practical Equivalence (ROPE), for which we 
-assess the proportion of the HDI that falls within this interval.
-Finally, we report the Maximum Probability of Effect (MPE), or the Probability 
-of Direction, as the proportion of the posterior distribution that is of the 
-median's sign. 
-We assume there to be compelling evidence for a given effect when the HDI of 
-the posterior distribution does not contain 0 nor fall within the ROPE by a 
-reasonable margin and the MPE is close to 1. 
+We use Bayesian multilevel models fitted in `Stan` using `brms` [@R-brms_a; @R-brms_b, `r brms_version`].
+Bayesian Data Analysis (BDA) is an alternative to frequentist statistical  analysis.^[See @van2014bayesian and @vasishth2018bayesian for tutorials and in depth explanations related to BDA in the psychological and speech sciences.]
+For all models, the criterion was standardized, or converted to z-scores,  in order to facilitate comparability between metrics.
+Continuous predictors were also standardized and categorical predictors were sum-to-zero coded.
+Thus for all models the intercept represents the outcome variable at the grand mean in standardized units.
+We used regularizing, weakly informative priors in all models (specifics below)  with 4,000 iterations (2,000 warm-up) running on 16 processing cores.
+We quantify our uncertainty regarding a given effect by reporting point estimates derived from the posterior predictive distribution, including the 95% Highest Density Credible Intervals (HDI).
+Additionally, we assume a negligible effect size of &plusmn; 0.1 [@cohen1988statistical; @cohen2013statistical; @kruschke2018rejecting] in order to establish a Region of Practical Equivalence (ROPE), for which we assess the proportion of the HDI that falls within this interval.
+Finally, we report the Maximum Probability of Effect (MPE), or the Probability  of Direction, as the proportion of the posterior distribution that is of the median's sign.
+We assume there to be compelling evidence for a given effect when the HDI of the posterior distribution does not contain 0 nor fall within the ROPE by a reasonable margin and the MPE is close to 1.
 
 
 
 
 # Results
 
-The results are divided into 3 subsections dealing with (1) monolingual data, 
-(2) bilingual data, and (3) POA data. 
-Each subsection presents the results of 6 metrics: VOT, relative intensity, 
-center of gravity, kurtosis, standard deviation, and skewness. 
+The results are divided into 3 subsections dealing with (1) monolingual data, (2) bilingual data, and (3) POA data.
+Each subsection presents the results of 6 metrics: VOT, relative intensity, center of gravity, kurtosis, standard deviation, and skewness.
 We report only relevant effects. 
-Please see the supplementary materials (Appendices A-D) for complete model 
-summaries. 
+Please see the supplementary materials (Appendices A-D) for complete model summaries.
 
 ## Experiment 1: Monolinguals
 
-We modeled VOT and the burst metrics as a function of language (English, 
-Spanish), phoneme (/d/, /t/), standardized F1 and F2, and item repetitions. 
-The model used regularizing, weakly informative priors \citep{Gelman_2017, 
-vasishth2018bayesian}.
-Specifically, all parameters were assumed to be distributed as normal with a 
-standard deviation of 5, i.e., $Normal(\mu = 0$, $\sigma = 5)$. 
-The standard deviation parameters for random effects and the model residual 
-error (sigma) were truncated to exclude negative values. 
-Figure\ \@ref(fig:plot-monolinguals) plots VOT and the burst metrics as a 
-function of language (English, Spanish) and phoneme (/d/, /t/).
+We modeled VOT and the burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), standardized F1 and F2, and item repetitions.
+The model used regularizing, weakly informative priors [@Gelman_2017; @vasishth2018bayesian].
+Specifically, all parameters were assumed to be distributed as normal with a  standard deviation of 5, i.e., $Normal(\mu = 0$, $\sigma = 5)$.
+The standard deviation parameters for random effects and the model residual  error (sigma) were truncated to exclude negative values.
+Figure\ \@ref(fig:plot-monolinguals) plots VOT and the burst metrics as a function of language (English, Spanish) and phoneme (/d/, /t/).
 For all plots the y-axis represents the outcome variable in standardized units. 
-The x-axis indicates the language and voiced/voiceless pairs are represented 
-by color. 
+The x-axis indicates the language and voiced/voiceless pairs are represented by color.
 
 (ref:plot-monolinguals) VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 66% credible intervals.
 
@@ -202,66 +156,33 @@ knitr::include_graphics(
 )
 ```
 
-**Voice-onset time**. English stops had higher VOT than Spanish stops 
-`r report_posterior(mono_table, param = "Group", metric = "VOT")` and the 
-voiceless segments had higher VOT than the voiced segments 
-`r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`. 
-The HDI's for language and phoneme were completely outside the ROPE and the 
-MPE was 100%.
-Thus there was compelling evidence for an effect of both language and phoneme, 
-as well as a moderate interaction between the two predictors
-`r report_posterior(mono_table, param = "Group x Phoneme", metric = "VOT")`, 
-such that the voicing difference between Spanish coronals was slightly larger 
-than that of the English coronals.
-Additionally, we compared the short-lag stops of each language, English /d/ 
-and Spanish /t/, and found no evidence that the segments differed from each 
-other REPORT HERE MAYBE.
-The VOT data is plotted in the first panel of Figure 
-\@ref(fig:plot-monolinguals). 
-The complete model summary and the short-lag stop comparison are available in 
-Table \@ref(tab:mono-table) and Figure \@ref(fig:plot-monolinguals-d-t) of the 
-supplementary materials.
+**Voice-onset time.** English stops had higher VOT than Spanish stops `r report_posterior(mono_table, param = "Group", metric = "VOT")` and the voiceless segments had higher VOT than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`.
+The HDI's for language and phoneme were completely outside the ROPE and the MPE was 100%.
+Thus there was compelling evidence for an effect of both language and phoneme, as well as a moderate interaction between the two predictors `r report_posterior(mono_table, param = "Group x Phoneme", metric = "VOT")`, such that the voicing difference between Spanish coronals was slightly larger than that of the English coronals.
+Additionally, we compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other REPORT HERE MAYBE.
+The VOT data is plotted in the first panel of Figure \@ref(fig:plot-monolinguals).
+The complete model summary and the short-lag stop comparison are available in Table \@ref(tab:mono-table) and Figure \@ref(fig:plot-monolinguals-d-t) of the supplementary materials.
 
 
 
 
 
-**Relative intensity**. The relative intensity data is plotted in the top 
-middle panel of Figure \@ref(fig:plot-monolinguals). 
-English and Spanish stops differed very little with regard to relative 
-intensity. 
-The model provided no compelling evidence for a group effect
-`r report_posterior(mono_table, param = "Group", metric = "RI")`, nor for 
-phoneme 
-`r report_posterior(mono_table, param = "Phoneme", metric = "RI")` or vowel 
-height effects 
-`r report_posterior(mono_table, param = "F1", metric = "RI")`. 
-Frontness of the following vowel did modulate relative intensity of the burst
-`r report_posterior(mono_table, param = "F2", metric = "RI")` such that 
-higher F2 values were associated with lower relative intensity. 
-Finally, there was no compelling evidence for a language &#215; phoneme 
-interaction
-`r report_posterior(mono_table, param = "Group x Phoneme", metric = "RI")`. 
+**Relative intensity.** The relative intensity data is plotted in the top  middle panel of Figure \@ref(fig:plot-monolinguals).
+English and Spanish stops differed very little with regard to relative intensity.
+The model provided no compelling evidence for a group effect `r report_posterior(mono_table, param = "Group", metric = "RI")`, nor for phoneme `r report_posterior(mono_table, param = "Phoneme", metric = "RI")` or vowel height effects `r report_posterior(mono_table, param = "F1", metric = "RI")`.
+Frontness of the following vowel did modulate relative intensity of the burst `r report_posterior(mono_table, param = "F2", metric = "RI")` such that higher F2 values were associated with lower relative intensity.
+Finally, there was no compelling evidence for a language &#215; phoneme interaction `r report_posterior(mono_table, param = "Group x Phoneme", metric = "RI")`.
 
 
 
 
 
 
-**Center of gravity.** The center of gravity (COG) data is plotted in the 
-third panel of Figure \@ref(fig:plot-monolinguals). 
-English stops had a higher COG than Spanish stops
-`r report_posterior(mono_table, param = "Group", metric = "COG")`, and the 
-voiceless segments had a higher COG than the voiced segments 
-`r report_posterior(mono_table, param = "Phoneme", metric = "COG")`. 
-In both cases the HDI's were completely outside the ROPE and the MPE was 100%.
+**Center of gravity.** The center of gravity (COG) data is plotted in the  third panel of Figure \@ref(fig:plot-monolinguals).
+English stops had a higher COG than Spanish stops `r report_posterior(mono_table, param = "Group", metric = "COG")`, and the voiceless segments had a higher COG than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "COG")`.
+In both cases the HDI's were completely outside the ROPE and the MPE was 100%. 
 This suggests compelling evidence for an effect of both language and phoneme. 
-The two predictors did not interact 
-`r report_posterior(mono_table, param = "Group x Phoneme", metric = "COG")`, 
-nor did F1 
-`r report_posterior(mono_table, param = "F1", metric = "COG")` or F2 
-`r report_posterior(mono_table, param = "F2", metric = "COG")` have any 
-influence on COG. 
+The two predictors did not interact `r report_posterior(mono_table, param = "Group x Phoneme", metric = "COG")`, nor did F1 `r report_posterior(mono_table, param = "F1", metric = "COG")` or F2 `r report_posterior(mono_table, param = "F2", metric = "COG")` have any influence on COG.
  
 
 
@@ -269,23 +190,13 @@ influence on COG.
 
 
 
-**Kurtosis.** The kurtosis data is plotted in the second row, first column 
-of Figure \@ref(fig:plot-monolinguals).
-English stop bursts had a lower kurtosis with regard to Spanish stop bursts 
-`r report_posterior(mono_table, param = "Group", metric = "KT")`, and the 
-voiced segments presumably had a higher kurtosis than the voiceled segments 
-`r report_posterior(mono_table, param = "Phoneme", metric = "KT")`, though 
-there was evidence of a language &times; phoneme interaction 
-`r report_posterior(mono_table, param = "Group x Phoneme", metric = "KT")`. 
+**Kurtosis.** The kurtosis data is plotted in the second row, first column of Figure \@ref(fig:plot-monolinguals).
+English stop bursts had a lower kurtosis with regard to Spanish stop bursts `r report_posterior(mono_table, param = "Group", metric = "KT")`, and the voiced segments presumably had a higher kurtosis than the voiceled segments `r report_posterior(mono_table, param = "Phoneme", metric = "KT")`, though there was evidence of a language &times; phoneme interaction `r report_posterior(mono_table, param = "Group x Phoneme", metric = "KT")`.
 <!--
 need to add post hoc comparisons here
 -->
-Specifically, kurtosis was higher in the voiced stop bursts of Spanish (XXX), 
-but there was no evidence of a voicing difference in the English data (XXX). 
-Neither F1
-`r report_posterior(mono_table, param = "F1", metric = "KT")` nor F2 
-`r report_posterior(mono_table, param = "F2", metric = "KT")` had any 
-influence on kurtosis.   
+Specifically, kurtosis was higher in the voiced stop bursts of Spanish (XXX),  but there was no evidence of a voicing difference in the English data (XXX). 
+Neither F1 `r report_posterior(mono_table, param = "F1", metric = "KT")` nor F2 `r report_posterior(mono_table, param = "F2", metric = "KT")` had any influence on kurtosis.
 
 
 
