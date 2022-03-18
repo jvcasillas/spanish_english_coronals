@@ -8,3 +8,6 @@
 
 # Ignore old rproj files
 *.Rproj
+
+# Ignore huge RDS
+data/models/mod_poa_comp_mv_full.rds
