@@ -6,6 +6,8 @@ output: github_document
 
 Last update: `r Sys.Date()`
 
+Note: `data/models/mod_poa_comp_mv_full.rds` no tracked in repo (too big)
+
 ```{r, 'basic-project-structure', comment=NA, echo=F}
 fs::dir_tree(recurse = 1)
 ```

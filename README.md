@@ -1,7 +1,10 @@
 
 # Spanish/English coronal stops
 
-Last update: 2019-09-18
+Last update: 2022-03-18
+
+Note: `data/models/mod_poa_comp_mv_full.rds` no tracked in repo (too
+big)
 
     .
     ├── README.Rmd
@@ -35,18 +38,22 @@ Last update: 2019-09-18
     ├── figs
     │   ├── bi_all_metrics.pdf
     │   ├── bi_all_metrics.png
+    │   ├── bi_post_hoc_d_t.pdf
+    │   ├── bi_post_hoc_d_t.png
     │   ├── bi_summary.pdf
     │   ├── bi_summary.png
     │   ├── mono_all_metrics.pdf
     │   ├── mono_all_metrics.png
+    │   ├── mono_post_hoc_d_t.pdf
+    │   ├── mono_post_hoc_d_t.png
     │   ├── mono_summary.pdf
     │   ├── mono_summary.png
     │   ├── poa_all_metrics.pdf
     │   ├── poa_all_metrics.png
     │   ├── poa_summary.pdf
     │   ├── poa_summary.png
-    │   ├── vowel_all_metrics.pdf
-    │   ├── vowel_all_metrics.png
+    │   ├── vowel_all_metrics_marginal.pdf
+    │   ├── vowel_all_metrics_marginal.png
     │   ├── vowel_summary.pdf
     │   └── vowel_summary.png
     ├── scripts
