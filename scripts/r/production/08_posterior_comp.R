@@ -1,6 +1,6 @@
 # Post-hoc comparisons --------------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-03-20
 #
 # Questions of interest:
 # - Can any of the metrics distinguish between English and Spanish for
@@ -284,36 +284,42 @@ poa_bilabial_sk_comp <- plot_posterior(
 # Combine comparison summaries ------------------------------------------------
 
 bind_rows(
-  d_t_post_mono$diff %>% make_model_table %>%
+  d_t_post_mono$diff %>% make_model_table(name_v = "vot") %>%
     mutate(Parameter = "mono_d_t"),
-  d_t_post_bi$diff %>% make_model_table %>%
+  d_t_post_bi$diff %>% make_model_table(name_v = "vot") %>%
     mutate(Parameter = "bi_d_t"),
-  poa_coronal_vot_post$diff %>% make_model_table %>%
+  poa_coronal_vot_post$diff %>% make_model_table(name_v = "vot") %>%
     mutate(Parameter = "poa_coronal_vot"),
-  poa_bilabial_vot_post$diff %>% make_model_table %>%
+  poa_bilabial_vot_post$diff %>% make_model_table(name_v = "vot") %>%
     mutate(Parameter = "poa_bilabial_vot"),
-  poa_coronal_ri_post$diff %>% make_model_table %>%
+  poa_coronal_ri_post$diff %>% make_model_table(name_v = "ri") %>%
     mutate(Parameter = "poa_coronal_ri"),
-  poa_bilabial_ri_post$diff %>% make_model_table %>%
+  poa_bilabial_ri_post$diff %>% make_model_table(name_v = "ri") %>%
     mutate(Parameter = "poa_bilabial_ri"),
-  poa_coronal_cog_post$diff %>% make_model_table %>%
+  poa_coronal_cog_post$diff %>% make_model_table(name_v = "cog") %>%
     mutate(Parameter = "poa_coronal_cog"),
-  poa_bilabial_cog_post$diff %>% make_model_table %>%
+  poa_bilabial_cog_post$diff %>% make_model_table(name_v = "cog") %>%
     mutate(Parameter = "poa_bilabial_cog"),
-  poa_coronal_kt_post$diff %>% make_model_table %>%
+  poa_coronal_kt_post$diff %>% make_model_table(name_v = "kt") %>%
     mutate(Parameter = "poa_coronal_kt"),
-  poa_bilabial_kt_post$diff %>% make_model_table %>%
+  poa_bilabial_kt_post$diff %>% make_model_table(name_v = "kt") %>%
     mutate(Parameter = "poa_bilabial_kt"),
-  poa_coronal_sd_post$diff %>% make_model_table %>%
+  poa_coronal_sd_post$diff %>% make_model_table(name_v = "sd") %>%
     mutate(Parameter = "poa_coronal_sd"),
-  poa_bilabial_sd_post$diff %>% make_model_table %>%
+  poa_bilabial_sd_post$diff %>% make_model_table(name_v = "sd") %>%
     mutate(Parameter = "poa_bilabial_sd"),
-  poa_coronal_sk_post$diff %>% make_model_table %>%
+  poa_coronal_sk_post$diff %>% make_model_table(name_v = "sk") %>%
     mutate(Parameter = "poa_coronal_sk"),
-  poa_bilabial_sk_post$diff %>% make_model_table %>%
+  poa_bilabial_sk_post$diff %>% make_model_table(name_v = "sk") %>%
     mutate(Parameter = "poa_bilabial_sk")
   ) %>%
   mutate_if(is.numeric, round, digits = 3) %>%
+  mutate(HDI = glue("[{hdi_lo}, {hdi_hi}]"),
+    Metric = toupper(column)) %>%
+  mutate_at(c("Estimate", "HDI"), str_replace_all,
+            pattern = "-", replacement = "&minus;") %>%
+  unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%
+  transmute(identifier, Metric, Parameter, Estimate, HDI, ROPE, MPE) %>%
   saveRDS(here("data", "models", "post_hoc_analyses.rds"))
 
 # -----------------------------------------------------------------------------

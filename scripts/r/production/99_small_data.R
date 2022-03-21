@@ -52,7 +52,6 @@ exp_n         <- sample_size %>% pull(n) %>% sum
 
 
 
-
 # Vowel analysis --------------------------------------------------------------
 
 f1_f2_table <- read_csv(here("data", "tidy", "table_vowel_model_summary.csv"))
@@ -62,13 +61,11 @@ f1_f2_table <- read_csv(here("data", "tidy", "table_vowel_model_summary.csv"))
 
 
 
-
 # Monolingual analyses --------------------------------------------------------
 
 mono_table <- read_csv(here("data", "tidy", "table_mono_model_summary.csv"))
 
 # -----------------------------------------------------------------------------
-
 
 
 
@@ -85,5 +82,14 @@ bi_table <- read_csv(here("data", "tidy", "table_bi_model_summary.csv"))
 # POA analyses ----------------------------------------------------------------
 
 bi_poa_table <- read_csv(here("data", "tidy", "table_bi_poa_model_summary.csv"))
+
+# -----------------------------------------------------------------------------
+
+
+
+
+# Post-hoc comparisons --------------------------------------------------------
+
+post_hoc <- readRDS(here("data", "models", "post_hoc_analyses.rds"))
 
 # -----------------------------------------------------------------------------

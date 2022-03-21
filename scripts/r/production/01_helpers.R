@@ -271,6 +271,7 @@ my_theme_adj <- function() {
       panel.grid.minor = element_line(colour = 'grey90', size = 0.15)
       ),
     guides(colour = guide_legend(override.aes = list(alpha = 1, size = 3)),
+           fill = guide_legend(override.aes = list(alpha = 1, size = 3)),
            shape = guide_legend(override.aes = list(size = 3)))
   )
 }
@@ -284,18 +285,19 @@ plot_metrics <- function(dataframe, posterior, x, color,
 
   ggplot(dataframe) +
     aes(x = !!x, y = val) +
-    facet_grid(. ~ metric, labeller = as_labeller(facet_labels)) +
+    facet_wrap(~ metric, nrow = 2, labeller = as_labeller(facet_labels)) +
     geom_hline(yintercept = 0, lty = 2, size = 0.25) +
-    geom_point(alpha = 0.3, aes(fill = !!color, shape = !!color), stroke = 0.5,
+    geom_point(alpha = 0.2, stroke = 0.3, color = "white",
+      aes(fill = !!color, shape = !!color),
       position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.2)) +
-    stat_pointinterval(data = posterior, point_size = 1.5, stroke = 0.5,
+    stat_pointinterval(data = posterior, point_size = 3, stroke = 0.25,
       aes(shape = !!color, point_fill = !!color), show.legend = F,
-      .width = c(.80, .99), position = position_dodge(0.5)) +
-    scale_color_manual(values = my_colors[c(2, 5)], name = NULL,
+      .width = c(.80, .99), position = position_dodge(0.5), point_color = "white") +
+    scale_color_manual(values = my_colors[c(2, 4)], name = NULL,
       labels = color_labs) +
-    scale_fill_manual(values = my_colors[c(2, 5)], name = NULL,
+    scale_fill_manual(values = my_colors[c(2, 4)], name = NULL,
       labels = color_labs) +
-    scale_fill_manual(values = my_colors[c(2, 5)], name = NULL,
+    scale_fill_manual(values = my_colors[c(2, 4)], name = NULL,
       labels = color_labs, aesthetics = "point_fill") +
     scale_shape_manual(values = c(21, 25), name = NULL, labels = color_labs) +
     scale_x_discrete(labels = xlabs) +
@@ -485,7 +487,7 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
 
 
 # Make model summary table (give it a posterior dist.)
-make_model_table <- function(v, name_v, ci = 0.95, rope = c(-0.05, 0.05)) {
+make_model_table <- function(v, name_v, ci = 0.95, rope = c(-0.1, 0.1)) {
   tibble(
     column   = name_v,
     Estimate = mean(v),
