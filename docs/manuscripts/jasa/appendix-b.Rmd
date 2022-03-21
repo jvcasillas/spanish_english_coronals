@@ -24,14 +24,6 @@ mono_table %>%
 ```
 
 
-
-
-
-
-
-
-
-
 (ref:plot-monolinguals-d-t) Posterior distribution comparing the short-lag stops, English /d/ and Spanish /t/. The white point represents the posterior mean &pm; 95% HDI and the grey region represents the ROPE (&pm; 0.1).
 
 ```{r, 'plot-monolinguals-d-t', echo=FALSE, fig.cap="(ref:plot-monolinguals-d-t)"}

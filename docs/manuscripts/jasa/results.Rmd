@@ -77,6 +77,10 @@ options(width=80)
 source(here::here("scripts", "r", "production", "99_small_data.R"))
 ```
 
+# Introduction
+
+# Background and motivation
+
 # Method
 
 ## Participants
@@ -157,9 +161,9 @@ knitr::include_graphics(
 ```
 
 **Voice-onset time.** English stops had higher VOT than Spanish stops `r report_posterior(mono_table, param = "Group", metric = "VOT")` and the voiceless segments had higher VOT than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`.
-The HDI's for language and phoneme were completely outside the ROPE and the MPE was 100%.
-Thus there was compelling evidence for an effect of both language and phoneme, as well as a moderate interaction between the two predictors `r report_posterior(mono_table, param = "Group x Phoneme", metric = "VOT")`, such that the voicing difference between Spanish coronals was slightly larger than that of the English coronals.
-Additionally, we compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other REPORT HERE MAYBE.
+We also find moderate evidence for an interaction between the two predictors `r report_posterior(mono_table, param = "Group:Phoneme", metric = "VOT")`. 
+Specifically, the voicing difference between Spanish coronals was slightly larger than that of the English coronals.
+We compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other `r report_posterior(post_hoc, param = "mono_d_t", metric = "VOT")`, as nearly half the HDI fell within the predetermined region of practical equivalence.
 The VOT data is plotted in the first panel of Figure \@ref(fig:plot-monolinguals).
 The complete model summary and the short-lag stop comparison are available in Table \@ref(tab:mono-table) and Figure \@ref(fig:plot-monolinguals-d-t) of the supplementary materials.
 
