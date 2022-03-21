@@ -1,11 +1,11 @@
 identifier,Metric,Parameter,Estimate,HDI,ROPE,MPE
-F1_Intercept,F1,Intercept,&minus;0.031,"[&minus;0.283, 0.205]",0.310,0.606
-F1_Language,F1,Language,0.008,"[&minus;0.221, 0.203]",0.384,0.536
-F1_Phoneme,F1,Phoneme,0.124,"[0.007, 0.235]",0.081,0.981
-F1_Item rep.,F1,Item rep.,0.018,"[&minus;0.050, 0.089]",0.824,0.689
-F1_Language:Phoneme,F1,Language:Phoneme,0.015,"[&minus;0.097, 0.134]",0.627,0.595
-F2_Intercept,F2,Intercept,&minus;0.060,"[&minus;0.289, 0.198]",0.301,0.692
-F2_Language,F2,Language,0.222,"[&minus;0.007, 0.462]",0.046,0.967
-F2_Phoneme,F2,Phoneme,0.129,"[&minus;0.042, 0.318]",0.171,0.917
-F2_Item rep.,F2,Item rep.,0.030,"[&minus;0.045, 0.099]",0.728,0.802
-F2_Language:Phoneme,F2,Language:Phoneme,0.015,"[&minus;0.172, 0.194]",0.417,0.566
+F1_Intercept,F1,Intercept,&minus;0.031,"[&minus;0.283, 0.205]",0.587,0.606
+F1_Language,F1,Language,0.008,"[&minus;0.221, 0.203]",0.693,0.536
+F1_Phoneme,F1,Phoneme,0.124,"[0.007, 0.235]",0.328,0.981
+F1_Item rep.,F1,Item rep.,0.018,"[&minus;0.050, 0.089]",1.000,0.689
+F1_Language:Phoneme,F1,Language:Phoneme,0.015,"[&minus;0.097, 0.134]",0.951,0.595
+F2_Intercept,F2,Intercept,&minus;0.060,"[&minus;0.289, 0.198]",0.563,0.692
+F2_Language,F2,Language,0.222,"[&minus;0.007, 0.462]",0.121,0.967
+F2_Phoneme,F2,Phoneme,0.129,"[&minus;0.042, 0.318]",0.353,0.917
+F2_Item rep.,F2,Item rep.,0.030,"[&minus;0.045, 0.099]",1.000,0.802
+F2_Language:Phoneme,F2,Language:Phoneme,0.015,"[&minus;0.172, 0.194]",0.757,0.566
