@@ -169,24 +169,18 @@ The complete model summary and the short-lag stop comparison are available in Ta
 
 
 
-
-
 **Relative intensity.** The relative intensity data is plotted in the top  middle panel of Figure \@ref(fig:plot-monolinguals).
 English and Spanish stops differed very little with regard to relative intensity.
 The model provided no compelling evidence for a group effect `r report_posterior(mono_table, param = "Group", metric = "RI")`, nor for phoneme `r report_posterior(mono_table, param = "Phoneme", metric = "RI")` or vowel height effects `r report_posterior(mono_table, param = "F1", metric = "RI")`.
 Frontness of the following vowel did modulate relative intensity of the burst `r report_posterior(mono_table, param = "F2", metric = "RI")` such that higher F2 values were associated with lower relative intensity.
-Finally, there was no compelling evidence for a language &#215; phoneme interaction `r report_posterior(mono_table, param = "Group x Phoneme", metric = "RI")`.
-
-
-
+Finally, there was no evidence supporting a language &#215; phoneme interaction `r report_posterior(mono_table, param = "Group x Phoneme", metric = "RI")`.
 
 
 
 **Center of gravity.** The center of gravity (COG) data is plotted in the  third panel of Figure \@ref(fig:plot-monolinguals).
-English stops had a higher COG than Spanish stops `r report_posterior(mono_table, param = "Group", metric = "COG")`, and the voiceless segments had a higher COG than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "COG")`.
-In both cases the HDI's were completely outside the ROPE and the MPE was 100%. 
-This suggests compelling evidence for an effect of both language and phoneme. 
-The two predictors did not interact `r report_posterior(mono_table, param = "Group x Phoneme", metric = "COG")`, nor did F1 `r report_posterior(mono_table, param = "F1", metric = "COG")` or F2 `r report_posterior(mono_table, param = "F2", metric = "COG")` have any influence on COG.
+English stops had a higher COG than Spanish stops `r report_posterior(mono_table, param = "Group", metric = "COG")`, and, overall, voiceless segments had a higher COG than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "COG")`, however, the two predictors interacted `r report_posterior(mono_table, param = "Group:Phoneme", metric = "COG")`. 
+The interaction was driven by a large COG difference between Spanish coronals (English /d/ vs. English /t/: ) that was not present in the English coronals.  
+No other predictors has an effect on COG (Spanish /d/ vs. Spanish /t/: ). 
  
 
 
