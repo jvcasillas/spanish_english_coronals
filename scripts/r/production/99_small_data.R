@@ -1,6 +1,6 @@
 # Small data for reporting analyses -------------------------------------------
 #
-# Last update: 2022-03-17
+# Last update: 2022-03-21
 #
 
 # Source files ----------------------------------------------------------------
@@ -8,8 +8,6 @@
 source(here::here("scripts", "r", "production", "03_load_data.R"))
 
 # -----------------------------------------------------------------------------
-
-
 
 
 
@@ -24,7 +22,6 @@ brms_version <- glue("version ",
                      sessionInfo()[["otherPkgs"]][["brms"]][["Version"]])
 
 # -----------------------------------------------------------------------------
-
 
 
 
@@ -51,45 +48,21 @@ exp_n         <- sample_size %>% pull(n) %>% sum
 
 
 
+# Load tables -----------------------------------------------------------------
 
-# Vowel analysis --------------------------------------------------------------
-
+# Vowel analysis
 f1_f2_table <- read_csv(here("data", "tidy", "table_vowel_model_summary.csv"))
 
-# -----------------------------------------------------------------------------
-
-
-
-
-# Monolingual analyses --------------------------------------------------------
-
+# Monolingual analyses
 mono_table <- read_csv(here("data", "tidy", "table_mono_model_summary.csv"))
 
-# -----------------------------------------------------------------------------
-
-
-
-
-# Bilingual analyses ----------------------------------------------------------
-
+# Bilingual analyses
 bi_table <- read_csv(here("data", "tidy", "table_bi_model_summary.csv"))
 
-# -----------------------------------------------------------------------------
-
-
-
-
-# POA analyses ----------------------------------------------------------------
-
+# POA analyses
 bi_poa_table <- read_csv(here("data", "tidy", "table_bi_poa_model_summary.csv"))
 
-# -----------------------------------------------------------------------------
-
-
-
-
-# Post-hoc comparisons --------------------------------------------------------
-
+# Post-hoc comparisons
 post_hoc <- readRDS(here("data", "models", "post_hoc_analyses.rds"))
 
 # -----------------------------------------------------------------------------

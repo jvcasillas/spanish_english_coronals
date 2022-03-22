@@ -70,6 +70,7 @@ bind_rows(
     mutate(metric = "vot"),
   as_tibble(mod_poa_comp_mv_full) %>%
     select(starts_with("b_")) %>%
+    sample_n(4000) %>%
     poa_mv_prep %>%
     pivot_longer(cols = everything(), names_to = "language",
                  values_to = "val") %>%
