@@ -1,11 +1,8 @@
 ## About this document
 
-This document was written in RMarkdown using `papaja` [@R-papaja] and serves 
-as a project report for our research group.
-The document is written as if it were the results section of a future 
-manuscript.
-This implies that it is written in a way that allows it to be copy and pasted 
-into the actual manuscript once it is available.
+This document was written in RMarkdown using `papaja` [@R-papaja] and serves as a project report for our research group. 
+The document is written as if it were the results section of a future manuscript.
+This implies that it is written in a way that allows it to be copy and pasted into the actual manuscript once it is available.
 
 ## Session info
 

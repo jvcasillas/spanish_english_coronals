@@ -28,6 +28,6 @@ mono_table %>%
 
 ```{r, 'plot-monolinguals-d-t', echo=FALSE, fig.cap="(ref:plot-monolinguals-d-t)"}
 knitr::include_graphics(
-  here("figs", "mono_post_hoc_d_t.pdf")
+  here("figs", "mono_post_hoc_dt.pdf")
 )
 ```

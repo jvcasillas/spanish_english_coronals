@@ -1,43 +1,23 @@
 
 ## Experiment 0: Vowels
 
-Prior to the stop analyses we scrutinezed the formant structure, F1 and F2, of 
-the vowel following the coronal stops.
-The purpose of this analysis was to determine if the low /a/ and /ae/ vowels 
-of Spanish and English, respectively, differed from each other. 
-This analysis was taken as a precautionary measure with the objective of 
-determining whether or not coarticulation effects may be present in the stop 
-metrics due to the possible different spectral envelopes of the next 
-segment. 
+Prior to the stop analyses we scrutinized the formant structure, F1 and F2, of  the vowel following the coronal stops.
+The purpose of this analysis was to determine if the low /a/ and /&aelig;/ vowels of Spanish and English, respectively, differed from each other.
+This analysis was taken as a precautionary measure with the objective of determining whether or not coarticulation effects may be present in the stop metrics due to the possible different spectral envelopes of the next segment.
 
-The F1 and F2 data were analayzed using separate Bayesian multilevel models.
-The criterion (F1 or F2) were standardized and modeled as a function of 
-language (English, Spanish), phoneme (/d/, /t/), and item repetition. 
+The F1 and F2 data were analyzed using separate Bayesian multilevel models.
+The criterion (F1 or F2) were standardized and modeled as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition.
 Language and phoneme were sum coded (-1, 1). 
-The random effects structure included by-subject intercepts with 
-random slopes for phoneme and item repetition, as well as by-item intercepts 
-with a random slope for item repetition. 
-The model included weakly informative priors with the mean centered at 0 and 
-a standard deviation of 2. 
+The random effects structure included by-subject intercepts with random slopes for phoneme and item repetition, as well as by-item intercepts with a random slope for item repetition. 
+The model included weakly informative priors with the mean centered at 0 and a standard deviation of 2.
 
-The model suggested weak evidence for a language effect on F1 
-`r report_posterior(f1_f2_table, param = "Language", metric = "F1")`
-and F2 
+The model suggested weak evidence for a language effect on F1  `r report_posterior(f1_f2_table, param = "Language", metric = "F1")` and F2
 `r report_posterior(f1_f2_table, param = "Language", metric = "F2")`. 
-Together, the point estimates suggest the spectral centroid of the Spanish 
-vowel was slightly higher and more posterior with respect to that of the 
-English vowel.
-There was no evidence for a phoneme effect on F1 
-`r report_posterior(f1_f2_table, param = "Phoneme", metric = "F1")`, 
-nor on F2 
-`r report_posterior(f1_f2_table, param = "Phoneme", metric = "F2")`. 
-Given the possibility of a small effect of language on the spectal envelope, 
-standardized F1 and F2 were used in subsequent analyses of the coronal stops 
-to control for any coarticulatory effects on the burst. 
-Figure\ \@ref(fig:plot-monolingual-vowels) plots the F1 &#215; F2 data and 
-Figure\ \@ref(fig:plot-monolingual-vowels-summary) plots the model summary. 
-A complete summary of the F1 and F2 models is available in 
-Table \@ref(tab:vowel-table). 
+Together, the point estimates suggest the spectral centroid of the Spanish vowel was slightly higher and more posterior with respect to that of the English vowel.
+There was no evidence for a phoneme effect on F1 `r report_posterior(f1_f2_table, param = "Phoneme", metric = "F1")`, nor on F2 `r report_posterior(f1_f2_table, param = "Phoneme", metric = "F2")`.
+Given the possibility of a small effect of language on the spectral envelope,  standardized F1 and F2 were used in subsequent analyses of the coronal stops to control for any coarticulatory effects on the burst.
+Figure\ \@ref(fig:plot-monolingual-vowels) plots the F1 &#215; F2 data and Figure\ \@ref(fig:plot-monolingual-vowels-summary) plots the model summary. 
+A complete summary of the F1 and F2 models is available in Table \@ref(tab:vowel-table).
 
 (ref:plot-monolingual-vowels) F1 &#215; F2 of /a/ from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn; 95% and 80% credible intervals.
 
