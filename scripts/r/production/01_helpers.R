@@ -454,14 +454,13 @@ plot_posterior <- function(posterior, parameter, rope = c(-0.1, 0.1),
     geom_area(data = plot_build, show.legend = F, alpha = 0.4,
               aes(x = x, y = y, fill = region)) +
     scale_fill_manual(labels = c("", "ROPE", ""),
-                      values = c(my_colors[color], "grey80", my_colors[color])) +
-    geom_segment(x = summary_vals$hdi_low, xend = summary_vals$hdi_high,
-                 y = 0, yend = 0, size = 2) +
-    geom_point(data = summary_vals, size = 7, pch = 21, fill = "white",
-               aes(x = mean, y = density)) +
+      values = c(my_colors[color], "grey80", my_colors[color])) +
+    stat_pointinterval(pch = 21, fill = "white", point_size = 7, stroke = 0.5,
+      interval_size = c(20, 5)) +
     geom_text(data = post_summary, hjust = 0, size = 4, family = "Times",
         aes(x = x, y = density, label = text)) +
     labs(y = ylab, x = xlab) +
+    coord_cartesian(ylim = c(0, NA)) +
     theme_minimal(base_size = 16, base_family = "Times") +
     model_theme_adj()
   print(plot_final)
@@ -499,7 +498,8 @@ make_model_table <- function(v, name_v, ci = 0.95, rope = c(-0.1, 0.1)) {
 
 
 # Report posterior estimates, HDI, ROPE, and MPE in prose
-report_posterior <- function(df, param, metric = NULL) {
+report_posterior <- function(df, param, metric = NULL, prefix = NULL,
+  supress = FALSE) {
 
   if (is.null(metric)) {
     # Extract wanted value from model output
@@ -515,11 +515,19 @@ report_posterior <- function(df, param, metric = NULL) {
     mpe  <- df[df$Parameter == param & df$Metric == metric, "MPE"]
   }
 
+  if(supress == FALSE) {
   capture.output(
-    paste0("(&beta; = ", est, ", HDI = ", cis, ", ROPE = ", rope,
+    paste0("(", prefix, "&beta; = ", est, ", HDI = ", cis, ", ROPE = ", rope,
            ", MPE = ", mpe, ")", "\n") %>%
       cat()) %>%
     paste()
+  } else {
+  capture.output(
+    paste0(prefix, "&beta; = ", est, ", HDI = ", cis, ", ROPE = ", rope,
+           ", MPE = ", mpe, "\n") %>%
+      cat()) %>%
+    paste()
+  }
 }
 
 # -----------------------------------------------------------------------------
