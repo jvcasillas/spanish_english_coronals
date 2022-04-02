@@ -1,76 +1,42 @@
 ---
-title             : "The title"
-shorttitle        : "Title"
-
-author: 
-  - name          : "Miquel Simonet"
-    affiliation   : "1"
-    corresponding : yes
-    address       : "1423 E. University Blvd. Rm. 594 Modern Languages Building, Tucson, Arizona 85721"
-    email         : "simonet@email.arizona.edu"
-  - name          : "Joseph V. Casillas"
-    affilitation  : "2"
-  - name          : "Alex Aldrich"
-    affiliation   : "3"
-
-affiliation:
-  - id            : "1"
-    institution   : "University of Arizona"
-  - id            : "2"
-    institution   : "Rutgers University"
-  - id            : "3"
-    institution   : "Concordia College"
-
-authornote: |
-  Add complete departmental affiliations for each author here. Each new line 
-  herein must be indented, like this line.
-
-  Enter author note here.
-
-abstract: |
-  Here. 
-
-
-keywords          : "Spanish, Coronal stops, Spectral moments"
-wordcount         : ""
-
-bibliography      : 
-  - "r-references.bib"
-  - "stats-references.bib"
-
-appendix:
-  - "appendix-a.Rmd"
-  - "appendix-b.Rmd"
-  - "appendix-c.Rmd"
-  - "appendix-d.Rmd"
-  - "appendix-e.Rmd"
-  - "appendix-f.Rmd"
-
-floatsintext      : yes
-figurelist        : yes
-tablelist         : yes
-footnotelist      : yes
-linenumbers       : yes
-mask              : no
-draft             : yes
-
-documentclass     : "apa6"
-classoption       : "man"
-output            : papaja::apa6_word
+title: "Coronal stop production in bilinguals"
+bibliography: 
+  - "../../refs/r-references.bib"
+  - "../../refs/stats-references.bib"
+csl: "../../refs/apa-6th-edition.csl"
+indent: true
+output: 
+  bookdown::word_document2:
+    reference_docx: "../../refs/apa_style.docx"
+  github_document: default
+knit: (function(inputFile, encoding){
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = ".", output_format = "all") })
 ---
 
-```{r 'doc-libs', include = FALSE}
-library("papaja")
-library("officer")
-library("brms")
-library("knitr")
-```
 
 ```{r 'setup', include=FALSE}
-set.seed(42)
-knitr::opts_chunk$set(echo = F, message = F, warning = F, 
-                      cache.extra = knitr::rand_seed)
-options(width=80)
+# Load knitr
+library("knitr")
+
+# Set chunk options
+opts_chunk$set(
+  echo = F, 
+  message = F, 
+  warning = F,  
+  cache.extra = rand_seed
+  )
+
+# Set code width
+options(width = 80)
+
+# Get ref doc
+if(F) {
+  curl::curl_download(
+  "https://github.com/jvcasillas/refdocx/raw/master/apa_style.docx",
+  here::here("docs", "refs", "apa_style.docx"))
+}
+
 ```
 
 ```{r, 'load-all'}
@@ -492,17 +458,33 @@ Figure \@ref(fig:plot-poa-bilinguals-summary)
 
 ## Interpretation and implications
 
+# Conclusion
 
-\newpage
-
-# References
-```{r create_r-references}
-r_refs(file = "r-references.bib")
+```{=openxml}
+<w:p>
+  <w:r>
+    <w:br w:type="page"/>
+  </w:r>
+</w:p>
 ```
 
-\begingroup
-\setlength{\parindent}{-0.5in}
-\setlength{\leftskip}{0.5in}
 
-<div id = "refs"></div>
-\endgroup
+```{r, appendix-a, child = "appendix-a.Rmd"}
+```
+
+```{r, appendix-b, child = "appendix-b.Rmd"}
+```
+
+```{r, appendix-c, child = "appendix-c.Rmd"}
+```
+
+```{r, appendix-d, child = "appendix-d.Rmd"}
+```
+
+```{r, appendix-e, child = "appendix-e.Rmd"}
+```
+
+```{r, appendix-f, child = "appendix-f.Rmd"}
+```
+
+# References
