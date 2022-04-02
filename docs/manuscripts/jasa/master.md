@@ -1,5 +1,6 @@
 Coronal stop production in bilinguals
 ================
+Miquel Simonet, Joseph V. Casillas, Alexander Aldrich
 
 # Introduction
 

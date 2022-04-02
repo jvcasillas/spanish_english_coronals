@@ -1,5 +1,6 @@
 ---
 title: "Coronal stop production in bilinguals"
+author: "Miquel Simonet, Joseph V. Casillas, Alexander Aldrich"
 bibliography: 
   - "../../refs/r-references.bib"
   - "../../refs/stats-references.bib"
