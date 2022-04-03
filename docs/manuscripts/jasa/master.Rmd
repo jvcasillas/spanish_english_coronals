@@ -10,10 +10,6 @@ output:
   bookdown::word_document2:
     reference_docx: "../../refs/apa_style.docx"
     number_sections: false
-  github_document: default
-knit: (function(inputFile, encoding){
-  rmarkdown::render(inputFile, encoding = encoding,
-  output_dir = ".", output_format = "all") })
 ---
 
 
