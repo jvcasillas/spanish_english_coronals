@@ -1,6 +1,6 @@
 # Small data for reporting analyses -------------------------------------------
 #
-# Last update: 2022-03-21
+# Last update: 2022-04-05
 #
 
 # Source files ----------------------------------------------------------------
@@ -66,3 +66,51 @@ bi_poa_table <- read_csv(here("data", "tidy", "table_bi_poa_model_summary.csv"))
 post_hoc <- readRDS(here("data", "models", "post_hoc_analyses.rds"))
 
 # -----------------------------------------------------------------------------
+
+
+
+
+# Dataset descriptives --------------------------------------------------------
+
+# Coronals
+n_coronal_items_en <- coronals %>%
+                      filter(language == "english") %>%
+                      pull(item) %>% unique %>% length
+n_coronal_items_sp <- coronals %>%
+                      filter(language == "spanish") %>%
+                      pull(item) %>% unique %>% length
+n_coronal_items    <- n_coronal_items_en + n_coronal_items_sp
+n_coronal_reps     <- 3
+n_coronal_tokens   <- nrow(coronals)
+
+blps_coronals_modules <- coronals_blp %>%
+  select(-id, -c(spanish:dom_std)) %>%
+  summarize(across(everything(), list(mean = mean, sd = sd))) %>%
+  pivot_longer(cols = everything(), names_to = "metric", values_to = "val") %>%
+  separate(metric, into = c("component", "lang", "metric"), sep = "_") %>%
+  pivot_wider(names_from = metric, values_from = val) %>%
+  mutate_if(is.numeric, round, digits = 2) %>%
+  mutate(mean_sd = glue("{mean} (SD = {sd})")) %>%
+  select(-mean, -sd) %>%
+  pivot_wider(names_from = lang, values_from = mean_sd)
+
+blp_coronals_dominance <- summarize(coronals_blp,
+                            dom_avg = mean(dominance), dom_sd = sd(dominance))
+
+
+
+
+
+# Bilabials
+n_bilabial_items_en <- bilabials %>%
+                       filter(language == "english") %>%
+                       pull(item) %>% unique %>% length
+n_bilabial_items_sp <- bilabials %>%
+                       filter(language == "spanish") %>%
+                       pull(item) %>% unique %>% length
+n_bilabial_items    <- n_bilabial_items_en + n_bilabial_items_sp
+n_bilabial_reps     <- 1
+n_bilabial_tokens   <- nrow(bilabials)
+
+# -----------------------------------------------------------------------------
+

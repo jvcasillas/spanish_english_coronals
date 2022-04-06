@@ -1,5 +1,8 @@
+## Appendix D: Supplementary analyses (place of articulation)
 
-```{r, 'bi-poa-table'}
+```{r}
+#| label: tbl-bi-poa
+#| results: asis
 bi_poa_table %>%  
   mutate(
     Parameter = str_replace(Parameter, "x", "&#215;"), 
@@ -12,13 +15,8 @@ bi_poa_table %>%
     identifier == "SK_Intercept" ~ "SK", 
     TRUE ~ " ")) %>% 
   select(-identifier) %>% 
-  knitr::kable(format = "pandoc", 
+  knitr::kable(format = "markdown", 
     align = c("l", "l", "r", "r", "r", "r"), 
-    caption = "Model summary for VOT and burst metrics as a function of 
-               language (English, Spanish), place of articulation (bilabial, 
-               coronal), F1, F2, and item repetition for bilingual voiceless 
-               stops. The percentage of the HDI contained within the ROPE is 
-               based on an effect size of &plusmn; 0.1.", 
-    label = "bi-poa-table")
+    caption = "Model summary for VOT and burst metrics as a function of language (English, Spanish), place of articulation (bilabial, coronal), F1, F2, and item repetition for bilingual voiceless stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-bi-poa}")
 ```
 

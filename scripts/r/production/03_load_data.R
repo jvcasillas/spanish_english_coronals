@@ -16,6 +16,7 @@ source(here("scripts", "r", "production", "01_helpers.R"))
 
 # Load coronals
 coronals <- read_csv(here("data", "tidy", "tidy_coronals.csv"))
+coronals_blp <- read_csv(here("data", "tidy", "blp.csv"))
 
 # Load aldrich data
 bilabials <- read_csv(here("data", "tidy", "tidy_bilabials.csv"))

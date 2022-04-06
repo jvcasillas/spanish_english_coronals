@@ -1,6 +1,6 @@
 ---
 title: "Coronal stop production in bilinguals"
-author: "Miquel Simonet, Joseph V. Casillas, Alexander Aldrich"
+author: "Miquel Simonet, Joseph V. Casillas, & Alexander Aldrich"
 bibliography: 
   - "../../refs/r-references.bib"
   - "../../refs/stats-references.bib"
@@ -76,17 +76,57 @@ They reported that, although they had studied some English in Spain, they were  
 The participants of this group also speak Catalan. 
 Importantly, there are no reported differences in the phonetic realization of  voice timing between the Spanish and Catalan, nor are there place difference between the coronal stops.
 
-**Bilingual speakers.** The English-Spanish bilinguals (n =  `r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
+**Bilingual speakers.** The Spanish-English bilinguals (n =  `r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
 There are two samples from this population. 
 The coronal dataset includes `r bi_coronals_n` speakers and the bilabial dataset includes `r bi_poa_n` speakers.
 The Spanish-English bilinguals were undergraduate students at the University of Arizona in Tucson, Arizona.
 The bilinguals were brought up by Spanish-speaking families and were schooled  mostly in English.
 They reported using English and Spanish daily, both in the classroom as well as with their friends and relatives.
 
+The bilingual group completed the Bilingual Language Profile [BLP, @Gertken:2014wj] in order to assess language dominance. 
+The BLP calculates a weighted average of language dominance based on the individual history, use, proficiency, and attitudes of the bilinguals with regard to their languages. 
+The measure ranges from &minus;218 to 218 with values near the extremes implying dominance in one of the languages. 
+Values close to 0 are taken as an indication of balanced bilingualism. 
+In the present study, Spanish was arbitrarily assigned to positive values. 
+Figure XXX plots language dominance (Panel A) and language use and proficiency data (Panel B) derived from the BLP. 
+The bilingual group had a mean dominance score of X (SD = X), suggesting rather balanced bilingualism (Panel A). 
+Participants that reported using Spanish more often also tended to report being more proficient in that language; the converse was also true for English (Panel B).
+
+## Materials
+
+INCLUDE INFO FROM ALDRICH's STUDY  
+There were `r n_items_total` target words (English: k = `r n_items_en`; Spanish: k = `r n_items_sp`) that contained voiced and voiceless coronal stops in word initial position. 
+For each language, 12 targets began with /d/ and 12 began with /t/, equally divided between stressed and unstressed syllables (see supplementary materials). 
+All stops were followed by a low vowel (/a/ for Spanish and /&aelig;, &#593;/ for English). 
+
+The participants completed a delayed repetition task in which they heard the target words presented in a carrier phrase ("*x is the word*" or the Spanish equivalent "*x es la palabra*"). 
+The auditory stimuli were recordings of 6 male native speakers: 3 native English speakers and 3 native Spanish speakers. 
+These recordings served as the auditory stimuli repeated outloud by the participants in the delayed repetition task.
+Words not containing coronal stops were considered distractors (k = 20). 
+Praat @Praat was used to present the sentences randomly in auditory form and the speakers were asked to listen to the entire sentence and then repeat it outloud at their own pace. 
+
+The monolingual English speakers and bilinguals were recorded in a sound attenuated booth. 
+The monolingual Spanish speakers were recorded in a quiet classroom on the campus of the *Universitat de les Illes Balears* in Majorca, Spain. 
+The monolingual English speakers were recorded in English and the monolingual 
+Spanish speakers were recorded in Spanish. 
+The Spanish-English bilinguals were recorded in both of their languages in a single session with all English and Spanish items presented in a single, randomized block. 
+The full dataset included `r n_tokens_act` tokens (24 target words per language &times; 3 repetitions). 
+`r xfun::numbers_to_words(n_na) %>% str_to_sentence` items (`r n_na_pct`%) were discarded due to mispronunciations or extraneous noise. 
+A Shure SM10A dynamic head-mounted microphone with a Sound Devices MM-1 microphone pre-amplifier captured the acoustic signal and it was saved to a Marantz PMD660 digital speech recorder. 
+The signal was digitized at 44.1 kHz and 16-bit quantization.
+
 
 ## Metrics
 
-F1/F2, voice onset time, relative intensity, center of gravity, standard  deviation, skewness, kurtosis
+The audio files were low-pass filtered at 11.025 kHz. 
+Synchronized waveform and spectrographic displays were used to mark the onset of modal voicing and of the stop burst, as well as the offset of the first vowel. 
+The onset of voicing was operationalized as the upwards zero-crossing of the first periodic pattern in the oscillogram and the offset of the vowel was marked at the downwards zero-crossing of the final periodic pattern. 
+VOT was calculated as the difference (in ms) between the onset of modal voicing and the onset of the burst. 
+Spectral moment measures were calculated from a 6 ms window beginning at the onset of the burst.
+Specifically, we extracted relative center of gravity, standard deviation, skewness, kurtosis, as well as F1 and F2 of the following vowel and relative intensity. 
+
+
+
 
 ## Procedure
 
