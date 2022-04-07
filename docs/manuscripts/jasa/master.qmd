@@ -220,10 +220,11 @@ knitr::include_graphics(
 
 **Interim discussion.**
 
-@fig-monolinguals-summary
-
-General summary and patterns.
-VOT no surprise RI does nothing spectral moments relevant in spanish, nothing in english Skewness and kurtosis pattern similarly, as do COG and standard deviation.
+The analyses of the monolingual coronal stops are summarized in the forest plot in @fig-monolinguals-summary and @tbl-mono of the supplementary materials. 
+Unsurprisingly, VOT was realized in a language-specific manner. 
+Spanish voiced and voiceless stops were produced with lead-VOT and short-lag VOT, respectively; English voiced and voiceless stops were produced with short-lag VOT and long-lag VOT, respectively. 
+Relative intensity did not distinguish between voicing contrasts in either language. 
+Spectral moments, on the other hand, were particularly useful for Spanish coronals, with skewness and kurtosis patterning similarly, as did COG and standard deviation. 
 
 ## Experiment 2: Bilinguals
 

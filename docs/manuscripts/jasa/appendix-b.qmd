@@ -1,4 +1,4 @@
-## Appendix B: supplementary analyses (monolinguals)
+## Appendix B: Supplementary analyses (monolinguals)
 
 ```{r}
 #| label: tab-mono
