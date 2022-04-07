@@ -1,6 +1,11 @@
 ---
 title: "Coronal stop production in bilinguals"
 author: "Miquel Simonet, Joseph V. Casillas, & Alexander Aldrich"
+abstract: |
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 bibliography: 
   - "../../refs/r-references.bib"
   - "../../refs/stats-references.bib"
@@ -115,7 +120,7 @@ The monolingual English speakers and bilinguals were recorded in a sound attenua
 The monolingual Spanish speakers were recorded in a quiet classroom on the campus of the *Universitat de les Illes Balears* in Majorca, Spain.
 The monolingual English speakers were recorded in English and the monolingual Spanish speakers were recorded in Spanish.
 The Spanish-English bilinguals were recorded in both of their languages in a single session with all English and Spanish items presented in a single, randomized block.
-The full dataset included `r n_coronal_tokens` tokens (24 target words per language × 3 repetitions).
+The full dataset included `r n_coronal_tokens` tokens (24 target words per language &times; 3 repetitions).
 `r xfun::numbers_to_words(3) %>% str_to_sentence` items (`r 3`%) were discarded due to mispronunciations or extraneous noise.
 <!-- do this --> A Shure SM10A dynamic head-mounted microphone with a Sound Devices MM-1 microphone pre-amplifier captured the acoustic signal and it was saved to a Marantz PMD660 digital speech recorder.
 The signal was digitized at 44.1 kHz and 16-bit quantization.
@@ -174,8 +179,8 @@ knitr::include_graphics(
 )
 ```
 
-**Voice-onset time.** English stops had higher VOT than Spanish stops `r report_posterior(mono_table, param = "Group", metric = "VOT")` and the voiceless segments had higher VOT than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`.
-We also find moderate evidence for an interaction between the two predictors `r report_posterior(mono_table, param = "Group:Phoneme", metric = "VOT")`.
+**Voice-onset time.** English stops had higher VOT than Spanish stops `r report_posterior(mono_table, param = "Language", metric = "VOT")` and the voiceless segments had higher VOT than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`.
+We also find moderate evidence for an interaction between the two predictors `r report_posterior(mono_table, param = "Language:Phoneme", metric = "VOT")`.
 Specifically, the voicing difference between Spanish coronals was slightly larger than that of the English coronals.
 We compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other `r report_posterior(post_hoc, param = "mono_dt_between", metric = "VOT")`, as nearly half the HDI fell within the predetermined region of practical equivalence.
 The VOT data is plotted in the first panel of @fig-monolinguals.
@@ -183,29 +188,29 @@ The complete model summary and the short-lag stop comparison are available in @t
 
 **Relative intensity.** The relative intensity data is plotted in the top middle panel of @fig-monolinguals.
 English and Spanish stops differed little with regard to relative intensity.
-The model provided no compelling evidence for a group effect `r report_posterior(mono_table, param = "Group", metric = "RI")`, nor for phoneme `r report_posterior(mono_table, param = "Phoneme", metric = "RI")` or F2 effects `r report_posterior(mono_table, param = "F2", metric = "RI")`.
+The model provided no compelling evidence for a group effect `r report_posterior(mono_table, param = "Language", metric = "RI")`, nor for phoneme `r report_posterior(mono_table, param = "Phoneme", metric = "RI")` or F2 effects `r report_posterior(mono_table, param = "F2", metric = "RI")`.
 The height of the following vowel did appear to modulate relative intensity of the burst to some degree `r report_posterior(mono_table, param = "F1", metric = "RI")`, such that higher F1 values were associated with lower relative intensity.
 That being said, approximately `r filter(mono_table, Metric == "RI", identifier == "RI_F1") %>% pull(ROPE) * 100`% of the HDI fell within the region of practical equivalence.
-Finally, there was no evidence supporting a language × phoneme interaction `r report_posterior(mono_table, param = "Group:Phoneme", metric = "RI")`.
+Finally, there was no evidence supporting a language &times; phoneme interaction `r report_posterior(mono_table, param = "Language:Phoneme", metric = "RI")`.
 
 **Center of gravity.** The center of gravity (COG) data is plotted in the first row, third panel of @fig-monolinguals.
-English stops had a higher COG than Spanish stops `r report_posterior(mono_table, param = "Group", metric = "COG")`, and, overall, voiceless segments had a higher COG than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "COG")`, however, the two predictors interacted `r report_posterior(mono_table, param = "Group:Phoneme", metric = "COG")`.
+English stops had a higher COG than Spanish stops `r report_posterior(mono_table, param = "Language", metric = "COG")`, and, overall, voiceless segments had a higher COG than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "COG")`, however, the two predictors interacted `r report_posterior(mono_table, param = "Language:Phoneme", metric = "COG")`.
 The interaction was driven by a large COG difference between Spanish coronals `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_COG")` that was not present in the English coronals `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_COG")`).
 No other predictors had an effect on COG.
 
 **Kurtosis.** The kurtosis data is plotted in the second row, first column of @fig-monolinguals.
-English stop bursts had lower kurtosis with regard to Spanish stop bursts `r report_posterior(mono_table, param = "Group", metric = "KT")`, and the voiced segments presumably had a higher kurtosis than the voiceless segments `r report_posterior(mono_table, param = "Phoneme", metric = "KT")`, though there was evidence of a language × phoneme interaction `r report_posterior(mono_table, param = "Group:Phoneme", metric = "KT")`.
+English stop bursts had lower kurtosis with regard to Spanish stop bursts `r report_posterior(mono_table, param = "Language", metric = "KT")`, and the voiced segments presumably had a higher kurtosis than the voiceless segments `r report_posterior(mono_table, param = "Phoneme", metric = "KT")`, though there was evidence of a language &times; phoneme interaction `r report_posterior(mono_table, param = "Language:Phoneme", metric = "KT")`.
 Specifically, kurtosis was higher in the voiced stop bursts of Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_KT")`, but there was no evidence of a voicing difference in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_KT")`.
 Neither F1 `r report_posterior(mono_table, param = "F1", metric = "KT")` nor F2 `r report_posterior(mono_table, param = "F2", metric = "KT")` had any influence on kurtosis.
 
 **Standard deviation.** With regard to standard deviation, we observe the same pattern found in the COG data (See third panel, first row and second panel, second row in @fig-monolinguals).
-That is, there was a difference between English and Spanish `r report_posterior(mono_table, param = "Group", metric = "SD")`, as well as between phonemes `r report_posterior(mono_table, param = "Phoneme", metric = "SD")`, though, again, there two predictors interacted `r report_posterior(mono_table, param = "Group:Phoneme", metric = "SD")`.
+That is, there was a difference between English and Spanish `r report_posterior(mono_table, param = "Language", metric = "SD")`, as well as between phonemes `r report_posterior(mono_table, param = "Phoneme", metric = "SD")`, though, again, there two predictors interacted `r report_posterior(mono_table, param = "Language:Phoneme", metric = "SD")`.
 Specifically, there was only a voicing difference for Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_SD")`, where we see lower standard deviation values in voiced stops.
 No such difference is observed between the English coronals `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_SD")`.
 Height and frontedness of the following vowel had no effect on standard deviation in the stop burst (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "SD", supress = T)`).
 
 **Skewness.** The analysis of skewness of the stop burst showed a similar pattern as the one observed in the analysis of kurtosis.
-If we compare the first and third panels (second row) of @fig-monolinguals, we observe a language effect `r report_posterior(mono_table, param = "Group", metric = "SK")`, such that Spanish stops show higher skewness values, as well a voicing effect `r report_posterior(mono_table, param = "Phoneme", metric = "SK")`, which is driven by a language × phoneme interaction `r report_posterior(mono_table, param = "Group:Phoneme", metric = "SK")`.
+If we compare the first and third panels (second row) of @fig-monolinguals, we observe a language effect `r report_posterior(mono_table, param = "Language", metric = "SK")`, such that Spanish stops show higher skewness values, as well a voicing effect `r report_posterior(mono_table, param = "Phoneme", metric = "SK")`, which is driven by a language &times; phoneme interaction `r report_posterior(mono_table, param = "Language:Phoneme", metric = "SK")`.
 Specifically, the Spanish voiced coronal had higher skewness of the burst than the voiceless counterpart `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_SK")`, and this difference is not present in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_SK")`.
 Again, F1 and F2 did not affect skewness values in the burst (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "SK", supress = T)`).
 
@@ -228,7 +233,12 @@ Spectral moments, on the other hand, were particularly useful for Spanish corona
 
 ## Experiment 2: Bilinguals
 
-Model info here.
+For the analysis of the bilingual coronal data, we again modeled VOT and the burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), standardized F1 and F2, and item repetitions. 
+In other words, we carried out the same analysis using data from bilingual individuals. 
+In this case, however, the fixed effect *language* is a within-subjects factor. 
+That is, the bilinguals provided data from each of their two languages. 
+@fig-bilinguals plots VOT and the burst metrics as a function of language (English, Spanish) and phoneme (/d/, /t/).
+For all plots, the y-axis represents the outcome variable in standardized units, the x-axis indicates the language, and voicing is represented by color.
 
 ```{r}
 #| label: fig-bilinguals
