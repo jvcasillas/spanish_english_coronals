@@ -314,11 +314,11 @@ y_labels_vowels <- c(
   )
 
 facet_labels_mono <- c(
-  `b_group_sum` = "Group",
+  `b_group_sum` = "Language",
   `b_phon_sum` = "Place",
   `b_f1_cent` = "F1",
   `b_f2_cent` = "F2",
-  `b_group_sum:phon_sum`  = "Group x\nPhoneme"
+  `b_group_sum:phon_sum`  = "Language x\nPhoneme"
   )
 
 facet_labels_bi <- c(
