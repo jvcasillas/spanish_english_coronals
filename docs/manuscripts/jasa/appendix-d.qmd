@@ -1,5 +1,8 @@
 ## Appendix D: Supplementary analyses (place of articulation)
 
+In this section we present additional information from the analyses of the bilingual place of articulation data. 
+@tbl-bi-poa includes the full output of the model summary from the primary multivariate analysis (Note: this table is equivalent to the forest plot in @fig-poa-bilinguals). 
+
 ```{r}
 #| label: tbl-bi-poa
 #| results: asis
@@ -20,3 +23,34 @@ bi_poa_table %>%
     caption = "Model summary for VOT and burst metrics as a function of language (English, Spanish), place of articulation (bilabial, coronal), F1, F2, and item repetition for bilingual voiceless stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-bi-poa}")
 ```
 
+<br>
+
+@fig-poa-post-hoc-all and @tbl-poa-post-hoc-all present the post-hoc analyses of between-language place comparisons, that is, bilabials vs. coronals. 
+
+```{r}
+#| label: fig-poa-post-hoc-all
+#| fig-cap: "Posterior distributions of difference estimates between Spanish and English for bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. The light blue region represents the ROPE (&pm;0.1)."
+knitr::include_graphics(
+  here("figs", "poa_post_hoc_all.pdf")
+)
+```
+
+
+```{r}
+#| label: tbl-poa-post-hoc-all
+#| results: asis
+post_hoc %>% 
+  filter(Parameter == "bi_poa_between_lang") %>% 
+  select(-identifier, -Parameter) %>% 
+  separate(Metric, into = c("Place", "Metric"), sep = "_") %>% 
+  arrange(desc(Place)) %>% 
+  mutate(Place = str_to_title(Place), 
+    Place = case_when(
+      Metric != "VOT" & Place == "Coronal" ~ " ", 
+      Metric != "VOT" & Place == "Bilabial" ~ " ", 
+      TRUE ~ Place
+    )) %>% 
+    knitr::kable(format = "markdown", 
+    align = c("l", "l", "r", "r", "r", "r"), 
+    caption = "Post-hoc between-language comparisons of bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. {#tbl-poa-post-hoc-all}")
+```

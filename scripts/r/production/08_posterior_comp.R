@@ -168,11 +168,16 @@ bi_post_hoc_sm <- bi_within_lang_dt_comp_posterior %>%
 
 # Comparison of POA - en vs. sp: ----------------------------------------------
 
-# We are looking for a between language comparison for bilabials (expected
+# We are doing for a between language comparison of voiceless stops.
+# This means we look at English vs. Spanish for bilabials (expected difference
 # in VOT only) and coronals (expected difference in all metrics) because of
 # place differences.
 # So, if our acoustic measurements account for place differences we should see
 # them in the coronals and not the bilabials.
+# If you get confused about this in the future and are rereading this, use
+# figure 'poa_all_metrics.pdf' to help you remember.
+# You are subtracting the orange triangles from the purple circles (En - Sp)
+# for bilabials and coronals (for each metric).
 
 # All metrics (because we want the same comparison)
 poa_between_lang_place_comp_posterior <- posterior_poa_adj %>%

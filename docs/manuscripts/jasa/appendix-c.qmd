@@ -1,5 +1,8 @@
 ## Appendix C: Supplementary analyses (bilinguals)
 
+In this section we present additional information from the analyses of the bilingual data. 
+@tbl-bi includes the full output of the model summary from the primary multivariate analysis (Note: this table is equivalent to the forest plot in @fig-bilinguals). 
+
 ```{r}
 #| label: tbl-bi
 #| results: asis
@@ -20,6 +23,10 @@ bi_table %>%
     caption = "Model summary for VOT and burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), F1, F2, and item repetition for bilingual coronal stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-bi}")
 ```
 
+<br>
+
+@fig-bilinguals-d-t shows the comparison of English /d/ and Spanish /t/ for voice-onset time. 
+One can observe that there is not a meaningful difference between the short-lag segments. 
 
 
 ```{r}
@@ -28,4 +35,35 @@ bi_table %>%
 knitr::include_graphics(
   here("figs", "bi_post_hoc_dt.pdf")
 )
+```
+
+
+@fig-bi-post-hoc-sm and @tbl-bi-post-hoc-sm present the post-hoc analyses of within-language comparisons, that is, /d/ vs. /t/. 
+
+```{r}
+#| label: fig-bi-post-hoc-sm
+#| fig-cap: "Posterior distributions of difference estimates between voiced and voiceless stops for Spanish and English. The point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced. The light blue region represents the ROPE (&pm;0.1)."
+knitr::include_graphics(
+  here("figs", "bi_post_hoc_sm.pdf")
+)
+```
+
+
+```{r}
+#| label: tbl-bi-post-hoc-sm
+#| results: asis
+post_hoc %>% 
+  filter(Metric != "VOT", Parameter == "bi_dt_win_lang") %>% 
+  select(-identifier, -Parameter) %>% 
+  separate(Metric, into = c("Language", "Metric"), sep = "_") %>% 
+  arrange(desc(Language)) %>% 
+  mutate(Language = str_to_title(Language), 
+    Language = case_when(
+      Metric != "COG" & Language == "Spanish" ~ " ", 
+      Metric != "COG" & Language == "English" ~ " ", 
+      TRUE ~ Language
+    )) %>% 
+    knitr::kable(format = "markdown", 
+    align = c("l", "l", "r", "r", "r", "r"), 
+    caption = "Post-hoc comparisons of within-language voiced-voiceless pairs for each burst metric. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced segment. {#tbl-bi-post-hoc-sm}")
 ```
