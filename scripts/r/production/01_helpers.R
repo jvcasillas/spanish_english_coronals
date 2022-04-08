@@ -315,18 +315,18 @@ y_labels_vowels <- c(
 
 facet_labels_mono <- c(
   `b_group_sum` = "Language",
-  `b_phon_sum` = "Place",
+  `b_phon_sum` = "Voicing",
   `b_f1_cent` = "F1",
   `b_f2_cent` = "F2",
-  `b_group_sum:phon_sum`  = "Language x\nPhoneme"
+  `b_group_sum:phon_sum`  = "Language x\nVoicing"
   )
 
 facet_labels_bi <- c(
   `b_language_sum` = "Language",
-  `b_phon_sum` = "Place",
+  `b_phon_sum` = "Voicing",
   `b_f1_cent` = "F1",
   `b_f2_cent` = "F2",
-  `b_language_sum:phon_sum`  = "Language\nx Phoneme"
+  `b_language_sum:phon_sum`  = "Language x\nVoicing"
   )
 
 # Named vector of facet labels
