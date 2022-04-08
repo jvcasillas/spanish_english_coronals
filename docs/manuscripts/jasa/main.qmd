@@ -231,7 +231,9 @@ The analyses of the monolingual coronal stops are summarized in the forest plot 
 Unsurprisingly, VOT was realized in a language-specific manner. 
 Spanish voiced and voiceless stops were produced with lead-VOT and short-lag VOT, respectively; English voiced and voiceless stops were produced with short-lag VOT and long-lag VOT, respectively. 
 Relative intensity did not distinguish between voicing contrasts in either language. 
-Spectral moments, on the other hand, were particularly useful for Spanish coronals, with skewness and kurtosis patterning similarly, as did COG and standard deviation. 
+Spectral moments, on the other hand, were particularly useful for Spanish coronals. 
+As shown in @fig-monolinguals, all metrics, with the exception of relative intensity, could be used to differentiate between Spanish voiced and voiceless segments (See also @fig-mono-post-hoc-sm and @tbl-mono-post-hoc-sm of the supplementary materials). 
+with skewness and kurtosis patterning similarly, as did COG and standard deviation. 
 
 ## Experiment 2: Bilinguals
 
