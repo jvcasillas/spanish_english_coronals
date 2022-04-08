@@ -310,7 +310,7 @@ plot_metrics <- function(dataframe, posterior, x, color,
 
 # Facet labs for model summary plots
 y_labels_vowels <- c(
-  "Item rep.", "Language\nx Phoneme", "Phoneme", "Language", "Intercept"
+  "Item rep.", "Language\nx Voicing", "Voicing", "Language", "Intercept"
   )
 
 facet_labels_mono <- c(

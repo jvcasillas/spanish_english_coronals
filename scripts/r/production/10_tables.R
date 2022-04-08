@@ -41,8 +41,8 @@ as_tibble(mod_f1f2_mv_mono_full) %>%
     Parameter = case_when(
       Parameter == "Intercept" ~ "Intercept",
       Parameter == "language_sum" ~ "Language",
-      Parameter == "phon_sum" ~ "Phoneme",
-      Parameter == "language_sum:phon_sum" ~ "Language:Phoneme",
+      Parameter == "phon_sum" ~ "Voicing",
+      Parameter == "language_sum:phon_sum" ~ "Language:Voicing",
       TRUE ~ "Item rep.")) %>%
   mutate_at(c("Estimate", "HDI"), str_replace_all,
             pattern = "-", replacement = "&minus;") %>%
@@ -65,11 +65,11 @@ bind_rows(
            Parameter = case_when(
              column == "b_Intercept" ~ "Intercept",
              column == "b_group_sum" ~ "Language",
-             column == "b_phon_sum" ~ "Phoneme",
+             column == "b_phon_sum" ~ "Voicing",
              column == "b_f1_cent_std" ~ "F1",
              column == "b_f2_cent_std" ~ "F2",
              column == "b_rep_n" ~ "Item rep.",
-             TRUE ~ "Language:Phoneme")) %>%
+             TRUE ~ "Language:Voicing")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -101,11 +101,11 @@ bind_rows(
       Parameter == "Intercept" ~ "Intercept",
       Parameter == "f1_cent_std" ~ "F1",
       Parameter == "f2_cent_std" ~ "F2",
-      Parameter == "phon_sum" ~ "Phoneme",
+      Parameter == "phon_sum" ~ "Voicing",
       Parameter == "rep_n" ~ "Item rep.",
-      Parameter == "group_sum:phon_sum" ~ "Language:Phoneme",
+      Parameter == "group_sum:phon_sum" ~ "Language:Voicing",
       TRUE ~ "Language"),
-      Parameter = fct_relevel(Parameter, "Intercept", "Language", "Phoneme",
+      Parameter = fct_relevel(Parameter, "Intercept", "Language", "Voicing",
                               "F1", "F2", "Item rep.")) %>%
       mutate_at(c("Estimate", "HDI"), str_replace_all,
                 pattern = "-", replacement = "&minus;") %>%
@@ -128,11 +128,11 @@ bind_rows(
            Parameter = case_when(
              column == "b_Intercept" ~ "Intercept",
              column == "b_language_sum" ~ "Language",
-             column == "b_phon_sum" ~ "Phoneme",
+             column == "b_phon_sum" ~ "Voicing",
              column == "b_f1_cent_std" ~ "F1",
              column == "b_f2_cent_std" ~ "F2",
              column == "b_rep_n" ~ "Item rep.",
-             TRUE ~ "Language:Phoneme")) %>%
+             TRUE ~ "Language:Voicing")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -164,11 +164,11 @@ bind_rows(
       Parameter == "Intercept" ~ "Intercept",
       Parameter == "f1_cent_std" ~ "F1",
       Parameter == "f2_cent_std" ~ "F2",
-      Parameter == "phon_sum" ~ "Phoneme",
+      Parameter == "phon_sum" ~ "Voicing",
       Parameter == "rep_n" ~ "Item rep.",
-      Parameter == "language_sum:phon_sum" ~ "Language:Phoneme",
+      Parameter == "language_sum:phon_sum" ~ "Language:Voicing",
       TRUE ~ "Language"),
-      Parameter = fct_relevel(Parameter, "Intercept", "Language", "Phoneme",
+      Parameter = fct_relevel(Parameter, "Intercept", "Language", "Voicing",
                               "F1", "F2", "Item rep.")) %>%
       mutate_at(c("Estimate", "HDI"), str_replace_all,
                 pattern = "-", replacement = "&minus;") %>%
