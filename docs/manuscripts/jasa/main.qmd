@@ -173,16 +173,17 @@ The x-axis indicates the language and voiced/voiceless pairs are represented by 
 
 ```{r}
 #| label: fig-monolinguals
-#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means ± 95% and 66% credible intervals."
+#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
 knitr::include_graphics(
   here("figs", "mono_all_metrics.pdf")
 )
 ```
 
-**Voice-onset time.** English stops had higher VOT than Spanish stops `r report_posterior(mono_table, param = "Language", metric = "VOT")` and the voiceless segments had higher VOT than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`.
+**Voice-onset time.** English stops had higher VOT than Spanish stops `r report_posterior(mono_table, param = "Language", metric = "VOT")` and the voiceless segments had higher VOT than the voiced segments `r report_posterior(mono_table, param = "Phoneme", metric = "VOT")`. 
 We also find moderate evidence for an interaction between the two predictors `r report_posterior(mono_table, param = "Language:Phoneme", metric = "VOT")`.
-Specifically, the voicing difference between Spanish coronals was slightly larger than that of the English coronals.
-We compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other `r report_posterior(post_hoc, param = "mono_dt_between", metric = "VOT")`, as nearly half the HDI fell within the predetermined region of practical equivalence.
+Specifically, the voicing difference between Spanish coronals was slightly larger than that of the English coronals. 
+VOT did not vary as a function of the formant frequencies of the following vowel (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "VOT", supress = T)`).
+We also compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other `r report_posterior(post_hoc, param = "mono_dt_between", metric = "VOT")`, as nearly half the HDI fell within the predetermined region of practical equivalence.
 The VOT data is plotted in the first panel of @fig-monolinguals.
 The complete model summary and the short-lag stop comparison are available in @tbl-mono and @fig-monolinguals-d-t of the supplementary materials.
 
@@ -235,56 +236,41 @@ Spectral moments, on the other hand, were particularly useful for Spanish corona
 
 For the analysis of the bilingual coronal data, we again modeled VOT and the burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), standardized F1 and F2, and item repetitions. 
 In other words, we carried out the same analysis using data from bilingual individuals. 
-In this case, however, the fixed effect *language* is a within-subjects factor. 
+In this case, however, the fixed effect *language* is a within-participant factor. 
 That is, the bilinguals provided data from each of their two languages. 
 @fig-bilinguals plots VOT and the burst metrics as a function of language (English, Spanish) and phoneme (/d/, /t/).
 For all plots, the y-axis represents the outcome variable in standardized units, the x-axis indicates the language, and voicing is represented by color.
 
 ```{r}
 #| label: fig-bilinguals
-#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means ± 95% and 66% credible intervals."
+#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
 knitr::include_graphics(
   here("figs", "bi_all_metrics.pdf")
 )
 ```
 
-**Voice-onset time.**
+**Voice-onset time.** VOT for English stops was higher than for Spanish stops `r report_posterior(bi_table, param = "Language", metric = "VOT")`, as was the case for voiceless segments in comparison with voiced segments `r report_posterior(bi_table, param = "Phoneme", metric = "VOT")`.
+The two predictors did not interact `r report_posterior(bi_table, param = "Language:Phoneme", metric = "VOT")`.
+Upon comparing the short-lag stops of each language, English /d/ and Spanish /t/, we found minimal evidence that the segments differed from each other `r report_posterior(post_hoc, param = "bi_dt_between", metric = "VOT")`. 
+Approximately 12% of the HDI fell within the predetermined region of practical equivalence, though given the model, the data, and our prior assumptions, there is a 97% chance the effect is negative, i.e., that English /d/ has lower VOT than Spanish /t/. 
+This is likely due to the bilinguals' tendency to pre-voice in English.
+The VOT data is plotted in the first panel of @fig-bilinguals.
+The complete model summary and the short-lag stop comparison are available in @tbl-mono and @fig-bilinguals-d-t of the supplementary materials.
 
-`r report_posterior(bi_table, param = "Language", metric = "VOT")`
+**Relative intensity.** We plot the relative intensity data in the top middle panel of @fig-bilinguals.
+There was no evidence for a group effect `r report_posterior(bi_table, param = "Language", metric = "RI")`, nor for phoneme `r report_posterior(bi_table, param = "Phoneme", metric = "RI")` or F2 effects `r report_posterior(bi_table, param = "F2", metric = "RI")`.
+We found a relationship between height of the following /a/ and relative intensity of the burst  `r report_posterior(bi_table, param = "F1", metric = "RI")`. 
+Concretely, higher F1 values were associated with lower relative intensity.
+There was no evidence supporting a language &times; phoneme interaction `r report_posterior(bi_table, param = "Language:Phoneme", metric = "RI")`.
 
-`r report_posterior(bi_table, param = "Phoneme", metric = "VOT")`
 
-`r report_posterior(bi_table, param = "Language:Phoneme", metric = "VOT")`
+**Center of gravity.** COG was higher in English stops than in Spanish stops `r report_posterior(bi_table, param = "Language", metric = "COG")`. 
+Voiceless segments had higher COG than the voiced segments `r report_posterior(bi_table, param = "Phoneme", metric = "COG")`. 
+We found weak evidence for a language &times; phoneme `r report_posterior(bi_table, param = "Language:Phoneme", metric = "COG")`.
+The difference between voiced and voiceless coronals was slightly larger in Spanish than it was in English. 
+No other predictors had an effect on COG. 
+The COG data is plotted in the first row, third panel of @fig-bilinguals.
 
-(`r report_posterior(prefix = "F1: ", bi_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", bi_table, param = "F2", metric = "VOT", supress = T)`).
-
-`r report_posterior(post_hoc, param = "bi_dt_between", metric = "VOT")`
-
-**Relative intensity.**
-
-`r report_posterior(bi_table, param = "Language", metric = "RI")`
-
-`r report_posterior(bi_table, param = "Phoneme", metric = "RI")`
-
-`r report_posterior(bi_table, param = "F1", metric = "RI")`
-
-`r report_posterior(bi_table, param = "F2", metric = "RI")`
-
-`r report_posterior(bi_table, param = "Language:Phoneme", metric = "RI")`
-
-**Center of gravity.**
-
-`r report_posterior(bi_table, param = "Language", metric = "COG")`
-
-`r report_posterior(bi_table, param = "Phoneme", metric = "COG")`
-
-`r report_posterior(bi_table, param = "Language:Phoneme", metric = "COG")`
-
-(`r report_posterior(prefix = "F1: ", bi_table, param = "F1", metric = "COG", supress = T)``r report_posterior(prefix = "; F2: ", bi_table, param = "F2", metric = "COG", supress = T)`).
-
-`r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "SPANISH_COG")`
-
-`r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "ENGLISH_COG")`
 
 **Kurtosis.**
 
