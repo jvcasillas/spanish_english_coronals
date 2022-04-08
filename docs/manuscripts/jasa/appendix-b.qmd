@@ -24,7 +24,7 @@ mono_table %>%
 
 ```{r}
 #| label: fig-monolinguals-d-t
-#| fig-cap: "Posterior distribution comparing the short-lag stops, English /d/ and Spanish /t/. The white point represents the posterior mean &pm; 95% HDI and the grey region represents the ROPE (&pm; 0.1)."
+#| fig-cap: "Posterior distribution comparing the short-lag stops, English /d/ and Spanish /t/. The white point represents the posterior mean &pm;95% HDI and the grey region represents the ROPE (&pm;0.1)."
 knitr::include_graphics(
   here("figs", "mono_post_hoc_dt.pdf")
 )
