@@ -76,54 +76,61 @@ All participants were females between the ages of 18 and 23.
 The monolingual English speakers were recorded in English and the monolingual Spanish speakers were recorded in Spanish.
 The Spanish-English bilinguals were recorded in both of their languages.
 
-**Monolingual English speakers**. The study includes `r mono_en_n` monolingual English speakers.
+**Monolingual English speakers.** The study includes `r mono_en_n` monolingual English speakers.
 They were undergraduate students at the University of Arizona, born and raised in the US Southwest.
 The English speakers were functionally monolingual, though they reported having taken introductory Spanish courses.
 They were not able to maintain a basic conversation in Spanish.
 All of the participants in this group reported English as their native language and verified not having been exposed to any other languages while growing up.
 
-**Monolingual Spanish speakers**. The monolingual Spanish group comprised `r mono_sp_n` speakers that were recruited from the *Universitat de les Illes Balears* campus community and were born and raised on the island of Majorca, Spain.
+**Monolingual Spanish speakers.** The monolingual Spanish group comprised `r mono_sp_n` speakers that were recruited from the *Universitat de les Illes Balears* campus community and were born and raised on the island of Majorca, Spain.
 They reported that, although they had studied some English in Spain, they were not able to maintain a basic conversation in this language.
-The participants of this group also speak Catalan.
-Importantly, there are no reported differences in the phonetic realization of voice timing between the Spanish and Catalan, nor are there place difference between the coronal stops.
+The participants of this group also speak Catalan. 
+We refer to them as monolingual Spanish speakers in the context of this study only for the sake of clarity. 
+Importantly, there are no reported differences in the phonetic realization of voice timing between the Spanish and Catalan, nor are there place differences between the coronal stops.
 
-**Bilingual speakers**. The Spanish-English bilinguals (n = `r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
+**Bilingual speakers.** The Spanish-English bilinguals (n = `r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
 There are two samples from this population.
-The coronal dataset includes `r bi_coronals_n` speakers and the bilabial dataset includes `r bi_poa_n` speakers.
+The coronal data set includes `r bi_coronals_n` speakers and the bilabial data set includes `r bi_poa_n` speakers.
 The Spanish-English bilinguals were undergraduate students at the University of Arizona in Tucson, Arizona.
 The bilinguals were brought up by Spanish-speaking families and were schooled mostly in English.
 They reported using English and Spanish daily, both in the classroom as well as with their friends and relatives.
 
-The bilingual group completed the Bilingual Language Profile [BLP, @Gertken:2014wj] in order to assess language dominance.
+The bilingual participants completed the Bilingual Language Profile [BLP, @Gertken:2014wj] in order to assess language dominance.
 The BLP calculates a weighted average of language dominance based on the individual history, use, proficiency, and attitudes of the bilinguals with regard to their languages.
 The measure ranges from −218 to 218 with values near the extremes implying dominance in one of the languages.
 Values close to 0 are taken as an indication of balanced bilingualism.
 In the present study, Spanish was arbitrarily assigned to positive values.
 Figure XXX plots language dominance (Panel A) and language use and proficiency data (Panel B) derived from the BLP.
 The bilingual group had a mean dominance score of X (SD = X), suggesting rather balanced bilingualism (Panel A).
-Participants that reported using Spanish more often also tended to report being more proficient in that language; the converse was also true for English (Panel B).
+Participants that reported using Spanish more often also tended to report being more proficient in that language; the converse was also true for English (Panel B).  
+NEED BLP DATA FROM ALDRICH (or something similar). 
 
 ## Materials
 
-INCLUDE INFO FROM ALDRICH's STUDY\
-There were `r n_coronal_items` target words (English: k = `r n_coronal_items_en`; Spanish: k = `r n_coronal_items_sp`) that contained voiced and voiceless coronal stops in word initial position.
-For each language, 12 targets began with /d/ and 12 began with /t/, equally divided between stressed and unstressed syllables (see supplementary materials).
+### Coronal data set
+
+There were `r n_coronal_items - 4` target words (English: k = `r n_coronal_items_en - 4`; Spanish: k = `r n_coronal_items_sp`) that contained voiced and voiceless coronal stops in word initial position.
+For each language, 12 targets began with /d/ and 12 began with /t/, equally divided between stressed and unstressed syllables.
 All stops were followed by a low vowel (/a/ for Spanish and /æ, ɑ/ for English).
 
 The participants completed a delayed repetition task in which they heard the target words presented in a carrier phrase ("*x is the word*" or the Spanish equivalent "*x es la palabra*").
 The auditory stimuli were recordings of 6 male native speakers: 3 native English speakers and 3 native Spanish speakers.
-These recordings served as the auditory stimuli repeated outloud by the participants in the delayed repetition task.
+These recordings served as the auditory stimuli repeated out loud by the participants in the delayed repetition task.
 Words not containing coronal stops were considered distractors (k = 20).
-Praat @praat was used to present the sentences randomly in auditory form and the speakers were asked to listen to the entire sentence and then repeat it outloud at their own pace.
+Praat @praat was used to present the sentences randomly in auditory form and the speakers were asked to listen to the entire sentence and then repeat it out loud at their own pace.
 
 The monolingual English speakers and bilinguals were recorded in a sound attenuated booth.
 The monolingual Spanish speakers were recorded in a quiet classroom on the campus of the *Universitat de les Illes Balears* in Majorca, Spain.
 The monolingual English speakers were recorded in English and the monolingual Spanish speakers were recorded in Spanish.
 The Spanish-English bilinguals were recorded in both of their languages in a single session with all English and Spanish items presented in a single, randomized block.
-The full dataset included `r n_coronal_tokens` tokens (24 target words per language &times; 3 repetitions).
-`r xfun::numbers_to_words(3) %>% str_to_sentence` items (`r 3`%) were discarded due to mispronunciations or extraneous noise.
-<!-- do this --> A Shure SM10A dynamic head-mounted microphone with a Sound Devices MM-1 microphone pre-amplifier captured the acoustic signal and it was saved to a Marantz PMD660 digital speech recorder.
+The full data set included `r n_coronal_possible` tokens (24 target words per language &times; 3 repetitions &times; 25 participant).
+`r xfun::numbers_to_words(n_discarded) %>% str_to_sentence` items (`r n_discarded / n_coronal_possible * 100`%) were discarded due to mispronunciations or extraneous noise.
+A Shure SM10A dynamic head-mounted microphone with a Sound Devices MM-1 microphone pre-amplifier captured the acoustic signal and it was saved to a Marantz PMD660 digital speech recorder.
 The signal was digitized at 44.1 kHz and 16-bit quantization.
+
+### Bilabial data set
+
+INCLUDE INFO FROM ALDRICH's STUDY  
 
 ## Metrics
 
@@ -136,30 +143,27 @@ Specifically, we extracted relative center of gravity, standard deviation, skewn
 
 ## Procedure
 
-Decide if we will present 3 separate experiments with 3 different methods sections.
+I DONT HAVE THIS INFO. NEED FOR BOTH DATA SETS
 
 ## Statistical analyses
 
 All analyses were conducted in `R` [@R-base, `r r_version`].
-We use Bayesian multilevel models fitted in `Stan` using `brms` [@R-brms_a; @R-brms_b, `r brms_version`].
-Bayesian Data Analysis (BDA) is an alternative to frequentist statistical analysis.[^1]
+We use Bayesian multilevel models fitted in `Stan` using `brms` [@R-brms_a; @R-brms_b, `r brms_version`].[^1]
 For all models, the criterion was standardized, or converted to z-scores, in order to facilitate comparability between metrics.
 Continuous predictors were also standardized and categorical predictors were sum-to-zero coded.
 Thus for all models the intercept represents the outcome variable at the grand mean in standardized units.
 We used regularizing, weakly informative priors in all models (specifics below) with 4,000 iterations (2,000 warm-up) running on 16 processing cores.
 We quantify our uncertainty regarding a given effect by reporting point estimates derived from the posterior predictive distribution, including the 95% Highest Density Credible Intervals (HDI).
-Additionally, we assume a negligible effect size of ±0.1 [@cohen1988statistical; @cohen2013statistical; @kruschke2018rejecting] in order to establish a Region of Practical Equivalence (ROPE), for which we assess the proportion of the HDI that falls within this interval.
-Finally, we report the Maximum Probability of Effect (MPE), or the Probability of Direction, as the proportion of the posterior distribution that is of the median's sign.
-We assume there to be compelling evidence for a given effect when the HDI of the posterior distribution does not contain 0 nor fall within the ROPE by a reasonable margin and the MPE is close to 1.
+Additionally, we assume a negligible effect size of &pm;0.1 [@cohen1988statistical; @cohen2013statistical; @kruschke2018rejecting] in order to establish a Region of Practical Equivalence (ROPE), for which we assess the proportion of the HDI that falls within this interval.
+Finally, we report the Maximum Probability of Effect (MPE), or the Probability of Direction, as the proportion of the posterior distribution that is of the median's sign (See Appendix E of the supplementary materials for additional information). 
 
-[^1]: See @van2014bayesian and @vasishth2018bayesian for tutorials and in depth explanations related to BDA in the psychological and speech sciences.
+[^1]: Bayesian Data Analysis (BDA) is an alternative to frequentist statistical analysis. See Appendix E for a brief overview, as well as @van2014bayesian and @vasishth2018bayesian for tutorials and in depth explanations related to BDA in the psychological and speech sciences.
 
 # Results
 
 The results are divided into 3 subsections dealing with (1) monolingual data, (2) bilingual data, and (3) POA data.
 Each subsection presents the results of 6 metrics: VOT, relative intensity, center of gravity, kurtosis, standard deviation, and skewness.
-We report only relevant effects.
-Please see the supplementary materials (Appendices A-D) for complete model summaries.
+Complete model summaries are available in the supplementary materials. 
 
 ## Experiment 1: Monolinguals
 
@@ -253,7 +257,7 @@ Upon comparing the short-lag stops of each language, English /d/ and Spanish /t/
 Approximately 12% of the HDI fell within the predetermined region of practical equivalence, though given the model, the data, and our prior assumptions, there is a 97% chance the effect is negative, i.e., that English /d/ has lower VOT than Spanish /t/. 
 This is likely due to the bilinguals' tendency to pre-voice in English.
 The VOT data is plotted in the first panel of @fig-bilinguals.
-The complete model summary and the short-lag stop comparison are available in @tbl-mono and @fig-bilinguals-d-t of the supplementary materials.
+The complete model summary and the short-lag stop comparison are available in @tbl-bi and @fig-bilinguals-d-t of the supplementary materials.
 
 **Relative intensity.** We plot the relative intensity data in the top middle panel of @fig-bilinguals.
 There was no evidence for a group effect `r report_posterior(bi_table, param = "Language", metric = "RI")`, nor for voicing `r report_posterior(bi_table, param = "Voicing", metric = "RI")` or F2 `r report_posterior(bi_table, param = "F2", metric = "RI")`.
@@ -305,7 +309,7 @@ The analyses of the bilingual coronal stops are summarized in the forest plot in
 Again, we see VOT realized in a language-specific manner. 
 The bilinguals produced Spanish voiced and voiceless stops with lead-VOT and short-lag VOT, respectively, and the English voiced and voiceless stops with short-lag VOT and long-lag VOT, respectively. 
 The voicing contrasts of English and Spanish did not vary based on relative intensity, though all the spectral moments did for the Spanish data. 
-Similar to monolingual data, skewness and kurtosis paterned similarly, as did COG and standard deviation. 
+Similar to monolingual data, skewness and kurtosis patterned similarly, as did COG and standard deviation. 
 In many regards the results of the bilingual analyses were virtually identical to those of the monolingual analyses (compare @fig-monolinguals with @fig-bilinguals); however, we do observe several important differences. 
 First, we find more variability overall, i.e., wider posterior distributions, in the bilingual data. 
 Second, the bilingual data showed more pre-voicing in English /d/, which was not present to the same extent in the monolingual data.
@@ -325,96 +329,60 @@ include_graphics(here("figs", "bi_post_hoc_sm.pdf"))
 
 The final set of analyses compared a subset of the bilingual coronal stop data with bilabial data from a separate group of bilinguals (see Method section). 
 We analyzed VOT and the same burst metrics as the previous analyses. 
-In this case, however, the outcome variables were modeled as a function of language (POA: English, Spanish), place of articulation (bilabial, coronal), standardized F1 and F2, and item repetitions. 
+In this case, however, the outcome variables were modeled as a function of language (English, Spanish), place of articulation (POA: bilabial, coronal), standardized F1 and F2, and item repetitions. 
 We only included the voiceless stops (/p/, /t/) from each language. 
-Importantly, the fixed effect *POA* is a within-participant factor. 
+Importantly, the fixed effect *POA* is a between-participant factor. 
 That is, one set of bilingual individuals provided the bilabial data in English and Spanish, and another set of bilingual individuals (those from the previous experiment) provided the coronal data in English and Spanish. 
 @fig-poa-bilinguals plots VOT and the burst metrics as a function of language (English, Spanish) and POA (bilabial, coronal). 
-For all plots, the y-axis represents the outcome variable in standardized unites, the x-axis represents POA, and language is represented by color. 
+For all plots, the y-axis represents the outcome variable in standardized units, the x-axis represents POA, and language is represented by color. 
 
 ```{r}
 #| label: fig-poa-bilinguals
-#| fig-cap: "VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means ± 95% and 66% credible intervals."
+#| fig-cap: "VOT and burst metrics of voiceless stops from bilingual speakers as a function of place of articulation (bilabial, coronal) and language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
 include_graphics(here("figs", "poa_all_metrics.pdf"))
 ```
 
-**Voice-onset time.**
+**Voice-onset time.** The VOT data is plotted in the first panel of @fig-poa-bilinguals.
+The complete model summary is available in @fig-poa-bilinguals-summary below, as well as @tbl-bi-poa of the supplementary materials.
+There was a strong effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "VOT")`. 
+English voiceless stops had higher VOT than Spanish voiceless stops regardless of POA `r report_posterior(bi_poa_table, param = "Place", metric = "VOT")`. 
+We did not find compelling evidence for a language &times; POA interaction `r report_posterior(bi_poa_table, param = "Language:Place", metric = "VOT")`, nor were there any effects for the formant structure of the following vowel (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "VOT", supress = T)`). 
 
-`r report_posterior(bi_poa_table, param = "Language", metric = "VOT")`
 
-`r report_posterior(bi_poa_table, param = "Place", metric = "VOT")`
+**Relative intensity.** Relative intensity of the burst was slightly higher in English than in Spanish `r report_posterior(bi_poa_table, param = "Language", metric = "RI")`, though nearly half of the posterior mass fell within our pre-established region of practical equivalence. 
+Relative intensity was higher in bilabial stops than in coronals stops `r report_posterior(bi_poa_table, param = "Place", metric = "RI")`. 
+The two predictors did not interact `r report_posterior(bi_poa_table, param = "Language:Place", metric = "RI")`. 
+We found evidence for a relationship between height of the following vowel and relative intensity of the burst `r report_posterior(bi_poa_table, param = "F1", metric = "RI")`. 
+Concretely, higher F1 values were associated with lower relative intensity. 
+There was no evidence suggesting frontedness of the following vowel had any effect `r report_posterior(bi_poa_table, param = "F2", metric = "RI")`. 
+The relative intensity data is plotted in the second panel of @fig-poa-bilinguals and the complete model summary is available in @fig-poa-bilinguals-summary or @tbl-bi-poa of the supplementary materials.
 
-`r report_posterior(bi_poa_table, param = "Language:Place", metric = "VOT")`
 
-(`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "VOT", supress = T)`).
+**Center of gravity.** There was an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "COG")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "COG")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "COG")`. 
+As illustrated in the third panel of @fig-poa-bilinguals, COG was higher in English /t/ than in Spanish /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_COG")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_COG")`. 
+The following vowel did not affect COG of the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "COG", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "COG", supress = T)`). 
+The model summary is presented in the forest plot in @fig-poa-bilinguals-summary and in @tbl-bi-poa of the supplementary materials. 
 
-**Relative intensity.**
 
-`r report_posterior(bi_poa_table, param = "Language", metric = "RI")`
+**Kurtosis.** There was an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "KT")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "KT")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "KT")`. 
+As illustrated in the first panel of the second row in @fig-poa-bilinguals, kurtosis was higher in Spanish /t/ than in English /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_KT")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_KT")`. 
+The following vowel did not affect kurtosis in the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "KT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "KT", supress = T)`). 
+The model summary is available in @fig-poa-bilinguals-summary (See also @tbl-bi-poa of the supplementary materials). 
 
-`r report_posterior(bi_poa_table, param = "Place", metric = "RI")`
 
-`r report_posterior(bi_poa_table, param = "Language:Place", metric = "RI")`
+**Standard deviation.** Similar to the COG and kurtosis analyses, we again see an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "SD")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "SD")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "SD")`. 
+As illustrated in the middle panel of the second row in @fig-poa-bilinguals, standard deviation was higher in English /t/ than in Spanish /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_SD")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_SD")`. 
+The following vowel did not affect standard deviation of the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "SD", supress = T)`). 
+The model summary is available in @fig-poa-bilinguals-summary, as well as @tbl-bi-poa of the supplementary materials. 
 
-`r report_posterior(bi_poa_table, param = "F1", metric = "RI")`
 
-`r report_posterior(bi_poa_table, param = "F2", metric = "RI")`
+**Skewness.** Finally, for skewness we find an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "SK")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "SK")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "SK")`. 
+As illustrated in the final panel of the second row in @fig-poa-bilinguals, skewness was higher in Spanish /t/ than in English /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_SK")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_SK")`. 
+The following vowel did not affect skewness of the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "SK", supress = T)`). 
+The model summary is available in @fig-poa-bilinguals-summary below and @tbl-bi-poa of the supplementary materials. 
 
-**Center of gravity.**
 
-`r report_posterior(bi_poa_table, param = "Language", metric = "COG")`
-
-`r report_posterior(bi_poa_table, param = "Place", metric = "COG")`
-
-`r report_posterior(bi_poa_table, param = "Language:Place", metric = "COG")`
-
-(`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "COG", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "COG", supress = T)`).
-
-`r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_COG")`
-
-`r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_COG")`
-
-**Kurtosis.**
-
-`r report_posterior(bi_poa_table, param = "Language", metric = "KT")`
-
-`r report_posterior(bi_poa_table, param = "Place", metric = "KT")`
-
-`r report_posterior(bi_poa_table, param = "Language:Place", metric = "KT")`
-
-(`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "KT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "KT", supress = T)`).
-
-`r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_KT")`
-
-`r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_KT")`
-
-**Standard deviation.**
-
-`r report_posterior(bi_poa_table, param = "Language", metric = "SD")`
-
-`r report_posterior(bi_poa_table, param = "Place", metric = "SD")`
-
-`r report_posterior(bi_poa_table, param = "Language:Place", metric = "SD")`
-
-(`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "SD", supress = T)`).
-
-`r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_SD")`
-
-`r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_SD")`
-
-**Skewness.**
-
-`r report_posterior(bi_poa_table, param = "Language", metric = "SK")`
-
-`r report_posterior(bi_poa_table, param = "Place", metric = "SK")`
-
-`r report_posterior(bi_poa_table, param = "Language:Place", metric = "SK")`
-
-(`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "SK", supress = T)`).
-
-`r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_SK")`
-
-`r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_SK")`
+**Interim discussion.**
 
 ```{r}
 #| label: fig-poa-bilinguals-summary
@@ -422,11 +390,25 @@ include_graphics(here("figs", "poa_all_metrics.pdf"))
 include_graphics(here("figs", "poa_summary.pdf"))
 ```
 
-**Interim discussion.**
+The analyses of the bilingual bilabial and coronal voiceless stops are summarized in the forest plot in @fig-poa-bilinguals-summary and @tbl-bi-poa of the supplementary materials.
+The analyses revealed four important findings. 
+First, VOT was realized in a language-specific manner that was was similar for bilabials and coronals. 
+As with the previous analyses, Spanish voiceless stops were realized with short-lag VOT and English voiceless stops were realized with long-lag VOT. 
+Second, relative intensity can capture place of articulation differences, which are realized similarly in English and Spanish. 
+Third, we again find that COG and standard deviation pattern similarly, as do kurtosis and skewness, across languages for bilabial and coronal stops. 
+And, finally, we see that English and Spanish coronals differ with regard to all four spectral moment measurements, where as bilabials do not. 
+@fig-poa-post-hoc-all plots the posterior distributions of the Spanish-English difference estimates for VOT, relative intensity, and each spectral moment for bilabials and coronals (See also @tbl-poa-post-hoc-all). 
+One can observe clear between language differences for VOT in bilabials and coronals (i.e., short-lag vs. long-lag realizations), but only for coronals (orange triangles) in the spectral moments. 
+Thus, all four spectal moment measurements capture the subtle articulatory differences (dental vs. alveolar) between English and Spanish coronals stops. 
+No such fine-phonetic differences are attested in bilabials, and, unsurprisingly, we find no between-language differences at bilabial place. 
 
-@fig-poa-bilinguals-summary
 
-General summary and patterns.
+```{r}
+#| label: fig-poa-post-hoc-all
+#| fig-cap: "Posterior distributions of difference estimates between Spanish and English for bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. The light blue region represents a ROPE of &pm;0.1."
+include_graphics(here("figs", "poa_post_hoc_all.pdf"))
+```
+
 
 # Discussion
 
