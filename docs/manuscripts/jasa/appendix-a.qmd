@@ -22,17 +22,13 @@ A complete summary of the F1 and F2 models is available in @tbl-vowels.
 ```{r}
 #| label: fig-monolingual-vowels
 #| fig-cap: "F1 &#215; F2 of /a/ from monolingual speakers as a function of language (English, Spanish). Transparent points represent raw data. Solid points indicate posterior means &plusmn;95% and 80% credible intervals."
-knitr::include_graphics(
-  here("figs", "vowel_all_metrics_marginal.pdf")
-)
+include_graphics(here("figs", "vowel_all_metrics_marginal.pdf"))
 ```
 
 ```{r}
 #| label: fig-monolingual-vowels-summary
 #| fig-cap: "Posterior medians &plusmn;95% and 66% credible intervals for F1 and F2 from monolingual speaker data."
-knitr::include_graphics(
-  here("figs", "vowel_summary.pdf")
-)
+include_graphics(here("figs", "vowel_summary.pdf"))
 ```
 
 
@@ -46,7 +42,7 @@ f1_f2_table %>%
       identifier == "F2_Intercept" ~ "F2", 
       TRUE ~ " ")) %>% 
   select(-identifier) %>% 
-  knitr::kable(format = "markdown", 
+  kable(format = "markdown", 
     align = c("l", "l", "r", "r", "r", "r"), 
     caption = "Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-vowels}")
 ```

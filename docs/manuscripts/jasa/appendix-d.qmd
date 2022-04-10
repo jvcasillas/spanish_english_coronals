@@ -18,7 +18,7 @@ bi_poa_table %>%
     identifier == "SK_Intercept" ~ "SK", 
     TRUE ~ " ")) %>% 
   select(-identifier) %>% 
-  knitr::kable(format = "markdown", 
+  kable(format = "markdown", 
     align = c("l", "l", "r", "r", "r", "r"), 
     caption = "Model summary for VOT and burst metrics as a function of language (English, Spanish), place of articulation (bilabial, coronal), F1, F2, and item repetition for bilingual voiceless stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-bi-poa}")
 ```
@@ -30,9 +30,7 @@ bi_poa_table %>%
 ```{r}
 #| label: fig-poa-post-hoc-all
 #| fig-cap: "Posterior distributions of difference estimates between Spanish and English for bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. The light blue region represents the ROPE (&pm;0.1)."
-knitr::include_graphics(
-  here("figs", "poa_post_hoc_all.pdf")
-)
+include_graphics(here("figs", "poa_post_hoc_all.pdf"))
 ```
 
 
@@ -50,7 +48,7 @@ post_hoc %>%
       Metric != "VOT" & Place == "Bilabial" ~ " ", 
       TRUE ~ Place
     )) %>% 
-    knitr::kable(format = "markdown", 
+  kable(format = "markdown", 
     align = c("l", "l", "r", "r", "r", "r"), 
     caption = "Post-hoc between-language comparisons of bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. {#tbl-poa-post-hoc-all}")
 ```

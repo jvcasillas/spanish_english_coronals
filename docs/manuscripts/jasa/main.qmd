@@ -76,18 +76,18 @@ All participants were females between the ages of 18 and 23.
 The monolingual English speakers were recorded in English and the monolingual Spanish speakers were recorded in Spanish.
 The Spanish-English bilinguals were recorded in both of their languages.
 
-**Monolingual English speakers.** The study includes `r mono_en_n` monolingual English speakers.
+**Monolingual English speakers**. The study includes `r mono_en_n` monolingual English speakers.
 They were undergraduate students at the University of Arizona, born and raised in the US Southwest.
 The English speakers were functionally monolingual, though they reported having taken introductory Spanish courses.
 They were not able to maintain a basic conversation in Spanish.
 All of the participants in this group reported English as their native language and verified not having been exposed to any other languages while growing up.
 
-**Monolingual Spanish speakers.** The monolingual Spanish group comprised `r mono_sp_n` speakers that were recruited from the *Universitat de les Illes Balears* campus community and were born and raised on the island of Majorca, Spain.
+**Monolingual Spanish speakers**. The monolingual Spanish group comprised `r mono_sp_n` speakers that were recruited from the *Universitat de les Illes Balears* campus community and were born and raised on the island of Majorca, Spain.
 They reported that, although they had studied some English in Spain, they were not able to maintain a basic conversation in this language.
 The participants of this group also speak Catalan.
 Importantly, there are no reported differences in the phonetic realization of voice timing between the Spanish and Catalan, nor are there place difference between the coronal stops.
 
-**Bilingual speakers.** The Spanish-English bilinguals (n = `r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
+**Bilingual speakers**. The Spanish-English bilinguals (n = `r bi_coronals_n + bi_poa_n`) came from Southern Arizona and Northern Mexico.
 There are two samples from this population.
 The coronal dataset includes `r bi_coronals_n` speakers and the bilabial dataset includes `r bi_poa_n` speakers.
 The Spanish-English bilinguals were undergraduate students at the University of Arizona in Tucson, Arizona.
@@ -174,9 +174,7 @@ The x-axis indicates the language and voiced/voiceless pairs are represented by 
 ```{r}
 #| label: fig-monolinguals
 #| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
-knitr::include_graphics(
-  here("figs", "mono_all_metrics.pdf")
-)
+include_graphics(here("figs", "mono_all_metrics.pdf"))
 ```
 
 **Voice-onset time.** English stops had higher VOT than Spanish stops `r report_posterior(mono_table, param = "Language", metric = "VOT")` and the voiceless segments had higher VOT than the voiced segments `r report_posterior(mono_table, param = "Voicing", metric = "VOT")`. 
@@ -222,9 +220,7 @@ Again, F1 and F2 did not affect skewness values in the burst (`r report_posterio
 #| label: fig-monolinguals-summary
 #| fig-cap: "Posterior medians ±95% and 66% credible intervals for VOT and burst metrics of monolingual coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'group' indicates between-language comparisons of different speakers."
 
-knitr::include_graphics(
-  here("figs", "mono_summary.pdf")
-)
+include_graphics(here("figs", "mono_summary.pdf"))
 ```
 
 The analyses of the monolingual coronal stops are summarized in the forest plot in @fig-monolinguals-summary and @tbl-mono of the supplementary materials. 
@@ -233,7 +229,8 @@ Spanish voiced and voiceless stops were produced with lead-VOT and short-lag VOT
 Relative intensity did not distinguish between voicing contrasts in either language. 
 Spectral moments, on the other hand, were particularly useful for Spanish coronals. 
 As shown in @fig-monolinguals, all metrics, with the exception of relative intensity, could be used to differentiate between Spanish voiced and voiceless segments (See also @fig-mono-post-hoc-sm and @tbl-mono-post-hoc-sm of the supplementary materials). 
-with skewness and kurtosis patterning similarly, as did COG and standard deviation. 
+Skewness and kurtosis patterned similarly, as did COG and standard deviation. 
+The spectral moments did not vary as a function of voicing for the English coronals. 
 
 ## Experiment 2: Bilinguals
 
@@ -247,9 +244,7 @@ For all plots, the y-axis represents the outcome variable in standardized units,
 ```{r}
 #| label: fig-bilinguals
 #| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
-knitr::include_graphics(
-  here("figs", "bi_all_metrics.pdf")
-)
+include_graphics(here("figs", "bi_all_metrics.pdf"))
 ```
 
 **Voice-onset time.** VOT for English stops was higher than for Spanish stops `r report_posterior(bi_table, param = "Language", metric = "VOT")`, as was the case for voiceless segments in comparison with voiced segments `r report_posterior(bi_table, param = "Voicing", metric = "VOT")`.
@@ -303,26 +298,44 @@ Again, F1 and F2 had no affect on skewness (`r report_posterior(prefix = "F1: ",
 ```{r}
 #| label: fig-bilinguals-summary
 #| fig-cap: Posterior medians ±95% and 66% credible intervals for VOT and burst metrics of bilingual coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'Language' refers to a within-participant comparison between English and Spanish.
-knitr::include_graphics(
-  here("figs", "bi_summary.pdf")
-)
+include_graphics(here("figs", "bi_summary.pdf"))
 ```
 
-@fig-bilinguals-summary General summary and patterns.
+The analyses of the bilingual coronal stops are summarized in the forest plot in @fig-bilinguals-summary and @tbl-bi of the supplementary materials.
+Again, we see VOT realized in a language-specific manner. 
+The bilinguals produced Spanish voiced and voiceless stops with lead-VOT and short-lag VOT, respectively, and the English voiced and voiceless stops with short-lag VOT and long-lag VOT, respectively. 
+The voicing contrasts of English and Spanish did not vary based on relative intensity, though all the spectral moments did for the Spanish data. 
+Similar to monolingual data, skewness and kurtosis paterned similarly, as did COG and standard deviation. 
+In many regards the results of the bilingual analyses were virtually identical to those of the monolingual analyses (compare @fig-monolinguals with @fig-bilinguals); however, we do observe several important differences. 
+First, we find more variability overall, i.e., wider posterior distributions, in the bilingual data. 
+Second, the bilingual data showed more pre-voicing in English /d/, which was not present to the same extent in the monolingual data.
+Finally, small voicing distinctions in four of the spectral moments (center of gravity, standard deviation, skewness, and, to a lesser extent, kurtosis) were present in the bilinguals' production of English coronals. 
+@fig-bi-post-hoc-sm plots the posterior distributions of the /d/-/t/ difference estimates for each spectral moment and relative intensity in English and Spanish (See also @tbl-bi-post-hoc-sm of the supplementary materials). 
+We see the same general pattern for each language, though the difference estimates are much larger in the Spanish data. 
+The bilingual participants appear to have carried over some of the burst characteristics of their Spanish coronals into their English.
 
-
+```{r}
+#| label: fig-bi-post-hoc-sm
+#| fig-cap: "Posterior distributions of difference estimates between voiced and voiceless stops for Spanish and English. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced segment. The light blue region represents a ROPE of &pm;0.1."
+include_graphics(here("figs", "bi_post_hoc_sm.pdf"))
+```
 
 
 ## Experiment 3: Bilingual POA data
 
-Model info here.
+The final set of analyses compared a subset of the bilingual coronal stop data with bilabial data from a separate group of bilinguals (see Method section). 
+We analyzed VOT and the same burst metrics as the previous analyses. 
+In this case, however, the outcome variables were modeled as a function of language (POA: English, Spanish), place of articulation (bilabial, coronal), standardized F1 and F2, and item repetitions. 
+We only included the voiceless stops (/p/, /t/) from each language. 
+Importantly, the fixed effect *POA* is a within-participant factor. 
+That is, one set of bilingual individuals provided the bilabial data in English and Spanish, and another set of bilingual individuals (those from the previous experiment) provided the coronal data in English and Spanish. 
+@fig-poa-bilinguals plots VOT and the burst metrics as a function of language (English, Spanish) and POA (bilabial, coronal). 
+For all plots, the y-axis represents the outcome variable in standardized unites, the x-axis represents POA, and language is represented by color. 
 
 ```{r}
 #| label: fig-poa-bilinguals
 #| fig-cap: "VOT and burst metrics of voiceless stops from bilingual speakers as a function of language (English, Spanish), place of articulation (Coronal, Bilabial). Transparent points represent raw data. Solid points indicate posterior means ± 95% and 66% credible intervals."
-knitr::include_graphics(
-  here("figs", "poa_all_metrics.pdf")
-)
+include_graphics(here("figs", "poa_all_metrics.pdf"))
 ```
 
 **Voice-onset time.**
@@ -406,9 +419,7 @@ knitr::include_graphics(
 ```{r}
 #| label: fig-poa-bilinguals-summary
 #| fig-cap: "Posterior medians ±95% and 66% credible intervals for VOT and burst metrics of bilingual voiceless bilabial and coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'Place' refers to a between-participants comparison, as the bilabial data comes from a separate group of bilingual individuals."
-knitr::include_graphics(
-  here("figs", "poa_summary.pdf")
-)
+include_graphics(here("figs", "poa_summary.pdf"))
 ```
 
 **Interim discussion.**
@@ -424,6 +435,13 @@ General summary and patterns.
 ## Interpretation and implications
 
 # Conclusion
+
+\newpage
+
+# References
+
+::: {#refs}
+:::
 
 \newpage
 
@@ -468,7 +486,3 @@ General summary and patterns.
 #| label: appendix-f
 #| child: "appendix-f.qmd"
 ```
-
-\newpage
-
-# References
