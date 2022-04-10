@@ -25,13 +25,8 @@ bi_poa_table %>%
 
 <br>
 
-@fig-poa-post-hoc-all and @tbl-poa-post-hoc-all present the post-hoc analyses of between-language place comparisons, that is, bilabials vs. coronals. 
-
-```{r}
-#| label: fig-poa-post-hoc-all
-#| fig-cap: "Posterior distributions of difference estimates between Spanish and English for bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. The light blue region represents the ROPE (&pm;0.1)."
-include_graphics(here("figs", "poa_post_hoc_all.pdf"))
-```
+@tbl-poa-post-hoc-all presents the post-hoc analyses of between-language place comparisons, that is, bilabials vs. coronals. 
+This table presents the same information available in the forest plot in @fig-poa-post-hoc-all. 
 
 
 ```{r}
