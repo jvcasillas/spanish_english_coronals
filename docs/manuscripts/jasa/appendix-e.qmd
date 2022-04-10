@@ -1,29 +1,28 @@
-## Appendix E: Bayesian data analysis
+## Appendix E: Bayesian data analysis {#sec-bda}
 
 This study employs Bayesian Data Analysis for quantitative inferential statistics.
 Specifically, this implies that we use Bayesian *credible intervals*---and other metrics---to draw statistical inferences.
-A Bayesian model calculates a posterior distribution, i.e., a distribution of plausible parameter values, given the data, a data-generating model, and any prior information we have about those parameter values.
+A Bayesian model calculates a posterior distribution, i.e., a distribution of plausible parameter values, given the data, a data-generating model, and any prior assumptions we have about those parameter values.
 Posterior distributions are computationally costly.
 For this reason, we use the Hamiltonian Markov Chain Monte Carlo algorithm to obtain a sample that includes thousands of values from the posterior distribution.
-In practical terms, what this means is that we do not calculate a single point estimate for an effect β, but rather we draw a sample of 4,000 plausible values for β.
-This allows us to quantify our uncertainty regarding β by summarizing the distribution of those values.
-We will use 4 statistics to describe the posterior distribution: (1) the mean, (2) the highest density credible interval (HDI), (3) the proportion of the HDI that falls within a Region of Practical Equivalence (ROPE), and (4) the Maximum Probability of Effect (MPE).
-The mean provides a point estimate for the distribution.
+In practical terms, what this means is that we do not calculate a single point estimate for an effect &beta;, but rather we draw a sample of 4,000 plausible values for &beta;.
+This allows us to quantify our uncertainty regarding &beta; by summarizing the distribution of those values.
+We will use 4 statistics to describe the posterior distribution: (1) the posterior mean, (2) the highest density credible interval (HDI), (3) the proportion of the HDI that falls within a Region of Practical Equivalence (ROPE), and (4) the Maximum Probability of Effect (MPE).
+The posterior mean provides a point estimate for the distribution.
 The 95% highest density credible interval provides bounds for the effect.
 The ROPE designates a region of practical equivalence for a negligible effect and calculates the proportion of the HDI that falls within this interval.[^rope]
 The MPE calculates the proportion of the posterior distribution that is of the median's sign (or the probability that the effect is positive or negative).
 
-[^rope]: We utilize a ROPE of ±1 for standardized values.
-    For non-standardized values @kruschke2018rejecting recommends using the formula in @eq-rope.
+[^rope]: We utilize a ROPE of &pm;1 for standardized values. For non-standardized values @kruschke2018rejecting recommends using the formula in @eq-rope.
 
 $$
 es = \frac{\mu_1 - \mu_2}{\sqrt{\frac{\sigma_1^2 + \sigma_2^2}{2}}}
 $$ {#eq-rope}
 
-If, for instance, a hypothesis states that β \> 0, we judge there to be *compelling evidence* for this hypothesis if the mean point estimate is a positive number, if the 95% credible interval of β does not contain 0 and is outside the ROPE by a reasonably clear margin, and the posterior *P*(β \> 0) is close to one.
+If, for instance, a hypothesis states that &beta; \> 0, we judge there to be *compelling evidence* for this hypothesis if the mean point estimate is a positive number, if the 95% credible interval of &beta; does not contain 0 and is outside the ROPE by a reasonably clear margin, and the posterior *P*(&beta; \> 0) is close to one.
 Together these four statistics allow us to quantify our uncertainty and provide an intuitive interpretation of any given effect.
-Consider a case in which the posterior mean of β is 100 and the 95% credible interval is \[40, 160\].
-The interval tells us that we can be 95% certain the *true* value of β is between 40 and 160, given the data, our model, and our prior information.
+Consider a case in which the posterior mean of &beta; is 100 and the 95% credible interval is \[40, 160\].
+The interval tells us that we can be 95% certain the *true* value of &beta; is between 40 and 160, given the data, our model, and our prior information.
 Furthermore, the interval allows us to specify areas of uncertainty.
 In this example, we can conclude that the effect is almost certain to be positive.
 The lower interval value of 40 tells us that 95% of the plausible values are greater than 40.
