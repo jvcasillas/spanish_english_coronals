@@ -82,6 +82,8 @@ n_coronal_items_sp <- coronals %>%
 n_coronal_items    <- n_coronal_items_en + n_coronal_items_sp
 n_coronal_reps     <- 3
 n_coronal_tokens   <- nrow(coronals)
+n_coronal_possible <- 24 * 2 * 3 * (17 + 8)
+n_discarded        <- n_coronal_possible - n_coronal_tokens
 
 blps_coronals_modules <- coronals_blp %>%
   select(-id, -c(spanish:dom_std)) %>%
