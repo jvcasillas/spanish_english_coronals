@@ -14,7 +14,7 @@ The model included weakly informative priors with the mean centered at 0 and a s
 The model suggested weak evidence for a language effect on F1 `r report_posterior(f1_f2_table, param = "Language", metric = "F1")` and F2
 `r report_posterior(f1_f2_table, param = "Language", metric = "F2")`. 
 Together, the point estimates suggest the spectral centroid of the Spanish vowel was slightly higher and more posterior with respect to that of the English vowel.
-There was no evidence for a phoneme effect on F1 `r report_posterior(f1_f2_table, param = "Phoneme", metric = "F1")`, nor on F2 `r report_posterior(f1_f2_table, param = "Phoneme", metric = "F2")`.
+There was no evidence for a phoneme effect on F1 `r report_posterior(f1_f2_table, param = "Voicing", metric = "F1")`, nor on F2 `r report_posterior(f1_f2_table, param = "Voicing", metric = "F2")`.
 Given the possibility of a small effect of language on the spectral envelope,  standardized F1 and F2 were used in subsequent analyses of the coronal stops to control for any coarticulatory effects on the burst.
 @fig-monolingual-vowels plots the F1 &#215; F2 data and @fig-monolingual-vowels-summary plots the model summary. 
 A complete summary of the F1 and F2 models is available in @tbl-vowels.
