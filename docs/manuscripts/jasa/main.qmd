@@ -177,7 +177,7 @@ The x-axis indicates the language and voiced/voiceless pairs are represented by 
 
 ```{r}
 #| label: fig-monolinguals
-#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
+#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from monolingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means and 95% and 66% credible intervals."
 include_graphics(here("figs", "mono_all_metrics.pdf"))
 ```
 
@@ -185,44 +185,50 @@ include_graphics(here("figs", "mono_all_metrics.pdf"))
 We also find moderate evidence for an interaction between the two predictors `r report_posterior(mono_table, param = "Language:Voicing", metric = "VOT")`.
 Specifically, the voicing difference between Spanish coronals was slightly larger than that of the English coronals. 
 VOT did not vary as a function of the formant frequencies of the following vowel (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "VOT", supress = T)`).
-We also compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other `r report_posterior(post_hoc, param = "mono_dt_between", metric = "VOT")`, as nearly half the HDI fell within the predetermined region of practical equivalence.
+We also compared the short-lag stops of each language, English /d/ and Spanish /t/, and found no evidence that the segments differed from each other `r report_posterior(post_hoc, param = "mono_sl_between", metric = "VOT")`, as nearly half the HDI fell within the predetermined region of practical equivalence.
 The VOT data is plotted in the first panel of @fig-monolinguals.
-The complete model summary and the short-lag stop comparison are available in @tbl-mono and @fig-monolinguals-d-t of the supplementary materials.
+The complete model summary and the short-lag stop comparison are available in @tbl-mono and @tbl-mono-post-hoc-sl-between, respectively, in the supplementary materials.
 
 **Relative intensity.** The relative intensity data is plotted in the top middle panel of @fig-monolinguals.
 English and Spanish stops differed little with regard to relative intensity.
 The model provided no compelling evidence for a group effect `r report_posterior(mono_table, param = "Language", metric = "RI")`, nor for voicing `r report_posterior(mono_table, param = "Voicing", metric = "RI")` or F2 effects `r report_posterior(mono_table, param = "F2", metric = "RI")`.
 The height of the following vowel did appear to modulate relative intensity of the burst to some degree `r report_posterior(mono_table, param = "F1", metric = "RI")`, such that higher F1 values were associated with lower relative intensity.
 That being said, approximately `r filter(mono_table, Metric == "RI", identifier == "RI_F1") %>% pull(ROPE) * 100`% of the HDI fell within the region of practical equivalence.
-Finally, there was no evidence supporting a language &times; voicing interaction `r report_posterior(mono_table, param = "Language:Voicing", metric = "RI")`.
+There was no evidence supporting a language &times; voicing interaction `r report_posterior(mono_table, param = "Language:Voicing", metric = "RI")`.
+Finally, the short-lag stop comparison of Spanish /t/ and English /d/ provided no evidence suggesting the segments differed from each other `r report_posterior(post_hoc, param = "mono_sl_between", metric = "RI")`. 
 
 **Center of gravity.** The center of gravity (COG) data is plotted in the first row, third panel of @fig-monolinguals.
 English stops had a higher COG than Spanish stops `r report_posterior(mono_table, param = "Language", metric = "COG")`, and, overall, voiceless segments had a higher COG than the voiced segments `r report_posterior(mono_table, param = "Voicing", metric = "COG")`, however, the two predictors interacted `r report_posterior(mono_table, param = "Language:Voicing", metric = "COG")`.
 The interaction was driven by a large COG difference between Spanish coronals `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_COG")` that was not present in the English coronals `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_COG")`).
-No other predictors had an effect on COG.
+No other predictors had an effect on COG. 
+The post-hoc comparison of the short-lag stops from English and Spanish provided compelling evidence for a between-language difference `r report_posterior(post_hoc, param = "mono_sl_between", metric = "COG")`. 
+@fig-monolinguals-ph-sl-sm and @tbl-mono-post-hoc-sl-between provide the complete analysis.
 
 **Kurtosis.** The kurtosis data is plotted in the second row, first column of @fig-monolinguals.
 English stop bursts had lower kurtosis with regard to Spanish stop bursts `r report_posterior(mono_table, param = "Language", metric = "KT")`, and the voiced segments presumably had a higher kurtosis than the voiceless segments `r report_posterior(mono_table, param = "Voicing", metric = "KT")`, though there was evidence of a language &times; voicing interaction `r report_posterior(mono_table, param = "Language:Voicing", metric = "KT")`.
 Specifically, kurtosis was higher in the voiced stop bursts of Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_KT")`, but there was no evidence of a voicing difference in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_KT")`.
 Neither F1 `r report_posterior(mono_table, param = "F1", metric = "KT")` nor F2 `r report_posterior(mono_table, param = "F2", metric = "KT")` had any influence on kurtosis.
+The post-hoc comparison of short-lag stops provided compelling evidence for a between-language difference `r report_posterior(post_hoc, param = "mono_sl_between", metric = "KT")`. 
+See @fig-monolinguals-ph-sl-sm and @tbl-mono-post-hoc-sl-between of the supplementary materials.
 
 **Standard deviation.** With regard to standard deviation, we observe the same pattern found in the COG data (See third panel, first row and second panel, second row in @fig-monolinguals).
 That is, there was a difference between English and Spanish `r report_posterior(mono_table, param = "Language", metric = "SD")`, as well as between voiced and voiceless segments `r report_posterior(mono_table, param = "Voicing", metric = "SD")`, though, again, the two predictors interacted `r report_posterior(mono_table, param = "Language:Voicing", metric = "SD")`.
 Specifically, there was only a voicing difference for Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_SD")`, where we see lower standard deviation values in voiced stops.
 No such difference is observed between the English coronals `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_SD")`.
 Height and frontedness of the following vowel had no effect on standard deviation in the stop burst (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "SD", supress = T)`).
+Our comparison of Spanish /t/ and English /d/ showed that the short-lag stops differed in kurtosis to some degree `r report_posterior(post_hoc, param = "mono_sl_between", metric = "SD")`, with only 1% of the HDI falling within our pre-determined ROPE (See @fig-monolinguals-ph-sl-sm and @tbl-mono-post-hoc-sl-between).
 
 **Skewness.** The analysis of skewness of the stop burst showed a similar pattern as the one observed in the analysis of kurtosis.
 If we compare the first and third panels (second row) of @fig-monolinguals, we observe a language effect `r report_posterior(mono_table, param = "Language", metric = "SK")`, such that Spanish stops show higher skewness values, as well a voicing effect `r report_posterior(mono_table, param = "Voicing", metric = "SK")`, which is driven by a language &times; voicing interaction `r report_posterior(mono_table, param = "Language:Voicing", metric = "SK")`.
 Specifically, the Spanish voiced coronal had higher skewness of the burst than the voiceless counterpart `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_SK")`, and this difference is not present in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_SK")`.
 Again, F1 and F2 did not affect skewness values in the burst (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "SK", supress = T)`).
-
+Upon comparing the short-lag stops from English and Spanish, we find compelling evidence for a between-language difference `r report_posterior(post_hoc, param = "mono_sl_between", metric = "SK")`. 
 
 **Interim discussion.**
 
 ```{r}
 #| label: fig-monolinguals-summary
-#| fig-cap: "Posterior medians ±95% and 66% credible intervals for VOT and burst metrics of monolingual coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'group' indicates between-language comparisons of different speakers."
+#| fig-cap: "Posterior medians ±95% and 66% credible intervals for VOT and burst metrics of monolingual coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'language' indicates between-language comparisons of different speakers."
 
 include_graphics(here("figs", "mono_summary.pdf"))
 ```
@@ -232,9 +238,10 @@ Unsurprisingly, VOT was realized in a language-specific manner.
 Spanish voiced and voiceless stops were produced with lead-VOT and short-lag VOT, respectively; English voiced and voiceless stops were produced with short-lag VOT and long-lag VOT, respectively. 
 Relative intensity did not distinguish between voicing contrasts in either language. 
 Spectral moments, on the other hand, were particularly useful for Spanish coronals. 
-As shown in @fig-monolinguals, all metrics, with the exception of relative intensity, could be used to differentiate between Spanish voiced and voiceless segments (See also @fig-mono-post-hoc-sm and @tbl-mono-post-hoc-sm of the supplementary materials). 
+As shown in @fig-monolinguals, all metrics, with the exception of relative intensity, could be used to differentiate between Spanish voiced and voiceless segments (See also @fig-mono-post-hoc-wl-dt-sm and @tbl-mono-post-hoc-sm of the supplementary materials). 
 Skewness and kurtosis patterned similarly, as did COG and standard deviation. 
 The spectral moments did not vary as a function of voicing for the English coronals. 
+We also found evidence for between-language differences with regard to the short-lag stops for all metrics except VOT and relative intensity (See @tbl-mono-post-hoc-sl-between). 
 
 ## Experiment 2: Bilinguals
 
@@ -253,18 +260,19 @@ include_graphics(here("figs", "bi_all_metrics.pdf"))
 
 **Voice-onset time.** VOT for English stops was higher than for Spanish stops `r report_posterior(bi_table, param = "Language", metric = "VOT")`, as was the case for voiceless segments in comparison with voiced segments `r report_posterior(bi_table, param = "Voicing", metric = "VOT")`.
 The two predictors did not interact `r report_posterior(bi_table, param = "Language:Voicing", metric = "VOT")`.
-Upon comparing the short-lag stops of each language, English /d/ and Spanish /t/, we found minimal evidence that the segments differed from each other `r report_posterior(post_hoc, param = "bi_dt_between", metric = "VOT")`. 
+Upon comparing the short-lag stops of each language, English /d/ and Spanish /t/, we found minimal evidence that the segments differed from each other `r report_posterior(post_hoc, param = "bi_sl_between", metric = "VOT")`. 
 Approximately 12% of the HDI fell within the predetermined region of practical equivalence, though given the model, the data, and our prior assumptions, there is a 97% chance the effect is negative, i.e., that English /d/ has lower VOT than Spanish /t/. 
 This is likely due to the bilinguals' tendency to pre-voice in English.
 The VOT data is plotted in the first panel of @fig-bilinguals.
-The complete model summary and the short-lag stop comparison are available in @tbl-bi and @fig-bilinguals-d-t of the supplementary materials.
+The complete model summary is available in @tbl-bi. 
+The short-lag stop comparisons are illustrated in @fig-bilinguals-ph-sl-vot and @fig-bilinguals-ph-sl-sm of the supplementary materials.
 
 **Relative intensity.** We plot the relative intensity data in the top middle panel of @fig-bilinguals.
 There was no evidence for a group effect `r report_posterior(bi_table, param = "Language", metric = "RI")`, nor for voicing `r report_posterior(bi_table, param = "Voicing", metric = "RI")` or F2 `r report_posterior(bi_table, param = "F2", metric = "RI")`.
 We found a relationship between height of the following vowel and relative intensity of the burst  `r report_posterior(bi_table, param = "F1", metric = "RI")`. 
 Concretely, higher F1 values were associated with lower relative intensity.
 There was no evidence supporting a language &times; voicing interaction `r report_posterior(bi_table, param = "Language:Voicing", metric = "RI")`.
-
+We found no evidence for a between-language difference of short-lag stops `r report_posterior(post_hoc, param = "bi_sl_between", metric = "RI")`. 
 
 **Center of gravity.** COG was higher in English stops than in Spanish stops `r report_posterior(bi_table, param = "Language", metric = "COG")`. 
 Voiceless segments had higher COG than the voiced segments `r report_posterior(bi_table, param = "Voicing", metric = "COG")`. 
@@ -273,29 +281,24 @@ The difference between voiced and voiceless coronals was slightly larger in Span
 No other predictors had an effect on COG. 
 The COG data is plotted in the first row, third panel of @fig-bilinguals.
 
+There was evidence supporting a moderate difference between short-lag /t/ of Spanish and /d/ of English `r report_posterior(post_hoc, param = "bi_sl_between", metric = "COG")`. 
 
 **Kurtosis.** We plot the kurtosis data in the second row, first column of @fig-bilinguals. 
 Kurtosis was higher in English stop bursts than Spanish stop bursts `r report_posterior(bi_table, param = "Language", metric = "KT")`, and also in voiced segments `r report_posterior(bi_table, param = "Voicing", metric = "KT")`, though there was a language &times; voicing interaction `r report_posterior(bi_table, param = "Language:Voicing", metric = "KT")`.
 In this case, we observed that kurtosis was higher in the voiced stop bursts of Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "SPANISH_KT")`, but the voicing difference was much smaller in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "ENGLISH_KT")`.
 Neither F1 `r report_posterior(bi_table, param = "F1", metric = "KT")` nor F2 `r report_posterior(bi_table, param = "F2", metric = "KT")` had any influence on kurtosis. 
-
+We found evidence supporting a difference between short-lag /t/ of Spanish and /d/ of English `r report_posterior(post_hoc, param = "bi_sl_between", metric = "KT")`. 
 
 **Standard deviation.** Regarding standard deviation, we again observe the same pattern found in the COG data (See third panel, first row and second panel, second row in @fig-bilinguals).
 In other words, there was a difference between English and Spanish `r report_posterior(bi_table, param = "Language", metric = "SD")`, as well as between segments `r report_posterior(bi_table, param = "Voicing", metric = "SD")`. 
 The estimate for the language &times; voicing interaction falls nearly entirely within our predetermined ROPE, though given the data, the model, and our prior assumptions, there is high probability that the effect it positive `r report_posterior(bi_table, param = "Language:Voicing", metric = "SD")`.
 Height and frontedness of the following vowel had no effect on standard deviation in the stop burst (`r report_posterior(prefix = "F1: ", bi_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", bi_table, param = "F2", metric = "SD", supress = T)`).
-
-<!--
-`r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "SPANISH_SD")`
-
-`r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "ENGLISH_SD")`
---> 
-
+Our post-hoc comparison of short-lag stops supports a between-language difference based on standard deviation `r report_posterior(post_hoc, param = "bi_sl_between", metric = "SD")`. 
 **Skewness.** With regard to skewness, we again see a similar pattern as the one observed in the analysis of kurtosis (See first and third panels in the second row of @fig-bilinguals). 
 We find an effect of language effect `r report_posterior(bi_table, param = "Language", metric = "SK")`, such that Spanish stops show higher skewness values, and voicing `r report_posterior(bi_table, param = "Voicing", metric = "SK")`, which is driven by a language &times; voicing interaction `r report_posterior(bi_table, param = "Language:Voicing", metric = "SK")`.
 The Spanish voiced /d/ had higher skewness than voiceless /t/ `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "SPANISH_SK")`, and this difference is much smaller in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "ENGLISH_SK")`.
 Again, F1 and F2 had no affect on skewness (`r report_posterior(prefix = "F1: ", bi_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", bi_table, param = "F2", metric = "SK", supress = T)`).
-
+Finally, our post-hoc analysis comparing short-lag stops provided compelling evidence for between-language differences in the burst `r report_posterior(post_hoc, param = "bi_sl_between", metric = "SK")`. 
 
 **Interim discussion.**
 
@@ -316,12 +319,13 @@ Second, the bilingual data showed more pre-voicing in English /d/, which was not
 Finally, small voicing distinctions in four of the spectral moments (center of gravity, standard deviation, skewness, and, to a lesser extent, kurtosis) were present in the bilinguals' production of English coronals. 
 @fig-bi-post-hoc-sm plots the posterior distributions of the /d/-/t/ difference estimates for each spectral moment and relative intensity in English and Spanish (See also @tbl-bi-post-hoc-sm of the supplementary materials). 
 We see the same general pattern for each language, though the difference estimates are much larger in the Spanish data. 
-The bilingual participants appear to have carried over some of the burst characteristics of their Spanish coronals into their English.
+The bilingual participants appear to have carried over some of the burst characteristics of their Spanish coronals into their English. 
+Finally, post-hoc comparisons of Spanish and English short-lag stops suggested that the bilinguals, like their monolingual counterparts, had distinct burst characteristics according to all metrics except VOT and relative intensity (See @tbl-bi-post-hoc-sl-between). 
 
 ```{r}
 #| label: fig-bi-post-hoc-sm
 #| fig-cap: "Posterior distributions of difference estimates between voiced and voiceless stops for Spanish and English. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced segment. The light blue region represents a ROPE of &pm;0.1."
-include_graphics(here("figs", "bi_post_hoc_sm.pdf"))
+include_graphics(here("figs", "bi_post_hoc_within_lang_dt_sm.pdf"))
 ```
 
 
