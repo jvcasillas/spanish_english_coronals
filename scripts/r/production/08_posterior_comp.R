@@ -56,19 +56,51 @@ posterior_poa_adj <-
 
 # Post-hoc analyses: Monolinguals ---------------------------------------------
 
+#
 # Comparison of short-lag stops: monolinguals
+#
+
 d_t_post_mono <- posterior_mono_adj %>%
-  filter(metric == "vot", language == "english" & phon == "d" |
-                          language == "spanish" & phon == "t") %>%
-  select(-metric, -language) %>%
-  group_by(phon) %>%
+  filter(language == "english" & phon == "d" |
+         language == "spanish" & phon == "t") %>%
+  select(-language) %>%
+  group_by(metric, phon) %>%
   mutate(grouped_id = row_number()) %>%
   pivot_wider(everything(), names_from = "phon", values_from = "val") %>%
   mutate(diff = d - t)
 
-mono_post_hoc_dt <- plot_posterior(
-  posterior = d_t_post_mono, parameter = diff, rope = c(-0.1, 0.1),
-  hdi = 0.95, xpos = -0.48, ypos = c(1.2, 1, 0.8))
+# Comparison of short-lag stops: monolinguals - VOT
+mono_post_hoc_short_lag_vot <- d_t_post_mono %>%
+  filter(metric == "vot") %>%
+  plot_posterior(posterior = ., parameter = diff,
+    rope = c(-0.1, 0.1), hdi = 0.95, xpos = -0.48, ypos = c(1.2, 1, 0.8))
+
+# Comparison of short-lag stops: monolinguals - Spectral moments
+mono_post_hoc_short_lag_sm <- d_t_post_mono %>%
+  filter(metric != "vot") %>%
+  mutate(metric = toupper(metric)) %>%
+  ggplot(., aes(x = diff, y = metric))  +
+  geom_rect(data = tibble(xmin = -0.1, xmax = 0.1), inherit.aes = FALSE,
+            aes(xmin = -0.1, xmax = 0.1, ymin = -Inf, ymax = Inf),
+            fill = "lightblue", color = "white", alpha = 0.2) +
+  geom_vline(xintercept = 0, lty = 3) +
+  stat_halfeye(aes(slab_fill = metric, point_fill = metric, shape = metric),
+               position = position_dodgev(0.6), slab_alpha = 0.5, slab_color = "white",
+               point_color = "white", point_size = 5, stroke = 0.3) +
+  scale_fill_manual(aesthetics = "slab_fill", name = NULL,
+                    values = viridis::viridis(5, option = "C", begin = 0.2, end = 0.9)) +
+  scale_fill_manual(aesthetics = "point_fill", name = NULL,
+                    values = viridis::viridis(5, option = "C", begin = 0.2, end = 0.9)) +
+  scale_y_discrete(labels = NULL) +
+  coord_cartesian(xlim = c(-1.5, 1.5)) +
+  scale_shape_manual(name = NULL, values = c(21:25)) +
+  theme_minimal(base_family = "Times", base_size = 16) +
+  labs(x = "Posterior difference estimates\n(short-lag stops)", y = NULL) +
+  model_theme_adj()
+
+#
+# Monolingual Comparison of /d/ - /t/ within language
+#
 
 # Within language comparisons of spectral moments and RI
 mono_within_lang_dt_comp_posterior <- posterior_mono_adj %>%
@@ -84,7 +116,7 @@ mono_within_lang_dt_comp_posterior <- posterior_mono_adj %>%
   select(-grouped_id)
 
 # Plot RI and spectral moments
-mono_post_hoc_sm <- mono_within_lang_dt_comp_posterior %>%
+mono_post_hoc_within_lang_sm <- mono_within_lang_dt_comp_posterior %>%
   pivot_longer(everything(), names_to = "metric", values_to = "estimate") %>%
   separate(metric, c("lang", "metric"), sep = "_") %>%
   mutate(metric = toupper(metric), lang = str_to_title(lang)) %>%
@@ -101,8 +133,9 @@ mono_post_hoc_sm <- mono_within_lang_dt_comp_posterior %>%
     scale_fill_manual(aesthetics = "point_fill", name = NULL,
       values = viridis::viridis(5, option = "C", begin = 0.2, end = 0.9)) +
     scale_shape_manual(name = NULL, values = c(21:25)) +
+    coord_cartesian(xlim = c(-1.5, 1.5)) +
     theme_minimal(base_family = "Times", base_size = 16) +
-    labs(x = "/d/ - /t/ difference estimates", y = NULL) +
+    labs(x = "/d/ - /t/ difference estimates\n(within language)", y = NULL) +
     model_theme_adj()
 
 # -----------------------------------------------------------------------------
@@ -112,19 +145,51 @@ mono_post_hoc_sm <- mono_within_lang_dt_comp_posterior %>%
 
 # Post-hoc analyses: Bilinguals -----------------------------------------------
 
-# Comparison of short-lag stops: monolinguals
+#
+# Comparison of short-lag stops: bilinguals
+#
+
 d_t_post_bi <- posterior_bi_adj %>%
-  filter(metric == "vot", language == "english" & phon == "d" |
-                          language == "spanish" & phon == "t") %>%
-  select(-metric, -language) %>%
-  group_by(phon) %>%
+  filter(language == "english" & phon == "d" |
+         language == "spanish" & phon == "t") %>%
+  select(-language) %>%
+  group_by(metric, phon) %>%
   mutate(grouped_id = row_number()) %>%
   pivot_wider(everything(), names_from = "phon", values_from = "val") %>%
   mutate(diff = d - t)
 
-bi_post_hoc_dt <- plot_posterior(
-  posterior = d_t_post_bi, parameter = diff, rope = c(-0.1, 0.1),
+# Comparison of short-lag stops: bilinguals - VOT
+bi_post_hoc_short_lag_vot <- d_t_post_bi %>%
+  filter(metric == "vot") %>%
+  plot_posterior(posterior = ., parameter = diff, rope = c(-0.1, 0.1),
   hdi = 0.95, xpos = -0.65, ypos = c(1.2, 1, 0.8))
+
+# Comparison of short-lag stops: bilinguals - Spectral moments
+bi_post_hoc_short_lag_sm <- d_t_post_bi %>%
+  filter(metric != "vot") %>%
+  mutate(metric = toupper(metric)) %>%
+  ggplot(., aes(x = diff, y = metric))  +
+  geom_rect(data = tibble(xmin = -0.1, xmax = 0.1), inherit.aes = FALSE,
+            aes(xmin = -0.1, xmax = 0.1, ymin = -Inf, ymax = Inf),
+            fill = "lightblue", color = "white", alpha = 0.2) +
+  geom_vline(xintercept = 0, lty = 3) +
+  stat_halfeye(aes(slab_fill = metric, point_fill = metric, shape = metric),
+               position = position_dodgev(0.6), slab_alpha = 0.5, slab_color = "white",
+               point_color = "white", point_size = 5, stroke = 0.3) +
+  scale_fill_manual(aesthetics = "slab_fill", name = NULL,
+                    values = viridis::viridis(5, option = "C", begin = 0.2, end = 0.9)) +
+  scale_fill_manual(aesthetics = "point_fill", name = NULL,
+                    values = viridis::viridis(5, option = "C", begin = 0.2, end = 0.9)) +
+  scale_y_discrete(labels = NULL) +
+  coord_cartesian(xlim = c(-1.5, 1.5)) +
+  scale_shape_manual(name = NULL, values = c(21:25)) +
+  theme_minimal(base_family = "Times", base_size = 16) +
+  labs(x = "Posterior difference estimates\n(short-lag stops)", y = NULL) +
+  model_theme_adj()
+
+#
+# Bilingual Comparison of /d/ - /t/ within language
+#
 
 # Within language comparisons of spectral moments and RI
 bi_within_lang_dt_comp_posterior <- posterior_bi_adj %>%
@@ -140,7 +205,7 @@ bi_within_lang_dt_comp_posterior <- posterior_bi_adj %>%
   select(-grouped_id)
 
 # Plot RI and spectral moments
-bi_post_hoc_sm <- bi_within_lang_dt_comp_posterior %>%
+bi_post_hoc_within_lang_sm <- bi_within_lang_dt_comp_posterior %>%
   pivot_longer(everything(), names_to = "metric", values_to = "estimate") %>%
   separate(metric, c("lang", "metric"), sep = "_") %>%
   mutate(metric = toupper(metric), lang = str_to_title(lang)) %>%
@@ -157,8 +222,9 @@ bi_post_hoc_sm <- bi_within_lang_dt_comp_posterior %>%
     scale_fill_manual(aesthetics = "point_fill", name = NULL,
       values = viridis::viridis(5, option = "C", begin = 0.2, end = 0.9)) +
     scale_shape_manual(name = NULL, values = c(21:25)) +
+    coord_cartesian(xlim = c(-1.5, 1.5)) +
     theme_minimal(base_family = "Times", base_size = 16) +
-    labs(x = "/d/ - /t/ difference estimates", y = NULL) +
+    labs(x = "/d/ - /t/ difference estimates\n(within language)", y = NULL) +
     model_theme_adj()
 
 # -----------------------------------------------------------------------------
@@ -235,18 +301,30 @@ poa_post_hoc_all <- poa_between_lang_place_comp_posterior %>%
 
 bind_rows(
   bind_rows(
-  d_t_post_mono$diff %>% make_model_table(name_v = "vot") %>%
-    mutate(Parameter = "mono_dt_between"),
-  mono_within_lang_dt_comp_posterior %>%
-    imap_dfr(make_model_table) %>%
-    mutate(Parameter = "mono_dt_win_lang")
+    d_t_post_mono %>%
+      select(metric, diff) %>%
+      group_by(metric) %>%
+      mutate(num = seq_along(metric)) %>%
+      pivot_wider(names_from = "metric", values_from = "diff") %>%
+      select(-num) %>%
+      imap_dfr(make_model_table) %>%
+      mutate(Parameter = "mono_sl_between"),
+    mono_within_lang_dt_comp_posterior %>%
+      imap_dfr(make_model_table) %>%
+      mutate(Parameter = "mono_dt_win_lang")
   ),
   bind_rows(
-  d_t_post_bi$diff %>% make_model_table(name_v = "vot") %>%
-    mutate(Parameter = "bi_dt_between"),
-  bi_within_lang_dt_comp_posterior %>%
-    imap_dfr(make_model_table) %>%
-    mutate(Parameter = "bi_dt_win_lang")
+    d_t_post_bi %>%
+      select(metric, diff) %>%
+      group_by(metric) %>%
+      mutate(num = seq_along(metric)) %>%
+      pivot_wider(names_from = "metric", values_from = "diff") %>%
+      select(-num) %>%
+      imap_dfr(make_model_table) %>%
+      mutate(Parameter = "bi_sl_between"),
+    bi_within_lang_dt_comp_posterior %>%
+      imap_dfr(make_model_table) %>%
+      mutate(Parameter = "bi_dt_win_lang")
   ),
   poa_between_lang_place_comp_posterior %>%
     imap_dfr(make_model_table) %>%
@@ -268,25 +346,33 @@ bind_rows(
 
 # Save plots ------------------------------------------------------------------
 
-devices         <- c('pdf', 'png')
-path_mono_ph_dt <- file.path(here("figs"), "mono_post_hoc_dt.")
-path_mono_ph_sm <- file.path(here("figs"), "mono_post_hoc_sm.")
-path_bi_ph_dt   <- file.path(here("figs"), "bi_post_hoc_dt.")
-path_bi_ph_sm   <- file.path(here("figs"), "bi_post_hoc_sm.")
-path_poa_ph_all <- file.path(here("figs"), "poa_post_hoc_all.")
+devices                <- c('pdf', 'png')
+path_mono_ph_sl_vot    <- file.path(here("figs"), "mono_post_hoc_short_lag_vot.")
+path_mono_ph_sl_sm     <- file.path(here("figs"), "mono_post_hoc_short_lag_sm.")
+path_mono_ph_wl_dt_sm  <- file.path(here("figs"), "mono_post_hoc_within_lang_dt_sm.")
+path_bi_ph_sl_vot      <- file.path(here("figs"), "bi_post_hoc_short_lag_vot.")
+path_bi_ph_sl_sm       <- file.path(here("figs"), "bi_post_hoc_short_lag_sm.")
+path_bi_ph_wl_dt_sm    <- file.path(here("figs"), "bi_post_hoc_within_lang_dt_sm.")
+path_poa_ph_all        <- file.path(here("figs"), "poa_post_hoc_all.")
 
-walk(devices, ~ ggsave(filename = glue(path_mono_ph_dt, .x),
-                       plot = mono_post_hoc_dt,
+walk(devices, ~ ggsave(filename = glue(path_mono_ph_sl_vot, .x),
+                       plot = mono_post_hoc_short_lag_vot,
                        device = .x, height = 4, width = 8, units = "in"))
-walk(devices, ~ ggsave(filename = glue(path_mono_ph_sm, .x),
-                       plot = mono_post_hoc_sm,
+walk(devices, ~ ggsave(filename = glue(path_mono_ph_sl_sm, .x),
+                       plot = mono_post_hoc_short_lag_sm,
+                       device = .x, height = 4, width = 8, units = "in"))
+walk(devices, ~ ggsave(filename = glue(path_mono_ph_wl_dt_sm, .x),
+                       plot = mono_post_hoc_within_lang_sm ,
                        device = .x, height = 4, width = 8, units = "in"))
 
-walk(devices, ~ ggsave(filename = glue(path_bi_ph_dt, .x),
-                       plot = bi_post_hoc_dt,
+walk(devices, ~ ggsave(filename = glue(path_bi_ph_sl_vot, .x),
+                       plot = bi_post_hoc_short_lag_vot,
                        device = .x, height = 4, width = 8, units = "in"))
-walk(devices, ~ ggsave(filename = glue(path_bi_ph_sm, .x),
-                       plot = bi_post_hoc_sm,
+walk(devices, ~ ggsave(filename = glue(path_bi_ph_sl_sm, .x),
+                       plot = bi_post_hoc_short_lag_sm,
+                       device = .x, height = 4, width = 8, units = "in"))
+walk(devices, ~ ggsave(filename = glue(path_bi_ph_wl_dt_sm, .x),
+                       plot = bi_post_hoc_within_lang_sm ,
                        device = .x, height = 4, width = 8, units = "in"))
 
 walk(devices, ~ ggsave(filename = glue(path_poa_ph_all, .x),

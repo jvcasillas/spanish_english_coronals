@@ -5,7 +5,7 @@ In this section we present additional information from the analyses of the monol
 
 ```{r}
 #| label: tbl-mono
-#| results: asis
+#| tbl-cap: "Model summary for VOT and burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), F1, F2, and item repetition for monolingual coronal stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-mono}"
 mono_table %>%  
   mutate(
     Parameter = str_replace(Parameter, "x", "&#215;"), 
@@ -19,33 +19,53 @@ mono_table %>%
     TRUE ~ " ")) %>% 
   select(-identifier) %>% 
   kable(format = "markdown", 
-    align = c("l", "l", "r", "r", "r", "r"), 
-    caption = "Model summary for VOT and burst metrics as a function of language (English, Spanish), phoneme (/d/, /t/), F1, F2, and item repetition for monolingual coronal stops. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-mono}")
+    align = c("l", "l", "r", "r", "r", "r"))
 ```
 
 <br>
 
-@fig-monolinguals-d-t shows the comparison of English /d/ and Spanish /t/ for voice-onset time. 
+@fig-monolinguals-ph-sl-vot shows the comparison of English /d/ and Spanish /t/ for voice-onset time. 
 One can observe that there is not a meaningful difference between the short-lag segments. 
+@fig-monolinguals-ph-sl-sm shows the comparison of English /d/ and Spanish /t/ for relative intensity and spectral moments. 
+There appears to be a meaningful difference between the short-lag segments for all metrics except relative intensity. 
+@tbl-mono-post-hoc-sl-between summarizes all of the short-lag stop comparisons. 
 
 ```{r}
-#| label: fig-monolinguals-d-t
-#| fig-cap: "Posterior distribution comparing the short-lag stops, English /d/ and Spanish /t/. The white point represents the posterior mean &pm;95% HDI and the grey region represents the ROPE (&pm;0.1)."
-include_graphics(here("figs", "mono_post_hoc_dt.pdf"))
+#| label: fig-monolinguals-ph-sl-vot
+#| fig-cap: "Posterior distribution comparing VOT of the short-lag stops, English /d/ and Spanish /t/. The white point represents the posterior mean &pm;95% HDI and the grey region represents the ROPE (&pm;0.1)."
+include_graphics(here("figs", "mono_post_hoc_short_lag_vot.pdf"))
 ```
 
-@fig-mono-post-hoc-sm and @tbl-mono-post-hoc-sm present the post-hoc analyses of within-language comparisons, that is, /d/ vs. /t/. 
+```{r}
+#| label: fig-monolinguals-ph-sl-sm
+#| fig-cap: "Posterior distribution comparing relative intensity and spectral moments of the short-lag stops, English /d/ and Spanish /t/. The points represents the posterior mean &pm;95% HDI and the grey region represents the ROPE (&pm;0.1)."
+include_graphics(here("figs", "mono_post_hoc_short_lag_sm.pdf"))
+```
 
 ```{r}
-#| label: fig-mono-post-hoc-sm
+#| label: tbl-mono-post-hoc-sl-between
+#| tbl-cap: "Post-hoc comparisons of short-lag stops between English and Spanish for each burst metric. Each estimate is derived from the mean difference of the posterior of the Spanish segment subtracted from the posterior of the Englsh segment. {#tbl-mono-post-hoc-sl-between}"
+post_hoc %>% 
+  filter(Parameter == "mono_sl_between") %>% 
+  select(-identifier, -Parameter) %>% 
+  kable(format = "markdown", 
+    align = c("l", "r", "r", "r", "r"))
+```
+
+
+@fig-mono-post-hoc-wl-dt-sm and @tbl-mono-post-hoc-sm present the post-hoc analyses of within-language comparisons, that is, Spanish /d/ vs. Spanish /t/ and English /d/ vs. English /t/. 
+
+
+```{r}
+#| label: fig-mono-post-hoc-wl-dt-sm
 #| fig-cap: "Posterior distributions of difference estimates between voiced and voiceless stops for Spanish and English. The point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced. The light blue region represents the ROPE (&pm;0.1)."
-include_graphics(here("figs", "mono_post_hoc_sm.pdf"))
+include_graphics(here("figs", "mono_post_hoc_within_lang_dt_sm.pdf"))
 ```
 
 
 ```{r}
 #| label: tbl-mono-post-hoc-sm
-#| results: asis
+#| tbl-cap: "Post-hoc comparisons of within-language voiced-voiceless pairs for each burst metric. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced segment. {#tbl-mono-post-hoc-sm}"
 post_hoc %>% 
   filter(Metric != "VOT", Parameter == "mono_dt_win_lang") %>% 
   select(-identifier, -Parameter) %>% 
@@ -58,6 +78,5 @@ post_hoc %>%
       TRUE ~ Language
     )) %>% 
   kable(format = "markdown", 
-    align = c("l", "l", "r", "r", "r", "r"), 
-    caption = "Post-hoc comparisons of within-language voiced-voiceless pairs for each burst metric. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced segment. {#tbl-mono-post-hoc-sm}")
+    align = c("l", "l", "r", "r", "r", "r"))
 ```

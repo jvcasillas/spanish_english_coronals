@@ -35,7 +35,7 @@ include_graphics(here("figs", "vowel_summary.pdf"))
 
 ```{r}
 #| label: tbl-vowels
-#| results: asis
+#| tbl-cap: "Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-vowels}"
 f1_f2_table %>% 
   mutate(Metric = case_when(
       identifier == "F1_Intercept" ~ "F1", 
@@ -43,6 +43,5 @@ f1_f2_table %>%
       TRUE ~ " ")) %>% 
   select(-identifier) %>% 
   kable(format = "markdown", 
-    align = c("l", "l", "r", "r", "r", "r"), 
-    caption = "Model summary for F1 and F2 as a function of language (English, Spanish), phoneme (/d/, /t/), and item repetition for monolingual data. The percentage of the HDI contained within the ROPE is based on an effect size of &plusmn;0.1. {#tbl-vowels}")
+    align = c("l", "l", "r", "r", "r", "r"))
 ```
