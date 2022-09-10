@@ -1,7 +1,13 @@
 # Load tidy data --------------------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2022-09-10
 #
+# Change log:
+#  - We no longer import just the bilabial data from Aldrich 2018 (all stops)
+#  - old: tidy_bilabials.csv; new: tidy_aldrich.csv
+#  - renamed 'bilabials' to 'aldrich'
+#
+# -----------------------------------------------------------------------------
 
 # Source libs and helpers -----------------------------------------------------
 
@@ -19,6 +25,6 @@ coronals <- read_csv(here("data", "tidy", "tidy_coronals.csv"))
 coronals_blp <- read_csv(here("data", "tidy", "blp.csv"))
 
 # Load aldrich data
-bilabials <- read_csv(here("data", "tidy", "tidy_bilabials.csv"))
+aldrich <- read_csv(here("data", "tidy", "tidy_aldrich.csv"))
 
 # -----------------------------------------------------------------------------
