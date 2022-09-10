@@ -1,6 +1,6 @@
 # Analysis 3: bilinguals POA --------------------------------------------------
 #
-# Last update: 2022-03-16
+# Last update: 2022-09-10
 #
 # This script will fit two separate models:
 # - VOT ~ language and phoneme
@@ -35,17 +35,12 @@ source(here::here("scripts", "r", "production", "03_load_data.R"))
 # - create subset (only bilinguals, exclude errors)
 # - code variables (sum code group, phon, language, and stress)
 
-poa_bi <-
-  bind_rows(
-    coronals %>%
-      filter(group == "BIL", is.na(label), phon == "t"),
-    bilabials) %>%
+poa_bi <- aldrich %>%
   mutate(across(c("cog", "kt", "sk"),
                 .fns = list(std = ~smart_scale(.)))) %>%
   mutate(across(c("f1_cent", "f2_cent", "ri", "vot", "sd"),
                 .fns = list(std = ~simple_scale(.)))) %>%
-  mutate(poa_sum = if_else(phon == "t", 1, -1),
-         language_sum = if_else(language == "english", 1, -1)) %>%
+  mutate(phon = fct_relevel(phon, "t")) %>%
   filter(!is.na(ri))
 
 # -----------------------------------------------------------------------------
@@ -59,9 +54,9 @@ poa_bi <-
 # VOT model formula
 vot_poa_model_formula <- bf(
   vot_std ~ 1 +
-    language_sum * poa_sum +
+    language * phon +
     f1_cent_std + f2_cent_std + rep_n +
-    (1 + poa_sum + f1_cent_std + f2_cent_std + rep_n | id) +
+    (1 + language * phon + f1_cent_std + f2_cent_std + rep_n | id) +
     (1 | item))
 
 # Use formula and data to get possible priors
@@ -87,9 +82,9 @@ priors_vot <- c(
 mod_poa_comp_vot_full <- brm(
   formula = vot_poa_model_formula,
   prior = priors_vot,
-  warmup = 1000, iter = 2000, chains = 4, cores = 4,
+  warmup = 1000, iter = 2000, chains = 4, cores = 4, threads = 2,
   family = gaussian(),
-  control = list(adapt_delta = 0.90),
+  control = list(adapt_delta = 0.99, max_treedepth = 13),
   backend = "cmdstanr",
   data = poa_bi,
   file = here("data", "models", "mod_poa_comp_vot_full")
@@ -99,9 +94,9 @@ mod_poa_comp_vot_full <- brm(
 # Spectral moments model formula
 mv_poa_model_formula <- bf(
   mvbind(ri_std, cog_std, sd_std, sk_std, kt_std) ~ 1 +
-    language_sum * poa_sum +
+    language * phon +
     f1_cent_std + f2_cent_std + rep_n +
-    (1 + poa_sum + f1_cent_std + f2_cent_std + rep_n |p| id) +
+    (1 + language * phon + f1_cent_std + f2_cent_std + rep_n |p| id) +
     (1 |q| item)
 ) + set_rescor(rescor = TRUE)
 
@@ -145,10 +140,11 @@ priors_poa_spectral_moments <- c(
 mod_poa_comp_mv_full <- brm(
   formula = mv_poa_model_formula,
   prior = priors_poa_spectral_moments,
-  warmup = 1000, iter = 12000, chains = 4, cores = 4, thin = 10,
+  warmup = 1000, iter = 12000, chains = 4, cores = 4, thin = 10, threads = 2,
   family = gaussian(),
   control = list(adapt_delta = 0.99, max_treedepth = 15),
   backend = "cmdstanr",
+  init = 0,
   data = poa_bi,
   file = here("data", "models", "mod_poa_comp_mv_full")
 )
