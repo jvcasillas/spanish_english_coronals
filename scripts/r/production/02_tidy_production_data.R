@@ -1,7 +1,12 @@
 # Tidy production data --------------------------------------------------------
 #
-# Last update: 2022-03-16
+# Last update: 2022-09-10
 #
+# Change log:
+#  - We no longer export just the bilabial data from Aldrich 2018 (all stops)
+#  - old: tidy_bilabials.csv; new: tidy_aldrich.csv
+#
+# -----------------------------------------------------------------------------
 
 # Source libraries and helpers ------------------------------------------------
 
@@ -80,7 +85,11 @@ raw_aldrich_df <- read_csv(here("data", "raw", "bl_data_aldrich2019_20200606.csv
   mutate(
     group = "bi_aldrich",
     language = if_else(language == "e", "english", "spanish"),
-    phon = case_when(phon == "c" ~ "k", phon == "t" ~ "t", phon == "p" ~ "p"),
+    phon = case_when(
+      phon %in% c("c", "k") ~ "k",
+      phon == "t" ~ "t",
+      phon == "p" ~ "p"
+      ),
     voicing = "voiceless",
     rep_n = 1,
     stress = if_else(item %in% initial_stress_aldrich,
@@ -88,7 +97,6 @@ raw_aldrich_df <- read_csv(here("data", "raw", "bl_data_aldrich2019_20200606.csv
   rename(misc = n_intervals) %>%
   select(group, id, item, language, misc, starts_with("f"), vot, ri, cog, sd,
          sk, kt, label = notes, rep_n, phon, voicing, stress) %>%
-  filter(phon == "p") %>%
-  write_csv(file = here("data", "tidy", "tidy_bilabials.csv"))
+  write_csv(file = here("data", "tidy", "tidy_aldrich.csv"))
 
  # ----------------------------------------------------------------------------
