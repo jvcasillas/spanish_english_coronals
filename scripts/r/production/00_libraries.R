@@ -16,6 +16,7 @@ library("stringr")
 library("brms")
 library("bayestestR")
 library("modelr")
+library("emmeans")
 
 library("ggplot2")
 library("ggbeeswarm")

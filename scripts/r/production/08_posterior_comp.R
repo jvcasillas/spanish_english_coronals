@@ -46,8 +46,12 @@ posterior_bi_adj <-
 
 posterior_poa_adj <-
   readRDS(here("data", "models", "posterior_poa_comp_adj.rds")) %>%
-    mutate(place = if_else(place == "t", "coronal", "bilabial"),
-           metric = fct_relevel(metric, "vot", "ri"))
+    mutate(place = case_when(
+        phon == "t" ~ "coronal",
+        phon == "p" ~ "bilabial",
+        phon == "k" ~ "velar"),
+      metric = fct_relevel(metric, "vot", "ri")
+    )
 
 # -----------------------------------------------------------------------------
 
@@ -251,7 +255,7 @@ poa_between_lang_place_comp_posterior <- posterior_poa_adj %>%
   mutate(grouped_id = row_number()) %>%
   pivot_wider(names_from = language, values_from = val) %>%
   mutate(diff = english - spanish) %>%
-  select(-english, -spanish, -grouped_id) %>%
+  select(-english, -spanish, -grouped_id, -phon) %>%
   group_by(place, metric) %>%
   mutate(grouped_id = row_number()) %>%
   pivot_wider(names_from = c("place", "metric"), values_from = diff) %>%
@@ -272,22 +276,22 @@ poa_post_hoc_all <- poa_between_lang_place_comp_posterior %>%
       fill = "lightblue", color = "white", alpha = 0.2) +
     geom_vline(xintercept = 0, lty = 3) +
     stat_halfeye(aes(slab_fill = place, point_fill = place, shape = place),
-      position = position_dodgev(0.4), slab_alpha = 0.5, slab_color = "white",
+      position = position_dodgev(0.5), slab_alpha = 0.5, slab_color = "white",
       point_color = "white", point_size = 4, stroke = 0.3) +
     scale_fill_manual(aesthetics = "slab_fill", name = NULL,
-      values = viridis::viridis(2, option = "C", begin = 0.3, end = 0.7)) +
+      values = viridis::viridis(3, option = "C", begin = 0.3, end = 0.7)) +
     scale_fill_manual(aesthetics = "point_fill", name = NULL,
-      values = viridis::viridis(2, option = "C", begin = 0.3, end = 0.7)) +
-    scale_shape_manual(name = NULL, values = c(21, 25)) +
+      values = viridis::viridis(3, option = "C", begin = 0.3, end = 0.7)) +
+    scale_shape_manual(name = NULL, values = c(21, 23, 25)) +
     scale_y_discrete(labels = metric_y_labels, limits = rev) +
     theme_minimal(base_family = "Times", base_size = 16) +
-    labs(x = "Between-language difference estimates", y = NULL) +
+    labs(x = "English-Spanish difference estimates", y = NULL) +
     theme(
       axis.title.y = element_text(size = rel(.9), hjust = 0.95),
       axis.title.x = element_text(size = rel(.9), hjust = 0.95),
       panel.grid.major = element_line(colour = 'grey90', size = 0.25),
       panel.grid.minor = element_line(colour = 'grey90', size = 0.25),
-      legend.position = c(0.95, 0.27), legend.justification = c(1, 1),
+      legend.position = c(0.95, 0.29), legend.justification = c(1, 1),
       legend.key = element_blank(),
       axis.text.y = element_text(hjust = 0)
       )
@@ -328,7 +332,7 @@ bind_rows(
   ),
   poa_between_lang_place_comp_posterior %>%
     imap_dfr(make_model_table) %>%
-    mutate(Parameter = "bi_poa_between_lang")
+    mutate(Parameter = "bi_poa_within_lang")
   ) %>%
   mutate_if(is.numeric, round, digits = 3) %>%
   mutate(HDI = glue("[{hdi_lo}, {hdi_hi}]"),

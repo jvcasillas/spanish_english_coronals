@@ -1,43 +1,55 @@
 identifier,Metric,Parameter,Estimate,HDI,ROPE,MPE
-VOT_Intercept,VOT,Intercept,&minus;0.086,"[&minus;0.200, 0.027]",0.601,0.928
-VOT_Language,VOT,Language,0.802,"[0.750, 0.852]",0.000,1.000
-VOT_Place,VOT,Place,0.134,"[0.029, 0.236]",0.248,0.992
-VOT_F1,VOT,F1,0.013,"[&minus;0.025, 0.050]",1.000,0.751
-VOT_F2,VOT,F2,0.000,"[&minus;0.046, 0.043]",1.000,0.505
-VOT_Item rep.,VOT,Item rep.,&minus;0.003,"[&minus;0.042, 0.034]",1.000,0.567
-VOT_Language:Place,VOT,Language:Place,0.055,"[0.004, 0.105]",0.983,0.984
-COG_Intercept,COG,Intercept,&minus;0.569,"[&minus;0.665, &minus;0.475]",0.000,1.000
-COG_Language,COG,Language,0.206,"[0.177, 0.236]",0.000,1.000
-COG_Place,COG,Place,0.953,"[0.862, 1.041]",0.000,1.000
-COG_F1,COG,F1,0.019,"[&minus;0.008, 0.049]",1.000,0.905
-COG_F2,COG,F2,&minus;0.010,"[&minus;0.041, 0.020]",1.000,0.743
-COG_Item rep.,COG,Item rep.,0.007,"[&minus;0.026, 0.039]",1.000,0.659
-COG_Language:Place,COG,Language:Place,0.211,"[0.181, 0.239]",0.000,1.000
-KT_Intercept,KT,Intercept,0.571,"[0.428, 0.690]",0.000,1.000
-KT_Language,KT,Language,&minus;0.204,"[&minus;0.237, &minus;0.173]",0.000,1.000
-KT_Place,KT,Place,&minus;0.888,"[&minus;1.006, &minus;0.774]",0.000,1.000
-KT_F1,KT,F1,0.015,"[&minus;0.016, 0.047]",1.000,0.831
-KT_F2,KT,F2,&minus;0.015,"[&minus;0.047, 0.017]",1.000,0.822
-KT_Item rep.,KT,Item rep.,&minus;0.028,"[&minus;0.065, 0.011]",1.000,0.930
-KT_Language:Place,KT,Language:Place,&minus;0.169,"[&minus;0.200, &minus;0.137]",0.000,1.000
-RI_Intercept,RI,Intercept,0.232,"[0.013, 0.434]",0.091,0.983
-RI_Language,RI,Language,0.099,"[0.042, 0.155]",0.518,1.000
-RI_Place,RI,Place,&minus;0.475,"[&minus;0.680, &minus;0.269]",0.000,1.000
-RI_F1,RI,F1,&minus;0.222,"[&minus;0.304, &minus;0.136]",0.000,1.000
-RI_F2,RI,F2,&minus;0.059,"[&minus;0.116, &minus;0.001]",0.945,0.978
-RI_Item rep.,RI,Item rep.,0.028,"[&minus;0.049, 0.103]",0.995,0.780
-RI_Language:Place,RI,Language:Place,&minus;0.003,"[&minus;0.056, 0.057]",1.000,0.542
-SD_Intercept,SD,Intercept,&minus;0.476,"[&minus;0.594, &minus;0.356]",0.000,1.000
-SD_Language,SD,Language,0.230,"[0.186, 0.271]",0.000,1.000
-SD_Place,SD,Place,0.766,"[0.671, 0.870]",0.000,1.000
-SD_F1,SD,F1,&minus;0.012,"[&minus;0.050, 0.030]",1.000,0.725
-SD_F2,SD,F2,0.008,"[&minus;0.035, 0.049]",1.000,0.662
-SD_Item rep.,SD,Item rep.,0.016,"[&minus;0.033, 0.061]",1.000,0.748
-SD_Language:Place,SD,Language:Place,0.209,"[0.169, 0.250]",0.000,1.000
-SK_Intercept,SK,Intercept,0.527,"[0.410, 0.656]",0.000,1.000
-SK_Language,SK,Language,&minus;0.222,"[&minus;0.255, &minus;0.188]",0.000,1.000
-SK_Place,SK,Place,&minus;0.888,"[&minus;0.994, &minus;0.781]",0.000,1.000
-SK_F1,SK,F1,&minus;0.024,"[&minus;0.058, 0.009]",1.000,0.924
-SK_F2,SK,F2,0.009,"[&minus;0.025, 0.042]",1.000,0.696
-SK_Item rep.,SK,Item rep.,0.000,"[&minus;0.037, 0.039]",1.000,0.518
-SK_Language:Place,SK,Language:Place,&minus;0.192,"[&minus;0.226, &minus;0.159]",0.000,1.000
+VOT_Intercept,VOT,Intercept,0.940,"[&minus;1.000, 2.977]",0.056,0.823
+VOT_Language: Spanish,VOT,Language: Spanish,&minus;1.971,"[&minus;2.203, &minus;1.720]",0.000,1.000
+VOT_Place: Velar,VOT,Place: Velar,0.005,"[&minus;0.150, 0.163]",0.834,0.521
+VOT_Place: Bilabial,VOT,Place: Bilabial,&minus;0.327,"[&minus;0.490, &minus;0.170]",0.000,1.000
+VOT_F1,VOT,F1,0.116,"[0.003, 0.231]",0.379,0.981
+VOT_F2,VOT,F2,&minus;0.073,"[&minus;0.159, 0.007]",0.769,0.960
+VOT_Item rep.,VOT,Item rep.,0.000,"[&minus;2.068, 1.865]",0.078,0.508
+VOT_Language(Spanish):Place(velar),VOT,Language(Spanish):Place(velar),0.365,"[0.163, 0.559]",0.000,1.000
+VOT_Language(Spanish):Place(bilabial),VOT,Language(Spanish):Place(bilabial),0.271,"[0.076, 0.473]",0.021,0.996
+COG_Intercept,COG,Intercept,0.910,"[&minus;1.160, 2.789]",0.055,0.818
+COG_Language,COG,Language,&minus;1.137,"[&minus;1.396, &minus;0.846]",0.000,1.000
+COG_Place: Bilabial,COG,Place: Bilabial,&minus;1.830,"[&minus;2.091, &minus;1.542]",0.000,1.000
+COG_Place: Velar,COG,Place: Velar,&minus;0.192,"[&minus;0.487, 0.092]",0.240,0.914
+COG_F1,COG,F1,&minus;0.007,"[&minus;0.050, 0.035]",1.000,0.621
+COG_F2,COG,F2,0.032,"[&minus;0.014, 0.078]",1.000,0.917
+COG_Item rep.,COG,Item rep.,0.008,"[&minus;1.903, 2.020]",0.081,0.507
+COG_Language(Spanish):Place(bilabial),COG,Language(Spanish):Place(bilabial),1.164,"[0.867, 1.446]",0.000,1.000
+COG_Language(Spanish):Place(velar),COG,Language(Spanish):Place(velar),0.845,"[0.536, 1.131]",0.000,1.000
+KT_Intercept,KT,Intercept,&minus;1.011,"[&minus;2.890, 0.992]",0.044,0.849
+KT_Language,KT,Language,0.968,"[0.808, 1.123]",0.000,1.000
+KT_Place: Bilabial,KT,Place: Bilabial,1.808,"[1.432, 2.156]",0.000,1.000
+KT_Place: Velar,KT,Place: Velar,0.292,"[0.117, 0.471]",0.000,0.998
+KT_F1,KT,F1,0.012,"[&minus;0.031, 0.056]",1.000,0.701
+KT_F2,KT,F2,&minus;0.058,"[&minus;0.104, &minus;0.009]",0.985,0.989
+KT_Item rep.,KT,Item rep.,0.009,"[&minus;1.978, 1.911]",0.092,0.506
+KT_Language(Spanish):Place(bilabial),KT,Language(Spanish):Place(bilabial),&minus;0.902,"[&minus;1.144, &minus;0.661]",0.000,1.000
+KT_Language(Spanish):Place(velar),KT,Language(Spanish):Place(velar),&minus;0.273,"[&minus;0.504, &minus;0.038]",0.044,0.990
+RI_Intercept,RI,Intercept,&minus;0.057,"[&minus;2.186, 1.887]",0.088,0.521
+RI_Language,RI,Language,&minus;0.384,"[&minus;0.854, 0.087]",0.083,0.948
+RI_Place: Bilabial,RI,Place: Bilabial,&minus;0.262,"[&minus;0.639, 0.147]",0.159,0.914
+RI_Place: Velar,RI,Place: Velar,0.758,"[0.372, 1.130]",0.000,0.999
+RI_F1,RI,F1,&minus;0.078,"[&minus;0.148, &minus;0.008]",0.772,0.979
+RI_F2,RI,F2,&minus;0.015,"[&minus;0.077, 0.048]",1.000,0.692
+RI_Item rep.,RI,Item rep.,&minus;0.007,"[&minus;1.913, 2.065]",0.083,0.507
+RI_Language(Spanish):Place(bilabial),RI,Language(Spanish):Place(bilabial),0.087,"[&minus;0.363, 0.556]",0.335,0.658
+RI_Language(Spanish):Place(velar),RI,Language(Spanish):Place(velar),0.288,"[&minus;0.232, 0.739]",0.161,0.888
+SD_Intercept,SD,Intercept,1.228,"[&minus;0.856, 3.128]",0.037,0.881
+SD_Language,SD,Language,&minus;1.169,"[&minus;1.448, &minus;0.871]",0.000,1.000
+SD_Place: Bilabial,SD,Place: Bilabial,&minus;1.919,"[&minus;2.199, &minus;1.645]",0.000,1.000
+SD_Place: Velar,SD,Place: Velar,&minus;0.571,"[&minus;0.910, &minus;0.212]",0.000,0.997
+SD_F1,SD,F1,&minus;0.006,"[&minus;0.071, 0.055]",1.000,0.572
+SD_F2,SD,F2,0.025,"[&minus;0.022, 0.076]",1.000,0.853
+SD_Item rep.,SD,Item rep.,&minus;0.024,"[&minus;2.003, 1.928]",0.086,0.512
+SD_Language(Spanish):Place(bilabial),SD,Language(Spanish):Place(bilabial),1.130,"[0.862, 1.381]",0.000,1.000
+SD_Language(Spanish):Place(velar),SD,Language(Spanish):Place(velar),0.273,"[&minus;0.131, 0.660]",0.165,0.907
+SK_Intercept,SK,Intercept,&minus;0.986,"[&minus;2.862, 1.002]",0.050,0.837
+SK_Language,SK,Language,1.028,"[0.791, 1.259]",0.000,1.000
+SK_Place: Bilabial,SK,Place: Bilabial,1.775,"[1.419, 2.120]",0.000,1.000
+SK_Place: Velar,SK,Place: Velar,0.342,"[0.136, 0.562]",0.000,0.998
+SK_F1,SK,F1,0.021,"[&minus;0.025, 0.066]",1.000,0.812
+SK_F2,SK,F2,&minus;0.047,"[&minus;0.094, 0.004]",1.000,0.968
+SK_Item rep.,SK,Item rep.,0.011,"[&minus;1.908, 1.936]",0.084,0.512
+SK_Language(Spanish):Place(bilabial),SK,Language(Spanish):Place(bilabial),&minus;0.997,"[&minus;1.239, &minus;0.761]",0.000,1.000
+SK_Language(Spanish):Place(velar),SK,Language(Spanish):Place(velar),&minus;0.552,"[&minus;0.790, &minus;0.346]",0.000,1.000

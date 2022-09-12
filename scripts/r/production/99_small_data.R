@@ -1,6 +1,6 @@
 # Small data for reporting analyses -------------------------------------------
 #
-# Last update: 2022-04-05
+# Last update: 2022-09-11
 #
 
 # Source files ----------------------------------------------------------------
@@ -32,7 +32,7 @@ sample_size <- bind_rows(
   coronals %>%
     group_by(group) %>%
     summarize(n = n_distinct(id)),
-  bilabials %>%
+  aldrich %>%
     mutate(group = "POA") %>%
     group_by(group) %>%
     summarize(n = n_distinct(id))
@@ -103,16 +103,16 @@ blp_coronals_dominance <- summarize(coronals_blp,
 
 
 
-# Bilabials
-n_bilabial_items_en <- bilabials %>%
+# Aldrich data
+n_aldrich_items_en <- aldrich %>%
                        filter(language == "english") %>%
                        pull(item) %>% unique %>% length
-n_bilabial_items_sp <- bilabials %>%
+n_aldrich_items_sp <- aldrich %>%
                        filter(language == "spanish") %>%
                        pull(item) %>% unique %>% length
-n_bilabial_items    <- n_bilabial_items_en + n_bilabial_items_sp
-n_bilabial_reps     <- 1
-n_bilabial_tokens   <- nrow(bilabials)
+n_aldrich_items    <- n_aldrich_items_en + n_aldrich_items_sp
+n_aldrich_reps     <- 1
+n_aldrich_tokens   <- nrow(aldrich)
 
 # -----------------------------------------------------------------------------
 

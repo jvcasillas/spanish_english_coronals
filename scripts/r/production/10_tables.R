@@ -190,12 +190,14 @@ bind_rows(
     mutate(Metric = "VOT",
            Parameter = case_when(
              column == "b_Intercept" ~ "Intercept",
-             column == "b_language_sum" ~ "Language",
-             column == "b_poa_sum" ~ "Place",
+             column == "b_languagespanish" ~ "Language: Spanish",
+             column == "b_phonp" ~ "Place: Bilabial",
+             column == "b_phonk" ~ "Place: Velar",
              column == "b_f1_cent_std" ~ "F1",
              column == "b_f2_cent_std" ~ "F2",
              column == "b_rep_n" ~ "Item rep.",
-             TRUE ~ "Language:Place")) %>%
+             column == "b_languagespanish:phonp" ~ "Language(Spanish):Place(bilabial)",
+             TRUE ~ "Language(Spanish):Place(velar)")) %>%
     mutate_if(is.numeric, round, digits = 3) %>%
     mutate_if(is.numeric, format, nsmall = 3) %>%
     mutate(hdi_lo = str_replace(hdi_lo, " ", ""),
@@ -227,12 +229,15 @@ bind_rows(
       Parameter == "Intercept" ~ "Intercept",
       Parameter == "f1_cent_std" ~ "F1",
       Parameter == "f2_cent_std" ~ "F2",
-      Parameter == "poa_sum" ~ "Place",
+      Parameter == "phonk" ~ "Place: Velar",
+      Parameter == "phonp" ~ "Place: Bilabial",
       Parameter == "rep_n" ~ "Item rep.",
-      Parameter == "language_sum:poa_sum" ~ "Language:Place",
+      Parameter == "languagespanish:phonk" ~ "Language(Spanish):Place(velar)",
+      Parameter == "languagespanish:phonp" ~ "Language(Spanish):Place(bilabial)",
       TRUE ~ "Language"),
-      Parameter = fct_relevel(Parameter, "Intercept", "Language", "Place",
-                              "F1", "F2", "Item rep.")) %>%
+      Parameter = fct_relevel(Parameter, "Intercept", "Language",
+        "Place: Bilabial", "Place: Velar", "F1", "F2", "Item rep.",
+        "Language(Spanish):Place(bilabial)")) %>%
       mutate_at(c("Estimate", "HDI"), str_replace_all,
                 pattern = "-", replacement = "&minus;") %>%
       unite(col = "identifier", Metric, Parameter, sep = "_", remove = F) %>%

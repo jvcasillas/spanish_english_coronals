@@ -342,15 +342,15 @@ For all plots, the y-axis represents the outcome variable in standardized units,
 
 ```{r}
 #| label: fig-poa-bilinguals
-#| fig-cap: "VOT and burst metrics of voiceless stops from bilingual speakers as a function of place of articulation (bilabial, coronal) and language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
+#| fig-cap: "VOT and burst metrics of voiceless stops from bilingual speakers as a function of place of articulation (bilabial, coronal, velar) and language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means and 95% credible intervals."
 include_graphics(here("figs", "poa_all_metrics.pdf"))
 ```
 
 **Voice-onset time.** The VOT data is plotted in the first panel of @fig-poa-bilinguals.
 The complete model summary is available in @fig-poa-bilinguals-summary below, as well as @tbl-bi-poa of the supplementary materials.
-There was a strong effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "VOT")`. 
-English voiceless stops had higher VOT than Spanish voiceless stops regardless of POA `r report_posterior(bi_poa_table, param = "Place", metric = "VOT")`. 
-We did not find compelling evidence for a language &times; POA interaction `r report_posterior(bi_poa_table, param = "Language:Place", metric = "VOT")`, nor were there any effects for the formant structure of the following vowel (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "VOT", supress = T)`). 
+There was a strong effect of language `r report_posterior(bi_poa_table, param = "Language: Spanish", metric = "VOT")`. 
+English voiceless stops had higher VOT than Spanish voiceless stops regardless of POA `r report_posterior(bi_poa_table, param = "Place: Bilabial", metric = "VOT")`. 
+We did not find compelling evidence for a language &times; POA interaction `r report_posterior(bi_poa_table, param = "Language(Spanish):Place(velar)", metric = "VOT")`, nor were there any effects for the formant structure of the following vowel (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "VOT", supress = T)`). 
 
 
 **Relative intensity.** Relative intensity of the burst was slightly higher in English than in Spanish `r report_posterior(bi_poa_table, param = "Language", metric = "RI")`, though nearly half of the posterior mass fell within our pre-established region of practical equivalence. 
@@ -390,7 +390,7 @@ The model summary is available in @fig-poa-bilinguals-summary below and @tbl-bi-
 
 ```{r}
 #| label: fig-poa-bilinguals-summary
-#| fig-cap: "Posterior medians ±95% and 66% credible intervals for VOT and burst metrics of bilingual voiceless bilabial and coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'Place' refers to a between-participants comparison, as the bilabial data comes from a separate group of bilingual individuals."
+#| fig-cap: "Posterior medians with 95% and 66% credible intervals for VOT and burst metrics of bilingual voiceless stops. Individual point shapes and colors represent the six metrics analyzed."
 include_graphics(here("figs", "poa_summary.pdf"))
 ```
 
@@ -403,13 +403,13 @@ Third, we again find that COG and standard deviation pattern similarly, as do ku
 And, finally, we see that English and Spanish coronals differ with regard to all four spectral moment measurements, where as bilabials do not. 
 @fig-poa-post-hoc-all plots the posterior distributions of the Spanish-English difference estimates for VOT, relative intensity, and each spectral moment for bilabials and coronals (See also @tbl-poa-post-hoc-all). 
 One can observe clear between language differences for VOT in bilabials and coronals (i.e., short-lag vs. long-lag realizations), but only for coronals (orange triangles) in the spectral moments. 
-Thus, all four spectal moment measurements capture the subtle articulatory differences (dental vs. alveolar) between English and Spanish coronals stops. 
+Thus, all four spectral moment measurements capture the subtle articulatory differences (dental vs. alveolar) between English and Spanish coronals stops. 
 No such fine-phonetic differences are attested in bilabials, and, unsurprisingly, we find no between-language differences at bilabial place. 
 
 
 ```{r}
 #| label: fig-poa-post-hoc-all
-#| fig-cap: "Posterior distributions of difference estimates between Spanish and English for bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. The light blue region represents a ROPE of &pm;0.1."
+#| fig-cap: "Posterior distributions of difference estimates between Spanish and English for bilabial, coronal, and velar voiceless stops. Each point represents the posterior mean difference and 95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. The light blue region represents a ROPE of &pm;0.1."
 include_graphics(here("figs", "poa_post_hoc_all.pdf"))
 ```
 

@@ -1,6 +1,6 @@
 # Plots -----------------------------------------------------------------------
 #
-# Last update: 2020-06-16
+# Last update: 2020-09-11
 #
 # - Plot vowel analyses
 # - Generate a single plot with all metrics
@@ -42,8 +42,9 @@ posterior_bi <-
 posterior_poa <-
   readRDS(here("data", "models", "posterior_poa_comp.rds")) %>%
   filter(!(parameters %in% c("b_rep_n", "b_Intercept"))) %>%
-  mutate(parameters = fct_relevel(parameters, "b_language_sum", "b_poa_sum",
-    "b_f1_cent", "b_f2_cent", "b_language_sum:poa_sum"),
+  mutate(parameters = fct_relevel(parameters, "b_languagespanish", "b_phonp",
+    "b_phonk", "b_f1", "b_f2", "b_languagespanish:phonp",
+    "b_languagespanish:phonk"),
     metric = fct_relevel(metric, "vot", "ri", "cog", "kt", "sd", "sk"))
 
 
@@ -60,8 +61,14 @@ posterior_bi_adj <-
 
 posterior_poa_adj <-
   readRDS(here("data", "models", "posterior_poa_comp_adj.rds")) %>%
-    mutate(place = if_else(place == "t", "coronal", "bilabial"),
-           metric = fct_relevel(metric, "vot", "ri"))
+    mutate(lang = language,
+      place = case_when(
+        phon == "t" ~ "coronal",
+        phon == "p" ~ "bilabial",
+        phon == "k" ~ "velar"
+      ),
+      metric = fct_relevel(metric, "vot", "ri")
+    )
 
 # -----------------------------------------------------------------------------
 
@@ -197,7 +204,7 @@ mono_subj_means <-
 bi_subj_means <-
   plot_prep(coronals_bi, grouping_var = language_sum, color_var = phon_sum)
 poa_subj_means <-
-  plot_prep(poa_bi, grouping_var = language_sum, color_var = poa_sum, poa = T)
+  plot_prep(poa_bi, grouping_var = language, color_var = phon, poa = T)
 
 # -----------------------------------------------------------------------------
 
@@ -214,10 +221,38 @@ bi_all_metrics <- plot_metrics(
   dataframe = bi_subj_means, posterior = posterior_bi_adj,
   x = language, color = phon)
 
-poa_all_metrics <- plot_metrics(
-  dataframe = poa_subj_means, posterior = posterior_poa_adj,
-  x = place, color = language, color_labs =  c("English", "Spanish"),
-  xlabs = c("Bilabial", "Coronal"))
+# poa_all_metrics <- plot_metrics(
+#   dataframe = poa_subj_means, posterior = posterior_poa_adj,
+#   x = place, color = lang, color_labs =  c("English", "Spanish"),
+#   xlabs = c("Bilabial", "Coronal", "Velar"))
+
+# REdo and it's a chapuza but I broke something upstream
+poa_all_metrics <-
+  readRDS(here("data", "models", "posterior_poa_comp_adj_2.rds")) %>%
+  ggplot() +
+  aes(x = place, y = estimate, color = lang, shape = lang, fill = lang) +
+  facet_wrap(~ metric, nrow = 2, labeller = as_labeller(facet_labels)) +
+  geom_hline(yintercept = 0, lty = 2, size = 0.25) +
+  geom_point(data = poa_subj_means, show.legend = F,
+    alpha = 0.2, stroke = 0.3, color = "white",
+    aes(y = val, fill = lang, shape = lang),
+    position = position_jitterdodge(dodge.width = 0.5, jitter.width = 0.2)) +
+  geom_linerange(aes(ymin = lower, ymax = upper), show.legend = F,
+                 position = position_dodge(0.5)) +
+  geom_point(position = position_dodge(0.5), color = "white", size = 3,
+             stroke = 0.25, show.legend = F) +
+  geom_point(position = position_dodge(0.5)) +
+  scale_color_manual(values = my_colors[c(2, 4)], name = NULL,
+                     labels = c("English", "Spanish")) +
+  scale_fill_manual(values = my_colors[c(2, 4)], name = NULL,
+                    labels = c("English", "Spanish")) +
+  scale_shape_manual(values = c(21, 25), name = NULL,
+                     labels = c("English", "Spanish")) +
+  scale_x_discrete(labels = c("Bilabial", "Coronal", "Velar")) +
+  coord_cartesian(ylim = c(-2, 2)) +
+  labs(y = "Metric (std. units)", x = NULL) +
+  theme_classic(base_family = "Times", base_size = 12) +
+  my_theme_adj()
 
 # -----------------------------------------------------------------------------
 
@@ -229,7 +264,8 @@ poa_all_metrics <- plot_metrics(
 vowel_summary <- model_summary_vowels_plot(posterior_vowels, y_labels_vowels)
 mono_summary  <- model_summary_plot(posterior_mono, facet_labels_mono)
 bi_summary    <- model_summary_plot(posterior_bi, facet_labels_bi)
-poa_summary   <- model_summary_plot(posterior_poa, facet_labels_poa)
+poa_summary   <- model_summary_plot(posterior_poa, facet_labels_poa,
+                  xlim = c(-2, 2), legend.position = c(0.25, 0.6))
 
 # -----------------------------------------------------------------------------
 
@@ -264,6 +300,6 @@ walk(devices, ~ ggsave(filename = glue(path_mono_sum, .x), plot = mono_summary,
 walk(devices, ~ ggsave(filename = glue(path_bi_sum, .x), plot = bi_summary,
                        device = .x, height = 5.7, width = 9, units = "in"))
 walk(devices, ~ ggsave(filename = glue(path_poa_sum, .x), plot = poa_summary,
-                       device = .x, height = 5.7, width = 9, units = "in"))
+                       device = .x, height = 7, width = 9, units = "in"))
 
 # -----------------------------------------------------------------------------

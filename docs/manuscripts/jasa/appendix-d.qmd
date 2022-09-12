@@ -30,16 +30,15 @@ This table presents the same information available in the forest plot in @fig-po
 
 ```{r}
 #| label: tbl-poa-post-hoc-all
-#| tbl-cap: "Post-hoc between-language comparisons of bilabial and coronal stops. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. {#tbl-poa-post-hoc-all}"
+#| tbl-cap: "Post-hoc within-language comparisons for bilabial, coronal and velar voiceless stops. Each estimate represents the posterior mean difference and 95% HDI of the posterior of the Spanish values subtracted from the posterior of the English values. {#tbl-poa-post-hoc-all}"
 post_hoc %>% 
-  filter(Parameter == "bi_poa_between_lang") %>% 
+  filter(Parameter == "bi_poa_within_lang") %>% 
   select(-identifier, -Parameter) %>% 
   separate(Metric, into = c("Place", "Metric"), sep = "_") %>% 
-  arrange(desc(Place)) %>% 
+  arrange(Place) %>% 
   mutate(Place = str_to_title(Place), 
     Place = case_when(
-      Metric != "VOT" & Place == "Coronal" ~ " ", 
-      Metric != "VOT" & Place == "Bilabial" ~ " ", 
+      Metric != "VOT" & Place %in% c("Bilabial", "Coronal", "Velar") ~ " ", 
       TRUE ~ Place
     )) %>% 
   kable(format = "markdown", 

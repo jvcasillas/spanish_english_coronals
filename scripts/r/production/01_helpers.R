@@ -1,6 +1,6 @@
-# Helper functions ----------- ------------------------------------------------
+# Helper functions ------------------------------------------------------------
 #
-# Last update: 2022-03-16
+# Last update: 2022-09-11
 #
 
 
@@ -129,33 +129,49 @@ bi_mv_prep <- . %>%
 # Bilingual POA analyses
 poa_vot_prep <- . %>%
   transmute(
-    english_t = b_Intercept + b_language_sum + b_poa_sum + `b_language_sum:poa_sum`,
-    english_p = b_Intercept + b_language_sum - b_poa_sum - `b_language_sum:poa_sum`,
-    spanish_p = b_Intercept - b_language_sum - b_poa_sum + `b_language_sum:poa_sum`,
-    spanish_t = b_Intercept - b_language_sum + b_poa_sum - `b_language_sum:poa_sum`)
+    english_p = b_Intercept + b_phonp,
+    english_t = b_Intercept,
+    english_k = b_Intercept + b_phonk,
+    spanish_p = b_Intercept + b_languagespanish + b_phonp + `b_languagespanish:phonp`,
+    spanish_t = b_Intercept + b_languagespanish,
+    spanish_k = b_Intercept + b_languagespanish + b_phonk + `b_languagespanish:phonk`)
 
 poa_mv_prep <- . %>%
   transmute(
-    cog_english_t = b_cogstd_Intercept + b_cogstd_language_sum + b_cogstd_poa_sum + `b_cogstd_language_sum:poa_sum`,
-    cog_english_p = b_cogstd_Intercept + b_cogstd_language_sum - b_cogstd_poa_sum - `b_cogstd_language_sum:poa_sum`,
-    cog_spanish_t = b_cogstd_Intercept - b_cogstd_language_sum + b_cogstd_poa_sum - `b_cogstd_language_sum:poa_sum`,
-    cog_spanish_p = b_cogstd_Intercept - b_cogstd_language_sum - b_cogstd_poa_sum + `b_cogstd_language_sum:poa_sum`,
-    ri_english_t = b_ristd_Intercept + b_ristd_language_sum + b_ristd_poa_sum + `b_ristd_language_sum:poa_sum`,
-    ri_english_p = b_ristd_Intercept + b_ristd_language_sum - b_ristd_poa_sum - `b_ristd_language_sum:poa_sum`,
-    ri_spanish_t = b_ristd_Intercept - b_ristd_language_sum + b_ristd_poa_sum - `b_ristd_language_sum:poa_sum`,
-    ri_spanish_p = b_ristd_Intercept - b_ristd_language_sum - b_ristd_poa_sum + `b_ristd_language_sum:poa_sum`,
-    sd_english_t = b_sdstd_Intercept + b_sdstd_language_sum + b_sdstd_poa_sum + `b_sdstd_language_sum:poa_sum`,
-    sd_english_p = b_sdstd_Intercept + b_sdstd_language_sum - b_sdstd_poa_sum - `b_sdstd_language_sum:poa_sum`,
-    sd_spanish_t = b_sdstd_Intercept - b_sdstd_language_sum + b_sdstd_poa_sum - `b_sdstd_language_sum:poa_sum`,
-    sd_spanish_p = b_sdstd_Intercept - b_sdstd_language_sum - b_sdstd_poa_sum + `b_sdstd_language_sum:poa_sum`,
-    sk_english_t = b_skstd_Intercept + b_skstd_language_sum + b_skstd_poa_sum + `b_skstd_language_sum:poa_sum`,
-    sk_english_p = b_skstd_Intercept + b_skstd_language_sum - b_skstd_poa_sum - `b_skstd_language_sum:poa_sum`,
-    sk_spanish_t = b_skstd_Intercept - b_skstd_language_sum + b_skstd_poa_sum - `b_skstd_language_sum:poa_sum`,
-    sk_spanish_p = b_skstd_Intercept - b_skstd_language_sum - b_skstd_poa_sum + `b_skstd_language_sum:poa_sum`,
-    kt_english_t = b_ktstd_Intercept + b_ktstd_language_sum + b_ktstd_poa_sum + `b_ktstd_language_sum:poa_sum`,
-    kt_english_p = b_ktstd_Intercept + b_ktstd_language_sum - b_ktstd_poa_sum - `b_ktstd_language_sum:poa_sum`,
-    kt_spanish_t = b_ktstd_Intercept - b_ktstd_language_sum + b_ktstd_poa_sum - `b_ktstd_language_sum:poa_sum`,
-    kt_spanish_p = b_ktstd_Intercept - b_ktstd_language_sum - b_ktstd_poa_sum + `b_ktstd_language_sum:poa_sum`)
+    cog_english_p = b_cogstd_Intercept + b_cogstd_phonp,
+    cog_english_t = b_cogstd_Intercept,
+    cog_english_k = b_cogstd_Intercept + b_cogstd_phonk,
+    cog_spanish_p = b_cogstd_Intercept + b_cogstd_languagespanish + b_cogstd_phonp + `b_cogstd_languagespanish:phonp`,
+    cog_spanish_t = b_cogstd_Intercept + b_cogstd_languagespanish,
+    cog_spanish_k = b_cogstd_Intercept + b_cogstd_languagespanish + b_cogstd_phonk + `b_cogstd_languagespanish:phonk`,
+
+    ri_english_p = b_ristd_Intercept + b_ristd_phonp,
+    ri_english_t = b_ristd_Intercept,
+    ri_english_k = b_ristd_Intercept + b_ristd_phonk,
+    ri_spanish_p = b_ristd_Intercept + b_ristd_languagespanish + b_ristd_phonp + `b_ristd_languagespanish:phonp`,
+    ri_spanish_t = b_ristd_Intercept + b_ristd_languagespanish,
+    ri_spanish_k = b_ristd_Intercept + b_ristd_languagespanish + b_ristd_phonk + `b_ristd_languagespanish:phonk`,
+
+    sd_english_p = b_sdstd_Intercept + b_sdstd_phonp,
+    sd_english_t = b_sdstd_Intercept,
+    sd_english_k = b_sdstd_Intercept + b_sdstd_phonk,
+    sd_spanish_p = b_sdstd_Intercept + b_sdstd_languagespanish + b_sdstd_phonp + `b_sdstd_languagespanish:phonp`,
+    sd_spanish_t = b_sdstd_Intercept + b_sdstd_languagespanish,
+    sd_spanish_k = b_sdstd_Intercept + b_sdstd_languagespanish + b_sdstd_phonk + `b_sdstd_languagespanish:phonk`,
+
+    sk_english_p = b_skstd_Intercept + b_skstd_phonp,
+    sk_english_t = b_skstd_Intercept,
+    sk_english_k = b_skstd_Intercept + b_skstd_phonk,
+    sk_spanish_p = b_skstd_Intercept + b_skstd_languagespanish + b_skstd_phonp + `b_skstd_languagespanish:phonp`,
+    sk_spanish_t = b_skstd_Intercept + b_skstd_languagespanish,
+    sk_spanish_k = b_skstd_Intercept + b_skstd_languagespanish + b_skstd_phonk + `b_skstd_languagespanish:phonk`,
+
+    kt_english_p = b_ktstd_Intercept + b_ktstd_phonp,
+    kt_english_t = b_ktstd_Intercept,
+    kt_english_k = b_ktstd_Intercept + b_ktstd_phonk,
+    kt_spanish_p = b_ktstd_Intercept + b_ktstd_languagespanish + b_ktstd_phonp + `b_ktstd_languagespanish:phonp`,
+    kt_spanish_t = b_ktstd_Intercept + b_ktstd_languagespanish,
+    kt_spanish_k = b_ktstd_Intercept + b_ktstd_languagespanish + b_ktstd_phonk + `b_ktstd_languagespanish:phonk`)
 
 # -----------------------------------------------------------------------------
 
@@ -225,8 +241,11 @@ plot_prep <- function(dataframe, grouping_var, color_var, poa = FALSE) {
          metric = fct_relevel(metric, "vot", "ri"))
   } else {
      group_mutate <- . %>%
-       mutate(language = if_else(language_sum == 1, "english", "spanish"),
-         place = if_else(poa_sum == 1, "coronal", "bilabial"),
+       mutate(lang = language,
+         place = case_when(
+           phon == "p" ~ "bilabial",
+           phon == "t" ~ "coronal",
+           phon == "k" ~ "velar"),
          metric = fct_relevel(metric, "vot", "ri"))
   }
 
@@ -331,28 +350,32 @@ facet_labels_bi <- c(
 
 # Named vector of facet labels
 facet_labels_poa <- c(
-  `b_language_sum` = "Language",
-  `b_poa_sum` = "Place",
-  `b_f1_cent` = "F1",
-  `b_f2_cent` = "F2",
-  `b_language_sum:poa_sum`  = "Language\nx place"
+  `b_languagespanish` = "Language\nSpanish",
+  `b_phonp` = "Place\nBilabial",
+  `b_phonk` = "Place\nVelar",
+  `b_f1` = "F1",
+  `b_f2` = "F2",
+  `b_languagespanish:phonp`  = "Spanish\nbilabial",
+  `b_languagespanish:phonk`  = "Spanish\nvelar"
   )
 
 # Theme adjustment for model summary plots
-model_theme_adj <- function() {
+model_theme_adj <- function(legend.position = c(0.97, 0.5)) {
   list(
     theme(
       axis.title.y = element_text(size = rel(.9), hjust = 0.95),
       axis.title.x = element_text(size = rel(.9), hjust = 0.95),
       panel.grid.major = element_line(colour = 'grey90', size = 0.25),
       panel.grid.minor = element_line(colour = 'grey90', size = 0.25),
-      legend.position = c(0.97, 0.5), legend.justification = c(1, 1),
+      legend.position = legend.position, legend.justification = c(1, 1),
       legend.key = element_blank())
   )
 }
 
 # Make model summary plot
-model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
+model_summary_plot <- function(
+    posterior, ylabs, rope = c(-0.1, 0.1), xlim = c(-1, 1), legend.position = c(0.97, 0.5)
+    ) {
   ggplot(posterior, aes(y = NULL, x = estimate)) +
     facet_grid(parameters ~ ., labeller = as_labeller(ylabs)) +
     geom_rect(data = tibble(xmin = rope[1], xmax = rope[2]), inherit.aes = FALSE,
@@ -369,10 +392,10 @@ model_summary_plot <- function(posterior, ylabs, rope = c(-0.1, 0.1)) {
       labels = facet_labels, aesthetics = "point_color") +
     scale_shape_manual(name = NULL, values = c(21:25, 8),
       labels = facet_labels) +
-    coord_cartesian(xlim = c(-1, 1)) +
+    coord_cartesian(xlim = xlim) +
     labs(y = "Parameters", x = "Estimates") +
     theme_minimal(base_family = "Times", base_size = 16) +
-    model_theme_adj() +
+    model_theme_adj(legend.position = legend.position) +
     theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 }
 
