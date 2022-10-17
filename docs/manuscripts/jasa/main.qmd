@@ -46,6 +46,14 @@ if(F) {
   here::here("docs", "refs", "apa_style.docx"))
 }
 
+# library("trackdown")
+# library("here")
+
+# upload_file(here("docs", "manuscripts", "jasa", "main.qmd"))
+# update_file(here("docs", "manuscripts", "jasa", "main.qmd"))
+# download_file(here("docs", "manuscripts", "jasa", "main.qmd"))
+# render_file(here("docs", "manuscripts", "jasa", "main.qmd"))
+
 ```
 
 ```{r}
@@ -199,9 +207,9 @@ Finally, the short-lag stop comparison of Spanish /t/ and English /d/ provided n
 
 **Center of gravity.** The center of gravity (COG) data is plotted in the first row, third panel of @fig-monolinguals.
 English stops had a higher COG than Spanish stops `r report_posterior(mono_table, param = "Language", metric = "COG")`, and, overall, voiceless segments had a higher COG than the voiced segments `r report_posterior(mono_table, param = "Voicing", metric = "COG")`, however, the two predictors interacted `r report_posterior(mono_table, param = "Language:Voicing", metric = "COG")`.
-The interaction was driven by a large COG difference between Spanish coronals `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_COG")` that was not present in the English coronals `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_COG")`).
+The interaction was driven by a large COG difference between Spanish coronals `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_COG")` that was much smaller in the English coronals `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_COG")`).
 No other predictors had an effect on COG. 
-The post-hoc comparison of the short-lag stops from English and Spanish provided compelling evidence for a between-language difference `r report_posterior(post_hoc, param = "mono_sl_between", metric = "COG")`. 
+The post-hoc comparison of the short-lag stops from English and Spanish provided compelling evidence for a between-language difference `r report_posterior(post_hoc, param = "mono_sl_between", metric = "COG")`, English /d/ had a higher COG than Spanish /t/. 
 @fig-monolinguals-ph-sl-sm and @tbl-mono-post-hoc-sl-between provide the complete analysis.
 
 **Kurtosis.** The kurtosis data is plotted in the second row, first column of @fig-monolinguals.
@@ -209,6 +217,7 @@ English stop bursts had lower kurtosis with regard to Spanish stop bursts `r rep
 Specifically, kurtosis was higher in the voiced stop bursts of Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_KT")`, but there was no evidence of a voicing difference in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_KT")`.
 Neither F1 `r report_posterior(mono_table, param = "F1", metric = "KT")` nor F2 `r report_posterior(mono_table, param = "F2", metric = "KT")` had any influence on kurtosis.
 The post-hoc comparison of short-lag stops provided compelling evidence for a between-language difference `r report_posterior(post_hoc, param = "mono_sl_between", metric = "KT")`. 
+Specifically, kurtosis was higher in Spanish /t/ than in English /d/. 
 See @fig-monolinguals-ph-sl-sm and @tbl-mono-post-hoc-sl-between of the supplementary materials.
 
 **Standard deviation.** With regard to standard deviation, we observe the same pattern found in the COG data (See third panel, first row and second panel, second row in @fig-monolinguals).
@@ -216,13 +225,15 @@ That is, there was a difference between English and Spanish `r report_posterior(
 Specifically, there was only a voicing difference for Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_SD")`, where we see lower standard deviation values in voiced stops.
 No such difference is observed between the English coronals `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_SD")`.
 Height and frontedness of the following vowel had no effect on standard deviation in the stop burst (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "SD", supress = T)`).
-Our comparison of Spanish /t/ and English /d/ showed that the short-lag stops differed in kurtosis to some degree `r report_posterior(post_hoc, param = "mono_sl_between", metric = "SD")`, with only 1% of the HDI falling within our pre-determined ROPE (See @fig-monolinguals-ph-sl-sm and @tbl-mono-post-hoc-sl-between).
+Our comparison of Spanish /t/ and English /d/ showed that the short-lag stops differed in standard deviation to some degree. 
+English /d/ showed higher values than Spanish /t/ `r report_posterior(post_hoc, param = "mono_sl_between", metric = "SD")`, with only 1% of the HDI falling within our pre-determined ROPE (See @fig-monolinguals-ph-sl-sm and @tbl-mono-post-hoc-sl-between).
 
 **Skewness.** The analysis of skewness of the stop burst showed a similar pattern as the one observed in the analysis of kurtosis.
 If we compare the first and third panels (second row) of @fig-monolinguals, we observe a language effect `r report_posterior(mono_table, param = "Language", metric = "SK")`, such that Spanish stops show higher skewness values, as well a voicing effect `r report_posterior(mono_table, param = "Voicing", metric = "SK")`, which is driven by a language &times; voicing interaction `r report_posterior(mono_table, param = "Language:Voicing", metric = "SK")`.
 Specifically, the Spanish voiced coronal had higher skewness of the burst than the voiceless counterpart `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "SPANISH_SK")`, and this difference is not present in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "mono_dt_win_lang", metric = "ENGLISH_SK")`.
 Again, F1 and F2 did not affect skewness values in the burst (`r report_posterior(prefix = "F1: ", mono_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", mono_table, param = "F2", metric = "SK", supress = T)`).
 Upon comparing the short-lag stops from English and Spanish, we find compelling evidence for a between-language difference `r report_posterior(post_hoc, param = "mono_sl_between", metric = "SK")`. 
+English /d/ had lower skewness values than Spanish /t/. 
 
 **Interim discussion.**
 
@@ -254,12 +265,13 @@ For all plots, the y-axis represents the outcome variable in standardized units,
 
 ```{r}
 #| label: fig-bilinguals
-#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means &pm;95% and 66% credible intervals."
+#| fig-cap: "VOT and burst metrics of coronal stops (/d/, /t/) from bilingual speakers as a function of language (English, Spanish). Transparent points represent participant averages. Solid points indicate posterior means and 95% and 66% credible intervals."
 include_graphics(here("figs", "bi_all_metrics.pdf"))
 ```
 
 **Voice-onset time.** VOT for English stops was higher than for Spanish stops `r report_posterior(bi_table, param = "Language", metric = "VOT")`, as was the case for voiceless segments in comparison with voiced segments `r report_posterior(bi_table, param = "Voicing", metric = "VOT")`.
-The two predictors did not interact `r report_posterior(bi_table, param = "Language:Voicing", metric = "VOT")`.
+The two predictors did not interact `r report_posterior(bi_table, param = "Language:Voicing", metric = "VOT")`. 
+Neither F1 `r report_posterior(bi_table, param = "F1", metric = "VOT")` nor F2 `r report_posterior(bi_table, param = "F2", metric = "VOT")` had any effect on VOT. 
 Upon comparing the short-lag stops of each language, English /d/ and Spanish /t/, we found minimal evidence that the segments differed from each other `r report_posterior(post_hoc, param = "bi_sl_between", metric = "VOT")`. 
 Approximately 12% of the HDI fell within the predetermined region of practical equivalence, though given the model, the data, and our prior assumptions, there is a 97% chance the effect is negative, i.e., that English /d/ has lower VOT than Spanish /t/. 
 This is likely due to the bilinguals' tendency to pre-voice in English.
@@ -269,7 +281,7 @@ The short-lag stop comparisons are illustrated in @fig-bilinguals-ph-sl-vot and 
 
 **Relative intensity.** We plot the relative intensity data in the top middle panel of @fig-bilinguals.
 There was no evidence for a group effect `r report_posterior(bi_table, param = "Language", metric = "RI")`, nor for voicing `r report_posterior(bi_table, param = "Voicing", metric = "RI")` or F2 `r report_posterior(bi_table, param = "F2", metric = "RI")`.
-We found a relationship between height of the following vowel and relative intensity of the burst  `r report_posterior(bi_table, param = "F1", metric = "RI")`. 
+We found a relationship between height of the following vowel and relative intensity of the burst `r report_posterior(bi_table, param = "F1", metric = "RI")`. 
 Concretely, higher F1 values were associated with lower relative intensity.
 There was no evidence supporting a language &times; voicing interaction `r report_posterior(bi_table, param = "Language:Voicing", metric = "RI")`.
 We found no evidence for a between-language difference of short-lag stops `r report_posterior(post_hoc, param = "bi_sl_between", metric = "RI")`. 
@@ -280,31 +292,33 @@ We found weak evidence for a language &times; voicing interaction `r report_post
 The difference between voiced and voiceless coronals was slightly larger in Spanish than it was in English. 
 No other predictors had an effect on COG. 
 The COG data is plotted in the first row, third panel of @fig-bilinguals.
-
-There was evidence supporting a moderate difference between short-lag /t/ of Spanish and /d/ of English `r report_posterior(post_hoc, param = "bi_sl_between", metric = "COG")`. 
+There was evidence that short-lag /t/ of Spanish had a lower COG than English /d/ `r report_posterior(post_hoc, param = "bi_sl_between", metric = "COG")`. 
 
 **Kurtosis.** We plot the kurtosis data in the second row, first column of @fig-bilinguals. 
 Kurtosis was higher in English stop bursts than Spanish stop bursts `r report_posterior(bi_table, param = "Language", metric = "KT")`, and also in voiced segments `r report_posterior(bi_table, param = "Voicing", metric = "KT")`, though there was a language &times; voicing interaction `r report_posterior(bi_table, param = "Language:Voicing", metric = "KT")`.
 In this case, we observed that kurtosis was higher in the voiced stop bursts of Spanish `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "SPANISH_KT")`, but the voicing difference was much smaller in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "ENGLISH_KT")`.
 Neither F1 `r report_posterior(bi_table, param = "F1", metric = "KT")` nor F2 `r report_posterior(bi_table, param = "F2", metric = "KT")` had any influence on kurtosis. 
-We found evidence supporting a difference between short-lag /t/ of Spanish and /d/ of English `r report_posterior(post_hoc, param = "bi_sl_between", metric = "KT")`. 
+We did find evidence supporting a difference between short-lag /t/ of Spanish and /d/ of English `r report_posterior(post_hoc, param = "bi_sl_between", metric = "KT")`. 
+Kurtosis values were higher for Spanish /d/. 
 
 **Standard deviation.** Regarding standard deviation, we again observe the same pattern found in the COG data (See third panel, first row and second panel, second row in @fig-bilinguals).
 In other words, there was a difference between English and Spanish `r report_posterior(bi_table, param = "Language", metric = "SD")`, as well as between segments `r report_posterior(bi_table, param = "Voicing", metric = "SD")`. 
 The estimate for the language &times; voicing interaction falls nearly entirely within our predetermined ROPE, though given the data, the model, and our prior assumptions, there is high probability that the effect it positive `r report_posterior(bi_table, param = "Language:Voicing", metric = "SD")`.
 Height and frontedness of the following vowel had no effect on standard deviation in the stop burst (`r report_posterior(prefix = "F1: ", bi_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", bi_table, param = "F2", metric = "SD", supress = T)`).
 Our post-hoc comparison of short-lag stops supports a between-language difference based on standard deviation `r report_posterior(post_hoc, param = "bi_sl_between", metric = "SD")`. 
+English /d/ had higher values than Spanish /t/. 
+
 **Skewness.** With regard to skewness, we again see a similar pattern as the one observed in the analysis of kurtosis (See first and third panels in the second row of @fig-bilinguals). 
 We find an effect of language effect `r report_posterior(bi_table, param = "Language", metric = "SK")`, such that Spanish stops show higher skewness values, and voicing `r report_posterior(bi_table, param = "Voicing", metric = "SK")`, which is driven by a language &times; voicing interaction `r report_posterior(bi_table, param = "Language:Voicing", metric = "SK")`.
 The Spanish voiced /d/ had higher skewness than voiceless /t/ `r report_posterior(prefix = "Spanish /d/ vs. Spanish /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "SPANISH_SK")`, and this difference is much smaller in the English data `r report_posterior(prefix = "English /d/ vs. English /t/: ", post_hoc, param = "bi_dt_win_lang", metric = "ENGLISH_SK")`.
 Again, F1 and F2 had no affect on skewness (`r report_posterior(prefix = "F1: ", bi_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", bi_table, param = "F2", metric = "SK", supress = T)`).
-Finally, our post-hoc analysis comparing short-lag stops provided compelling evidence for between-language differences in the burst `r report_posterior(post_hoc, param = "bi_sl_between", metric = "SK")`. 
+Finally, our post-hoc analysis comparing short-lag stops provided compelling evidence for between-language differences in the burst `r report_posterior(post_hoc, param = "bi_sl_between", metric = "SK")`, with Spanish /t/ showing higher skewness values than English /d/. 
 
 **Interim discussion.**
 
 ```{r}
 #| label: fig-bilinguals-summary
-#| fig-cap: Posterior medians ±95% and 66% credible intervals for VOT and burst metrics of bilingual coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'Language' refers to a within-participant comparison between English and Spanish.
+#| fig-cap: Posterior medians along with 95% and 66% credible intervals for VOT and burst metrics of bilingual coronal stops. Individual point shapes and colors represent the six metrics analyzed. In this analysis, 'Language' refers to a within-participant comparison between English and Spanish.
 include_graphics(here("figs", "bi_summary.pdf"))
 ```
 
@@ -324,19 +338,23 @@ Finally, post-hoc comparisons of Spanish and English short-lag stops suggested t
 
 ```{r}
 #| label: fig-bi-post-hoc-sm
-#| fig-cap: "Posterior distributions of difference estimates between voiced and voiceless stops for Spanish and English. Each point represents the posterior mean difference &pm;95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced segment. The light blue region represents a ROPE of &pm;0.1."
+#| fig-cap: "Posterior distributions of difference estimates between voiced and voiceless stops for Spanish and English. Each point represents the posterior mean difference with a 95% HDI of the posterior of the voiceless segment subtracted from the posterior of the voiced segment. The light blue region represents a ROPE of &pm;0.1."
 include_graphics(here("figs", "bi_post_hoc_within_lang_dt_sm.pdf"))
 ```
 
 
 ## Experiment 3: Bilingual POA data
 
-The final set of analyses compared a subset of the bilingual coronal stop data with bilabial data from a separate group of bilinguals (see Method section). 
+The final set of analyses examined voiceless stop segments from a different group of bilinguals (see Method section). 
 We analyzed VOT and the same burst metrics as the previous analyses. 
-In this case, however, the outcome variables were modeled as a function of language (English, Spanish), place of articulation (POA: bilabial, coronal), standardized F1 and F2, and item repetitions. 
-We only included the voiceless stops (/p/, /t/) from each language. 
-Importantly, the fixed effect *POA* is a between-participant factor. 
-That is, one set of bilingual individuals provided the bilabial data in English and Spanish, and another set of bilingual individuals (those from the previous experiment) provided the coronal data in English and Spanish. 
+In this case, the outcome variables were modeled as a function of language (English, Spanish), place of articulation (POA: bilabial, coronal, velar), their interaction, as well as standardized F1 and F2, and item repetitions. 
+The model included by-participant and by-item grouping variables with varying slopes for the language $\times$ POA interaction, F1, F2, and item repetitions. 
+The fixed effects *language* and *POA* were within-participant factors. 
+That is, the same bilingual individuals provided the stop data in English and Spanish. 
+We set *English* and *coronal* as the reference levels in the omnibus model. 
+Crucially, we examined the between-language differences at each place of articulation. 
+While VOT differences are well-attested, based on experiments 1 and 2, as well as impressionistic accounts, we also anticipated between-language differences in burst metrics for coronals, but not bilabials or velars. 
+Complete model summaries are available, but we focus on between-language pairwise comparisons. 
 @fig-poa-bilinguals plots VOT and the burst metrics as a function of language (English, Spanish) and POA (bilabial, coronal). 
 For all plots, the y-axis represents the outcome variable in standardized units, the x-axis represents POA, and language is represented by color. 
 
@@ -348,41 +366,32 @@ include_graphics(here("figs", "poa_all_metrics.pdf"))
 
 **Voice-onset time.** The VOT data is plotted in the first panel of @fig-poa-bilinguals.
 The complete model summary is available in @fig-poa-bilinguals-summary below, as well as @tbl-bi-poa of the supplementary materials.
-There was a strong effect of language `r report_posterior(bi_poa_table, param = "Language: Spanish", metric = "VOT")`. 
-English voiceless stops had higher VOT than Spanish voiceless stops regardless of POA `r report_posterior(bi_poa_table, param = "Place: Bilabial", metric = "VOT")`. 
-We did not find compelling evidence for a language &times; POA interaction `r report_posterior(bi_poa_table, param = "Language(Spanish):Place(velar)", metric = "VOT")`, nor were there any effects for the formant structure of the following vowel (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "VOT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "VOT", supress = T)`). 
+English voiceless stops had higher VOT than Spanish voiceless stops regardless of POA (`r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "BILABIAL_VOT", prefix = "Bilabials: ", supress = TRUE)`; `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "CORONAL_VOT", prefix = "Coronals: ", supress = TRUE)`; `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "VELAR_VOT", prefix = "Velars: ", supress = TRUE)`). 
 
+**Relative intensity.** The relative intensity data is plotted in the second panel of @fig-poa-bilinguals and the complete model summary is available in @fig-poa-bilinguals-summary or @tbl-bi-poa of the supplementary materials. 
+For coronals, relative intensity of the burst appeared to be slightly lower in Spanish `r report_posterior(bi_poa_table, param = "Language", metric = "RI")`, but a large portion of the posterior mass fell within our pre-established region of practical equivalence. 
+Pairwise comparisons at bilabial and coronal place showed that the distributions were overlapping in both cases (`r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "BILABIAL_RI", prefix = "Bilabials: ", supress = TRUE)`; `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "VELAR_RI", prefix = "Velars: ", supress = TRUE)`). 
 
-**Relative intensity.** Relative intensity of the burst was slightly higher in English than in Spanish `r report_posterior(bi_poa_table, param = "Language", metric = "RI")`, though nearly half of the posterior mass fell within our pre-established region of practical equivalence. 
-Relative intensity was higher in bilabial stops than in coronals stops `r report_posterior(bi_poa_table, param = "Place", metric = "RI")`. 
-The two predictors did not interact `r report_posterior(bi_poa_table, param = "Language:Place", metric = "RI")`. 
-We found evidence for a relationship between height of the following vowel and relative intensity of the burst `r report_posterior(bi_poa_table, param = "F1", metric = "RI")`. 
-Concretely, higher F1 values were associated with lower relative intensity. 
-There was no evidence suggesting frontedness of the following vowel had any effect `r report_posterior(bi_poa_table, param = "F2", metric = "RI")`. 
-The relative intensity data is plotted in the second panel of @fig-poa-bilinguals and the complete model summary is available in @fig-poa-bilinguals-summary or @tbl-bi-poa of the supplementary materials.
-
-
-**Center of gravity.** There was an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "COG")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "COG")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "COG")`. 
-As illustrated in the third panel of @fig-poa-bilinguals, COG was higher in English /t/ than in Spanish /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_COG")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_COG")`. 
-The following vowel did not affect COG of the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "COG", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "COG", supress = T)`). 
+**Center of gravity.** Spanish coronals had lower COG than English coronals `r report_posterior(bi_poa_table, param = "Language", metric = "COG")`, as illustrated in the third panel of @fig-poa-bilinguals. 
+There was no such difference in the bilabials `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "BILABIAL_COG")`, nor in the velars `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "VELAR_COG")`
 The model summary is presented in the forest plot in @fig-poa-bilinguals-summary and in @tbl-bi-poa of the supplementary materials. 
 
-
-**Kurtosis.** There was an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "KT")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "KT")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "KT")`. 
-As illustrated in the first panel of the second row in @fig-poa-bilinguals, kurtosis was higher in Spanish /t/ than in English /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_KT")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_KT")`. 
-The following vowel did not affect kurtosis in the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "KT", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "KT", supress = T)`). 
+**Kurtosis.** For kurtosis, Spanish coronals showed higher values than their English counterparts `r report_posterior(bi_poa_table, param = "Language", metric = "KT")`, 
+as illustrated in the first panel of the second row in @fig-poa-bilinguals.
+We did not observe a meaningful difference in the bilabials `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "BILABIAL_KT")`, though for velars kurtosis was higher in Spanish `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "VELAR_KT")`. 
 The model summary is available in @fig-poa-bilinguals-summary (See also @tbl-bi-poa of the supplementary materials). 
 
 
-**Standard deviation.** Similar to the COG and kurtosis analyses, we again see an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "SD")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "SD")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "SD")`. 
-As illustrated in the middle panel of the second row in @fig-poa-bilinguals, standard deviation was higher in English /t/ than in Spanish /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_SD")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_SD")`. 
-The following vowel did not affect standard deviation of the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "SD", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "SD", supress = T)`). 
+**Standard deviation.** Similar to the COG and kurtosis analyses, we again see a between-language difference for the coronals. 
+Specifically, Spanish /t/ had lower standard deviation than English /t/ `r report_posterior(bi_poa_table, param = "Language", metric = "SD")`, as illustrated in the middle panel of the second row in @fig-poa-bilinguals.
+We do not find such a difference in the bilabials `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "BILABIAL_SD")`, but English velars had higher standard deviation than Spanish velars `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "VELAR_SD")`. 
 The model summary is available in @fig-poa-bilinguals-summary, as well as @tbl-bi-poa of the supplementary materials. 
 
 
-**Skewness.** Finally, for skewness we find an effect of language `r report_posterior(bi_poa_table, param = "Language", metric = "SK")` and POA `r report_posterior(bi_poa_table, param = "Place", metric = "SK")` and the two predictors interacted `r report_posterior(bi_poa_table, param = "Language:Place", metric = "SK")`. 
-As illustrated in the final panel of the second row in @fig-poa-bilinguals, skewness was higher in Spanish /t/ than in English /t/ `r report_posterior(prefix = "Spanish /t/ vs. English /t/: ", post_hoc, param = "bi_poa_between_lang", metric = "CORONAL_SK")`, but there was no such difference in the bilabials `r report_posterior(prefix = "Spanish /p/ vs. English /p/: ", post_hoc, param = "bi_poa_between_lang", metric = "BILABIAL_SK")`. 
-The following vowel did not affect skewness of the bursts (`r report_posterior(prefix = "F1: ", bi_poa_table, param = "F1", metric = "SK", supress = T)``r report_posterior(prefix = "; F2: ", bi_poa_table, param = "F2", metric = "SK", supress = T)`). 
+**Skewness.** Finally, for skewness we find that Spanish /t/ had higher values than English /t/ `r report_posterior(bi_poa_table, param = "Language", metric = "SK")`, 
+but there was no difference between bilabials `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "BILABIAL_SK")`. 
+Similar to the coronals, Spanish /k/ had higher skewness values than English /k/ `r report_posterior(post_hoc, param = "bi_poa_within_lang", metric = "VELAR_SK")`. 
+The skewness data is plotted in the final panel of the second row in @fig-poa-bilinguals. 
 The model summary is available in @fig-poa-bilinguals-summary below and @tbl-bi-poa of the supplementary materials. 
 
 
@@ -394,18 +403,18 @@ The model summary is available in @fig-poa-bilinguals-summary below and @tbl-bi-
 include_graphics(here("figs", "poa_summary.pdf"))
 ```
 
-The analyses of the bilingual bilabial and coronal voiceless stops are summarized in the forest plot in @fig-poa-bilinguals-summary and @tbl-bi-poa of the supplementary materials.
-The analyses revealed four important findings. 
-First, VOT was realized in a language-specific manner that was was similar for bilabials and coronals. 
+The analyses of the bilingual voiceless stops are summarized in the forest plot in @fig-poa-bilinguals-summary and @tbl-bi-poa of the supplementary materials.
+The analyses revealed three important findings. 
+First, VOT was realized in a language-specific manner that was was similar across bilabial, coronal, and velar place. 
 As with the previous analyses, Spanish voiceless stops were realized with short-lag VOT and English voiceless stops were realized with long-lag VOT. 
-Second, relative intensity can capture place of articulation differences, which are realized similarly in English and Spanish. 
-Third, we again find that COG and standard deviation pattern similarly, as do kurtosis and skewness, across languages for bilabial and coronal stops. 
+Second, we again find that COG and standard deviation pattern similarly, as do kurtosis and skewness, across languages for each of the three stop categories. 
 And, finally, we see that English and Spanish coronals differ with regard to all four spectral moment measurements, where as bilabials do not. 
+Unexpectedly, we also find a similar effect, albeit to a lesser extent, in the velar stops. 
 @fig-poa-post-hoc-all plots the posterior distributions of the Spanish-English difference estimates for VOT, relative intensity, and each spectral moment for bilabials and coronals (See also @tbl-poa-post-hoc-all). 
-One can observe clear between language differences for VOT in bilabials and coronals (i.e., short-lag vs. long-lag realizations), but only for coronals (orange triangles) in the spectral moments. 
+One can observe clear between-language differences for VOT at bilabial, coronal, and velar place (i.e., short-lag vs. long-lag realizations), but not for bilabials in any of the the spectral moments.  
 Thus, all four spectral moment measurements capture the subtle articulatory differences (dental vs. alveolar) between English and Spanish coronals stops. 
 No such fine-phonetic differences are attested in bilabials, and, unsurprisingly, we find no between-language differences at bilabial place. 
-
+WHAT DO WE SAY ABOUT VELARS?
 
 ```{r}
 #| label: fig-poa-post-hoc-all
